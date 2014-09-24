@@ -1,0 +1,10 @@
+.sass-cache
+.tmp
+/node_modules
+PROD.jpt
+git.sh
+index.html
+globeproject.sublime-workspace
+data/11-04-2014-elections.html
+data/11-04-2014-elections_files
+parts/globe
