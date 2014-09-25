@@ -5,9 +5,9 @@ var ResultsTableHeader = React.createClass({
 	render: function() {
 		return (
 			<tr>
-				<th></th>
-				<th>votes</th>
-				<th>pct</th>
+				<th>Candidate</th>
+				<th>Votes</th>
+				<th>Pct.</th>
 			</tr>
 		);
 	}
