@@ -22,6 +22,7 @@ var request        = require('request');
 var runSequence    = require('run-sequence');
 var through        = require('through2');
 var argv           = require('yargs').argv;
+var react          = require('gulp-react');
 
 var fs             = require('fs');
 var path           = require('path');
@@ -71,6 +72,17 @@ gulp.task('compile-templates', function() {
 		.pipe(browserSync.reload({stream:true}));
 });
 
+gulp.task('compile-jsx', function() {
+	return gulp.src([
+							  'common/js/jsx/*.jsx',
+			'graphics/' + GRAPHIC + '/js/jsx/*.jsx'
+		])
+		.pipe(react())
+		.pipe(concat('jsx.js'))
+		.pipe(gulp.dest('.tmp', {cwd: 'graphics/' + GRAPHIC}))
+		.pipe(browserSync.reload({stream:true}));
+});
+
 gulp.task('build-html', function() {
 
 	return gulp.src('graphics/' + GRAPHIC + '/template' + GRAPHIC_TEMPLATE + '.html')
@@ -99,6 +111,12 @@ gulp.task('browser-sync', function() {
 						  'common/js/templates/*.template',
 		'graphics/' + GRAPHIC + '/js/templates/*.template'
 	], ['compile-templates']);
+
+	// watch for changes to jsx
+	gulp.watch([
+						  'common/js/jsx/*.jsx',
+		'graphics/' + GRAPHIC + '/js/jsx/*.jsx'
+	], ['compile-jsx']);
 
 	browserSync({
 		server: {
@@ -155,6 +173,7 @@ function build() {
 			'clean'
 			,'compile-stylesheets'
 			,'compile-templates'
+			,'compile-jsx'
 			,'build-html-prod'
 			,'minify'
 			,'smoosher'
@@ -168,6 +187,7 @@ function build() {
 			'clean'
 			,'compile-stylesheets'
 			,'compile-templates'
+			,'compile-jsx'
 			,'build-html'
 			,'browser-sync'
 		);
