@@ -12,7 +12,7 @@ var RaceResultsTable = React.createClass({
 		return (
 			<table>
 				<thead>
-					<ResultsTableHeader />
+					<ResultsTableHeader race={this.props.race} />
 				</thead>
 				<tfoot>
 				</tfoot>
