@@ -1,9 +1,10 @@
+var gulp           = require('gulp');
 var fs             = require('fs');
 var inquirer       = require('inquirer');
-var getDirectories = require('../util/getDirectories.js');
-var config         = require('../config.js');
+var getDirectories = require('../util/getDirectories');
+var config         = require('../config');
 
-module.exports = function (done) {
+gulp.task('promptForChoices', function(done) {
 
 	var prompts = [{
 		type: 'confirm',
@@ -54,4 +55,4 @@ module.exports = function (done) {
 		}
 
 	});
-};
+});

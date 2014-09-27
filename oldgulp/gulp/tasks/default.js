@@ -4,8 +4,8 @@ var runSequence = require('run-sequence');
 gulp.task('default', function(done) {
 	runSequence(
 		'promptForChoices',
-		'build',
-		'browserSync',
+		// 'build',
+		// 'browserSync',
 		done
 	);
 });

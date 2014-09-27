@@ -1,16 +1,16 @@
-var gulp          = require('gulp');
-var browserSync   = require('browser-sync');
-var rewriteModule = require('http-rewrite-middleware');
-var fs            = require('fs');
-var config        = require('../config.js');
+var gulp           = require('gulp');
+var browserSync    = require('browser-sync');
+var fs             = require('fs');
+var rewriteModule  = require('http-rewrite-middleware');
+var config         = require('../config');
 
 gulp.task('browserSync', function(done) {
 
-	// watch for changes to html
-	gulp.watch([
-		config.baseDir() + '/template' + config.getUserChoice('template') + '.html',
-		config.baseDir() + '/html/*'
-	], ['buildHtml']);
+	// // watch for changes to html
+	// gulp.watch([
+	// 	'graphics/' + GRAPHIC + '/template' + GRAPHIC_TEMPLATE + '.html',
+	// 	'graphics/' + GRAPHIC + '/html/*'
+	// ], ['build-html']);
 
 	// watch for changes to scss
 	gulp.watch([
@@ -20,31 +20,22 @@ gulp.task('browserSync', function(done) {
 
 	// // watch for changes to templates
 	// gulp.watch([
-	// 	'common/js/templates/*.template',
-	// 	config.baseDir() + '/js/templates/*.template'
-	// ], ['compileLoDashtemplates']);
-
-	// // watch for changes to jsx
-	// gulp.watch([
-	// 	'common/js/jsx/*.jsx',
-	// 	config.baseDir() + '/js/jsx/*.jsx'
-	// ], ['compileJsxTemplates']);
-
-	var rewriteMiddleware = rewriteModule.getMiddleware(JSON.parse(fs.readFileSync('middleware.json', 'utf8')));
+	// 					  'common/js/templates/*.template',
+	// 	'graphics/' + GRAPHIC + '/js/templates/*.template'
+	// ], ['compile-templates']);
 
 	browserSync({
 		server: {
 			baseDir: './',
-			middleware: rewriteMiddleware
+			middleware: rewriteModule.getMiddleware(JSON.parse(fs.readFileSync('middleware.json', 'utf8')))
 		},
 		ghostMode: false,
-		startPath: config.baseDir()
-		// ,
-		// files: [
-		// 	'common/js/*.js',
-		// 	config.baseDir() + '/.tmp/*.js',
-		// 	config.baseDir() + '/js/**/*.js'
-		// ]
+		startPath: config.baseDir(),
+		files: [
+			// 'common/js/*.js',
+			// 'graphics/' + GRAPHIC + '/.tmp/*.js',
+			// 'graphics/' + GRAPHIC + '/js/**/*.js'
+		]
 	});
 
 });
