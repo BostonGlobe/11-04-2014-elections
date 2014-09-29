@@ -14,6 +14,7 @@
  */
 
 var React = require('react');
+var SummaryResults = require('./SummaryResults/main.jsx');
 
 var MultipleSummaryResults = React.createClass({
 	fetchData: function() {
@@ -37,18 +38,15 @@ var MultipleSummaryResults = React.createClass({
 		this.fetchData();
 	},
 	render: function() {
-		return (
-			<div className='multiple-summary-results'>multiple-summary-results</div>
-		);
-		// var multipleSummaryResults = this.state.races.map(function(race) {
-		// 	return (
-		// 		<SummaryResults race={race} />
-		// 	);
-		// });
+		var multipleSummaryResults = this.state.races.map(function(race) {
+			return (
+				<SummaryResults race={race} key={race.race_number} />
+			);
+		});
 
-		// return (
-		// 	<div>{racesSummaryResults}</div>
-		// );
+		return (
+			<div className='multiple-summary-results'>{multipleSummaryResults}</div>
+		);
 	}
 
 });
