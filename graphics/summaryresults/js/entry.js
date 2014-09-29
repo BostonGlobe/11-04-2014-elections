@@ -3,4 +3,6 @@
 	var masterSelector = '.homepage-graphic.summaryresults';
 	var master = $(masterSelector);
 
+	require('./main.js');
+
 }); }());
