@@ -7,7 +7,12 @@ var config      = require('../config');
 gulp.task('webpack', function() {
 	return gulp.src(config.baseDir() + '/js/entry.js')
 		.pipe(webpack({
-			watch: true
+			watch: true,
+			module: {
+				loaders: [
+					{ test: /\.jsx$/, loader: 'jsx-loader' }
+				]
+			}
 		}))
 		.pipe(rename('bundle.js'))
 		.pipe(gulp.dest('.tmp', {cwd: config.baseDir()}))

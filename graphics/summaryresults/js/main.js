@@ -1,0 +1,1 @@
+require('../../../common/js/jsx/Test.jsx');
