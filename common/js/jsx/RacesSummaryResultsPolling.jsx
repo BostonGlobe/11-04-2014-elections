@@ -3,6 +3,7 @@
  */
 
 var React = require('react');
+var RaceSummaryResults = require('./RaceSummaryResults.jsx');
 
 var RacesSummaryResultsPolling = React.createClass({
 	fetchData: function() {
@@ -26,8 +27,15 @@ var RacesSummaryResultsPolling = React.createClass({
 		this.fetchData();
 	},
 	render: function() {
+
+		var racesSummaryResults = this.state.races.map(function(race) {
+			return (
+				<RaceSummaryResults race={race} />
+			);
+		});
+
 		return (
-			<div>{this.props.raceNumbers}</div>
+			<div>{racesSummaryResults}</div>
 		);
 	}
 });

@@ -14,6 +14,15 @@ Please note: do not reproduce Boston Globe logos or fonts without written permis
 			- SummaryTableHeader
 			- SummaryTableRow
 			- SummaryTablePrecincts
+		- RaceSummaryMap
+	- RaceSummaryResults
+		- RaceName
+		- RaceSummaryTable
+			- SummaryTableHeader
+			- SummaryTableRow
+			- SummaryTablePrecincts
+		- RaceSummaryMap
+	...
 
 ## Install
 
