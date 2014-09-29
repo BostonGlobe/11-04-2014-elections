@@ -4,7 +4,7 @@
 
 var React = require('react');
 var RaceName = require('./RaceName.jsx');
-var SummaryTable = require('./SummaryTable/SummaryTable.jsx');
+var SummaryTable = require('./SummaryTable/component.jsx');
 
 var SummaryResults = React.createClass({
 

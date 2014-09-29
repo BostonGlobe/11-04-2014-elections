@@ -3,7 +3,7 @@
  */
 
 var React = require('react');
-var MultipleSummaryResults = require('../../../common/components/MultipleSummaryResults/MultipleSummaryResults.jsx');
+var MultipleSummaryResults = require('../../../common/components/MultipleSummaryResults/component.jsx');
 
 var nodes = document.querySelectorAll('.elections-summaryresults');
 
