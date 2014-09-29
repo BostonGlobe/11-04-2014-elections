@@ -4,26 +4,6 @@ This project was generated with [generator-globeproject](https://github.com/Bost
 
 Please note: do not reproduce Boston Globe logos or fonts without written permission.
 
-## Notes
-
-- RacesSummaryResultsPolling
-	- PollClock
-	- RaceSummaryResults
-		- RaceName
-		- RaceSummaryTable
-			- SummaryTableHeader
-			- SummaryTableRow
-			- SummaryTablePrecincts
-		- RaceSummaryMap
-	- RaceSummaryResults
-		- RaceName
-		- RaceSummaryTable
-			- SummaryTableHeader
-			- SummaryTableRow
-			- SummaryTablePrecincts
-		- RaceSummaryMap
-	...
-
 ## Install
 
 - `npm install`
