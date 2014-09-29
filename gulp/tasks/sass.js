@@ -1,11 +1,11 @@
-var gulp           = require('gulp');
-var browserSync    = require('browser-sync');
-var config         = require('../config');
-var sass           = require('gulp-ruby-sass');
+var gulp        = require('gulp');
+var sass        = require('gulp-sass');
+var browserSync = require('browser-sync');
+var config      = require('../config');
 
 gulp.task('sass', function() {
 	return gulp.src('css/*', {cwd: config.baseDir()})
-		.pipe(sass({compass: true}))
+		.pipe(sass())
 		.pipe(gulp.dest('.tmp', {cwd: config.baseDir()}))
 		.pipe(browserSync.reload({stream:true}));
 });

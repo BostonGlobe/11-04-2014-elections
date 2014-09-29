@@ -1,11 +1,9 @@
-var gulp        = require('gulp');
-var runSequence = require('run-sequence');
+var gulp          = require('gulp');
+var runSequence   = require('run-sequence');
 
 gulp.task('default', function(done) {
 	runSequence(
-		'promptForChoices',
-		'build',
-		'browserSync',
-		done
+		'set-user-choices',
+		'build'
 	);
 });

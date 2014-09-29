@@ -1,10 +1,10 @@
 var gulp           = require('gulp');
-var fs             = require('fs');
 var inquirer       = require('inquirer');
+var fs             = require('fs');
 var getDirectories = require('../util/getDirectories');
 var config         = require('../config');
 
-gulp.task('promptForChoices', function(done) {
+gulp.task('set-user-choices', function(done) {
 
 	var prompts = [{
 		type: 'confirm',
@@ -24,12 +24,12 @@ gulp.task('promptForChoices', function(done) {
 		});
 	}
 
-	inquirer.prompt(prompts, function(answers1) {
+	inquirer.prompt(prompts, function(answers) {
 
-		var chosenGraphic = answers1.graphicName || graphicChoices[0];
-		var chosenGraphicType = JSON.parse(fs.readFileSync('graphics/' + chosenGraphic + '/graphicType.json', {encoding: 'utf8'})).graphicType;
+		var chosenGraphic = answers.graphicName || graphicChoices[0];
+		var graphicType = JSON.parse(fs.readFileSync('graphics/' + chosenGraphic + '/graphicType.json', {encoding: 'utf8'})).graphicType;
 
-		if (!answers1.packageToJPT && chosenGraphicType === 'igraphic') {
+		if (!answers.packageToJPT && graphicType === 'igraphic') {
 
 			// ask what kind of template we want
 			inquirer.prompt([{
@@ -37,22 +37,21 @@ gulp.task('promptForChoices', function(done) {
 				name: 'igraphicType',
 				message: 'Choose an igraphic template',
 				choices: ['regular', 'linked']	
-			}], function(answers2) {
-		
-				// set global variables - not sure how else to pass params to gulp
-				// also, apparently "Tasks should never take parameters"
-				// see https://github.com/orchestrator/orchestrator/issues/17
+			}], function(answers) {
+
 				config.setUserChoice('graphic', chosenGraphic);
-				config.setUserChoice('template', '-' + answers2.igraphicType);
+				config.setUserChoice('graphicTemplate', '-' + answers.igraphicType);
 				done();
+
 			});
 		} else {
 
 			config.setUserChoice('graphic', chosenGraphic);
-			config.setUserChoice('packageToJPT', answers1.packageToJPT);
-			config.setUserChoice('template', '');
+			config.setUserChoice('packageToJpt', answers.packageToJPT);
+			config.setUserChoice('graphicTemplate', '');
 			done();
 		}
 
 	});
+
 });
