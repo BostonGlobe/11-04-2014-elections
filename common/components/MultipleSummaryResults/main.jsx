@@ -6,11 +6,12 @@
  * MultipleSummaryResults
  * {1} PollClock
  *  +  SummaryResults
- *     {1} RaceName
- *      +  SummaryTable
+ *      ?  RaceName
+ *      ?  SummaryTable
  *         {1} Header
  *          +  Row
  *         {1} Precincts
+ *      ?  SummaryMap
  */
 
 var React = require('react');
