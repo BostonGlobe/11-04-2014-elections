@@ -2,6 +2,9 @@
  * @jsx React.DOM
  */
 
+// this one doesn't poll. meaning, it receives its data from a parent.
+// in other words, its data is not state.
+
 var React = require('react');
 
 var RaceName = React.createClass({

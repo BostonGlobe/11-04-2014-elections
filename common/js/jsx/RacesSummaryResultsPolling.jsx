@@ -17,16 +17,18 @@ var RacesSummaryResultsPolling = React.createClass({
 			jsonpCallback: '_' + this.props.raceNumbers.join('_')
 		});
 	},
-	getInitialState: function() {
-		return {races: []};
-	},
+	// getInitialState: function() {
+	// 	return {races: []};
+	// },
 	componentDidMount: function() {
-		window['_' + this.props.raceNumbers.join('_')] = function(json) {
-			this.setState({races:json});
-		}.bind(this);
-		this.fetchData();
+		// window['_' + this.props.raceNumbers.join('_')] = function(json) {
+		// 	this.setState({races:json});
+		// }.bind(this);
+		// this.fetchData();
 	},
 	render: function() {
+
+		debugger;
 
 		var racesSummaryResults = this.state.races.map(function(race) {
 			return (

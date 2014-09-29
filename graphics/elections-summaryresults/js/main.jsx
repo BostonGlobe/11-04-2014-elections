@@ -3,7 +3,7 @@
  */
 
 var React = require('react');
-var RacesSummaryResultsPolling = require('../../../common/js/jsx/RacesSummaryResultsPolling.jsx');
+var MultipleSummaryResults = require('../../../common/components/MultipleSummaryResults/main.jsx');
 
 var nodes = document.querySelectorAll('.elections-summaryresults');
 
@@ -20,7 +20,7 @@ for (var i = 0; nodes[i]; i++) {
 	var raceNumbers = stringToNumbers(node.getAttribute('data-racenumbers'));
 
 	React.renderComponent(
-		<RacesSummaryResultsPolling raceNumbers={raceNumbers} />,
+		<MultipleSummaryResults raceNumbers={raceNumbers} />,
 		node
 	);
 }
