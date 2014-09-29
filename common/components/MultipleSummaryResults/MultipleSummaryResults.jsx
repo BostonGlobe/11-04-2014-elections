@@ -15,7 +15,7 @@
  */
 
 var React = require('react');
-var SummaryResults = require('./SummaryResults/main.jsx');
+var SummaryResults = require('./SummaryResults/SummaryResults.jsx');
 
 var MultipleSummaryResults = React.createClass({
 	fetchData: function() {

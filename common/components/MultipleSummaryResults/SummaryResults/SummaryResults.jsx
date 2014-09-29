@@ -4,6 +4,7 @@
 
 var React = require('react');
 var RaceName = require('./RaceName.jsx');
+var SummaryTable = require('./SummaryTable/SummaryTable.jsx');
 
 var SummaryResults = React.createClass({
 
@@ -11,6 +12,7 @@ var SummaryResults = React.createClass({
 		return (
 			<div className='summary-results'>
 				<RaceName race={this.props.race} />
+				<SummaryTable race={this.props.race} />
 			</div>
 		);
 	}
