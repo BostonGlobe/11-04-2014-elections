@@ -18,7 +18,10 @@ var SummaryTable = React.createClass({
 
 		var summaryReportingUnit = _.find(this.props.race.reporting_units, {fips_code: 0});
 
-		console.log(JSON.stringify(summaryReportingUnit, null, 4));
+		// Row needs two things:
+		// the actual result,
+		// and the total number of votes,
+		// so that we can calculate pct. reporting
 
 		return (
 			<div>
