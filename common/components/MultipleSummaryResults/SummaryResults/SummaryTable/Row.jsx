@@ -8,7 +8,11 @@ var Row = React.createClass({
 
 	render: function() {
 		return (
-			<div className='row'>row</div>
+			<tr>
+				<td>one</td>
+				<td>two</td>
+				<td>three</td>
+			</tr>
 		);
 	}
 

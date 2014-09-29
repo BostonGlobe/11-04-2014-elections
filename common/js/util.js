@@ -1,11 +1,11 @@
-globe.electionsUtil = {
+module.exports = {
 
-	formatRaceTypeID: function(race_type_id) {
+	raceTypeIDToParty: function(race_type_id) {
 		return {
 			'd': 'democratic',
 			'r': 'republican',
 			'0': 'independent'
 		}[race_type_id.toLowerCase()];
 	}
-	
+
 };
