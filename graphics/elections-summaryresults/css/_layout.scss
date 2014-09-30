@@ -1,3 +1,128 @@
 .homepage-graphic.elections-summaryresults {
-	
+
+	table.summary-table {
+
+		@include rhythm(0, 0, 0, 0);
+
+		.democratic {
+			color: $democraticFull;
+		}
+
+		.republican {
+			color: $republicanFull;
+		}
+
+		font-family: $sansSerif;
+		@include adjust-font-size-to(19px);
+		color: black;
+
+		thead {
+			tr {
+				border-bottom: solid $borderColor 1px;
+			}
+		}
+
+		tbody {
+
+			tr {
+
+				border-bottom: solid $borderColor 1px;
+
+				td {
+					.square {
+						display: inline-block;
+						margin-left: 0.25em;
+						margin-right: 0.25em;
+						width: 1.25em;
+						padding-left: 0.125em;
+
+						&:before {
+							content: '✓';
+							color: white;
+							visibility: hidden;
+							font-weight: bold;
+						}
+					}
+				}
+
+				&.winner {
+					background: $winningBackground;
+
+					.square:before {
+						visibility: visible;
+					}
+				}
+
+				&.color_0 .square { background: $qualitativeColor_0; }
+				&.color_1 .square { background: $qualitativeColor_1; }
+				&.color_2 .square { background: $qualitativeColor_2; }
+				&.color_3 .square { background: $qualitativeColor_3; }
+				&.color_4 .square { background: $qualitativeColor_4; }
+				&.color_5 .square { background: $qualitativeColor_5; }
+				&.color_6 .square { background: $qualitativeColor_6; }
+				&.color_7 .square { background: $qualitativeColor_7; }
+				&.color_8 .square { background: $qualitativeColor_8; }
+				&.color_9 .square { background: $qualitativeColor_9; }
+
+			}
+
+			tr:nth-child(n+2) {
+
+				.pct-sign {
+					visibility: hidden;
+				}
+
+			}
+
+		}
+
+		tfoot {
+
+			color: $lessImportant;
+
+			td {
+				padding-left: 0;
+			}
+		}
+
+		th,
+		td {
+			font-weight: normal;
+			&.votes,
+			&.pct,
+			&.votesAndPct {
+				text-align: right;
+			}
+			padding-left: 0.5em;
+			padding-right: 0.5em;
+			@include rhythm(0, 1/5, 1/5, 0);
+		}
+
+		th.name {
+			text-transform: uppercase;
+			font-weight: bold;
+			padding-left: 0;
+		}
+
+		th.town,
+		th.votes,
+		th.pct,
+		td.metadata {
+			color: $lessImportant;
+		}
+
+		td.metadata {
+			text-align: right;
+		}
+
+		td.name {
+			padding-left: 0;
+			@include adjust-font-size-to(18px);
+		}
+
+		td.pct {
+			font-weight: bold;
+			@include adjust-font-size-to(18px);
+		}
+	}
 }

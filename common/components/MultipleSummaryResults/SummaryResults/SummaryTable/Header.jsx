@@ -18,12 +18,13 @@ var Header = React.createClass({
 		var title = this.props.race.race_type === 'Primary' ?
 			util.raceTypeIDToParty(this.props.race.race_type_id) :
 			'Candidate';
+
 		return (
 			<thead>
 				<tr>
-					<th>{title}</th>
-					<th>Votes</th>
-					<th>Pct.</th>
+					<th className={'name ' + title}>{title}</th>
+					<th className='votes'>Votes</th>
+					<th className='pct'>Pct.</th>
 				</tr>
 			</thead>
 		);

@@ -9,17 +9,26 @@ var Row = React.createClass({
 
 	render: function() {
 
-		var pct = this.props.totalVotes > 0 ?
-			util.formatPercent(this.props.result.vote_count/this.props.totalVotes, 1) :
+		var totalVotes = this.props.totalVotes;
+		var voteCount = this.props.result.vote_count;
+
+		var pct = totalVotes > 0 ?
+			util.formatPercent(voteCount/totalVotes, 1) :
 			0;
 
-		var votes = util.numberWithCommas(this.props.result.vote_count);
+		var votesForDisplay = util.numberWithCommas(voteCount);
+
+		var isWinner = this.props.result.winner === 'X';
+
+		var className = [this.props.className, isWinner ? 'winner' : ''].join(' ');
+
+		var name = this.props.result.last_name;
 
 		return (
-			<tr>
-				<td className='name'>{this.props.result.last_name}</td>
-				<td className='votes'>{votes}</td>
-				<td className='pct'>{pct}%</td>
+			<tr className={className}>
+				<td className='name'><span className='square'></span>{name}</td>
+				<td className='votes'>{votesForDisplay}</td>
+				<td className='pct'>{pct}<span className='pct-sign'>%</span></td>
 			</tr>
 		);
 	}
