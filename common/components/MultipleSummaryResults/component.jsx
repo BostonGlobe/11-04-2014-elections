@@ -20,6 +20,7 @@
 
 var React = require('react');
 var SummaryResults = require('./SummaryResults/component.jsx');
+var util = require('../../../common/js/util.js');
 
 var MultipleSummaryResults = React.createClass({
 	fetchData: function() {
@@ -43,11 +44,28 @@ var MultipleSummaryResults = React.createClass({
 		this.fetchData();
 	},
 	render: function() {
-		var multipleSummaryResults = this.state.races.map(function(race) {
-			return (
-				<SummaryResults race={race} key={race.race_number} hasGraphic={false} />
-			);
-		});
+
+		// how do order races?
+		// let's look at the data-racenumbers attribute. e.g. data-racenumbers='22796,22004,22003'
+		// translate numbers to names: 'Governor, Lieutenant Governor, Governor'
+		// we should translate that to the following order: 'Governor, Lieutenant Governor'
+		// we'll assume lodash's uniq() does the job. it not, we'll revisit.
+		// also, order by party, like so: 'democratic, republican, independent'
+		var orderedRaceNames = _.chain(this.state.races)
+			.pluck('office_name')
+			.uniq()
+			.value();
+
+		var multipleSummaryResults = _.chain(this.state.races)
+			.sortBy(util.sortRaceByPartyDelegate)
+			.sortBy(function(race) {
+				return _.indexOf(orderedRaceNames, race.office_name);
+			})
+			.map(function(race) {
+				return (
+					<SummaryResults race={race} key={race.race_number} hasGraphic={false} />
+				);
+			});
 
 		return (
 			<div className='multiple-summary-results'>{multipleSummaryResults}</div>
@@ -57,3 +75,12 @@ var MultipleSummaryResults = React.createClass({
 });
 
 module.exports = MultipleSummaryResults;
+
+
+
+
+
+
+
+
+

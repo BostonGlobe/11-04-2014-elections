@@ -26,6 +26,11 @@ module.exports = {
 		var parts = x.toString().split(".");
 		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		return parts.join(".");
+	},
+
+	sortRaceByPartyDelegate: function(race) {
+		var orderedRaceTypeIDs = ['d', 'r', '0'];
+		return _.indexOf(orderedRaceTypeIDs, race.race_type_id.toLowerCase());
 	}
 
 };
