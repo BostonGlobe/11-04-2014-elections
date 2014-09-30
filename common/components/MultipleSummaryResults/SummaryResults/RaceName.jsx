@@ -8,7 +8,7 @@ var RaceName = React.createClass({
 
 	render: function() {
 		return (
-			<div className='race-name'>{this.props.race.office_name}</div>
+			<h2 className='race-name story-title'>{this.props.race.office_name}</h2>
 		);
 	}
 

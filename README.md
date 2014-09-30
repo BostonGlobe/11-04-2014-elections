@@ -4,6 +4,10 @@ This project was generated with [generator-globeproject](https://github.com/Bost
 
 Please note: do not reproduce Boston Globe logos or fonts without written permission.
 
+## TODO
+
+- swap webpack dev with prod version
+
 ## Install
 
 - `npm install`

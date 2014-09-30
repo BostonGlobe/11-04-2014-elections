@@ -10,7 +10,8 @@ gulp.task('webpack', function() {
 			watch: true,
 			module: {
 				loaders: [
-					{ test: /\.jsx$/, loader: 'jsx-loader' }
+					{ test: /\.jsx$/, loader: 'jsx-loader' },
+					{ test: /\.css$/, loader: 'style-loader!css-loader' }
 				]
 			}
 		}))
