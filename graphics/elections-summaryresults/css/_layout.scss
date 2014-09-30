@@ -28,41 +28,65 @@
 
 				border-bottom: solid $borderColor 1px;
 
-				td {
-					.square {
-						display: inline-block;
-						margin-left: 0.25em;
-						margin-right: 0.25em;
-						width: 1.25em;
-						padding-left: 0.125em;
+				// let's see. we have several cases here.
+				// no winner, no square -> tr
+				// no winner,    square -> tr.color
+				//    winner, no square -> tr.winner
+				//    winner,    square -> tr.winner.color
 
-						&:before {
-							content: '✓';
-							color: white;
-							visibility: hidden;
-							font-weight: bold;
-						}
+				// no winner, no square
+				.checkmark {
+					margin-left: 0.25em;
+					margin-right: 0.25em;
+					display: none;
+
+					&:before {
+						content: '✓';
+						visibility: hidden;
+						font-weight: bold;
+
 					}
 				}
 
-				&.winner {
-					background: $winningBackground;
+				// no winner, square
+				&.color .checkmark {
+					display: inline-block;
+					width: 1.25em;
+					padding-left: 0.125em;
+				}
 
-					.square:before {
+				// winner, no square
+				&.winner .checkmark {
+					display: inline-block;
+
+					&:before {
 						visibility: visible;
 					}
 				}
 
-				&.color_0 .square { background: $qualitativeColor_0; }
-				&.color_1 .square { background: $qualitativeColor_1; }
-				&.color_2 .square { background: $qualitativeColor_2; }
-				&.color_3 .square { background: $qualitativeColor_3; }
-				&.color_4 .square { background: $qualitativeColor_4; }
-				&.color_5 .square { background: $qualitativeColor_5; }
-				&.color_6 .square { background: $qualitativeColor_6; }
-				&.color_7 .square { background: $qualitativeColor_7; }
-				&.color_8 .square { background: $qualitativeColor_8; }
-				&.color_9 .square { background: $qualitativeColor_9; }
+				// winner, square
+				&.winner.color .checkmark {
+					&:before {
+						color: white;
+					}
+				}
+
+				// setup all the qualitative colors for the little squares
+				&.color_0 .checkmark { background: $qualitativeColor_0; }
+				&.color_1 .checkmark { background: $qualitativeColor_1; }
+				&.color_2 .checkmark { background: $qualitativeColor_2; }
+				&.color_3 .checkmark { background: $qualitativeColor_3; }
+				&.color_4 .checkmark { background: $qualitativeColor_4; }
+				&.color_5 .checkmark { background: $qualitativeColor_5; }
+				&.color_6 .checkmark { background: $qualitativeColor_6; }
+				&.color_7 .checkmark { background: $qualitativeColor_7; }
+				&.color_8 .checkmark { background: $qualitativeColor_8; }
+				&.color_9 .checkmark { background: $qualitativeColor_9; }
+
+				// color winning row
+				&.winner {
+					background: $winningBackground;
+				}
 
 			}
 

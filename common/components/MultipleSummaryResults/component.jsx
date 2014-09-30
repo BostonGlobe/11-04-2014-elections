@@ -14,6 +14,10 @@
  *      ?  SummaryMap
  */
 
+// Not implemented yet: we should probably add a "data-mapnumbers" attribute
+// that will toggle a map (or not) for the corresponding race.
+// This will also determine whether we color the row squares or not, 'hasGraphic'
+
 var React = require('react');
 var SummaryResults = require('./SummaryResults/component.jsx');
 
@@ -41,7 +45,7 @@ var MultipleSummaryResults = React.createClass({
 	render: function() {
 		var multipleSummaryResults = this.state.races.map(function(race) {
 			return (
-				<SummaryResults race={race} key={race.race_number} />
+				<SummaryResults race={race} key={race.race_number} hasGraphic={true} />
 			);
 		});
 

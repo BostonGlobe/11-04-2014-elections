@@ -9,9 +9,9 @@ var Precincts = React.createClass({
 	render: function() {
 
 		// cases:
-		// 0/0 - display 0%
-		// 0/1231 - display 0%
-		// 11/11 - display 100%
+		// 0 reporting  /    0 total -> display 0%
+		// 0 reporting  / 1231 total -> display 0%
+		// 11 reporting /   11 total -> display 100%
 		// actually, don't display decimal points
 		// and simply floor down
 

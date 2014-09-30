@@ -20,13 +20,13 @@ var Row = React.createClass({
 
 		var isWinner = this.props.result.winner === 'X';
 
-		var className = [this.props.className, isWinner ? 'winner' : ''].join(' ');
+		var className = [this.props.colorClass, isWinner ? 'winner' : ''].join(' ');
 
 		var name = this.props.result.last_name;
 
 		return (
 			<tr className={className}>
-				<td className='name'><span className='square'></span>{name}</td>
+				<td className='name'><span className='checkmark'></span>{name}</td>
 				<td className='votes'>{votesForDisplay}</td>
 				<td className='pct'>{pct}<span className='pct-sign'>%</span></td>
 			</tr>
