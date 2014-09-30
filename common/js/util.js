@@ -6,6 +6,26 @@ module.exports = {
 			'r': 'republican',
 			'0': 'independent'
 		}[race_type_id.toLowerCase()];
+	},
+
+	formatPercent: function(x, decimalPlaces) {
+
+		var _decimalPlaces = decimalPlaces || 0;
+
+		if (x === 1) {
+			return '100';
+		} else if (x === 0) {
+			return '0';
+		} else {
+			return (100*x).toFixed(_decimalPlaces).toString();
+		}
+
+	},
+
+	numberWithCommas: function(x) {
+		var parts = x.toString().split(".");
+		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		return parts.join(".");
 	}
 
 };
