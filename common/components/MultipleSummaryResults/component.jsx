@@ -45,7 +45,7 @@ var MultipleSummaryResults = React.createClass({
 	render: function() {
 		var multipleSummaryResults = this.state.races.map(function(race) {
 			return (
-				<SummaryResults race={race} key={race.race_number} hasGraphic={true} />
+				<SummaryResults race={race} key={race.race_number} hasGraphic={false} />
 			);
 		});
 
