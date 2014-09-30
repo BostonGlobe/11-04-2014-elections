@@ -8,10 +8,13 @@ var MultipleSummaryResults = require('../../../common/components/MultipleSummary
 var nodes = document.querySelectorAll('.elections-summaryresults');
 
 function stringToNumbers(s) {
-	return s.split(',')
+
+	return _.chain(s.split(','))
 		.map(function(value) {
 			return +value;
-		});
+		})
+		.uniq()
+		.value();
 }
 
 for (var i = 0; nodes[i]; i++) {
