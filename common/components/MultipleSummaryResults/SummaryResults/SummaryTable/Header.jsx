@@ -14,10 +14,18 @@ var util = require('../../../../js/util.js');
 
 var Header = React.createClass({
 
+	statics: {
+		getTitle: function(race) {
+			var title = race.race_type === 'Primary' ?
+				util.raceTypeIDToParty(race.race_type_id) :
+				'candidate';
+
+			return title;
+		}
+	},
+
 	render: function() {
-		var title = this.props.race.race_type === 'Primary' ?
-			util.raceTypeIDToParty(this.props.race.race_type_id) :
-			'candidate';
+		var title = Header.getTitle(this.props.race);
 
 		return (
 			<thead>
