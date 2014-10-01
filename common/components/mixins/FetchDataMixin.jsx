@@ -20,7 +20,7 @@ var FetchDataMixin = {
 		window['_' + this.props.raceNumbers.join('_')] = function(json) {
 			this.setState({races:json});
 		}.bind(this);
-		this.fetchData();
+		this.fetchData(true);
 	},
 	getInitialState: function() {
 		return {races: []};
