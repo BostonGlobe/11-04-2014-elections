@@ -61,9 +61,23 @@ var MultipleSummaryResults = React.createClass({
 			.sortBy(function(race) {
 				return _.indexOf(orderedRaceNames, race.office_name);
 			})
-			.map(function(race) {
+			.map(function(race, index, races) {
+
+				// races shouldn't always display titles.
+				// e.g., say we have three races: Governor (Dem), Governor (GOP), Lieutenant Governor
+				// we should only title the first and third races
+				// so, if this race's title is the same as last race's title, don't display it
+				// this makes the assumption that a race's title is its defining factor
+				// maybe that isn't the case! maybe <RaceName> should be in charge of 
+				// creating a custom race title.
+				// if that's the case, then we might have to revisit this and perhaps place this logic elsewhere.
+
+				// so: only display title if we're on the first race OR the previous race's title
+				// doesn't match this one.
+				var displayTitle = index === 0 || races[index-1].office_name !== race.office_name;
+
 				return (
-					<SummaryResults race={race} key={race.race_number} hasGraphic={false} />
+					<SummaryResults race={race} key={race.race_number} hasGraphic={false} displayTitle={displayTitle} />
 				);
 			});
 

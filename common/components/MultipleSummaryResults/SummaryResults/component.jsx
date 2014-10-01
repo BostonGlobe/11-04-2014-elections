@@ -9,9 +9,10 @@ var SummaryTable = require('./SummaryTable/component.jsx');
 var SummaryResults = React.createClass({
 
 	render: function() {
+
 		return (
 			<div className='summary-results'>
-				<RaceName race={this.props.race} />
+				{this.props.displayTitle ? <RaceName race={this.props.race} /> : null}
 				<SummaryTable race={this.props.race} hasGraphic={this.props.hasGraphic} />
 			</div>
 		);
