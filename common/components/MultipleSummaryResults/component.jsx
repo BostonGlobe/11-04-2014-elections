@@ -72,12 +72,3 @@ var MultipleSummaryResults = React.createClass({
 });
 
 module.exports = MultipleSummaryResults;
-
-
-
-
-
-
-
-
-
