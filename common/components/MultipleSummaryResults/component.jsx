@@ -21,28 +21,10 @@
 var React = require('react');
 var SummaryResults = require('./SummaryResults/component.jsx');
 var util = require('../../../common/js/util.js');
+var FetchDataMixin = require('../mixins/FetchDataMixin.jsx');
 
 var MultipleSummaryResults = React.createClass({
-	fetchData: function() {
-		var url = 'http://www.bostonglobe.com/electionapi/races/number?' + this.props.raceNumbers.map(function(value) {
-			return 'number=' + value;
-		}).join('&');
-
-		$.ajax({
-			url: url,
-			dataType: 'jsonp',
-			jsonpCallback: '_' + this.props.raceNumbers.join('_')
-		});
-	},
-	getInitialState: function() {
-		return {races: []};
-	},
-	componentDidMount: function() {
-		window['_' + this.props.raceNumbers.join('_')] = function(json) {
-			this.setState({races:json});
-		}.bind(this);
-		this.fetchData();
-	},
+	mixins: [FetchDataMixin],
 	render: function() {
 
 		// how do order races?
