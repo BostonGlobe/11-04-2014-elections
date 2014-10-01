@@ -13,7 +13,7 @@ var SummaryResults = React.createClass({
 		return (
 			<div className='summary-results'>
 				{this.props.displayTitle ? <RaceName race={this.props.race} /> : null}
-				<SummaryTable race={this.props.race} hasGraphic={this.props.hasGraphic} />
+				<SummaryTable race={this.props.race} colorRows={this.props.colorRows} />
 			</div>
 		);
 	}

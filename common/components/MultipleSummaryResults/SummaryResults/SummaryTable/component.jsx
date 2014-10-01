@@ -17,7 +17,7 @@ var SummaryTable = React.createClass({
 
 	render: function() {
 
-		var hasGraphic = this.props.hasGraphic;
+		var colorRows = this.props.colorRows;
 
 		var race = this.props.race;
 
@@ -59,7 +59,7 @@ var SummaryTable = React.createClass({
 		// displaying a corresponding map. How will a Row know whether to color
 		// that little square (or not)? Well, its parent, this, will tell it.
 		// And its parent will know because its parent will tell it, and etc
-		// up the hierarchy: look at 'hasGraphic'.
+		// up the hierarchy: look at 'colorRows'.
 
 		var rows = _.chain(summaryReportingUnit.results)
 			.sortBy(function(result) {
@@ -78,7 +78,7 @@ var SummaryTable = React.createClass({
 				// but only if this race has a graphic
 				var colorClass = '';
 
-				if (hasGraphic) {
+				if (colorRows) {
 
 					// if this is a primary, we'll want to color the square
 					// with categorical colors
@@ -87,7 +87,12 @@ var SummaryTable = React.createClass({
 					} else {
 						// if this is a general election, color the square
 						// with the traditional party colors
-						colorClass = util.raceTypeIDToParty(race.race_type_id);
+						// this information is also available to <Row />, so one could make
+						// the argument that coloring is up to <Row />. But: if <Row />
+						// is part of a primary, then it would need more information than it
+						// logically has. And up to now, no child component gets more information
+						// than it logically needs. So let's keep this here.
+						colorClass = util.partyAbbreviationToParty(result.party);
 					}
 
 					// finally, add an extra 'color' class, so we can target

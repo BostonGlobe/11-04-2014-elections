@@ -5,8 +5,8 @@
 var React = require('react');
 
 var FetchDataMixin = {
-	fetchData: function() {
-		var url = 'http://www.bostonglobe.com/electionapi/races/number?' + this.props.raceNumbers.map(function(value) {
+	fetchData: function(isDev) {
+		var url = 'http://' + (isDev ? 'localhost:8080' : 'www.bostonglobe.com') + '/electionapi/races/number?' + this.props.raceNumbers.map(function(value) {
 			return 'number=' + value;
 		}).join('&');
 

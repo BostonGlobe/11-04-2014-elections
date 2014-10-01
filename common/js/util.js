@@ -3,9 +3,17 @@ module.exports = {
 	raceTypeIDToParty: function(race_type_id) {
 		return {
 			'd': 'democratic',
-			'r': 'republican',
-			'0': 'independent'
+			'r': 'republican'
 		}[race_type_id.toLowerCase()];
+	},
+
+	partyAbbreviationToParty: function(abbreviation) {
+		var result = {
+			'dem': 'democratic',
+			'gop': 'republican'
+		}[abbreviation.toLowerCase()];
+
+		return result || 'independent';
 	},
 
 	formatPercent: function(x, decimalPlaces) {
@@ -28,8 +36,8 @@ module.exports = {
 		return parts.join(".");
 	},
 
-	sortRaceByPartyDelegate: function(race) {
-		var orderedRaceTypeIDs = ['d', 'r', '0'];
+	sortRaceByType_delegate: function(race) {
+		var orderedRaceTypeIDs = ['d', 'r', 'g'];
 		return _.indexOf(orderedRaceTypeIDs, race.race_type_id.toLowerCase());
 	}
 

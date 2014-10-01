@@ -4,14 +4,6 @@
 
 		@include rhythm(0, 0, 0, 0);
 
-		.democratic {
-			color: $democraticFull;
-		}
-
-		.republican {
-			color: $republicanFull;
-		}
-
 		font-family: $sansSerif;
 		@include adjust-font-size-to(19px);
 		color: black;
@@ -71,6 +63,10 @@
 					}
 				}
 
+				&.democratic .checkmark { background: $democraticFull; }
+				&.republican .checkmark { background: $republicanFull; }
+				&.independent .checkmark { background: $independentFull; }
+
 				// setup all the qualitative colors for the little squares
 				&.color_0 .checkmark { background: $qualitativeColor_0; }
 				&.color_1 .checkmark { background: $qualitativeColor_1; }
@@ -126,6 +122,19 @@
 			text-transform: uppercase;
 			font-weight: bold;
 			padding-left: 0;
+
+			&.Candidate {
+				color: $lessImportant;
+				font-weight: normal;
+			}
+
+			&.democratic {
+				color: $democraticFull;
+			}
+
+			&.republican {
+				color: $republicanFull;
+			}
 		}
 
 		th.town,

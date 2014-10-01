@@ -16,7 +16,7 @@
 
 // Not implemented yet: we should probably add a "data-mapnumbers" attribute
 // that will toggle a map (or not) for the corresponding race.
-// This will also determine whether we color the row squares or not, 'hasGraphic'
+// This will also determine whether we color the row squares or not, 'colorRows'
 
 var React = require('react');
 var SummaryResults = require('./SummaryResults/component.jsx');
@@ -25,7 +25,7 @@ var FetchDataMixin = require('../mixins/FetchDataMixin.jsx');
 
 var MultipleSummaryResults = React.createClass({
 	mixins: [FetchDataMixin],
-	render: function() {
+	render: function() {		
 
 		// how do order races?
 		// let's look at the data-racenumbers attribute. e.g. data-racenumbers='22796,22004,22003'
@@ -39,7 +39,7 @@ var MultipleSummaryResults = React.createClass({
 			.value();
 
 		var multipleSummaryResults = _.chain(this.state.races)
-			.sortBy(util.sortRaceByPartyDelegate)
+			.sortBy(util.sortRaceByType_delegate)
 			.sortBy(function(race) {
 				return _.indexOf(orderedRaceNames, race.office_name);
 			})
@@ -58,8 +58,10 @@ var MultipleSummaryResults = React.createClass({
 				// doesn't match this one.
 				var displayTitle = index === 0 || races[index-1].office_name !== race.office_name;
 
+				var colorRows = race.race_type === 'General';
+
 				return (
-					<SummaryResults race={race} key={race.race_number} hasGraphic={false} displayTitle={displayTitle} />
+					<SummaryResults race={race} key={race.race_number} colorRows={colorRows} displayTitle={displayTitle} />
 				);
 			});
 
