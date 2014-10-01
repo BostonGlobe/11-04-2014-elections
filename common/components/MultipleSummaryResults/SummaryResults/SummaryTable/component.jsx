@@ -44,7 +44,7 @@ var SummaryTable = React.createClass({
 		// from here, or should it be up to the Row to fetch the info?
 		// If we leave it up to the <Row /> then we have to give it
 		// all the other candidates as well. Let's compute the info here.
-		// This is actually much simpler than I thought. Each candidate gets
+		// EDIT: This is actually much simpler than I thought. Each candidate gets
 		// a classname based on the index of its id in the ordered list
 		// of candidate ids here:
 		var candidateIds = _.chain(candidates)
