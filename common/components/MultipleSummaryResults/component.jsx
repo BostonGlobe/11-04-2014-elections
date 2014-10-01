@@ -20,49 +20,47 @@
 
 var React = require('react');
 var SummaryResults = require('./SummaryResults/component.jsx');
+var RaceName = require('./SummaryResults/RaceName.jsx');
 var util = require('../../../common/js/util.js');
 var FetchDataMixin = require('../mixins/FetchDataMixin.jsx');
 
 var MultipleSummaryResults = React.createClass({
 	mixins: [FetchDataMixin],
-	render: function() {		
+	render: function() {
 
-		// how do order races?
-		// let's look at the data-racenumbers attribute. e.g. data-racenumbers='22796,22004,22003'
-		// translate numbers to names: 'Governor, Lieutenant Governor, Governor'
-		// we should translate that to the following order: 'Governor, Lieutenant Governor'
-		// also, order by party, like so: 'democratic, republican'
-		var orderedRaceNames = _.chain(this.state.races)
-			.pluck('office_name')
-			.uniq()
-			.value();
-
-		var multipleSummaryResults = _.chain(this.state.races)
+		// races come in already ordered, based on data-racenumbers present in the HTML.
+		// we should respect this order, which means the following:
+		// if we have an order like 'Senate, Senate, Governor' we should not display
+		// the second 'Senate' title.
+		// if we have an order like 'Senate, Governor, Senate' we should display all
+		// three titles, in order.
+		// also, if we have several races with the same title,
+		// order by party (this really only applies to Primaries)
+		var races = this.state.races;
+		var raceNumbers = _.pluck(races, 'race_number');
+		
+		var multipleSummaryResults = _.chain(races)
 			.sortBy(util.sortRaceByType_delegate)
 			.sortBy(function(race) {
-				return _.indexOf(orderedRaceNames, race.office_name);
+				return _.indexOf(raceNumbers, race.office_name);
 			})
 			.map(function(race, index, races) {
-
-				// races shouldn't always display titles.
-				// e.g., say we have three races: Governor (Dem), Governor (GOP), Lieutenant Governor
-				// we should only title the first and third races
-				// so, if this race's title is the same as last race's title, don't display it
-				// this makes the assumption that a race's title is its defining factor
-				// maybe that isn't the case! maybe <RaceName> should be in charge of 
-				// creating a custom race title.
-				// if that's the case, then we might have to revisit this and perhaps place this logic elsewhere.
+				var thisName = RaceName.getName(race);
 
 				// so: only display title if we're on the first race OR the previous race's title
 				// doesn't match this one.
-				var displayTitle = index === 0 || races[index-1].office_name !== race.office_name;
+				var displayTitle = index === 0 ||
+					RaceName.getName(race) !== RaceName.getName(races[index-1]);
 
+				// for now, don't color primary rows (even if there's a map)
 				var colorRows = race.race_type === 'General';
 
 				return (
 					<SummaryResults race={race} key={race.race_number} colorRows={colorRows} displayTitle={displayTitle} />
 				);
-			});
+
+			})
+			.value();
 
 		return (
 			<div className='multiple-summary-results'>{multipleSummaryResults}</div>
