@@ -9,7 +9,8 @@ gulp.task('build', function(done) {
 		runSequence(
 			'html',
 			'sass',
-			'webpack'
+			'webpack',
+			'smoosh'
 		);
 
 	} else {
