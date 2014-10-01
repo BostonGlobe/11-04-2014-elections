@@ -5,8 +5,7 @@ gulp.task('watch', function() {
 
 	// watch for changes to html
 	gulp.watch([
-		config.html().src,
-		config.baseDir() + '/html/*'
+		config.baseDir() + '/**/*.html'
 	], ['html']);
 
 	// watch for changes to sass

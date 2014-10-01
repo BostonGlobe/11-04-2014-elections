@@ -2,14 +2,22 @@ var gulp        = require('gulp');
 var browserSync = require('browser-sync');
 var fileinclude = require('gulp-file-include');
 var rename      = require('gulp-rename');
+var config      = require('../config');
 
 gulp.task('html', function() {
 
-	var config = require('../config').html();
+	var isProd = config.getUserChoice('packageToJpt');
+	var filename = isProd ? 'PROD.jpt' : 'index.html';
 
-	return gulp.src(config.src)
+	var task = gulp.src(config.html(isProd), {cwd: config.baseDir()})
 		.pipe(fileinclude())
-		.pipe(rename('index.html'))
-		.pipe(gulp.dest(config.dest))
-		.pipe(browserSync.reload({stream:true}));
+		.pipe(rename(filename))
+		.pipe(gulp.dest('./', {cwd: config.baseDir()}));
+
+	if (!isProd) {
+		return task.pipe(browserSync.reload({stream:true}));
+	} else {
+		return task;
+	}
+
 });

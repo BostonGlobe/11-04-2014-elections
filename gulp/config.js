@@ -12,11 +12,11 @@ module.exports = (function() {
 		setUserChoice: privateSetChoice,
 		getUserChoice: privateGetChoice,
 
-		html: function() {
+		html: function(isProd) {
 			return {
-				src: this.baseDir() + '/template' + privateGetChoice('graphicTemplate') + '.html',	
-				dest: this.baseDir()
-			};
+				dev: 'template' + privateGetChoice('graphicTemplate') + '.html',
+				prod: 'template-prod.html'
+			}[isProd ? 'prod' : 'dev'];
 		},
 
 		baseDir: function() {

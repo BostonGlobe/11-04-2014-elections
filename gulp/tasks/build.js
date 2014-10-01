@@ -7,11 +7,9 @@ gulp.task('build', function(done) {
 	if (config.getUserChoice('packageToJpt')) {
 
 		runSequence(
-			// 'compile-stylesheets',
-			// 'compile-templates',
-			// 'build-html-prod',
-			// 'minify',
-			// 'smoosher'
+			'html',
+			'sass',
+			'webpack'
 		);
 
 	} else {
