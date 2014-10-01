@@ -31,8 +31,7 @@ var MultipleSummaryResults = React.createClass({
 		// let's look at the data-racenumbers attribute. e.g. data-racenumbers='22796,22004,22003'
 		// translate numbers to names: 'Governor, Lieutenant Governor, Governor'
 		// we should translate that to the following order: 'Governor, Lieutenant Governor'
-		// we'll assume lodash's uniq() does the job. it not, we'll revisit.
-		// also, order by party, like so: 'democratic, republican, independent'
+		// also, order by party, like so: 'democratic, republican'
 		var orderedRaceNames = _.chain(this.state.races)
 			.pluck('office_name')
 			.uniq()

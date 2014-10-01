@@ -18,7 +18,29 @@ var FetchDataMixin = {
 	},
 	componentDidMount: function() {
 		window['_' + this.props.raceNumbers.join('_')] = function(json) {
-			this.setState({races:json});
+
+		// the races array (json) doesn't necessarily come back from the server
+		// in the order in which it was requested
+		// let's fix that right here.
+
+		var raceNumbers = this.props.raceNumbers;
+
+		// first: iterate over the incoming races
+		var races = _.chain(json)
+			.map(function(race) {
+
+				// get the index of first occurrence of race_number in the html attribute
+				var index = _.indexOf(raceNumbers, race.race_number);
+				return {
+					index: index,
+					race: race
+				};
+			})
+			.sortBy('index')
+			.pluck('race')
+			.value();
+
+			this.setState({races:races});
 		}.bind(this);
 		this.fetchData(true);
 	},
