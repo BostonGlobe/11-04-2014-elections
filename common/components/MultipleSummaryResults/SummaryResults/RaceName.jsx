@@ -3,7 +3,6 @@
  */
 
 var React = require('react');
-var Race = require('../../objects/Race.js');
 
 var RaceName = React.createClass({
 
