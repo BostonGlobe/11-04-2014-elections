@@ -22,6 +22,7 @@ var React = require('react');
 var FetchDataMixin = require('../mixins/FetchDataMixin.jsx');
 var SummaryResults = require('./SummaryResults/component.jsx');
 var RaceName = require('./SummaryResults/RaceName.jsx');
+var PollClock = require('../PollClock.jsx');
 var util = require('../../../common/js/util.js');
 
 var MultipleSummaryResults = React.createClass({
@@ -93,8 +94,27 @@ var MultipleSummaryResults = React.createClass({
 		});
 
 		return (
-			<div className='multiple-summary-results'>{multipleSummaryResults}</div>
+			<div className='multiple-summary-results'>
+				<PollClock ref='thePollClock' pollCallback={this.fetchData} />
+				{multipleSummaryResults}
+			</div>
 		);
+	},
+
+	// this runs after render, which is when we check if the races are over
+	componentDidUpdate: function() {
+
+		if (MultipleSummaryResults.racesAreOver(this.state.races)) {
+
+			// don't poll ever again
+
+		} else {
+
+			// resume the pollclock
+			this.refs.thePollClock.resume();
+
+		}
+
 	}
 
 });
