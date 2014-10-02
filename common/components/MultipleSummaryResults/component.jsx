@@ -23,6 +23,7 @@ var SummaryResults = require('./SummaryResults/component.jsx');
 var RaceName = require('./SummaryResults/RaceName.jsx');
 var util = require('../../../common/js/util.js');
 var FetchDataMixin = require('../mixins/FetchDataMixin.jsx');
+var Race = require('../objects/Race.js');
 
 var MultipleSummaryResults = React.createClass({
 	mixins: [FetchDataMixin],
@@ -45,12 +46,12 @@ var MultipleSummaryResults = React.createClass({
 				return _.indexOf(raceNumbers, race.office_name);
 			})
 			.map(function(race, index, races) {
-				var thisName = RaceName.getName(race);
+				var thisName = Race.getName(race);
 
 				// so: only display title if we're on the first race OR the previous race's title
 				// doesn't match this one.
 				var displayTitle = index === 0 ||
-					RaceName.getName(race) !== RaceName.getName(races[index-1]);
+					Race.getName(race) !== Race.getName(races[index-1]);
 
 				// for now, don't color primary rows (even if there's a map)
 				var colorRows = race.race_type === 'General';
