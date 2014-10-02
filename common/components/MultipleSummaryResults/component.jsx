@@ -19,49 +19,65 @@
 // This will also determine whether we color the row squares or not, 'colorRows'
 
 var React = require('react');
+var FetchDataMixin = require('../mixins/FetchDataMixin.jsx');
 var SummaryResults = require('./SummaryResults/component.jsx');
 var RaceName = require('./SummaryResults/RaceName.jsx');
 var util = require('../../../common/js/util.js');
-var FetchDataMixin = require('../mixins/FetchDataMixin.jsx');
-var Race = require('../objects/Race.js');
 
 var MultipleSummaryResults = React.createClass({
+
 	mixins: [FetchDataMixin],
+
+	statics: {
+
+		sortByDefault: function(races) {
+
+			// races come in already ordered, based on data-racenumbers present in the HTML.
+			// we should respect this order, which means the following:
+			// if we have an order like 'Senate, Senate, Governor' we should not display
+			// the second 'Senate' title.
+			// if we have an order like 'Senate, Governor, Senate' we should display all
+			// three titles, in order.
+			// also, if we have several races with the same title,
+			// order by party (this really only applies to Primaries)
+			var orderedRaceTypeIDs = ['d', 'r', 'g'];
+			var raceNumbers = _.pluck(races, 'race_number');
+
+			var sorted = _.chain(races)
+				.sortBy(function(race) {
+					return _.indexOf(orderedRaceTypeIDs, race.race_type_id.toLowerCase());
+				})
+				.sortBy(function(race) {
+					return _.indexOf(raceNumbers, race.office_name);
+				})
+				.value();
+
+			return sorted;
+		}
+
+	},
+
 	render: function() {
 
-		// races come in already ordered, based on data-racenumbers present in the HTML.
-		// we should respect this order, which means the following:
-		// if we have an order like 'Senate, Senate, Governor' we should not display
-		// the second 'Senate' title.
-		// if we have an order like 'Senate, Governor, Senate' we should display all
-		// three titles, in order.
-		// also, if we have several races with the same title,
-		// order by party (this really only applies to Primaries)
-		var races = this.state.races;
-		var raceNumbers = _.pluck(races, 'race_number');
+		var races = MultipleSummaryResults.sortByDefault(this.state.races);
 		
-		var multipleSummaryResults = _.chain(races)
-			.sortBy(util.sortRaceByType_delegate)
-			.sortBy(function(race) {
-				return _.indexOf(raceNumbers, race.office_name);
-			})
-			.map(function(race, index, races) {
-				var thisName = Race.getName(race);
+		var multipleSummaryResults = _.map(races, function(race, index, races) {
 
-				// so: only display title if we're on the first race OR the previous race's title
-				// doesn't match this one.
-				var displayTitle = index === 0 ||
-					Race.getName(race) !== Race.getName(races[index-1]);
+			var thisName = RaceName.format(race);
 
-				// for now, don't color primary rows (even if there's a map)
-				var colorRows = race.race_type === 'General';
+			// only display title if we're on the first race OR the previous race's title
+			// doesn't match this one.
+			var displayTitle = index === 0 ||
+				RaceName.format(race) !== RaceName.format(races[index-1]);
 
-				return (
-					<SummaryResults race={race} key={race.race_number} colorRows={colorRows} displayTitle={displayTitle} />
-				);
+			// for now, don't color primary rows (even if there's a map)
+			var colorRows = race.race_type === 'General';
 
-			})
-			.value();
+			return (
+				<SummaryResults race={race} key={race.race_number} colorRows={colorRows} displayTitle={displayTitle} />
+			);
+
+		});
 
 		return (
 			<div className='multiple-summary-results'>{multipleSummaryResults}</div>
