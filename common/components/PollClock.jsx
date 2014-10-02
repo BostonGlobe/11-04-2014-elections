@@ -5,10 +5,6 @@
 var React = require('react');
 var PeriodicJS = require('exports?PeriodicJS!periodic.js');
 
-// this component should manage all the polling functionality
-// so it needs to expose various start/stop methods
-// and this instance should be callable from its parent
-
 var PollClock = React.createClass({
 
 	periodic: null,
@@ -49,7 +45,7 @@ var PollClock = React.createClass({
 
 	render: function() {
 		return (
-			<div className='poll-clock'>update in {this.state.secondsUntilPoll}</div>
+			<p className='hed-cat poll-clock'>update in {this.state.secondsUntilPoll}</p>
 		);
 	}
 
