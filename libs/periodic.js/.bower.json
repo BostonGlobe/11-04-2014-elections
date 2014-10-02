@@ -1,0 +1,17 @@
+{
+  "name": "periodic.js",
+  "version": "0.0.8",
+  "main": "periodic.js",
+  "keywords": "timer, scheduler",
+  "homepage": "https://github.com/BostonGlobe/periodic.js",
+  "_release": "0.0.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.8",
+    "commit": "5216ae9700a5cabcd4e938892cd9b86241e14759"
+  },
+  "_source": "git://github.com/BostonGlobe/periodic.js.git",
+  "_target": "~0.0.8",
+  "_originalSource": "periodic.js",
+  "_direct": true
+}
