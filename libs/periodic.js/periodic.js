@@ -27,7 +27,9 @@ function PeriodicJS() {
 	function stop() {
 		cancelAnimationFrame(_rAF);
 		var node = document.querySelector(options.displaySelector);
-		node.parentNode.removeChild(node);
+		if (node) {
+			node.parentNode.removeChild(node);
+		}
 	}
 
 	function draw() {
@@ -63,7 +65,7 @@ function PeriodicJS() {
 		} else {
 
 			// show how much time until update
-			display(_timeUntilUpdate);
+			options.display(_timeUntilUpdate);
 
 		}
 
@@ -73,7 +75,16 @@ function PeriodicJS() {
 
 		// default to 1 minute
 		options.duration = opts.duration || 60*1000;
+
+		// on every time change
+		// call the provided display function, if not null,
+		// otherwise call the default display function
+		options.display = opts.display || display;
+
+		// if options.display is not null,
+		// the provided displaySelector will be ignored
 		options.displaySelector = opts.displaySelector || '.periodicjs';
+
 		options.update = opts.update;
 
 	}
