@@ -21,7 +21,7 @@ var PollClock = React.createClass({
 		this.periodic = PeriodicJS();
 
 		this.periodic.setup({
-			duration: 5*1000,
+			duration: 60*1000,
 			display: function(time) {
 				self.setState({secondsUntilPoll: Math.ceil(time/1000)});
 			},
