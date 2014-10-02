@@ -5,18 +5,12 @@
 var React = require('react');
 
 var FetchDataMixin = {
-	fetchData: function(isDev) {
+	fetchData: function() {
+		var isDev = true;
 		var url = 'http://' + (isDev ? 'localhost:8080' : 'www.bostonglobe.com') + '/electionapi/races/number?' + this.props.raceNumbers.map(function(value) {
 			return 'number=' + value;
 		}).join('&');
 
-		$.ajax({
-			url: url,
-			dataType: 'jsonp',
-			jsonpCallback: '_' + this.props.raceNumbers.join('_')
-		});
-	},
-	componentDidMount: function() {
 		window['_' + this.props.raceNumbers.join('_')] = function(json) {
 
 			// the races array (json) doesn't necessarily come back from the server
@@ -33,7 +27,11 @@ var FetchDataMixin = {
 
 		}.bind(this);
 
-		this.fetchData(true);
+		$.ajax({
+			url: url,
+			dataType: 'jsonp',
+			jsonpCallback: '_' + this.props.raceNumbers.join('_')
+		});
 	},
 	getInitialState: function() {
 		return {races: []};
