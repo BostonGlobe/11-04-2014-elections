@@ -3,4 +3,6 @@
 	var masterSelector = '.homepage-graphic.elections-balanceofpower';
 	var master = $(masterSelector);
 
+	require('./main.jsx');
+
 }); }());

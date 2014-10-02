@@ -3,4 +3,6 @@
 	var masterSelector = '.homepage-graphic.elections-bigmap';
 	var master = $(masterSelector);
 
+	require('./main.jsx');
+
 }); }());
