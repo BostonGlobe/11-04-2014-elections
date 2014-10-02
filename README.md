@@ -6,25 +6,25 @@ Please note: do not reproduce Boston Globe logos or fonts without written permis
 
 ## Graphics
 
-### strip
+### strip (homepage)
 display results for multiple races, on the breaking news strip. should also contain custom nav links.
 
-### bigmap
+### bigmap (homepage)
 display results for one race. one map. no zooming. add dropdown for towns.
 
-### balanceofpower
+### balanceofpower (homepage)
 display results for us house / us senate. show before/after. small - no table.
 
-### summaryresults
+### summaryresults (homepage)
 display summary results for multiple races. one table per race. the enhanced version should feature candidate faces / other extra styling marks.
 
-### detailedresults
+### detailedresults (igraphic)
 display detailed results ofr one race. map and table/tables (?). with nav links like in breaking strip.
 
-### summaryresults-group
+### summaryresults-group (igraphic)
 display summary results for multiple races, but in many columns. grouping is pre-determined, and not dynamic - e.g. /api/races/us-house
 
-### townresults
+### townresults (igraphic)
 display results for town races. note that for each race we should display the town result and the summary result.
 
 
