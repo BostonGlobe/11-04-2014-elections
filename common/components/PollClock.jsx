@@ -43,9 +43,13 @@ var PollClock = React.createClass({
 		this.periodic.run();
 	},
 
+	stop: function() {
+		this.setState({stopped: true});
+	},
+
 	render: function() {
 		return (
-			<p className='hed-cat poll-clock'>update in {this.state.secondsUntilPoll}</p>
+			<p className={'hed-cat poll-clock ' + (this.state.stopped ? 'hide' : '')}>update in {this.state.secondsUntilPoll}</p>
 		);
 	}
 

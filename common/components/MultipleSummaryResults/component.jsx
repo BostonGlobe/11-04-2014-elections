@@ -106,7 +106,7 @@ var MultipleSummaryResults = React.createClass({
 
 		if (MultipleSummaryResults.racesAreOver(this.state.races)) {
 
-			// don't poll ever again
+			this.refs.thePollClock.stop();
 
 		} else {
 
