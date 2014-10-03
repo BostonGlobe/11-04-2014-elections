@@ -7,6 +7,7 @@ gulp.task('build', function(done) {
 	if (config.getUserChoice('packageToJpt')) {
 
 		runSequence(
+			'log',
 			'html',
 			'sass',
 			'webpack',

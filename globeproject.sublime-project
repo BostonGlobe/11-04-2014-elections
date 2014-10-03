@@ -12,6 +12,7 @@
 				"parts"
 			],
 			"file_exclude_patterns": [
+				"log.html",
 				".Rhistory",
 				".bowerrc",
 				"git.sh",

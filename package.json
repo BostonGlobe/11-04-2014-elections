@@ -30,6 +30,7 @@
     "jsx-loader": "^0.11.2",
     "node-bourbon": "^1.2.3",
     "node-sass": "^0.9.5-rc1",
+    "nodegit": "^0.1.4",
     "request": "^2.44.0",
     "require-dir": "^0.1.0",
     "run-sequence": "^0.3.7",
