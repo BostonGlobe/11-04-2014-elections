@@ -4,7 +4,7 @@ var rename          = require('gulp-rename');
 var config          = require('../config');
 var getLatestCommit = require('../util/getLatestCommit.js');
 
-gulp.task('log', function(done) {
+gulp.task('log', function() {
 	getLatestCommit(function(commit) {
 		return gulp.src('log.template', {cwd: 'gulp/util'})
 			.pipe(template(commit))
