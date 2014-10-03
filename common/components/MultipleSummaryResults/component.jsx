@@ -86,24 +86,7 @@ var MultipleSummaryResults = React.createClass({
 				{multipleSummaryResults}
 			</div>
 		);
-	},
-
-	// this runs after render, which is when we check if the races are over
-	componentDidUpdate: function() {
-
-		if (MultipleSummaryResults.racesAreOver(this.state.races)) {
-
-			this.refs.thePollClock.stop();
-
-		} else {
-
-			// resume the pollclock
-			this.refs.thePollClock.resume();
-
-		}
-
 	}
-
 });
 
 module.exports = MultipleSummaryResults;
