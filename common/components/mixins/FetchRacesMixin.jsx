@@ -5,6 +5,19 @@
 var React = require('react');
 
 var FetchRacesMixin = {
+	racesAreOver: function(races) {
+
+		var incompleteRaces = _.chain(races)
+			.pluck('reporting_units')
+			.flatten()
+			.reject(function(v) {
+				return v.precincts_reporting === v.total_precincts;
+			})
+			.value();
+
+		return races.length && !incompleteRaces.length;
+	},
+
 	fetchRaces: function() {
 		var isDev = false;
 		var url = 'http://' + (isDev ? 'localhost:8080' : 'www.bostonglobe.com') + '/electionapi/races/number?' + this.props.raceNumbers.map(function(value) {

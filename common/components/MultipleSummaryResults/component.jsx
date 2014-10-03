@@ -31,19 +31,6 @@ var MultipleSummaryResults = React.createClass({
 
 	statics: {
 
-		racesAreOver: function(races) {
-
-			var incompleteRaces = _.chain(races)
-				.pluck('reporting_units')
-				.flatten()
-				.reject(function(v) {
-					return v.precincts_reporting === v.total_precincts;
-				})
-				.value();
-
-			return races.length && !incompleteRaces.length;
-		},
-
 		sortByDefault: function(races) {
 
 			// races come in already ordered, based on data-racenumbers present in the HTML.
