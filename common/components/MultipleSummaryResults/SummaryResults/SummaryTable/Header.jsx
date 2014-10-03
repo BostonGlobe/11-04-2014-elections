@@ -19,7 +19,7 @@ var Header = React.createClass({
 		getTitle: function(race) {
 			var title = race.race_type === 'Primary' ?
 				util.raceTypeIDToParty(race.race_type_id) :
-				'candidate';
+				'';
 
 			return title;
 		}

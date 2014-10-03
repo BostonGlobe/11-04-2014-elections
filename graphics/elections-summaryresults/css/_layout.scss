@@ -2,7 +2,7 @@
 
 	table.summary-table {
 
-		@include rhythm(0, 0, 0, 0);
+		@include rhythm(0, 0, 0, 1);
 
 		font-family: $sansSerif;
 		@include adjust-font-size-to(19px);
@@ -122,11 +122,6 @@
 			text-transform: uppercase;
 			font-weight: bold;
 			padding-left: 0;
-
-			&.candidate {
-				color: $lessImportant;
-				font-weight: normal;
-			}
 
 			&.democratic {
 				color: $democraticFull;
