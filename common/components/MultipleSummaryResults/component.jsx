@@ -29,40 +29,9 @@ var MultipleSummaryResults = React.createClass({
 
 	mixins: [FetchRacesMixin],
 
-	statics: {
-
-		sortByDefault: function(races) {
-
-			// races come in already ordered, based on data-racenumbers present in the HTML.
-			// we should respect this order, which means the following:
-			// if we have an order like 'Senate, Senate, Governor' we should not display
-			// the second 'Senate' title.
-			// if we have an order like 'Senate, Governor, Senate' we should display all
-			// three titles, in order.
-			// also, if we have several races with the same title,
-			// order by party (this really only applies to Primaries)
-			var orderedRaceTypeIDs = ['d', 'r', 'g'];
-			var raceNumbers = _.pluck(races, 'race_number');
-
-			var sorted = _.chain(races)
-				.sortBy(function(race) {
-					return _.indexOf(orderedRaceTypeIDs, race.race_type_id.toLowerCase());
-				})
-				.sortBy(function(race) {
-					return _.indexOf(raceNumbers, race.office_name);
-				})
-				.value();
-
-			return sorted;
-		}
-
-	},
-
 	render: function() {
-
-		var races = MultipleSummaryResults.sortByDefault(this.state.races);
 		
-		var multipleSummaryResults = _.map(races, function(race, index, races) {
+		var multipleSummaryResults = _.map(this.state.races, function(race, index, races) {
 
 			var thisName = RaceName.format(race);
 

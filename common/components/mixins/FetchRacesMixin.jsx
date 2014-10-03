@@ -2,9 +2,27 @@
  * @jsx React.DOM
  */
 
+// this assumes the existence of a dom element
+// with data-racenumbers attribute
+
 var React = require('react');
 
 var FetchRacesMixin = {
+	sortByDefault: function(races, orderedRaceNumbers) {
+
+		var sortedRaces = _.chain(races)
+			.sortBy(function(race) {
+				// the races array (json) doesn't necessarily come back from the server
+				// in the order in which it was requested.
+				// orderedRaceNumbers is the data-racenumbers attribute.
+				// we should respect this when ordering races.
+				return _.indexOf(orderedRaceNumbers, race.race_number);
+			})
+			.value();
+
+		return sortedRaces;
+	},
+
 	racesAreOver: function(races) {
 
 		var incompleteRaces = _.chain(races)
@@ -26,17 +44,8 @@ var FetchRacesMixin = {
 
 		window['_' + this.props.raceNumbers.join('_')] = function(json) {
 
-			// the races array (json) doesn't necessarily come back from the server
-			// in the order in which it was requested
-			// let's fix that right here.
-
-			var raceNumbers = this.props.raceNumbers;
-
-			var races = _.sortBy(json, function(race) {
-				return _.indexOf(raceNumbers, race.race_number);
-			});
-
-			this.setState({races:races});
+			var sortedRaces = this.sortByDefault(json, this.props.raceNumbers);
+			this.setState({races:sortedRaces});
 
 		}.bind(this);
 
