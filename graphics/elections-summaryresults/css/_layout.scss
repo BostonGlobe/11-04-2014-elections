@@ -1,5 +1,7 @@
 .homepage-graphic.elections-summaryresults {
 
+	@include rhythm(1, 0, 0, 0);
+
 	table.summary-table {
 
 		@include rhythm(0, 0, 0, 1);
