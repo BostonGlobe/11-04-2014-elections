@@ -35,7 +35,6 @@ var PollClock = React.createClass({
 	},
 
 	poll: function() {
-		// e.g. call FetchDataMixin.fetchData
 		this.props.pollCallback();
 	},
 

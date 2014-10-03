@@ -19,7 +19,7 @@
 // This will also determine whether we color the row squares or not, 'colorRows'
 
 var React = require('react');
-var FetchDataMixin = require('../mixins/FetchDataMixin.jsx');
+var FetchRacesMixin = require('../mixins/FetchRacesMixin.jsx');
 var SummaryResults = require('./SummaryResults/component.jsx');
 var RaceName = require('./SummaryResults/RaceName.jsx');
 var PollClock = require('../PollClock.jsx');
@@ -27,7 +27,7 @@ var util = require('../../../common/js/util.js');
 
 var MultipleSummaryResults = React.createClass({
 
-	mixins: [FetchDataMixin],
+	mixins: [FetchRacesMixin],
 
 	statics: {
 
@@ -95,7 +95,7 @@ var MultipleSummaryResults = React.createClass({
 
 		return (
 			<div className='multiple-summary-results'>
-				<PollClock ref='thePollClock' pollCallback={this.fetchData} />
+				<PollClock ref='thePollClock' pollCallback={this.fetchRaces} />
 				{multipleSummaryResults}
 			</div>
 		);

@@ -4,8 +4,8 @@
 
 var React = require('react');
 
-var FetchDataMixin = {
-	fetchData: function() {
+var FetchRacesMixin = {
+	fetchRaces: function() {
 		var isDev = false;
 		var url = 'http://' + (isDev ? 'localhost:8080' : 'www.bostonglobe.com') + '/electionapi/races/number?' + this.props.raceNumbers.map(function(value) {
 			return 'number=' + value;
@@ -38,4 +38,4 @@ var FetchDataMixin = {
 	}
 };
 
-module.exports = FetchDataMixin;
+module.exports = FetchRacesMixin;
