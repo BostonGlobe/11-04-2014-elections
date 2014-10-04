@@ -5,6 +5,8 @@
 // this assumes the existence of a dom element
 // with data-racenumbers attribute
 
+// this also assumes the existence of this.refs.thePollClock
+
 var React = require('react');
 
 var FetchRacesMixin = {
