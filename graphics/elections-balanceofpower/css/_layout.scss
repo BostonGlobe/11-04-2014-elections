@@ -1,5 +1,9 @@
 .homepage-graphic.elections-balanceofpower .balance-of-power-results {
 
+	width: 100%;
+	overflow: hidden;
+	@include rhythm(0, 0, 0, 1);
+
 	.title {
 		@include rhythm(0, 0, 0, 1/3);
 	}

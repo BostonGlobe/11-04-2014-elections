@@ -2,6 +2,11 @@
  * @jsx React.DOM
  */
 
+// each feed will most likely have lots more fields
+// than we need. the ones we do need are below.
+
+// we have to create a fetch data mixin. let's purpose the one we have.
+
 var React = require('react');
 
 var BalanceOfPowerResults = React.createClass({
@@ -15,7 +20,10 @@ var BalanceOfPowerResults = React.createClass({
 	},
 
 	getInitialState: function() {
+		// democrats and republicans are a sum of Won+Holdovers
+		// undecided is Leading
 		return {
+			office: 'U.S. House',
 			democrats: 199,
 			republicans: 234,
 			undecided: 2,
@@ -67,7 +75,7 @@ var BalanceOfPowerResults = React.createClass({
 
 		return (
 			<div className={'_' + this.state.width + ' balance-of-power-results'}>
-				<div className='title'>US House balance of power</div>
+				<div className='title'>{this.state.office} balance of power</div>
 				<div className='numbersAndLabels'>
 					<div className='democratic'>
 						<div className='number'><span>{this.state.democrats}</span></div>
