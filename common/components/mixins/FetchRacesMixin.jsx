@@ -43,7 +43,7 @@ var FetchRacesMixin = {
 
 	fetchRaces: function() {
 		var isDev = false;
-		var url = 'http://' + (isDev ? 'localhost:8080' : 'www.bostonglobe.com') + '/electionapi/races/number?' + this.props.raceNumbers.map(function(value) {
+		var url = 'http://' + (isDev ? 'localhost:8080' : 'devweb.bostonglobe.com') + '/electionapi/races/number?' + this.props.raceNumbers.map(function(value) {
 			return 'number=' + value;
 		}).join('&');
 
