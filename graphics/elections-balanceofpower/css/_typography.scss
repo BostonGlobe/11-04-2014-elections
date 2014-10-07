@@ -1,0 +1,26 @@
+// 5, 7, 9, 12, 16, 21, 28, 37, 50, 67, 83
+
+.homepage-graphic.elections-balanceofpower {
+
+	.title {
+		font-family: $sansSerifStrong;
+		@include adjust-font-size-to(28px, 1.5);
+	}
+
+	.numbersAndLabels {
+		.number span {
+			font-family: $serifStrong;
+			@include adjust-font-size-to(37px, 1.5);
+		}
+		.label span {
+			font-family: $sansSerifStrong;
+			@include adjust-font-size-to(12px, 1);
+		}
+	}
+	.change {
+		span {
+			font-family: $sansSerifStrong;
+			@include adjust-font-size-to(12px, 1);
+		}
+	}
+}

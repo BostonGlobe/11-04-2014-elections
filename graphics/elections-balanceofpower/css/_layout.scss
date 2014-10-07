@@ -1,3 +1,72 @@
 .homepage-graphic.elections-balanceofpower {
+
+	.numbersAndLabels {
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+
+		.democratic {
+			float: left;
+			text-align: left;
+
+			color: $democraticFull;
+		}
+
+		.republican {
+			float: right;
+			text-align: right;
+
+			color: $republicanFull;
+		}
+
+		.undecided {
+			position: absolute;
+			top: 0;
+			width: 100%;
+			text-align: center;
+			color: $neutral;
+		}
+	}
+
+	.bars {
+		height: 2em;
+		background: $neutral;
+		width: 100%;
+		overflow: hidden;
+
+		.democratic {
+			float: left;
+			text-align: left;
+
+			height: 100%;
+			width: 30%;
+			background: $democraticFull;
+		}
+
+		.republican {
+			float: right;
+			text-align: right;
+
+			height: 100%;
+			width: 30%;
+			background: $republicanFull;
+		}
+	}
+
+	.change {
+		.democratic {
+			float: left;
+			text-align: left;
+
+			color: $democraticFull;
+		}
+
+		.republican {
+			float: right;
+			text-align: right;
+
+			color: $republicanFull;
+		}
+	}
 	
 }
