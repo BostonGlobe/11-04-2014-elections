@@ -20,8 +20,22 @@ var BalanceOfPowerResults = React.createClass({
 			republicans: 234,
 			undecided: 2,
 			democratsChange: -2,
-			republicansChange: 2
+			republicansChange: 2,
+			width: 0
 		};
+	},
+
+	// from http://stackoverflow.com/a/19014495/64372
+	updateStyling: function() {
+		var width = $(this.getDOMNode()).width();
+
+		// from http://stackoverflow.com/a/584953/64372
+		var roundedDownWidth = 100 * Math.floor((width) / 100);
+		this.setState({width: roundedDownWidth});
+	},
+	componentDidMount: function() {
+		this.updateStyling();
+		window.addEventListener('resize', this.updateStyling);
 	},
 
 	render: function() {
@@ -37,9 +51,22 @@ var BalanceOfPowerResults = React.createClass({
 			}
 		};
 
-		return (
-			<div className='balance-of-power-results'>
+		var republican;
 
+		if (this.state.width < 400) {
+			republican = <div className='republican'>
+				<div className='number'><span>{this.state.republicans}</span></div>
+				<div className='label'><span>Republicans</span></div>
+			</div>;
+		} else {
+			republican = <div className='republican'>
+				<div className='label'><span>Republicans</span></div>
+				<div className='number'><span>{this.state.republicans}</span></div>
+			</div>;
+		}
+
+		return (
+			<div className={'_' + this.state.width + ' balance-of-power-results'}>
 				<div className='title'>US House balance of power</div>
 				<div className='numbersAndLabels'>
 					<div className='democratic'>
@@ -50,10 +77,7 @@ var BalanceOfPowerResults = React.createClass({
 						<div className='number'><span>{this.state.undecided}</span></div>
 						<div className='label'><span>Undecided</span></div>
 					</div>
-					<div className='republican'>
-						<div className='number'><span>{this.state.republicans}</span></div>
-						<div className='label'><span>Republicans</span></div>
-					</div>
+					{republican}
 				</div>
 				<div className='bars'>
 					<div className='democratic' style={barWidths.democrats}>&nbsp;</div>
@@ -61,10 +85,10 @@ var BalanceOfPowerResults = React.createClass({
 				</div>
 				<div className='change'>
 					<div className='democratic'>
-						<div><span>{this.getChangeSign(this.state.democratsChange)}{Math.abs(this.state.democratsChange)} seats</span></div>
+						<span>{this.getChangeSign(this.state.democratsChange)}{Math.abs(this.state.democratsChange)} seats</span>
 					</div>
 					<div className='republican'>
-						<div><span>{this.getChangeSign(this.state.republicansChange)}{Math.abs(this.state.republicansChange)} seats</span></div>
+						<span>{this.getChangeSign(this.state.republicansChange)}{Math.abs(this.state.republicansChange)} seats</span>
 					</div>
 				</div>
 			</div>
