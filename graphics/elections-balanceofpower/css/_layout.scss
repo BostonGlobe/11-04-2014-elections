@@ -1,5 +1,9 @@
 .homepage-graphic.elections-balanceofpower {
 
+	.title {
+		@include rhythm(0, 0, 0, 1/3);
+	}
+
 	.numbersAndLabels {
 		width: 100%;
 		overflow: hidden;
@@ -39,7 +43,6 @@
 			text-align: left;
 
 			height: 100%;
-			width: 30%;
 			background: $democraticFull;
 		}
 
@@ -48,7 +51,6 @@
 			text-align: right;
 
 			height: 100%;
-			width: 30%;
 			background: $republicanFull;
 		}
 	}

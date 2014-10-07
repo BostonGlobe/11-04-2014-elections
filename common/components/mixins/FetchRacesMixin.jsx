@@ -7,6 +7,9 @@
 
 // this also assumes the existence of this.refs.thePollClock
 
+// we need to change things up. for example, the BalanceOfPowerResults component
+// won't be using the /electionapi/races/number method.
+
 var React = require('react');
 
 var FetchRacesMixin = {
