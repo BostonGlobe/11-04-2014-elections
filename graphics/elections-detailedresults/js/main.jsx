@@ -3,9 +3,9 @@
  */
 
 var React = require('react');
-var MultipleBalanceOfPowerResults = require('../../../common/components/MultipleBalanceOfPowerResults/component.jsx');
+var DetailedResults = require('../../../common/components/DetailedResults/component.jsx');
 
 React.renderComponent(
-	<MultipleBalanceOfPowerResults choices={['US House']} />,
+	<DetailedResults choices={[22044]} />,
 	document.getElementById('elections-detailedresults')
 );
