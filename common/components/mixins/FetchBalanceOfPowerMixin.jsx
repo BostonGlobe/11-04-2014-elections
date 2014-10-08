@@ -69,7 +69,7 @@ var FetchBalanceOfPowerMixin = {
 	// this runs after render, which is when we check if all results are in
 	componentDidUpdate: function() {
 
-		if (this.allResultsAreIn()) {
+		if (this.allResultsAreIn(this.state.offices)) {
 
 			this.refs.thePollClock.stop();
 
@@ -80,9 +80,26 @@ var FetchBalanceOfPowerMixin = {
 
 		}
 	},
-	allResultsAreIn: function() {
-		return false;
+	allResultsAreIn: function(offices) {
+
+		// are there any races with undecided NOT 0?
+		var undecidedRaces = _.filter(offices, function(office) {
+			return office.undecided > 0;
+		});
+
+		return !undecidedRaces.length;
 	}
 };
 
 module.exports = FetchBalanceOfPowerMixin;
+
+
+
+
+
+
+
+
+
+
+
