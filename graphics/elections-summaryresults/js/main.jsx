@@ -23,7 +23,7 @@ for (var i = 0; nodes[i]; i++) {
 	var raceNumbers = stringToNumbers(node.getAttribute('data-racenumbers'));
 
 	React.renderComponent(
-		<MultipleSummaryResults raceNumbers={raceNumbers} />,
+		<MultipleSummaryResults choices={raceNumbers} />,
 		node
 	);
 }
