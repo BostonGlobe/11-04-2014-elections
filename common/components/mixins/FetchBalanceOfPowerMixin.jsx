@@ -11,8 +11,9 @@ var React = require('react');
 
 var FetchBalanceOfPowerMixin = {
 	fetchData: function() {
+
 		// eventually, make an ajax jsonp call here.
-		var offices = [{
+		var json = [{
 			office: 'U.S. House',
 			democrats: 20+0, // sum of Dem Won+Holdovers
 			republicans:19+0, // sum of GOP Won+Holdovers
@@ -35,6 +36,31 @@ var FetchBalanceOfPowerMixin = {
 			republicansChange: 1  // GOP Net Change
 		}];
 
+		// make sure that we're only showing chosen offices
+		// the choices are passed in as this.props.offices
+		// e.g. this.props.offices = ['house', 'senate']
+		var chosenOffices = _.map(this.props.offices, function(choice) {
+			return choice.toLowerCase().trim();
+		});
+
+		var offices = _.chain(json)
+			.map(function(office) {
+				// replace U.S. with US, to fit with Globe style
+				office.office = office.office.replace('U.S.', 'US');
+				return office;
+			})
+			.filter(function(office) {
+				// only show chosen offices
+				return _.contains(chosenOffices, office.office.toLowerCase());
+			})
+			.sortBy(function(office) {
+				// we can't rely on the server's ordering,
+				// so revert back to the given ordering
+				// as found in this.props.offices
+				return _.indexOf(chosenOffices, office.office.toLowerCase());
+			})
+			.value();
+
 		this.setState({offices: offices});
 	},
 	getInitialState: function() {
@@ -42,11 +68,20 @@ var FetchBalanceOfPowerMixin = {
 	},
 	// this runs after render, which is when we check if all results are in
 	componentDidUpdate: function() {
-		this.refs.thePollClock.resume();
-		// if (this.)		
+
+		if (this.allResultsAreIn()) {
+
+			this.refs.thePollClock.stop();
+
+		} else {
+
+			// resume the pollclock
+			this.refs.thePollClock.resume();
+
+		}
 	},
 	allResultsAreIn: function() {
-
+		return false;
 	}
 };
 
