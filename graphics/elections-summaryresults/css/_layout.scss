@@ -65,9 +65,9 @@
 					}
 				}
 
-				&.democratic .checkmark { background: $democraticFull; }
-				&.republican .checkmark { background: $republicanFull; }
-				&.independent .checkmark { background: $independentFull; }
+				&.democratic .checkmark { background: $blue; }
+				&.republican .checkmark { background: $red; }
+				&.independent .checkmark { background: $green; }
 
 				// setup all the qualitative colors for the little squares
 				&.color_0 .checkmark { background: $qualitativeColor_0; }
@@ -126,11 +126,11 @@
 			padding-left: 0;
 
 			&.democratic {
-				color: $democraticFull;
+				color: $blue;
 			}
 
 			&.republican {
-				color: $republicanFull;
+				color: $red;
 			}
 		}
 
