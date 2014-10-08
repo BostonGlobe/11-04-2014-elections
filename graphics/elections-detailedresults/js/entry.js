@@ -15,4 +15,6 @@
 
 	$('.header').addClass('visible');
 
+	require('./main.jsx');
+
 }); }());
