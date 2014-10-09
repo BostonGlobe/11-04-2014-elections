@@ -22,22 +22,25 @@ var Choropleth = React.createClass({
 	},
 
 	updateContainerDimensions: function() {
+		
+		var self = $('svg', this.getDOMNode());
 
-// debugger;
-// 		var self = $('svg', this.getDOMNode());
+		// force scrollbar just in case we need it
+		// otherwise the targetWidth will be off
+		$('body').height(10000);
 
-// 		var targetWidth = self.parent().width();
+		var targetWidth = self.parent().width();
 
-// 		self.attr('width', targetWidth);
-// 		self.attr('height', targetWidth / aspect);
+		self.attr('width', targetWidth);
+		self.attr('height', targetWidth / this.aspect);
+
+		// reset scrollbar
+		$('body').height('auto');
 	},
 
 	componentDidMount: function() {
 
 		var shapefile = this.props.shapefile;
-
-		// window.addEventListener('resize', this.updateContainerDimensions);
-
 		var feature = topojson.feature(shapefile, shapefile.objects.TOWNS);
 
 		// we'll center the map on the centroid
@@ -63,7 +66,7 @@ var Choropleth = React.createClass({
 		this.aspect = (b[1][0]-b[0][0])/(b[1][1]-b[0][1]);
 
 		var width = 1000;
-		var height = width/this.aspect;
+		var height = Math.round(width/this.aspect);
 
 		var s = 0.95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
 		var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
@@ -86,8 +89,8 @@ var Choropleth = React.createClass({
 			.datum(feature)
 			.attr('d', path);
 
-		// // force 
-		// this.updateContainerDimensions();
+		window.addEventListener('resize', _.debounce(this.updateContainerDimensions, 150));
+		this.updateContainerDimensions();
 	},
 
 	shouldComponentUpdate: function(props, state) {
