@@ -41,6 +41,8 @@ var Choropleth = React.createClass({
 	componentDidMount: function() {
 
 		var shapefile = this.props.shapefile;
+
+		// TODO: change name of TOWNS to something more generic.
 		var feature = topojson.feature(shapefile, shapefile.objects.TOWNS);
 
 		// we'll center the map on the centroid
@@ -65,9 +67,13 @@ var Choropleth = React.createClass({
 		// because chrome obeys svg viewport
 		this.aspect = (b[1][0]-b[0][0])/(b[1][1]-b[0][1]);
 
+		// Use normalized width and height. Don't worry!
+		// this doesn't mean the final width will be 1000px.
+		// this is simply used for svg's preserveAspectRatio.
 		var width = 1000;
 		var height = Math.round(width/this.aspect);
 
+		// Compute scale and translate.
 		var s = 0.95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
 		var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
 
