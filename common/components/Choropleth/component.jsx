@@ -83,17 +83,35 @@ var Choropleth = React.createClass({
 			.translate(t);
 
 		// get this svg element
-		var svg = this.getDOMNode().querySelector('svg');
+		var svg = d3.select(this.getDOMNode().querySelector('svg'));
 
-		// create the choropleth
-		d3.select(svg)
+		// create the container
+		svg.attr({
+			viewBox: [0, 0, width, height].join(' '),
+			preserveAspectRatio: 'xMidYMid'
+		});
+
+		// create the outline
+		// TODO: is this the best way of drawing the outline?
+		svg.append('path')
+			.datum(topojson.mesh(shapefile, shapefile.objects.TOWNS, function(a, b) {
+				return a === b;
+			}))
 			.attr({
-				viewBox: [0, 0, width, height].join(' '),
-				preserveAspectRatio: 'xMidYMid'
-			})
-			.append('path')
-			.datum(feature)
-			.attr('d', path);
+				'd': path,
+				'class': 'outline'
+			});
+
+
+			// .append('path')
+			// .datum(feature)
+			// .attr('d', path);
+
+
+
+
+
+		// next is the part where we draw the data
 
 		window.addEventListener('resize', _.debounce(this.updateContainerDimensions, 150));
 		this.updateContainerDimensions();
@@ -101,14 +119,8 @@ var Choropleth = React.createClass({
 
 	shouldComponentUpdate: function(props, state) {
 
-		// // do we already have a topojson?
-		// if (this.props.topojson) {
+		// next is the part where we draw the data
 
-		// } else {
-		// 	// no! so create the map
-		// 	// this.props.topojson = props;
-
-		// }
 		return false;
 	}
 

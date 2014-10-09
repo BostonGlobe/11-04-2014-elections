@@ -6,6 +6,11 @@
 
 	.choropleth {
 		border: solid grey 1px;
+
+		.outline {
+			fill: none;
+			stroke: black;
+		}
 	}
 	
 }
