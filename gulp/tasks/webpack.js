@@ -30,6 +30,7 @@ gulp.task('webpack', function() {
 			watch: !isProd,
 			module: {
 				loaders: [
+					{ test: /\.json$/, loader: 'json-loader' },
 					{ test: /\.jsx$/, loader: 'jsx-loader' },
 					{ test: /\.css$/, loader: 'style-loader!css-loader' }
 				]

@@ -2,7 +2,9 @@
   "name": "11-04-2014-elections",
   "version": "0.0.0",
   "dependencies": {
-    "react": "^0.11.2"
+    "d3": "^3.4.12",
+    "react": "^0.11.2",
+    "topojson": "^1.6.18"
   },
   "devDependencies": {
     "browser-sync": "^1.5.1",
@@ -27,6 +29,7 @@
     "gulp-webpack": "^0.4.1",
     "http-rewrite-middleware": "^0.1.6",
     "inquirer": "^0.8.0",
+    "json-loader": "^0.5.1",
     "jsx-loader": "^0.11.2",
     "node-bourbon": "^1.2.3",
     "node-sass": "^0.9.5-rc1",

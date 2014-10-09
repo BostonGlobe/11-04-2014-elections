@@ -5,6 +5,7 @@
 var React = require('react');
 
 var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
+var Choropleth = require('../Choropleth/component.jsx');
 var PollClock = require('../PollClock.jsx');
 
 var DetailedResults = React.createClass({
@@ -49,6 +50,7 @@ var DetailedResults = React.createClass({
 		return (
 			<div className='detailed-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
+				<Choropleth />
 				<pre>{JSON.stringify(this.state.results, null, 4)}</pre>
 			</div>
 		);
