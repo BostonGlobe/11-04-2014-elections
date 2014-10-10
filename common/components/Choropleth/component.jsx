@@ -11,7 +11,11 @@ var topojson = require('topojson');
 
 var Choropleth = React.createClass({
 
+	// used to preserve container aspect on window resize
 	aspect: 0,
+
+	// used to draw choropleth paths
+	path: null,
 
 	render: function() {
 		return (
@@ -19,6 +23,78 @@ var Choropleth = React.createClass({
 				<svg></svg>
 			</div>
 		);
+	},
+
+	chooseFillClass: function(d) {
+		// if d has properties.reporting_unit, give it an outline
+		if (d.properties.reporting_unit) {
+			return 'reporting-unit';
+		} else {
+			return '';
+		}
+	},
+
+	updateMap: function(results) {
+
+		var shapefile = this.props.shapefile;
+
+		// TODO: change name of TOWNS to something more generic.
+		var feature = topojson.feature(shapefile, shapefile.objects.TOWNS);
+		var features = feature.features;
+
+		// bind results to shapefile
+		var before = Date.now();
+		if (results && results.reporting_units) {
+
+			results.reporting_units.forEach(function(reporting_unit) {
+
+				var match = _.find(features, function(feature) {
+					return reporting_unit.county_name.toUpperCase() === feature.properties.TOWN;
+				});
+
+				if (match) {
+					match.properties.reporting_unit = reporting_unit;
+				}
+
+			});
+
+		}
+		var after = Date.now();
+		console.log('binding results to shapefile took ' + (after - before) + 'ms');
+
+		var g = d3.select(this.getDOMNode().querySelector('svg g'));
+
+		g.selectAll('path')
+			// update
+				.data(features)
+				.attr('class', this.chooseFillClass)
+			// enter
+			.enter().append('path')
+				.attr('class', this.chooseFillClass)
+				.attr('d', this.path);
+
+
+
+
+		// // first we'll bind results to topojson
+		// features.forEach(function(feature) {
+
+		// 	var match = _.find(results.reporting_units, function(reporting_unit) {
+		// 		return reporting_unit.county_name.toUpperCase() === feature.properties.TOWN;
+		// 	});
+
+		// 	debugger;
+
+		// });
+
+
+
+		// // get the reporting unit for this json feature town
+		// // TODO: is this the most performant way? or am i prematurely optimizing
+		// var reporting_unit = _.find(race.reporting_units, function(reporting_unit) {
+		// 	return reporting_unit.county_name.toUpperCase() === d.properties.TOWN;
+		// });
+
 	},
 
 	updateContainerDimensions: function() {
@@ -56,11 +132,11 @@ var Choropleth = React.createClass({
 			.translate([0, 0]);
 
 		// Create a path generator.
-		var path = d3.geo.path()
+		this.path = d3.geo.path()
 			.projection(projection);
 
 		// Compute the bounds of a feature of interest.
-		var b = path.bounds(feature);
+		var b = this.path.bounds(feature);
 
 		// we'll use the aspect to update container dimensions
 		// we wouldn't need to do this were it not for safari
@@ -91,6 +167,9 @@ var Choropleth = React.createClass({
 			preserveAspectRatio: 'xMidYMid'
 		});
 
+		// create the features container
+		svg.append('g');
+
 		// create the outline
 		// TODO: is this the best way of drawing the outline?
 		svg.append('path')
@@ -98,20 +177,12 @@ var Choropleth = React.createClass({
 				return a === b;
 			}))
 			.attr({
-				'd': path,
+				'd': this.path,
 				'class': 'outline'
 			});
 
-
-			// .append('path')
-			// .datum(feature)
-			// .attr('d', path);
-
-
-
-
-
 		// next is the part where we draw the data
+		this.updateMap(this.props.results);
 
 		window.addEventListener('resize', _.debounce(this.updateContainerDimensions, 150));
 		this.updateContainerDimensions();
@@ -120,6 +191,7 @@ var Choropleth = React.createClass({
 	shouldComponentUpdate: function(props, state) {
 
 		// next is the part where we draw the data
+		this.updateMap(props.results);
 
 		return false;
 	}

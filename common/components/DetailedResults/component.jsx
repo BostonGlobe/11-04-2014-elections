@@ -51,7 +51,7 @@ var DetailedResults = React.createClass({
 		return (
 			<div className='detailed-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<Choropleth results={this.state.results} shapefile={towns} />
+				<Choropleth results={this.state.results[0]} shapefile={towns} />
 				<pre>{JSON.stringify(this.state.results, null, 4)}</pre>
 			</div>
 		);

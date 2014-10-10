@@ -7,9 +7,21 @@
 	.choropleth {
 		border: solid grey 1px;
 
+		path {
+			fill: none;
+			stroke: none;			
+		}
+
 		.outline {
 			fill: none;
-			stroke: black;
+			stroke: blue;
+		}
+
+
+
+		.reporting-unit {
+			fill: none;
+			stroke: red;
 		}
 	}
 	

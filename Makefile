@@ -23,4 +23,4 @@ reproject:
 		mkdir output; \
 		cd output; \
 		ogr2ogr -s_srs EPSG:26986 -t_srs EPSG:4326 TOWNS.shp ../input/TOWNS_POLYM.shp; \
-		topojson -p TOWN -o towns.json -s 2 --bbox TOWNS.shp;
+		topojson -p TOWN -o towns.json --simplify-proportion 0.1 --bbox TOWNS.shp;
