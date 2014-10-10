@@ -9,17 +9,62 @@
 
 		path {
 			fill: none;
-			stroke: none;			
+			stroke: none;
 		}
 
 		.outline {
 			fill: none;
-			stroke: blue;
+			stroke: black;
 		}
 
-		.reporting-unit {
-			fill: none;
-			stroke: red;
+		.notinrace {
+			fill: white;
+		}
+
+		.inrace-nowinner-novotes {
+			stroke: white;
+			fill: white;
+		}
+
+		.inrace-nowinner-votes-tie {
+			stroke: white;
+			fill: #AAA;
+		}
+
+		.inrace-nowinner-votes-notie {
+			stroke: white;
+			&.democratic {
+				fill: $blueWeak;
+			}
+			&.republican {
+				fill: $redWeak;
+			}
+			&.independent {
+				fill: $yellowWeak;
+			}
+		}
+
+		.inrace-winner-novotes {
+			stroke: white;
+			fill: white;
+		}
+
+		.inrace-winner-votes-tie {
+			stroke: white;
+			fill: #777;
+		}
+
+		.inrace-winner-votes-notie {
+			stroke: white;
+			&.democratic {
+				fill: $blue;
+			}
+			&.republican {
+				fill: $red;
+			}
+			&.independent {
+				fill: $yellow;
+			}
 		}
 	}
 	

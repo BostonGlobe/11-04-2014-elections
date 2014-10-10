@@ -8,6 +8,7 @@
 var React = require('react');
 var d3 = require('d3');
 var topojson = require('topojson');
+var util = require('../../../common/js/util.js');
 
 var Choropleth = React.createClass({
 
@@ -26,12 +27,66 @@ var Choropleth = React.createClass({
 	},
 
 	chooseFillClass: function(d) {
-		// if d has properties.reporting_unit, give it an outline
-		if (d.properties.reporting_unit) {
-			return 'reporting-unit';
-		} else {
-			return '';
+
+		// how many different colors can a town have?
+		// 1: not in race                          - e.g. non-state-wide races
+
+		// 2: in race, no winner, no votes         - e.g. results are in, no winner yet, and no one voted in this town
+		// 3: in race, no winner,    votes,    tie - e.g. results are in, no winner yet, and this town is supporting all candidates equally
+		// 4: in race, no winner,    votes, no tie - e.g. results are in, no winner yet, and this town is favoring one candidate
+
+		// 5: in race,    winner, no votes         - e.g. results are in, there is a winner, and no one voted in this town
+		// 6: in race,    winner,    votes,    tie - e.g. results are in, there is a winner, and this town is supporting all candidates equally
+		// 7: in race,    winner,    votes, no tie - e.g. results are in, there is a winner, and this town is favoring one candidate
+
+		var reportingUnit = d.properties.reporting_unit;
+		var klass = 'notinrace';
+
+		if (reportingUnit) {
+
+			// sort results by vote_count, descending
+			var results = _.sortBy(reportingUnit.results, function(result) {
+				return -result.vote_count;
+			});
+
+			// do we have a winner?
+			var thereIsAWinner = _.some(results, {winner: 'X'});
+
+			// do we have any votes?
+			var thereAreVotes = _.last(results).vote_count > 0;
+
+			// is there a tie?
+			var thereIsATie = _.first(results).vote_count === _.last(results).vote_count;
+
+			if (!thereIsAWinner) {
+				if (!thereAreVotes) {
+					klass = 'inrace-nowinner-novotes';
+				} else {
+					if (thereIsATie) {
+						klass = 'inrace-nowinner-votes-tie';
+					} else {
+						klass = 'inrace-nowinner-votes-notie';
+						klass += ' ' + util.partyAbbreviationToParty(_.first(results).party);
+
+						// so here we have to choose a color
+					}
+				}
+			} else {
+				if (!thereAreVotes) {
+					klass = 'inrace-winner-novotes';
+				} else {
+					if (thereIsATie) {
+						klass = 'inrace-winner-votes-tie';
+					} else {
+						klass = 'inrace-winner-votes-notie';
+						klass += ' ' + util.partyAbbreviationToParty(_.first(results).party);
+						// so here we have to choose a color
+					}
+				}
+			}
 		}
+
+		return klass;
 	},
 
 	updateMap: function(results) {

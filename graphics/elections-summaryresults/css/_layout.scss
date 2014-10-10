@@ -67,7 +67,7 @@
 
 				&.democratic .checkmark { background: $blue; }
 				&.republican .checkmark { background: $red; }
-				&.independent .checkmark { background: $green; }
+				&.independent .checkmark { background: $yellow; }
 
 				// setup all the qualitative colors for the little squares
 				&.color_0 .checkmark { background: $qualitativeColor_0; }
