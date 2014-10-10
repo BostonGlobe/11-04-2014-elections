@@ -67,8 +67,6 @@ var Choropleth = React.createClass({
 					} else {
 						klass = 'inrace-nowinner-votes-notie';
 						klass += ' ' + util.partyAbbreviationToParty(_.first(results).party);
-
-						// so here we have to choose a color
 					}
 				}
 			} else {
@@ -80,7 +78,6 @@ var Choropleth = React.createClass({
 					} else {
 						klass = 'inrace-winner-votes-notie';
 						klass += ' ' + util.partyAbbreviationToParty(_.first(results).party);
-						// so here we have to choose a color
 					}
 				}
 			}
