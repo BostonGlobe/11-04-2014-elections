@@ -7,6 +7,7 @@ var DetailedResults = require('../../../common/components/DetailedResults/compon
 
 // governor is 22957
 // 1st Essex is 22091
+// 6th district is 22044
 
 React.renderComponent(
 	<DetailedResults choices={[22044]} />,
