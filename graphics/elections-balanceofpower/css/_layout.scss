@@ -13,13 +13,13 @@
 	%democratic {
 		float: left;
 		text-align: left;
-		color: $blue;
+		color: $democratic;
 	}
 
 	%republican {
 		float: right;
 		text-align: right;
-		color: $red;
+		color: $republican;
 	}
 
 	.numbersAndLabels {
@@ -77,14 +77,14 @@
 			@extend %democratic;
 
 			height: 100%;
-			background: $blue;
+			background: $democratic;
 		}
 
 		.republican {
 			@extend %republican;
 
 			height: 100%;
-			background: $red;
+			background: $republican;
 		}
 	}
 

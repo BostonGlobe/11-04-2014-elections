@@ -1,17 +1,20 @@
-$red: rgba(191, 97, 81, 1);
-$blue: rgba(89, 136, 157, 1);
-$redWeak: rgba(223, 195, 182, 1);
-$blueWeak: rgba(195, 213, 222, 1);
-$yellow: rgba(253, 205, 128, 1);
-$yellowWeak: rgba(253, 205, 128, 0.5);
+@import "common/css/_infographicColors";
 
-$borderColor: #e2e2df;
 
-$winningBackground: #f2f2e8;
+$republican: $brick;
+$republicanLeaning: $rose;
+$democratic: $blue;
+$democraticLeaning: $sky;
+$independent: $goldenrod;
+$independentLeaning: rgba($goldenrod, 0.5);
 
-$lessImportant: #777;
-$neutral: #999;
-$neutralWeak: #edece4;
+// $borderColor: #e2e2df;
+
+// $winningBackground: #f2f2e8;
+
+// $lessImportant: #777;
+// $neutral: #999;
+// $neutralWeak: #edece4;
 
 $qualitativeColor_0: #a6cee3;
 $qualitativeColor_1: #1f78b4;

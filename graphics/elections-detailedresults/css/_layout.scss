@@ -6,7 +6,9 @@
 
 	// TODO: refactor this, too much duplication
 	.choropleth {
-		border: solid grey 1px;
+		width: 100%;
+		position: relative;
+		border: solid $streets 1px;
 
 		svg {
 			vertical-align: bottom;
@@ -18,11 +20,12 @@
 		}
 
 		.master-region {
-			stroke: grey;
+			stroke: $bw100;
 		}
 
 		.region {
 			stroke: black;
+			stroke-width: 2px;
 		}
 
 		.notinrace {
@@ -36,14 +39,14 @@
 
 		.inrace-nowinner-votes-tie {
 			stroke: white;
-			fill: #AAA;
+			fill: red;
 		}
 
 		.inrace-nowinner-votes-notie {
 			stroke: white;
-			&.democratic  { fill: $blueWeak;           }
-			&.republican  { fill: $redWeak;            }
-			&.independent { fill: $yellowWeak;         }
+			&.democratic  { fill: $democraticLeaning;  }
+			&.republican  { fill: $republicanLeaning;  }
+			&.independent { fill: $independentLeaning; }
 			&.color_0     { fill: $qualitativeColor_0; }
 			&.color_1     { fill: $qualitativeColor_1; }
 			&.color_2     { fill: $qualitativeColor_2; }
@@ -63,14 +66,14 @@
 
 		.inrace-winner-votes-tie {
 			stroke: white;
-			fill: #777;
+			fill: red;
 		}
 
 		.inrace-winner-votes-notie {
 			stroke: white;
-			&.democratic  { fill: $blue;               }
-			&.republican  { fill: $red;                }
-			&.independent { fill: $yellow;             }
+			&.democratic  { fill: $democratic;         }
+			&.republican  { fill: $republican;         }
+			&.independent { fill: $independent;        }
 			&.color_0     { fill: $qualitativeColor_0; }
 			&.color_1     { fill: $qualitativeColor_1; }
 			&.color_2     { fill: $qualitativeColor_2; }
@@ -82,6 +85,24 @@
 			&.color_8     { fill: $qualitativeColor_8; }
 			&.color_9     { fill: $qualitativeColor_9; }
 		}
+
+		.minimap {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			width: 30%;
+
+			svg {
+				.region {
+					fill: black;
+				}
+
+				.master-region {
+					stroke: black;
+				}
+			}
+		}
+
 	}
 	
 }
