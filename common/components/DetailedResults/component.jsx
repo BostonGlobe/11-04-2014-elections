@@ -42,11 +42,6 @@ var DetailedResults = React.createClass({
 		return results.length && !incompleteRaces.length;
 	},
 
-	// FetchResultsMixin needs this
-	sortByDefault: function(results, ordering) {
-		return results;
-	},
-
 	render: function() {
 		return (
 			<div className='detailed-results'>

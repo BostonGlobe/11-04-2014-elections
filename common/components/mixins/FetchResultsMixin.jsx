@@ -12,7 +12,10 @@ var FetchResultsMixin = {
 
 		window[apiCallback] = function(json) {
 
-			var data = this.sortByDefault(json, this.props.choices);
+			var data = this.sortByDefault ?
+				this.sortByDefault(json, this.props.choices) :
+				json;
+
 			this.setState({results: data});
 
 		}.bind(this);
