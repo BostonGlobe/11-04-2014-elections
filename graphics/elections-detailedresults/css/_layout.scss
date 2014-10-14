@@ -37,15 +37,19 @@
 
 		.inrace-nowinner-votes-notie {
 			stroke: white;
-			&.democratic {
-				fill: $blueWeak;
-			}
-			&.republican {
-				fill: $redWeak;
-			}
-			&.independent {
-				fill: $yellowWeak;
-			}
+			&.democratic  { fill: $blueWeak;           }
+			&.republican  { fill: $redWeak;            }
+			&.independent { fill: $yellowWeak;         }
+			&.color_0     { fill: $qualitativeColor_0; }
+			&.color_1     { fill: $qualitativeColor_1; }
+			&.color_2     { fill: $qualitativeColor_2; }
+			&.color_3     { fill: $qualitativeColor_3; }
+			&.color_4     { fill: $qualitativeColor_4; }
+			&.color_5     { fill: $qualitativeColor_5; }
+			&.color_6     { fill: $qualitativeColor_6; }
+			&.color_7     { fill: $qualitativeColor_7; }
+			&.color_8     { fill: $qualitativeColor_8; }
+			&.color_9     { fill: $qualitativeColor_9; }
 		}
 
 		.inrace-winner-novotes {
@@ -60,15 +64,19 @@
 
 		.inrace-winner-votes-notie {
 			stroke: white;
-			&.democratic {
-				fill: $blue;
-			}
-			&.republican {
-				fill: $red;
-			}
-			&.independent {
-				fill: $yellow;
-			}
+			&.democratic  { fill: $blue;               }
+			&.republican  { fill: $red;                }
+			&.independent { fill: $yellow;             }
+			&.color_0     { fill: $qualitativeColor_0; }
+			&.color_1     { fill: $qualitativeColor_1; }
+			&.color_2     { fill: $qualitativeColor_2; }
+			&.color_3     { fill: $qualitativeColor_3; }
+			&.color_4     { fill: $qualitativeColor_4; }
+			&.color_5     { fill: $qualitativeColor_5; }
+			&.color_6     { fill: $qualitativeColor_6; }
+			&.color_7     { fill: $qualitativeColor_7; }
+			&.color_8     { fill: $qualitativeColor_8; }
+			&.color_9     { fill: $qualitativeColor_9; }
 		}
 	}
 	

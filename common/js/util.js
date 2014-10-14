@@ -34,6 +34,24 @@ module.exports = {
 		var parts = x.toString().split(".");
 		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		return parts.join(".");
+	},
+
+	getColor: function(opts) {
+
+		var isPrimary = opts.isPrimary;
+		var sortedCandidateIds = opts.candidateIds;
+		var result = opts.result;
+
+		var klass;
+
+		if (isPrimary) {
+			klass = 'color_' + _.indexOf(sortedCandidateIds, result.ap_candidate_id);
+		} else {
+			klass = this.partyAbbreviationToParty(result.party);
+		}
+
+		return klass;
+
 	}
 
 };

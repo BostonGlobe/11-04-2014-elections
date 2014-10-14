@@ -80,20 +80,11 @@ var SummaryTable = React.createClass({
 
 				if (colorRows) {
 
-					// if this is a primary, we'll want to color the square
-					// with categorical colors
-					if (race.race_type === 'Primary') {
-						colorClass = 'color_' + _.indexOf(candidateIds, result.ap_candidate_id);
-					} else {
-						// if this is a general election, color the square
-						// with the traditional party colors
-						// this information is also available to <Row />, so one could make
-						// the argument that coloring is up to <Row />. But: if <Row />
-						// is part of a primary, then it would need more information than it
-						// logically has. And up to now, no child component gets more information
-						// than it logically needs. So let's keep this here.
-						colorClass = util.partyAbbreviationToParty(result.party);
-					}
+					colorClass = util.getColor({
+						isPrimary: race.race_type === 'Primary',
+						candidateIds: candidateIds,
+						result: result
+					});
 
 					// finally, add an extra 'color' class, so we can target
 					// all rows with color

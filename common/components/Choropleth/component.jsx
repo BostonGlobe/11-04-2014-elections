@@ -26,18 +26,18 @@ var Choropleth = React.createClass({
 		);
 	},
 
-	chooseFillClass: function(d) {
+	chooseFillClass: function(d, race) {
 
 		// how many different colors can a town have?
 		// 1: not in race                          - e.g. non-state-wide races
 
 		// 2: in race, no winner, no votes         - e.g. results are in, no winner yet, and no one voted in this town
 		// 3: in race, no winner,    votes,    tie - e.g. results are in, no winner yet, and this town is supporting all candidates equally
-		// 4: in race, no winner,    votes, no tie - e.g. results are in, no winner yet, and this town is favoring one candidate
+		// 4: in race, no winner,    votes, no tie - e.g. results are in, no winner yet, and this town is favoring one candidate (COLOR)
 
 		// 5: in race,    winner, no votes         - e.g. results are in, there is a winner, and no one voted in this town
 		// 6: in race,    winner,    votes,    tie - e.g. results are in, there is a winner, and this town is supporting all candidates equally
-		// 7: in race,    winner,    votes, no tie - e.g. results are in, there is a winner, and this town is favoring one candidate
+		// 7: in race,    winner,    votes, no tie - e.g. results are in, there is a winner, and this town is favoring one candidate (COLOR)
 
 		var reportingUnit = d.properties.reporting_unit;
 		var klass = 'notinrace';
@@ -58,6 +58,19 @@ var Choropleth = React.createClass({
 			// is there a tie?
 			var thereIsATie = _.first(results).vote_count === _.last(results).vote_count;
 
+			// is this a primary?
+			var isPrimary = race.race_type === 'Primary';
+
+			// if this is a primary, sort candidates by id - we'll need them later
+			// otherwise don't do it - save a nanosecond
+			var candidateIds = null;
+			if (isPrimary) {
+				candidateIds = _.chain(race.candidates)
+					.sortBy('id')
+					.pluck('id')
+					.value();
+			}
+
 			if (!thereIsAWinner) {
 				if (!thereAreVotes) {
 					klass = 'inrace-nowinner-novotes';
@@ -66,7 +79,11 @@ var Choropleth = React.createClass({
 						klass = 'inrace-nowinner-votes-tie';
 					} else {
 						klass = 'inrace-nowinner-votes-notie';
-						klass += ' ' + util.partyAbbreviationToParty(_.first(results).party);
+						klass += ' ' + util.getColor({
+							isPrimary: isPrimary,
+							candidateIds: candidateIds,
+							result: _.first(results)
+						});
 					}
 				}
 			} else {
@@ -77,7 +94,11 @@ var Choropleth = React.createClass({
 						klass = 'inrace-winner-votes-tie';
 					} else {
 						klass = 'inrace-winner-votes-notie';
-						klass += ' ' + util.partyAbbreviationToParty(_.first(results).party);
+						klass += ' ' + util.getColor({
+							isPrimary: isPrimary,
+							candidateIds: candidateIds,
+							result: _.first(results)
+						});
 					}
 				}
 			}
@@ -117,13 +138,19 @@ var Choropleth = React.createClass({
 
 		var g = d3.select(this.getDOMNode().querySelector('svg g'));
 
+		var self = this;
+
 		g.selectAll('path')
 			// update
 				.data(features)
-				.attr('class', this.chooseFillClass)
+				.attr('class', function(d) {
+					return self.chooseFillClass(d, results);
+				})
 			// enter
 			.enter().append('path')
-				.attr('class', this.chooseFillClass)
+				.attr('class', function(d) {
+					return self.chooseFillClass(d, results);
+				})
 				.attr('d', this.path);
 	},
 
