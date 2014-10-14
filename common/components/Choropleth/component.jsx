@@ -26,6 +26,9 @@ var Choropleth = React.createClass({
 		);
 	},
 
+	// this function returns a string, e.g. 'inrace-nowinner-novotes Dem' which
+	// will be used to color a town
+	// the function gets called for every town, and every time there's new data
 	chooseFillClass: function(d, race) {
 
 		// how many different colors can a town have?
@@ -107,6 +110,9 @@ var Choropleth = React.createClass({
 		return klass;
 	},
 
+	// this function gets called every time there's new results data
+	// it binds results data to shapefile data,
+	// and draws the town colors
 	updateMap: function(results) {
 
 		var shapefile = this.props.shapefile;
@@ -154,6 +160,7 @@ var Choropleth = React.createClass({
 				.attr('d', this.path);
 	},
 
+	// this gets called on viewport resize. it resizes the svg container.
 	updateContainerDimensions: function() {
 		
 		var self = $('svg', this.getDOMNode());
@@ -171,6 +178,15 @@ var Choropleth = React.createClass({
 		$('body').height('auto');
 	},
 
+	// this gets called once, at the beginning, but only after
+	// we have non-null results.
+	// it does several things:
+	// - setup all the d3 projection boilerplate
+	// - create the svg container
+	// - create the state outline
+	// - create the race region outline (e.g. 1st Essex)
+	// - draw the map
+	// - wire up the resize event
 	createMap: function(results) {
 
 		var shapefile = this.props.shapefile;
