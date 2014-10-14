@@ -10,6 +10,6 @@ var DetailedResults = require('../../../common/components/DetailedResults/compon
 // 6th district is 22044
 
 React.renderComponent(
-	<DetailedResults choices={[22044]} />,
+	<DetailedResults choices={[22014]} />,
 	document.getElementById('elections-detailedresults')
 );
