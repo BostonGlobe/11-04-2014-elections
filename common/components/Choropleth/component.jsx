@@ -21,7 +21,12 @@ var Choropleth = React.createClass({
 	render: function() {
 		return (
 			<div className='choropleth'>
-				<svg></svg>
+				<div className='fullmap'>
+					<svg></svg>
+				</div>
+				<div className='minimap'>
+					<svg></svg>
+				</div>
 			</div>
 		);
 	},
@@ -142,7 +147,7 @@ var Choropleth = React.createClass({
 		var after = Date.now();
 		console.log('binding results to shapefile took ' + (after - before) + 'ms');
 
-		var g = d3.select(this.getDOMNode().querySelector('svg g'));
+		var g = d3.select(this.getDOMNode().querySelector('.fullmap svg g'));
 
 		var self = this;
 
@@ -163,19 +168,114 @@ var Choropleth = React.createClass({
 	// this gets called on viewport resize. it resizes the svg container.
 	updateContainerDimensions: function() {
 		
-		var self = $('svg', this.getDOMNode());
+		var self = this;
+		var svgs = $('svg', self.getDOMNode());
 
 		// force scrollbar just in case we need it
 		// otherwise the targetWidth will be off
 		$('body').height(10000);
 
-		var targetWidth = self.parent().width();
+		svgs.each(function() {
 
-		self.attr('width', targetWidth);
-		self.attr('height', targetWidth / this.aspect);
+			// get aspect directly from svg
+			var viewBox = this.getAttribute('viewBox').split(' ');
+			var aspect = viewBox[2]/viewBox[3];
+
+			var targetWidth = $(this).parent().width();
+
+			$(this).attr('width', targetWidth);
+			$(this).attr('height', targetWidth / aspect);
+
+		});
 
 		// reset scrollbar
 		$('body').height('auto');
+	},
+
+	createMiniMap: function(results) {
+
+		var shapefile = this.props.shapefile;
+
+		// TODO: change name of TOWNS to something more generic.
+		var masterRegion = topojson.feature(shapefile, shapefile.objects.TOWNS);
+
+		var townsInRace = _.chain(results.reporting_units)
+			.pluck('county_name')
+			.map(function(county_name) {
+				return county_name.toUpperCase();
+			})
+			.value();
+
+		var raceRegion = topojson.merge(shapefile, shapefile.objects.TOWNS.geometries.filter(function(d) {
+			return _.contains(townsInRace, d.properties.TOWN);
+		}));
+
+		// we'll center the map on the centroid
+		var centroid = d3.geo.centroid(masterRegion);
+
+		// Create a unit projection.
+		var projection = d3.geo.albers()
+			.center([0, centroid[1]])
+			.rotate([-centroid[0], 0])
+			.scale(1)
+			.translate([0, 0]);
+
+		// Create a path generator.
+		var path = d3.geo.path()
+			.projection(projection);
+
+		// Compute the bounds of a feature of interest.
+		var b = path.bounds(masterRegion);
+
+		// we'll use the aspect to update container dimensions
+		// we wouldn't need to do this were it not for safari
+		// because chrome obeys svg viewport
+		var aspect = (b[1][0]-b[0][0])/(b[1][1]-b[0][1]);
+
+		// Use normalized width and height. Don't worry!
+		// this doesn't mean the final width will be 1000px.
+		// this is simply used for svg's preserveAspectRatio.
+		var width = 1000;
+		var height = Math.round(width/aspect);
+
+		// Compute scale and translate.
+		var s = 0.9 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
+		var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+
+		// Update the projection to use computed scale & translate.
+		projection
+			.scale(s)
+			.translate(t);
+
+		// get this svg element
+		var svg = d3.select(this.getDOMNode().querySelector('.minimap svg'));
+
+		// create the container
+		svg.attr({
+			viewBox: [0, 0, width, height].join(' '),
+			preserveAspectRatio: 'xMidYMid'
+		});
+
+		// create the features container
+		svg.append('g');
+
+		// create the master region outline
+		svg.append('path')
+			.datum(topojson.mesh(shapefile, shapefile.objects.TOWNS, function(a, b) {
+				return a === b;
+			}))
+			.attr({
+				'd': path,
+				'class': 'master-region'
+			});
+
+		// create the region outline
+		svg.append('path')
+			.datum(raceRegion)
+			.attr({
+				'd': path,
+				'class': 'region'
+			});
 	},
 
 	// this gets called once, at the beginning, but only after
@@ -187,7 +287,7 @@ var Choropleth = React.createClass({
 	// - create the race region outline (e.g. 1st Essex)
 	// - draw the map
 	// - wire up the resize event
-	createMap: function(results) {
+	createFullMap: function(results) {
 
 		var shapefile = this.props.shapefile;
 
@@ -225,16 +325,16 @@ var Choropleth = React.createClass({
 		// we'll use the aspect to update container dimensions
 		// we wouldn't need to do this were it not for safari
 		// because chrome obeys svg viewport
-		this.aspect = (b[1][0]-b[0][0])/(b[1][1]-b[0][1]);
+		var aspect = (b[1][0]-b[0][0])/(b[1][1]-b[0][1]);
 
 		// Use normalized width and height. Don't worry!
 		// this doesn't mean the final width will be 1000px.
 		// this is simply used for svg's preserveAspectRatio.
 		var width = 1000;
-		var height = Math.round(width/this.aspect);
+		var height = Math.round(width/aspect);
 
 		// Compute scale and translate.
-		var s = 0.55 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
+		var s = 0.75 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
 		var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
 
 		// Update the projection to use computed scale & translate.
@@ -243,7 +343,7 @@ var Choropleth = React.createClass({
 			.translate(t);
 
 		// get this svg element
-		var svg = d3.select(this.getDOMNode().querySelector('svg'));
+		var svg = d3.select(this.getDOMNode().querySelector('.fullmap svg'));
 
 		// create the container
 		svg.attr({
@@ -274,9 +374,6 @@ var Choropleth = React.createClass({
 
 		// next is the part where we draw the data
 		this.updateMap(this.props.results);
-
-		window.addEventListener('resize', _.debounce(this.updateContainerDimensions, 150));
-		this.updateContainerDimensions();
 	},
 
 	shouldComponentUpdate: function(props, state) {
@@ -284,7 +381,10 @@ var Choropleth = React.createClass({
 		// is this the first time we get results?
 		// if so, draw the map
 		if (!this.props.results && props.results) {
-			this.createMap(props.results);
+			this.createFullMap(props.results);
+			this.createMiniMap(props.results);
+			window.addEventListener('resize', _.debounce(this.updateContainerDimensions, 150));
+			this.updateContainerDimensions();	
 		}
 
 		// next is the part where we draw the data
