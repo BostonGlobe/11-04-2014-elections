@@ -8,6 +8,10 @@
 	.choropleth {
 		border: solid grey 1px;
 
+		svg {
+			vertical-align: bottom;
+		}
+
 		path {
 			fill: none;
 			stroke: none;
