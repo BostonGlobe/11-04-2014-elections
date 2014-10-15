@@ -249,11 +249,36 @@ var Choropleth = React.createClass({
 		};
 	},
 
-	createMiniMap: function(results) {
+	drawRegionOutlines: function(opts) {
 
-		// this function will create a path and projection centered
-		// on a particular region,
-		// 
+		var svg = opts.svg;
+		var shapefile = opts.shapefile;
+		var raceRegion = opts.raceRegion;
+		var path = opts.path;
+
+		// create the features container
+		svg.append('g');
+
+		// create the master region outline
+		svg.append('path')
+			.datum(topojson.mesh(shapefile, shapefile.objects.TOWNS, function(a, b) {
+				return a === b;
+			}))
+			.attr({
+				'd': path,
+				'class': 'master-region'
+			});
+
+		// create the region outline
+		svg.append('path')
+			.datum(raceRegion)
+			.attr({
+				'd': path,
+				'class': 'region'
+			});
+	},
+
+	createMiniMap: function(results) {
 
 		var shapefile = this.props.shapefile;
 
@@ -281,37 +306,14 @@ var Choropleth = React.createClass({
 		var svg = svgAndPath.svg;
 		var path = svgAndPath.path;
 
-		// create the features container
-		svg.append('g');
-
-		// create the master region outline
-		svg.append('path')
-			.datum(topojson.mesh(shapefile, shapefile.objects.TOWNS, function(a, b) {
-				return a === b;
-			}))
-			.attr({
-				'd': path,
-				'class': 'master-region'
-			});
-
-		// create the region outline
-		svg.append('path')
-			.datum(raceRegion)
-			.attr({
-				'd': path,
-				'class': 'region'
-			});
+		this.drawRegionOutlines({
+			svg: svg,
+			path: path,
+			shapefile: shapefile,
+			raceRegion: raceRegion
+		});
 	},
 
-	// this gets called once, at the beginning, but only after
-	// we have non-null results.
-	// it does several things:
-	// - setup all the d3 projection boilerplate
-	// - create the svg container
-	// - create the state outline
-	// - create the race region outline (e.g. 1st Essex)
-	// - draw the map
-	// - wire up the resize event
 	createFullMap: function(results) {
 
 		var shapefile = this.props.shapefile;
@@ -336,34 +338,38 @@ var Choropleth = React.createClass({
 		});
 
 		var svg = svgAndPath.svg;
-		this.path = svgAndPath.path;
+		var path = svgAndPath.path;
+		this.path = path;
 
-		// create the features container
-		svg.append('g');
-
-		// create the region outline
-		svg.append('path')
-			.datum(raceRegion)
-			.attr({
-				'd': this.path,
-				'class': 'region'
-			});
-
-		// create the master region outline
-		svg.append('path')
-			.datum(topojson.mesh(shapefile, shapefile.objects.TOWNS, function(a, b) {
-				return a === b;
-			}))
-			.attr({
-				'd': this.path,
-				'class': 'master-region'
-			});
+		this.drawRegionOutlines({
+			svg: svg,
+			path: path,
+			shapefile: shapefile,
+			raceRegion: raceRegion
+		});
 
 		// next is the part where we draw the data
 		this.updateMap(this.props.results);
 	},
 
-	createMap: function(results) {
+	createMaps: function(results) {
+
+		// var shapefile = this.props.shapefile;
+
+		// // TODO: change name of TOWNS to something more generic.
+		// var masterRegion = topojson.feature(shapefile, shapefile.objects.TOWNS);
+
+		// var townsInRace = _.chain(results.reporting_units)
+		// 	.pluck('county_name')
+		// 	.map(function(county_name) {
+		// 		return county_name.toUpperCase();
+		// 	})
+		// 	.value();
+
+		// var raceRegion = topojson.merge(shapefile, shapefile.objects.TOWNS.geometries.filter(function(d) {
+		// 	return _.contains(townsInRace, d.properties.TOWN);
+		// }));
+
 		this.createFullMap(results);
 		this.createMiniMap(results);
 		window.addEventListener('resize', _.debounce(this.updateContainerDimensions, 150));
@@ -375,7 +381,7 @@ var Choropleth = React.createClass({
 		// is this the first time we get results?
 		// if so, draw the map
 		if (!this.props.results && props.results) {
-			this.createMap(props.results);
+			this.createMaps(props.results);
 		}
 
 		// next is the part where we draw the data
