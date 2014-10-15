@@ -192,11 +192,32 @@ var Choropleth = React.createClass({
 		$('body').height('auto');
 	},
 
+	createMap: function(results) {
+		this.createFullMap(results);
+		this.createMiniMap(results);
+		window.addEventListener('resize', _.debounce(this.updateContainerDimensions, 150));
+		this.updateContainerDimensions();	
+	},
+
 	createMiniMap: function(results) {
 
 		var shapefile = this.props.shapefile;
 
+		var area = 1, simplify = d3.geo.transform({
+  point: function(x, y, z) {
+  	debugger;
+    if (z >= area) this.stream.point(x, y);
+  }
+});
+
+function matrix(a, b, c, d, tx, ty) {
+  return d3.geo.transform({
+    point: function(x, y) { this.stream.point(a * x + b * y + tx, c * x + d * y + ty); },
+  });
+}
+
 		// TODO: change name of TOWNS to something more generic.
+		topojson.presimplify(shapefile);
 		var masterRegion = topojson.feature(shapefile, shapefile.objects.TOWNS);
 
 		var townsInRace = _.chain(results.reporting_units)
@@ -214,11 +235,17 @@ var Choropleth = React.createClass({
 		var centroid = d3.geo.centroid(masterRegion);
 
 		// Create a unit projection.
-		var projection = d3.geo.albers()
-			.center([0, centroid[1]])
-			.rotate([-centroid[0], 0])
-			.scale(1)
-			.translate([0, 0]);
+
+var mercator = d3.geo.projection(function(λ, φ) {
+  return [
+    λ,
+    Math.log(Math.tan(Math.PI / 4 + φ / 2))
+  ];
+});
+
+// var albers = d3.geo.albers();
+
+		var projection = matrix(1, 0, 0, -1, 0, 100);
 
 		// Create a path generator.
 		var path = d3.geo.path()
@@ -243,9 +270,7 @@ var Choropleth = React.createClass({
 		var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
 
 		// Update the projection to use computed scale & translate.
-		projection
-			.scale(s)
-			.translate(t);
+		projection;
 
 		// get this svg element
 		var svg = d3.select(this.getDOMNode().querySelector('.minimap svg'));
@@ -261,21 +286,29 @@ var Choropleth = React.createClass({
 
 		// create the master region outline
 		svg.append('path')
-			.datum(topojson.mesh(shapefile, shapefile.objects.TOWNS, function(a, b) {
-				return a === b;
-			}))
+			.datum(topojson.mesh(topojson.presimplify(shapefile)))
 			.attr({
 				'd': path,
 				'class': 'master-region'
 			});
 
-		// create the region outline
-		svg.append('path')
-			.datum(raceRegion)
-			.attr({
-				'd': path,
-				'class': 'region'
-			});
+		// // create the master region outline
+		// svg.append('path')
+		// 	.datum(topojson.mesh(shapefile, shapefile.objects.TOWNS, function(a, b) {
+		// 		return a === b;
+		// 	}))
+		// 	.attr({
+		// 		'd': path,
+		// 		'class': 'master-region'
+		// 	});
+
+		// // create the region outline
+		// svg.append('path')
+		// 	.datum(raceRegion)
+		// 	.attr({
+		// 		'd': path,
+		// 		'class': 'region'
+		// 	});
 	},
 
 	// this gets called once, at the beginning, but only after
@@ -381,10 +414,7 @@ var Choropleth = React.createClass({
 		// is this the first time we get results?
 		// if so, draw the map
 		if (!this.props.results && props.results) {
-			this.createFullMap(props.results);
-			this.createMiniMap(props.results);
-			window.addEventListener('resize', _.debounce(this.updateContainerDimensions, 150));
-			this.updateContainerDimensions();	
+			this.createMap(props.results);
 		}
 
 		// next is the part where we draw the data
