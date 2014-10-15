@@ -7,6 +7,7 @@
 
 var React = require('react');
 var d3 = require('d3');
+var d3util = require('../../../common/js/d3util.js');
 var topojson = require('topojson');
 var util = require('../../../common/js/util.js');
 
@@ -115,55 +116,6 @@ var Choropleth = React.createClass({
 		return klass;
 	},
 
-	// this function gets called every time there's new results data
-	// it binds results data to shapefile data,
-	// and draws the town colors
-	updateFullMap: function(results) {
-
-		var shapefile = this.props.shapefile;
-
-		var feature = topojson.feature(shapefile, shapefile.objects.TOWNS);
-		var features = feature.features;
-
-		// bind results to shapefile
-		var before = Date.now();
-		if (results && results.reporting_units) {
-
-			results.reporting_units.forEach(function(reporting_unit) {
-
-				var match = _.find(features, function(feature) {
-					return reporting_unit.county_name.toUpperCase() === feature.properties.TOWN;
-				});
-
-				if (match) {
-					match.properties.reporting_unit = reporting_unit;
-				}
-
-			});
-
-		}
-
-		var after = Date.now();
-		console.log('binding results to shapefile took ' + (after - before) + 'ms');
-
-		var g = d3.select(this.getDOMNode().querySelector('.fullmap svg g'));
-
-		var self = this;
-
-		g.selectAll('path')
-			// update
-				.data(features)
-				.attr('class', function(d) {
-					return self.chooseFillClass(d, results);
-				})
-			// enter
-			.enter().append('path')
-				.attr('class', function(d) {
-					return self.chooseFillClass(d, results);
-				})
-				.attr('d', this.path);
-	},
-
 	// this gets called on viewport resize. it resizes the svg container.
 	updateSvgDimensions: function() {
 		
@@ -208,7 +160,8 @@ var Choropleth = React.createClass({
 
 		// Create a path generator.
 		var path = d3.geo.path()
-			.projection(projection);
+			.projection(projection)
+			.pointRadius(10);
 
 		// Compute the bounds of a feature of interest.
 		var b = path.bounds(region);
@@ -254,9 +207,6 @@ var Choropleth = React.createClass({
 		var shapefile = opts.shapefile;
 		var raceRegion = opts.raceRegion;
 		var path = opts.path;
-
-		// create the features container
-		svg.append('g');
 
 		// create the master region outline
 		svg.append('path')
@@ -313,12 +263,78 @@ var Choropleth = React.createClass({
 		var path = svgAndPath.path;
 		this.path = path;
 
+		// create the features container - draw it first,
+		// so that the region outlines will be drawn above
+		svg.append('g');
+
 		this.drawRegionOutlines({
 			svg: svg,
 			path: path,
 			shapefile: shapefile,
 			raceRegion: raceRegion
 		});
+
+			// .datum({type: 'MultiPoint', coordinates: [[-71.090384,42.7828169]]}) //42.3581° N, 71.0636
+
+		// finally, draw the points
+		var boston = [-71.0636,42.3581];
+		svg.append('path')
+			.datum({type: 'MultiPoint', coordinates: [boston]})
+			.attr('class', 'point')
+			.attr('d', path);
+	},
+
+	updateFullMap: function(results) {
+
+		var shapefile = this.props.shapefile;
+
+		var feature = topojson.feature(shapefile, shapefile.objects.TOWNS);
+		var features = feature.features;
+
+		// bind results to shapefile
+		var before = Date.now();
+		if (results && results.reporting_units) {
+
+			results.reporting_units.forEach(function(reporting_unit) {
+
+				var match = _.find(features, function(feature) {
+					return reporting_unit.county_name.toUpperCase() === feature.properties.TOWN;
+				});
+
+				if (match) {
+					match.properties.reporting_unit = reporting_unit;
+				}
+
+			});
+
+		}
+
+		var after = Date.now();
+		console.log('binding results to shapefile took ' + (after - before) + 'ms');
+
+		var g = d3.select(this.getDOMNode().querySelector('.fullmap svg g'));
+
+		var self = this;
+
+		g.selectAll('path')
+			// update
+				.data(features)
+				.attr('class', function(d) {
+					return self.chooseFillClass(d, results);
+				})
+			// enter
+			.enter().append('path')
+				.attr('class', function(d) {
+					return self.chooseFillClass(d, results);
+				})
+				.attr('d', this.path)
+				.on('mouseover', function(d) {
+					d3.select(this).classed('active', true);
+					d3util.moveToFront.call(this);
+				})
+				.on('mouseout', function(d) {
+					d3.select(this).classed('active', false);
+				});
 	},
 
 	createMaps: function(results) {

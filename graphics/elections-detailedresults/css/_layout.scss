@@ -17,6 +17,12 @@
 		path {
 			fill: none;
 			stroke: none;
+			stroke-linecap: square;
+			stroke-linejoin: round;
+
+			&.point {
+				fill: black;
+			}
 		}
 
 		.master-region {
@@ -85,6 +91,11 @@
 			&.color_7     { fill: $qualitativeColor_7; }
 			&.color_8     { fill: $qualitativeColor_8; }
 			&.color_9     { fill: $qualitativeColor_9; }
+		}
+
+		.active {
+			stroke-width: 10px;
+			stroke: black;
 		}
 
 		.minimap {

@@ -15,7 +15,7 @@ var DetailedResults = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
-		var isDev = false;
+		var isDev = true;
 		var url = 'http://' + (isDev ? 'devweb.' : 'www.') + 'bostonglobe.com/electionapi/races/number?detail=true&' + this.props.choices.map(function(value) {
 			return 'number=' + value;
 		}).join('&');
