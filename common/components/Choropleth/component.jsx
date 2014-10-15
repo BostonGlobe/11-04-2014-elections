@@ -192,67 +192,27 @@ var Choropleth = React.createClass({
 		$('body').height('auto');
 	},
 
-	createMap: function(results) {
-		this.createFullMap(results);
-		this.createMiniMap(results);
-		window.addEventListener('resize', _.debounce(this.updateContainerDimensions, 150));
-		this.updateContainerDimensions();	
-	},
+	createSvgAndPath: function(opts) {
 
-	createMiniMap: function(results) {
-
-		var shapefile = this.props.shapefile;
-
-		var area = 1, simplify = d3.geo.transform({
-  point: function(x, y, z) {
-  	debugger;
-    if (z >= area) this.stream.point(x, y);
-  }
-});
-
-function matrix(a, b, c, d, tx, ty) {
-  return d3.geo.transform({
-    point: function(x, y) { this.stream.point(a * x + b * y + tx, c * x + d * y + ty); },
-  });
-}
-
-		// TODO: change name of TOWNS to something more generic.
-		topojson.presimplify(shapefile);
-		var masterRegion = topojson.feature(shapefile, shapefile.objects.TOWNS);
-
-		var townsInRace = _.chain(results.reporting_units)
-			.pluck('county_name')
-			.map(function(county_name) {
-				return county_name.toUpperCase();
-			})
-			.value();
-
-		var raceRegion = topojson.merge(shapefile, shapefile.objects.TOWNS.geometries.filter(function(d) {
-			return _.contains(townsInRace, d.properties.TOWN);
-		}));
+		var region = opts.region;
+		var selector = opts.selector;
 
 		// we'll center the map on the centroid
-		var centroid = d3.geo.centroid(masterRegion);
+		var centroid = d3.geo.centroid(region);
 
 		// Create a unit projection.
-
-var mercator = d3.geo.projection(function(λ, φ) {
-  return [
-    λ,
-    Math.log(Math.tan(Math.PI / 4 + φ / 2))
-  ];
-});
-
-// var albers = d3.geo.albers();
-
-		var projection = matrix(1, 0, 0, -1, 0, 100);
+		var projection = d3.geo.albers()
+			.center([0, centroid[1]])
+			.rotate([-centroid[0], 0])
+			.scale(1)
+			.translate([0, 0]);
 
 		// Create a path generator.
 		var path = d3.geo.path()
 			.projection(projection);
 
 		// Compute the bounds of a feature of interest.
-		var b = path.bounds(masterRegion);
+		var b = path.bounds(region);
 
 		// we'll use the aspect to update container dimensions
 		// we wouldn't need to do this were it not for safari
@@ -270,10 +230,12 @@ var mercator = d3.geo.projection(function(λ, φ) {
 		var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
 
 		// Update the projection to use computed scale & translate.
-		projection;
+		projection
+			.scale(s)
+			.translate(t);
 
 		// get this svg element
-		var svg = d3.select(this.getDOMNode().querySelector('.minimap svg'));
+		var svg = d3.select(this.getDOMNode().querySelector(selector));
 
 		// create the container
 		svg.attr({
@@ -281,34 +243,64 @@ var mercator = d3.geo.projection(function(λ, φ) {
 			preserveAspectRatio: 'xMidYMid'
 		});
 
+		return {
+			svg: svg,
+			path: path
+		};
+	},
+
+	createMiniMap: function(results) {
+
+		// this function will create a path and projection centered
+		// on a particular region,
+		// 
+
+		var shapefile = this.props.shapefile;
+
+		// geojson of entire state
+		var masterRegion = topojson.feature(shapefile, shapefile.objects.TOWNS);
+
+		// list of town names for this particular race
+		var townsInRace = _.chain(results.reporting_units)
+			.pluck('county_name')
+			.map(function(county_name) {
+				return county_name.toUpperCase();
+			})
+			.value();
+
+		// single polygon of towns in this race
+		var raceRegion = topojson.merge(shapefile, shapefile.objects.TOWNS.geometries.filter(function(d) {
+			return _.contains(townsInRace, d.properties.TOWN);
+		}));
+
+		var svgAndPath = this.createSvgAndPath({
+			region: masterRegion,
+			selector: '.minimap svg'
+		});
+
+		var svg = svgAndPath.svg;
+		var path = svgAndPath.path;
+
 		// create the features container
 		svg.append('g');
 
 		// create the master region outline
 		svg.append('path')
-			.datum(topojson.mesh(topojson.presimplify(shapefile)))
+			.datum(topojson.mesh(shapefile, shapefile.objects.TOWNS, function(a, b) {
+				return a === b;
+			}))
 			.attr({
 				'd': path,
 				'class': 'master-region'
 			});
 
-		// // create the master region outline
-		// svg.append('path')
-		// 	.datum(topojson.mesh(shapefile, shapefile.objects.TOWNS, function(a, b) {
-		// 		return a === b;
-		// 	}))
-		// 	.attr({
-		// 		'd': path,
-		// 		'class': 'master-region'
-		// 	});
-
-		// // create the region outline
-		// svg.append('path')
-		// 	.datum(raceRegion)
-		// 	.attr({
-		// 		'd': path,
-		// 		'class': 'region'
-		// 	});
+		// create the region outline
+		svg.append('path')
+			.datum(raceRegion)
+			.attr({
+				'd': path,
+				'class': 'region'
+			});
 	},
 
 	// this gets called once, at the beginning, but only after
@@ -338,51 +330,13 @@ var mercator = d3.geo.projection(function(λ, φ) {
 			return _.contains(townsInRace, d.properties.TOWN);
 		}));
 
-		// we'll center the map on the centroid
-		var centroid = d3.geo.centroid(raceRegion);
-
-		// Create a unit projection.
-		var projection = d3.geo.albers()
-			.center([0, centroid[1]])
-			.rotate([-centroid[0], 0])
-			.scale(1)
-			.translate([0, 0]);
-
-		// Create a path generator.
-		this.path = d3.geo.path()
-			.projection(projection);
-
-		// Compute the bounds of a feature of interest.
-		var b = this.path.bounds(raceRegion);
-
-		// we'll use the aspect to update container dimensions
-		// we wouldn't need to do this were it not for safari
-		// because chrome obeys svg viewport
-		var aspect = (b[1][0]-b[0][0])/(b[1][1]-b[0][1]);
-
-		// Use normalized width and height. Don't worry!
-		// this doesn't mean the final width will be 1000px.
-		// this is simply used for svg's preserveAspectRatio.
-		var width = 1000;
-		var height = Math.round(width/aspect);
-
-		// Compute scale and translate.
-		var s = 0.75 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
-		var t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
-
-		// Update the projection to use computed scale & translate.
-		projection
-			.scale(s)
-			.translate(t);
-
-		// get this svg element
-		var svg = d3.select(this.getDOMNode().querySelector('.fullmap svg'));
-
-		// create the container
-		svg.attr({
-			viewBox: [0, 0, width, height].join(' '),
-			preserveAspectRatio: 'xMidYMid'
+		var svgAndPath = this.createSvgAndPath({
+			region: raceRegion,
+			selector: '.fullmap svg'
 		});
+
+		var svg = svgAndPath.svg;
+		this.path = svgAndPath.path;
 
 		// create the features container
 		svg.append('g');
@@ -407,6 +361,13 @@ var mercator = d3.geo.projection(function(λ, φ) {
 
 		// next is the part where we draw the data
 		this.updateMap(this.props.results);
+	},
+
+	createMap: function(results) {
+		this.createFullMap(results);
+		this.createMiniMap(results);
+		window.addEventListener('resize', _.debounce(this.updateContainerDimensions, 150));
+		this.updateContainerDimensions();	
 	},
 
 	shouldComponentUpdate: function(props, state) {
