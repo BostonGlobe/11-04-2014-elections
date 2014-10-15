@@ -118,11 +118,10 @@ var Choropleth = React.createClass({
 	// this function gets called every time there's new results data
 	// it binds results data to shapefile data,
 	// and draws the town colors
-	updateMap: function(results) {
+	updateFullMap: function(results) {
 
 		var shapefile = this.props.shapefile;
 
-		// TODO: change name of TOWNS to something more generic.
 		var feature = topojson.feature(shapefile, shapefile.objects.TOWNS);
 		var features = feature.features;
 
@@ -166,7 +165,7 @@ var Choropleth = React.createClass({
 	},
 
 	// this gets called on viewport resize. it resizes the svg container.
-	updateContainerDimensions: function() {
+	updateSvgDimensions: function() {
 		
 		var self = this;
 		var svgs = $('svg', self.getDOMNode());
@@ -278,25 +277,11 @@ var Choropleth = React.createClass({
 			});
 	},
 
-	createMiniMap: function(results) {
+	createMiniMap: function(opts) {
 
-		var shapefile = this.props.shapefile;
-
-		// geojson of entire state
-		var masterRegion = topojson.feature(shapefile, shapefile.objects.TOWNS);
-
-		// list of town names for this particular race
-		var townsInRace = _.chain(results.reporting_units)
-			.pluck('county_name')
-			.map(function(county_name) {
-				return county_name.toUpperCase();
-			})
-			.value();
-
-		// single polygon of towns in this race
-		var raceRegion = topojson.merge(shapefile, shapefile.objects.TOWNS.geometries.filter(function(d) {
-			return _.contains(townsInRace, d.properties.TOWN);
-		}));
+		var shapefile = opts.shapefile;
+		var raceRegion = opts.raceRegion;
+		var masterRegion = opts.masterRegion;
 
 		var svgAndPath = this.createSvgAndPath({
 			region: masterRegion,
@@ -314,23 +299,10 @@ var Choropleth = React.createClass({
 		});
 	},
 
-	createFullMap: function(results) {
+	createFullMap: function(opts) {
 
-		var shapefile = this.props.shapefile;
-
-		// TODO: change name of TOWNS to something more generic.
-		var masterRegion = topojson.feature(shapefile, shapefile.objects.TOWNS);
-
-		var townsInRace = _.chain(results.reporting_units)
-			.pluck('county_name')
-			.map(function(county_name) {
-				return county_name.toUpperCase();
-			})
-			.value();
-
-		var raceRegion = topojson.merge(shapefile, shapefile.objects.TOWNS.geometries.filter(function(d) {
-			return _.contains(townsInRace, d.properties.TOWN);
-		}));
+		var shapefile = opts.shapefile;
+		var raceRegion = opts.raceRegion;
 
 		var svgAndPath = this.createSvgAndPath({
 			region: raceRegion,
@@ -347,33 +319,37 @@ var Choropleth = React.createClass({
 			shapefile: shapefile,
 			raceRegion: raceRegion
 		});
-
-		// next is the part where we draw the data
-		this.updateMap(this.props.results);
 	},
 
 	createMaps: function(results) {
 
-		// var shapefile = this.props.shapefile;
+		var shapefile = this.props.shapefile;
 
-		// // TODO: change name of TOWNS to something more generic.
-		// var masterRegion = topojson.feature(shapefile, shapefile.objects.TOWNS);
+		var masterRegion = topojson.feature(shapefile, shapefile.objects.TOWNS);
 
-		// var townsInRace = _.chain(results.reporting_units)
-		// 	.pluck('county_name')
-		// 	.map(function(county_name) {
-		// 		return county_name.toUpperCase();
-		// 	})
-		// 	.value();
+		var townsInRace = _.chain(results.reporting_units)
+			.pluck('county_name')
+			.map(function(county_name) {
+				return county_name.toUpperCase();
+			})
+			.value();
 
-		// var raceRegion = topojson.merge(shapefile, shapefile.objects.TOWNS.geometries.filter(function(d) {
-		// 	return _.contains(townsInRace, d.properties.TOWN);
-		// }));
+		var raceRegion = topojson.merge(shapefile, shapefile.objects.TOWNS.geometries.filter(function(d) {
+			return _.contains(townsInRace, d.properties.TOWN);
+		}));
 
-		this.createFullMap(results);
-		this.createMiniMap(results);
-		window.addEventListener('resize', _.debounce(this.updateContainerDimensions, 150));
-		this.updateContainerDimensions();	
+		var dataTransferObject = {
+			shapefile: shapefile,
+			raceRegion: raceRegion,
+			masterRegion: masterRegion
+		};
+
+		this.createFullMap(dataTransferObject);
+
+		this.createMiniMap(dataTransferObject);
+
+		window.addEventListener('resize', _.debounce(this.updateSvgDimensions, 150));
+		this.updateSvgDimensions();	
 	},
 
 	shouldComponentUpdate: function(props, state) {
@@ -385,7 +361,7 @@ var Choropleth = React.createClass({
 		}
 
 		// next is the part where we draw the data
-		this.updateMap(props.results);
+		this.updateFullMap(props.results);
 
 		return false;
 	}
