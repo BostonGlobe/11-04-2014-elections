@@ -3,7 +3,7 @@
  */
 
 var React = require('react');
-var DetailedResults = require('../../../common/components/DetailedResults/component.jsx');
+var DetailedResults = require('../../../common/containers/DetailedResults.jsx');
 
 // governor is 22957
 // 1st Essex is 22091

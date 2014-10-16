@@ -7,9 +7,9 @@
 
 var React = require('react');
 var d3 = require('d3');
-var d3util = require('../../../common/js/d3util.js');
 var topojson = require('topojson');
-var util = require('../../../common/js/util.js');
+var d3util = require('../assets/js/d3util.js');
+var util = require('../assets/js/util.js');
 
 var Choropleth = React.createClass({
 
