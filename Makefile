@@ -21,6 +21,7 @@ reproject:
 	cd data; \
 		rm -rf output; \
 		mkdir output; \
+		mkdir output/MA; \
 		cd output; \
-		ogr2ogr -s_srs EPSG:26986 -t_srs EPSG:4326 TOWNS.shp ../input/TOWNS_POLYM.shp; \
-		topojson -p TOWN -o towns.json --simplify-proportion 0.1 --bbox TOWNS.shp;
+		ogr2ogr -s_srs EPSG:26986 -t_srs EPSG:4326 MA/REPORTING_UNITS.shp ../input/TOWNS_POLYM.shp; \
+		topojson -p REPORTING_UNIT=TOWN,POPULATION=POP2010 -o MA/REPORTING_UNITS.json --simplify-proportion 0.1 --bbox MA/REPORTING_UNITS.shp;	

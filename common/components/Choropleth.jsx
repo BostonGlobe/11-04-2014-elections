@@ -57,7 +57,7 @@ var Choropleth = React.createClass({
 				results.reporting_units.forEach(function(reporting_unit) {
 
 					var match = _.find(opts.features, function(feature) {
-						return reporting_unit.county_name.toUpperCase() === feature.properties.TOWN;
+						return reporting_unit.county_name.toUpperCase() === feature.properties.REPORTING_UNIT;
 					});
 
 					if (match) {
@@ -86,7 +86,7 @@ var Choropleth = React.createClass({
 			g.selectAll('path')
 				// update
 					.data(features, function(d) {
-						return d.properties.TOWN;
+						return d.properties.REPORTING_UNIT;
 					})
 					.attr('class', function(d) {
 						return Choropleth.chooseFillClass(d, results);
@@ -132,8 +132,8 @@ var Choropleth = React.createClass({
 
 		createGeometryObjects: function(results, shapefile) {
 
-			var allTowns = topojson.feature(shapefile, shapefile.objects.TOWNS);
-			var allTownsOutline = topojson.merge(shapefile, shapefile.objects.TOWNS.geometries);
+			var allTowns = topojson.feature(shapefile, shapefile.objects.REPORTING_UNITS);
+			var allTownsOutline = topojson.merge(shapefile, shapefile.objects.REPORTING_UNITS.geometries);
 
 			var townsInRace = _.chain(results.reporting_units)
 				.pluck('county_name')
@@ -143,11 +143,11 @@ var Choropleth = React.createClass({
 				.value();
 
 			// TODO: get rid of duplication
-			var raceTowns = topojson.feature(shapefile, shapefile.objects.TOWNS).features.filter(function(d) {
-				return _.contains(townsInRace, d.properties.TOWN);
+			var raceTowns = topojson.feature(shapefile, shapefile.objects.REPORTING_UNITS).features.filter(function(d) {
+				return _.contains(townsInRace, d.properties.REPORTING_UNIT);
 			});
-			var raceTownsOutline = topojson.merge(shapefile, shapefile.objects.TOWNS.geometries.filter(function(d) {
-				return _.contains(townsInRace, d.properties.TOWN);
+			var raceTownsOutline = topojson.merge(shapefile, shapefile.objects.REPORTING_UNITS.geometries.filter(function(d) {
+				return _.contains(townsInRace, d.properties.REPORTING_UNIT);
 			}));
 
 			return {
