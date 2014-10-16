@@ -2,16 +2,13 @@
  * @jsx React.DOM
  */
 
-var React = require('react');
-
+var React             = require('react');
 var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
-
-var Choropleth = require('../components/Choropleth.jsx');
-var PollClock = require('../components/PollClock.jsx');
-var RaceName = require('../components/RaceName.jsx');
-var ShareTools = require('../components/ShareTools.jsx');
-
-var REPORTING_UNITS = require('../../data/output/MA/REPORTING_UNITS.json');
+var Choropleth        = require('../components/Choropleth.jsx');
+var PollClock         = require('../components/PollClock.jsx');
+var RaceName          = require('../components/RaceName.jsx');
+var ShareTools        = require('../components/ShareTools.jsx');
+var REPORTING_UNITS   = require('../../data/output/MA/REPORTING_UNITS.json');
 
 var DetailedResults = React.createClass({
 
@@ -19,7 +16,7 @@ var DetailedResults = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
-		var isDev = true;
+		var isDev = false;
 		var url = 'http://' + (isDev ? 'devweb.' : 'www.') + 'bostonglobe.com/electionapi/races/number?detail=true&' + this.props.choices.map(function(value) {
 			return 'number=' + value;
 		}).join('&');

@@ -12,6 +12,6 @@ var DetailedResults = require('../../../common/containers/DetailedResults.jsx');
 // something up north is 22014
 
 React.renderComponent(
-	<DetailedResults choices={[22014]} />,
+	<DetailedResults choices={[22796]} />,
 	document.getElementById('elections-detailedresults')
 );
