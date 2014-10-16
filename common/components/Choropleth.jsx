@@ -211,7 +211,8 @@ var Choropleth = React.createClass({
 
 			return {
 				svg: svg,
-				path: path
+				path: path,
+				projection: projection
 			};
 		},
 
@@ -340,7 +341,7 @@ var Choropleth = React.createClass({
 
 			// create the features container - draw it first,
 			// so that the outlines will be drawn above
-			fullMapSvgAndPath.svg.append('g');
+			fullMapSvgAndPath.svg.append('g').attr('class', 'features');
 
 			// save the path - we'll need it every time we update the map with new data
 			// TODO: maybe it shouldn't be called just 'path'
@@ -353,6 +354,43 @@ var Choropleth = React.createClass({
 				path: this.path,
 				raceTownsOutline: this.geometryObjects.raceTownsOutline
 			});
+
+			// next, draw the full map label and text
+			// first, find the town with most population
+			var largestTown = _.chain(this.geometryObjects.raceTowns)
+				.sortBy(function(town) {
+					return -town.properties.POPULATION;
+				})
+				.first()
+				.value();
+
+			var labels = fullMapSvgAndPath.svg.append('g').attr('class', 'labels');
+
+			labels.append('line')
+				.datum(largestTown)
+				.attr({
+					transform: function(d) {
+						var coordinates = fullMapSvgAndPath.projection(d3.geo.centroid(d));
+						return "translate(" + coordinates + ")";
+					}
+				});
+
+			labels.append('text')
+				.datum(largestTown)
+				.attr({
+					transform: function(d) {
+						var coordinates = fullMapSvgAndPath.projection(d3.geo.centroid(d));
+						return "translate(" + coordinates + ")";
+					},
+					x: 15,
+					dy: '0.35em'
+				})
+				.text(function(d) {
+					return d.properties.REPORTING_UNIT.toLowerCase();
+				})
+				.style('text-anchor', function() {
+					return 'start';
+				});
 
 			// next, create the mini map svg container
 			var miniMapSvgAndPath = Choropleth.createSvgAndPath({
@@ -379,7 +417,7 @@ var Choropleth = React.createClass({
 		// next is the part where we draw the data
 		if (props.results && this.geometryObjects.raceTowns) {
 
-			var node = d3.select(this.getDOMNode().querySelector('.fullmap svg g'));
+			var node = d3.select(this.getDOMNode().querySelector('.fullmap svg g.features'));
 
 			Choropleth.updateFullMap({
 				results: props.results,
