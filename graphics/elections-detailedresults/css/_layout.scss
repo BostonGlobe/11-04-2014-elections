@@ -23,20 +23,20 @@
 			stroke-linejoin: round;
 		}
 
-		line {
-			stroke-width: 16;
-			stroke-linecap: round;
-			stroke: black;	
-		}
-
 		g.labels {
 			pointer-events: none;
-		}
 
-		text {
-			font-family: $sansSerif;
-			text-transform: capitalize;
-			@include adjust-font-size-to(37px);
+			line {
+				stroke-width: 16;
+				stroke-linecap: round;
+				stroke: black;	
+			}
+
+			text {
+				font-family: $sansSerif;
+				text-transform: capitalize;
+				@include adjust-font-size-to(37px);
+			}
 		}
 
 		.all-towns-outline {
