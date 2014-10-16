@@ -15,6 +15,20 @@ var Choropleth = React.createClass({
 
 	statics: {
 
+		pointIsLeftOfCenter: function(opts) {
+
+			var point = opts.point;
+			var feature = opts.feature;
+
+			var mapBounds = d3.geo.bounds(feature);
+			var x0 = mapBounds[0][0];
+			var x1 = mapBounds[1][0];
+			var dx = x1 - x0;
+			var cx = x0 + dx/2;
+
+			return point[0] > cx;
+		},
+
 		// this gets called on viewport resize. it resizes the svg container.
 		updateSvgDimensions: function(svgs) {
 			
@@ -325,6 +339,8 @@ var Choropleth = React.createClass({
 	// but nothing else should.
 	shouldComponentUpdate: function(props, state) {
 
+		var self = this;
+
 		// is this the first time we get results?
 		// if so, draw the map
 		if (!this.props.results && props.results) {
@@ -379,17 +395,20 @@ var Choropleth = React.createClass({
 				.datum(largestTown)
 				.attr({
 					transform: function(d) {
+
 						var coordinates = fullMapSvgAndPath.projection(d3.geo.centroid(d));
 						return "translate(" + coordinates + ")";
 					},
-					x: 15,
-					dy: '0.35em'
+					x: function(d) {
+						return Choropleth.pointIsLeftOfCenter({point: d3.geo.centroid(d), feature: self.geometryObjects.raceTownsOutline}) ? -15 : 15;
+					},
+					dy: '0.3em'
 				})
 				.text(function(d) {
 					return d.properties.REPORTING_UNIT.toLowerCase();
 				})
-				.style('text-anchor', function() {
-					return 'start';
+				.style('text-anchor', function(d) {
+					return Choropleth.pointIsLeftOfCenter({point: d3.geo.centroid(d), feature: self.geometryObjects.raceTownsOutline}) ? 'end' : 'start';
 				});
 
 			// next, create the mini map svg container
@@ -407,7 +426,6 @@ var Choropleth = React.createClass({
 			});
 
 			// on viewport resize, maintain svg aspect
-			var self = this;
 			window.addEventListener('resize', _.debounce(function() {
 				Choropleth.updateSvgDimensions($('svg', self.getDOMNode()));
 			}, 150));
