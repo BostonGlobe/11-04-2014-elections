@@ -142,13 +142,13 @@ var Choropleth = React.createClass({
 				})
 				.value();
 
+			function filterDelegate(d) {
+				return _.contains(townsInRace, d.properties.REPORTING_UNIT);
+			}
+
 			// TODO: get rid of duplication
-			var raceTowns = topojson.feature(shapefile, shapefile.objects.REPORTING_UNITS).features.filter(function(d) {
-				return _.contains(townsInRace, d.properties.REPORTING_UNIT);
-			});
-			var raceTownsOutline = topojson.merge(shapefile, shapefile.objects.REPORTING_UNITS.geometries.filter(function(d) {
-				return _.contains(townsInRace, d.properties.REPORTING_UNIT);
-			}));
+			var raceTowns = topojson.feature(shapefile, shapefile.objects.REPORTING_UNITS).features.filter(filterDelegate);
+			var raceTownsOutline = topojson.merge(shapefile, shapefile.objects.REPORTING_UNITS.geometries.filter(filterDelegate));
 
 			return {
 				raceTowns: raceTowns,
