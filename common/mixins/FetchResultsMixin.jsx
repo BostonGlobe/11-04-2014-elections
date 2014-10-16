@@ -5,10 +5,32 @@
 var React = require('react');
 
 var FetchResultsMixin = {
+
+	defaultApiCallback: function() {
+		var callback = this.props.choices.join('_');
+		return callback;
+	},
+
+	defaultAllResultsAreIn: function(results) {
+
+		var incompleteRaces = _.chain(results)
+			.pluck('reporting_units')
+			.flatten()
+			.reject(function(v) {
+				return v.precincts_reporting === v.total_precincts;
+			})
+			.value();
+
+		return results.length && !incompleteRaces.length;
+	},
+
 	fetchResults: function() {
 
 		var url = this.apiUrl();
-		var apiCallback = '_' + this.apiCallback();
+		var apiCallbackFunc = this.apiCallback ?
+			this.apiCallback() :
+			this.defaultApiCallback();
+		var apiCallback = '_' + apiCallbackFunc;
 
 		window[apiCallback] = function(json) {
 
@@ -34,7 +56,11 @@ var FetchResultsMixin = {
 	// this runs after render, which is when we check if all results are in
 	componentDidUpdate: function() {
 
-		if (this.allResultsAreIn(this.state.results)) {
+		var allResultsAreIn = this.allResultsAreIn ?
+			this.allResultsAreIn(this.state.results) :
+			this.defaultAllResultsAreIn(this.state.results);
+
+		if (allResultsAreIn) {
 
 			this.refs.thePollClock.stop();
 
