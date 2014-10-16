@@ -41,13 +41,17 @@ var Choropleth = React.createClass({
 			svgs.each(function() {
 
 				// get aspect directly from svg
-				var viewBox = this.getAttribute('viewBox').split(' ');
-				var aspect = viewBox[2]/viewBox[3];
+				var viewBoxAttribute = this.getAttribute('viewBox');
 
-				var targetWidth = $(this).parent().width();
+				if (viewBoxAttribute) {
+					var viewBox = viewBoxAttribute.split(' ');
+					var aspect = viewBox[2]/viewBox[3];
 
-				$(this).attr('width', targetWidth);
-				$(this).attr('height', targetWidth / aspect);
+					var targetWidth = $(this).parent().width();
+
+					$(this).attr('width', targetWidth);
+					$(this).attr('height', targetWidth / aspect);
+				}
 
 			});
 
@@ -165,6 +169,7 @@ var Choropleth = React.createClass({
 			var raceTownsOutline = topojson.merge(shapefile, shapefile.objects.REPORTING_UNITS.geometries.filter(filterDelegate));
 
 			return {
+				allTowns: allTowns,
 				raceTowns: raceTowns,
 				raceTownsOutline: raceTownsOutline,
 				allTownsOutline: allTownsOutline
@@ -348,6 +353,8 @@ var Choropleth = React.createClass({
 			// first, create and set geometry objects as class variable
 			this.geometryObjects = Choropleth.createGeometryObjects(props.results, this.props.shapefile);
 
+			var isStatewideRace = props.results.reporting_units.length === this.geometryObjects.allTowns.features.length + 1;
+
 			// next, create the full map svg container
 			// and save the svg and path, since we'll need them for later
 			var fullMapSvgAndPath = Choropleth.createSvgAndPath({
@@ -395,7 +402,6 @@ var Choropleth = React.createClass({
 				.datum(largestTown)
 				.attr({
 					transform: function(d) {
-
 						var coordinates = fullMapSvgAndPath.projection(d3.geo.centroid(d));
 						return "translate(" + coordinates + ")";
 					},
@@ -411,19 +417,23 @@ var Choropleth = React.createClass({
 					return Choropleth.pointIsLeftOfCenter({point: d3.geo.centroid(d), feature: self.geometryObjects.raceTownsOutline}) ? 'end' : 'start';
 				});
 
-			// next, create the mini map svg container
-			var miniMapSvgAndPath = Choropleth.createSvgAndPath({
-				feature: this.geometryObjects.allTownsOutline,
-				node: this.getDOMNode().querySelector('.minimap svg')
-			});
+			if (!isStatewideRace) {
+				// next, create the mini map svg container
+				var miniMapSvgAndPath = Choropleth.createSvgAndPath({
+					feature: this.geometryObjects.allTownsOutline,
+					node: this.getDOMNode().querySelector('.minimap svg')
+				});
 
-			// next, draw the mini map outlines
-			Choropleth.drawOutlines({
-				svg: miniMapSvgAndPath.svg,
-				path: miniMapSvgAndPath.path,
-				allTownsOutline: this.geometryObjects.allTownsOutline,
-				raceTownsOutline: this.geometryObjects.raceTownsOutline
-			});
+				// next, draw the mini map outlines
+				Choropleth.drawOutlines({
+					svg: miniMapSvgAndPath.svg,
+					path: miniMapSvgAndPath.path,
+					allTownsOutline: this.geometryObjects.allTownsOutline,
+					raceTownsOutline: this.geometryObjects.raceTownsOutline
+				});
+			} else {
+				$(this.getDOMNode().querySelector('.minimap')).addClass('hide');
+			}
 
 			// on viewport resize, maintain svg aspect
 			window.addEventListener('resize', _.debounce(function() {
