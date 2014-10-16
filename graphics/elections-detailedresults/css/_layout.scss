@@ -25,12 +25,12 @@
 			}
 		}
 
-		.master-region {
-			stroke: $bw100;
+		.all-towns-outline {
+			stroke: $bw25;
 			stroke-width: 2px;
 		}
 
-		.region {
+		.race-towns-outline {
 			stroke: black;
 			stroke-width: 2px;
 		}
@@ -103,14 +103,17 @@
 			bottom: 0;
 			right: 0;
 			width: 30%;
+			background: white;
 
 			svg {
-				.region {
+				.race-towns-outline {
 					fill: black;
 				}
 
-				.master-region {
+				.all-towns-outline {
 					stroke: black;
+					stroke: none;
+					fill: $streets;
 				}
 			}
 		}

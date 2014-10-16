@@ -8,6 +8,7 @@ Please note: do not reproduce Boston Globe logos or fonts without written permis
 
 - build a smaller version of d3/topojson
 - optimize choropleth
+- there should be one geojson feature per town
 
 ## These are the components we are building
 
