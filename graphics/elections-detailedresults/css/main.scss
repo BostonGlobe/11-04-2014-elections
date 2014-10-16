@@ -2,7 +2,9 @@
 @import "compass/typography/vertical_rhythm";
 @import "breakpoint";
 
+@import "common/assets/css/_antiGlobe.scss";
 @import "common/assets/css/_type";
-@import "common/assets/css/_pollclock";
 @import "common/assets/css/_colors";
+@import "common/assets/css/_pollclock";
+@import "common/assets/css/_raceName";
 @import "graphics/elections-detailedresults/css/_layout";

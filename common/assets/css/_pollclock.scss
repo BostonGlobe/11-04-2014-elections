@@ -1,5 +1,16 @@
-.poll-clock {
+// 5, 7, 9, 12, 16, 21, 28, 37, 50, 67, 83
+
+@import "common/assets/css/_colors.scss";
+
+.elections-graphic .poll-clock {
 	&.hide {
 		display: none;
 	}
+
+	font-weight: bold;
+	text-transform: none;
+	text-align: center;
+
+	color: $bw90;
+	@include adjust-font-size-to(12px, 1);
 }

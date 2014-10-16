@@ -50,7 +50,7 @@ var PollClock = React.createClass({
 
 	render: function() {
 		return (
-			<p className={'hed-cat poll-clock ' + (this.state.stopped ? 'hide' : '')}>update in {this.state.secondsUntilPoll}</p>
+			<p className={'hed-cat poll-clock ' + (this.state.stopped ? 'hide' : '')}>Update in {this.state.secondsUntilPoll} seconds</p>
 		);
 	}
 

@@ -10,7 +10,7 @@ gulp.task('watch', function() {
 
 	// watch for changes to sass
 	gulp.watch([
-		'common/css/*',
+		'common/assets/css/*',
 		config.baseDir() + '/css/*'
 	], ['sass']);
 });
