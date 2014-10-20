@@ -1,7 +1,7 @@
 module.exports = {
 
 	log: function(value) {
-		console.log(JSON.stringify(null, 4));
+		console.log(JSON.stringify(value, null, 4));
 	},
 
 	raceTypeIDToParty: function(race_type_id) {

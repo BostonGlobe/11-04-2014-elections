@@ -6,7 +6,48 @@ var React = require('react');
 
 var CandidateSummary = require('./CandidateSummary.jsx');
 
+var util = require('../assets/js/util.js');
+
 var Summary = React.createClass({
+
+	updateWidths: function() {
+
+		// this assumes each summary has multiple blocks like this:
+		// <div class='candidate-summary'>
+		// 	<div class='candidate-party'></div>
+		// 	<div class='candidate-name'></div>
+		// 	<div class='candidate-percent'></div>
+		// 	<div class='candidate-votes'></div>
+		// </div>
+
+		function normalizeContainers(selector, context) {
+
+			// reset widths
+			$(selector, context).css('width', '');
+
+			// get max width
+			var maxWidth = _.max($(selector, context).map(function() {
+				return $(this).width();
+			}).get());
+
+			// now give it to all elements
+			$(selector, context).width(maxWidth);
+
+			return maxWidth;
+		}
+
+		// var nameWidth = normalizeContainers('.candidate-name', this.getDOMNode());
+		// // var percentWidth = normalizeContainers('.candidate-percent', this.getDOMNode());
+		// var votesWidth = normalizeContainers('.candidate-votes', this.getDOMNode());
+
+
+
+
+
+		// assign percent the rest of the width
+		// $('.candidate-votes', this.getDOMNode()).width()
+
+	},
 
 	render: function() {
 
@@ -19,7 +60,6 @@ var Summary = React.createClass({
 
 			// we're only interested in the top-level results
 			var reportingUnit = _.find(results.reporting_units, {fips_code: 0});
-			console.log(JSON.stringify(reportingUnit, null, 4));
 
 			// <CandidateSummary /> needs the total number of votes
 			// so that we can calculate pct. reporting
@@ -30,7 +70,6 @@ var Summary = React.createClass({
 
 			// we'll also need the list of candidates
 			var candidates = results.candidates;
-			console.log(JSON.stringify(candidates, null, 4));
 
 			// next, sort results by vote_count desc
 			candidateSummaries = _.chain(reportingUnit.results)
@@ -55,9 +94,23 @@ var Summary = React.createClass({
 
 		return (
 			<div className='summary'>
-				{candidateSummaries}
+				<table>
+					{candidateSummaries}
+				</table>
 			</div>
 		);
+	},
+
+	componentDidMount: function() {
+		// on viewport resize, maintain svg aspect
+		var self = this;
+		window.addEventListener('resize', _.debounce(function() {
+			self.updateWidths();
+		}, 150));
+	},
+
+	componentDidUpdate: function() {
+		this.updateWidths();
 	}
 
 });

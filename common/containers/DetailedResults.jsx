@@ -39,8 +39,6 @@ var DetailedResults = React.createClass({
 
 		var results = this.state.results[0];
 
-		util.log(results);
-
 		return (
 			<div className='detailed-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
