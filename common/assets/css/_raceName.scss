@@ -1,7 +1,5 @@
-// 5, 7, 9, 12, 16, 21, 28, 37, 50, 67, 83
-
 .elections-graphic .race-name {
 	font-family: $serifSuperStrong;
-	@include adjust-font-size-to(37px, 1);
+	@include adjust-font-size-to($s7, 1);
 	text-align: center;
 }
