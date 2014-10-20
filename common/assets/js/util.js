@@ -1,5 +1,9 @@
 module.exports = {
 
+	log: function(value) {
+		console.log(JSON.stringify(null, 4));
+	},
+
 	raceTypeIDToParty: function(race_type_id) {
 		return {
 			'd': 'democratic',
@@ -13,7 +17,7 @@ module.exports = {
 			'gop': 'republican'
 		}[abbreviation.toLowerCase()];
 
-		return result || 'independent';
+		return result;
 	},
 
 	formatPercent: function(x, decimalPlaces) {

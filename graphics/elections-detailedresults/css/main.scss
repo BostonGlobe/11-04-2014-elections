@@ -1,11 +1,19 @@
+// libraries
 @import "compass";
 @import "compass/typography/vertical_rhythm";
 @import "breakpoint";
 
-@import "common/assets/css/_antiGlobe.scss";
+// utilities
+@import "common/assets/css/_antiGlobe";
 @import "common/assets/css/_typography";
 @import "common/assets/css/_colors";
+
+// components
 @import "common/assets/css/_pollclock";
 @import "common/assets/css/_raceName";
 @import "common/assets/css/_shareTools";
+@import "common/assets/css/_summary";
+@import "common/assets/css/_candidateSummary";
+
+// structure
 @import "graphics/elections-detailedresults/css/_layout";
