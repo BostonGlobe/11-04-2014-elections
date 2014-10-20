@@ -13,9 +13,9 @@ var CandidateVotes = React.createClass({
 		var votesForDisplay = util.numberWithCommas(this.props.candidate.vote_count);
 
 		return (
-			<div className='candidate-votes'>
+			<td className='candidate-votes'>
 				<span className='votes'>{votesForDisplay} votes</span>
-			</div>
+			</td>
 		);
 	}
 

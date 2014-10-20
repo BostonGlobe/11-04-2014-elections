@@ -8,7 +8,7 @@ var CandidateName = React.createClass({
 
 	render: function() {
 
-		var winner = this.props.candidate.winner === 'XS' ?
+		var winner = this.props.candidate.winner === 'X' ?
 			<span className='winner'>✔</span> : null;
 
 		var candidate = this.props.candidate;
@@ -17,11 +17,11 @@ var CandidateName = React.createClass({
 			<span className='incumbent'>i</span> : null;
 
 		return (
-			<div className='candidate-name'>
+			<td className='candidate-name'>
 				{winner}
 				<span className='name'>{candidate.last_name}</span>
-				{incumbent}				
-			</div>
+				{incumbent}
+			</td>
 		);
 	}
 

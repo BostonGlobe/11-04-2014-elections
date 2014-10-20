@@ -18,9 +18,9 @@ var CandidatePercent = React.createClass({
 			0;
 
 		return (
-			<div className='candidate-percent'>
+			<td className='candidate-percent'>
 				<span className='percent'>{pct}%</span>
-			</div>
+			</td>
 		);
 	}
 

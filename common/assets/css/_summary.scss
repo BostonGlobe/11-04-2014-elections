@@ -1,6 +1,62 @@
 .elections-graphic .summary {
 
 	width: 100%;
-	overflow: hidden;
+
+	tbody td {
+		border-bottom: solid $bw10 1px;
+	}
+
+	.candidate-name {
+
+		.winner {
+			font-family: $sansSerif;
+			@include adjust-font-size-to($s4);
+			color: $midGreen;
+			padding-right: 0.25em;
+		}
+
+		.name {
+			font-family: $sansSerifStrong;
+			@include adjust-font-size-to($s5);
+		}
+	}
+
+	.candidate-percent {
+
+		width: 1%;
+		text-align: right;
+
+		.percent {
+			font-family: $sansSerif;
+			font-weight: bold;
+			@include adjust-font-size-to($s4);
+		}
+	}
+
+	.candidate-votes {
+
+		padding-left: 2em;
+
+		width: 1%;
+		text-align: right;
+		white-space: nowrap;
+
+		.votes {
+			font-family: $sansSerif;
+			@include adjust-font-size-to($s3);
+			color: $bw90;
+		}
+	}
+
+	.summary-precincts {
+
+		text-align: right;
+
+		.precincts {
+			font-family: $sansSerif;
+			@include adjust-font-size-to($s3);
+			color: $bw90;
+		}
+	}
 
 }
