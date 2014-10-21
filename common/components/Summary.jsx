@@ -8,7 +8,7 @@ var CandidateSummary = require('./CandidateSummary.jsx');
 var SummaryPrecincts = require('./SummaryPrecincts.jsx');
 var Party            = require('./CandidateParty.jsx');
 
-var util = require('../assets/js/util.js');
+var util             = require('../assets/js/util.js');
 
 var Summary = React.createClass({
 
@@ -35,6 +35,8 @@ var Summary = React.createClass({
 			// we'll also need the list of candidates
 			var candidates = results.candidates;
 
+			var hasIncumbent = _.find(reportingUnit.results, {incumbent: true});
+
 			// next, sort results by vote_count desc
 			candidateSummaries = _.chain(reportingUnit.results)
 				.sortBy(function(result) {
@@ -47,7 +49,7 @@ var Summary = React.createClass({
 					var candidate = _.find(candidates, {id:result.ap_candidate_id});
 
 					// extend result with candidate information
-					var extendedResult = _.extend(result, candidate);
+					var extendedResult = _.extend({}, result, candidate);
 
 					var components = [];
 					components.push(<Party candidate={extendedResult} isBallot={isBallot} key={'party' + extendedResult.id} />);
@@ -59,7 +61,7 @@ var Summary = React.createClass({
 				.value();
 
 			precincts = (
-				<SummaryPrecincts reportingUnit={reportingUnit} />
+				<SummaryPrecincts reportingUnit={reportingUnit} hasIncumbent={hasIncumbent} />
 			);
 		}
 

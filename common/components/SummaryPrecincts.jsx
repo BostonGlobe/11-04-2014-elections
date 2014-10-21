@@ -4,6 +4,8 @@
 
 var React = require('react');
 
+var util = require('../assets/js/util.js');
+
 var SummaryPrecincts = React.createClass({
 
 	format: function(reporting, total) {
@@ -29,10 +31,23 @@ var SummaryPrecincts = React.createClass({
 
 		var forDisplay = this.format(this.props.reportingUnit.precincts_reporting, this.props.reportingUnit.total_precincts);
 
+		var incumbent = null;
+		if (this.props.hasIncumbent) {
+			incumbent = <td className='incumbent'>
+				<span className='logo'>i</span>
+				<span className='text'>incumbent</span>
+			</td>;
+		}
+
+		var colSpan = this.props.hasIncumbent ? '2' : '100%';
+
 		return (
 			<tfoot className='summary-precincts'>
 				<tr>
-					<td colSpan='100%'><span className='precincts'>{forDisplay}% precincts reporting</span></td>
+					{incumbent}
+					<td colSpan={colSpan}>
+						<span className='precincts'>{forDisplay}% precincts reporting</span>
+					</td>
 				</tr>
 			</tfoot>
 		);

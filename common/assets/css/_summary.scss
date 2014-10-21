@@ -7,7 +7,7 @@
 		border-bottom: solid $bw10 1px;
 	}
 
-	.incumbent {
+	%incumbent {
 		margin-left: 0.5em;
 		position: relative;
 		bottom: 2px;
@@ -57,6 +57,10 @@
 			@include adjust-font-size-to($s5, 1);
 		}
 
+		.incumbent {
+			@extend %incumbent;
+		}
+
 	}
 
 	.candidate-percent {
@@ -92,7 +96,27 @@
 
 	.summary-precincts {
 
-		text-align: right;
+		tr td.incumbent {
+
+			.logo {
+				@extend %incumbent;
+				margin-left: 0;
+				margin-right: 0.5em;
+				position: relative;
+				bottom: 1px;
+			}
+
+			.text {
+				color: $bw90;
+				font-family: $sansSerif;
+				@include adjust-font-size-to($s3, 1);
+				text-transform: capitalize;
+			}
+		}
+
+		tr td:last-child {
+			text-align: right;
+		}
 
 		.precincts {
 			font-family: $sansSerif;
