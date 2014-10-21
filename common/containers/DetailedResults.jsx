@@ -56,7 +56,7 @@ var DetailedResults = React.createClass({
 		var tooltip = null;
 
 		if (!Modernizr.touch && results) {
-			tooltip = <Tooltip reportingUnit={this.state.selectedReportingUnit} candidates={results.candidates} />;
+			tooltip = <Tooltip reportingUnit={this.state.selectedReportingUnit} candidates={results.candidates} isBallot={results.race_type === 'Ballot Issue'} />;
 		}
 
 		return (
