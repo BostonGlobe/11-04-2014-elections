@@ -115,7 +115,6 @@ var Choropleth = React.createClass({
 						return Choropleth.chooseFillClass(d, results);
 					})
 					.attr('d', path)
-					.on('click', select)
 					.on('mouseover', select)
 					.on('mouseout', deselect);
 		},
