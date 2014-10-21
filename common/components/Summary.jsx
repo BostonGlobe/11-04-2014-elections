@@ -6,6 +6,7 @@ var React = require('react');
 
 var CandidateSummary = require('./CandidateSummary.jsx');
 var SummaryPrecincts = require('./SummaryPrecincts.jsx');
+var Party            = require('./CandidateParty.jsx');
 
 var util = require('../assets/js/util.js');
 
@@ -48,10 +49,13 @@ var Summary = React.createClass({
 					// extend result with candidate information
 					var extendedResult = _.extend(result, candidate);
 
-					return (
-						<CandidateSummary candidate={extendedResult} key={extendedResult.id} totalVotes={totalVotes} isBallot={isBallot} />
-					);
+					var components = [];
+					components.push(<Party candidate={extendedResult} isBallot={isBallot} key={'party' + extendedResult.id} />);
+					components.push(<CandidateSummary candidate={extendedResult} key={'candidate' + extendedResult.id} totalVotes={totalVotes} isBallot={isBallot} />);
+
+					return components;
 				})
+				.flatten()
 				.value();
 
 			precincts = (

@@ -18,9 +18,11 @@ var CandidateParty = React.createClass({
 			var party = util.partyAbbreviationToParty(this.props.candidate.party) || 'independent';
 
 			component = (
-				<tr className='candidate-party'>
-					<span className='square'>&nbsp;</span>
-					<span className='party'>{party}</span>
+				<tr>
+					<td className='candidate-party' colSpan='100%'>
+						<span className={'square ' + party}>&#9632;</span>
+						<span className='party'>{party}</span>
+					</td>
 				</tr>
 			);
 

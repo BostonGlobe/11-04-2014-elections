@@ -2,26 +2,52 @@
 
 	width: 100%;
 
-	tbody td {
+	%rowRhythm {
+		@include rhythm(0, 0, 1/4, 0);
 		border-bottom: solid $bw10 1px;
+	}
+
+	.candidate-party {
+
+		@include rhythm(0, 1/4, 0, 0);
+
+		.square {
+			@include adjust-font-size-to($s5, 1);
+			padding-right: 0.125em;
+
+			&.republican { color: $republican; }
+			&.democratic { color: $democratic; }
+			&.independent { color: $independent; }
+		}
+
+		.party {
+			text-transform: capitalize;
+			font-family: $sansSerif;
+			@include adjust-font-size-to($s3, 1);
+			color: $bw100;
+		}
 	}
 
 	.candidate-name {
 
+		@extend %rowRhythm;
+
 		.winner {
 			font-family: $sansSerif;
-			@include adjust-font-size-to($s4);
+			@include adjust-font-size-to($s4, 1);
 			color: $midGreen;
 			padding-right: 0.25em;
 		}
 
 		.name {
 			font-family: $sansSerifStrong;
-			@include adjust-font-size-to($s5);
+			@include adjust-font-size-to($s5, 1);
 		}
 	}
 
 	.candidate-percent {
+
+		@extend %rowRhythm;
 
 		width: 1%;
 		text-align: right;
@@ -29,11 +55,13 @@
 		.percent {
 			font-family: $sansSerif;
 			font-weight: bold;
-			@include adjust-font-size-to($s4);
+			@include adjust-font-size-to($s4, 1);
 		}
 	}
 
 	.candidate-votes {
+
+		@extend %rowRhythm;
 
 		padding-left: 2em;
 
@@ -43,7 +71,7 @@
 
 		.votes {
 			font-family: $sansSerif;
-			@include adjust-font-size-to($s3);
+			@include adjust-font-size-to($s3, 1);
 			color: $bw90;
 		}
 	}
@@ -54,7 +82,7 @@
 
 		.precincts {
 			font-family: $sansSerif;
-			@include adjust-font-size-to($s3);
+			@include adjust-font-size-to($s3, 1);
 			color: $bw90;
 		}
 	}

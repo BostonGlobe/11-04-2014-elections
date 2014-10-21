@@ -4,12 +4,9 @@
 
 var React = require('react');
 
-var Party   = require('./CandidateParty.jsx');
 var Name    = require('./CandidateName.jsx');
 var Percent = require('./CandidatePercent.jsx');
 var Votes   = require('./CandidateVotes.jsx');
-
-			// <Party candidate={this.props.candidate} isBallot={this.props.isBallot} />
 
 var CandidateSummary = React.createClass({
 
