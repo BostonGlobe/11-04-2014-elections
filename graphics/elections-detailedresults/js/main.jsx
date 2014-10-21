@@ -14,6 +14,6 @@ var DetailedResults = require('../../../common/containers/DetailedResults.jsx');
 // governor is 22796
 
 React.renderComponent(
-	<DetailedResults choices={[24698]} />,
+	<DetailedResults raceNumbers={[22957]} state={'MA'} />,
 	document.getElementById('elections-detailedresults')
 );

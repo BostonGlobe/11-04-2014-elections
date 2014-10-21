@@ -24,10 +24,12 @@ var DetailedResults = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
-		var isDev = true;
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/number?detail=true&' + this.props.choices.map(function(value) {
-			return 'number=' + value;
-		}).join('&');
+		var isDev = false;
+		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/number?detail=true&' +
+			this.props.raceNumbers.map(function(value) {
+				return 'number=' + value;
+			}).join('&') + '&state=' + this.props.state;
+		util.log(url);
 		return url;
 	},
 

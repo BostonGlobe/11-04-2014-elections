@@ -7,7 +7,7 @@ var React = require('react');
 var FetchResultsMixin = {
 
 	defaultApiCallback: function() {
-		var callback = this.props.choices.join('_');
+		var callback = this.props.raceNumbers.join('_');
 		return callback;
 	},
 
@@ -35,7 +35,7 @@ var FetchResultsMixin = {
 		window[apiCallback] = function(json) {
 
 			var data = this.sortByDefault ?
-				this.sortByDefault(json, this.props.choices) :
+				this.sortByDefault(json, this.props.raceNumbers) :
 				json;
 
 			this.setState({results: data});
