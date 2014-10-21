@@ -39,7 +39,14 @@ var DetailedResults = React.createClass({
 
 	tooltipCallback: function(d) {
 
-		util.log(d);
+		// each tooltip needs: the reporting unit, and the candidate info
+		// find the reporting unit
+		var results = this.state.results[0];
+		this.setState({selectedReportingUnit: d.properties.reporting_unit});
+	},
+
+	getInitialState: function() {
+		return {selectedReportingUnit: null};
 	},
 
 	render: function() {
@@ -48,8 +55,8 @@ var DetailedResults = React.createClass({
 
 		var tooltip = null;
 
-		if (!Modernizr.touch) {
-			tooltip = <Tooltip />;
+		if (!Modernizr.touch && results) {
+			tooltip = <Tooltip reportingUnit={this.state.selectedReportingUnit} candidates={results.candidates} />;
 		}
 
 		return (

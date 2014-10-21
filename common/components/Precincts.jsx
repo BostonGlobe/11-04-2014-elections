@@ -6,7 +6,7 @@ var React = require('react');
 
 var util = require('../assets/js/util.js');
 
-var SummaryPrecincts = React.createClass({
+var Precincts = React.createClass({
 
 	format: function(reporting, total) {
 
@@ -42,7 +42,7 @@ var SummaryPrecincts = React.createClass({
 		var colSpan = this.props.hasIncumbent ? '2' : '100%';
 
 		return (
-			<tfoot className='summary-precincts'>
+			<tfoot className='precincts'>
 				<tr>
 					{incumbent}
 					<td colSpan={colSpan}>
@@ -55,4 +55,4 @@ var SummaryPrecincts = React.createClass({
 
 });
 
-module.exports = SummaryPrecincts;
+module.exports = Precincts;
