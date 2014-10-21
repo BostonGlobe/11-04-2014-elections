@@ -7,6 +7,19 @@
 		border-bottom: solid $bw10 1px;
 	}
 
+	.incumbent {
+		margin-left: 0.5em;
+		position: relative;
+		bottom: 2px;
+		border: solid $bw75 1px;
+		border-radius: 3px;
+		color: $bw90;
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+		font-family: $sansSerif;
+		@include adjust-font-size-to($s2, 1);
+	}
+
 	.candidate-party {
 
 		@include rhythm(0, 1/4, 0, 0);
@@ -43,6 +56,7 @@
 			font-family: $sansSerifStrong;
 			@include adjust-font-size-to($s5, 1);
 		}
+
 	}
 
 	.candidate-percent {
