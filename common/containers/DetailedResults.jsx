@@ -12,9 +12,11 @@ var RaceName          = require('../components/RaceName.jsx');
 var ShareTools        = require('../components/ShareTools.jsx');
 var Summary           = require('../components/Summary.jsx');
 
+var Tooltip           = require('../components/Tooltip.jsx');
+
 var REPORTING_UNITS   = require('../../data/output/MA/REPORTING_UNITS.json');
 
-var util = require('../assets/js/util.js');
+var util              = require('../assets/js/util.js');
 
 var DetailedResults = React.createClass({
 
@@ -35,9 +37,20 @@ var DetailedResults = React.createClass({
 	// 	return false;
 	// },
 
+	tooltipCallback: function(d) {
+
+		util.log(d);
+	},
+
 	render: function() {
 
 		var results = this.state.results[0];
+
+		var tooltip = null;
+
+		if (!Modernizr.touch) {
+			tooltip = <Tooltip />;
+		}
 
 		return (
 			<div className='detailed-results'>
@@ -45,7 +58,10 @@ var DetailedResults = React.createClass({
 				<RaceName race={results} />
 				<ShareTools />
 				<Summary results={results} />
-				<Choropleth results={results} shapefile={REPORTING_UNITS} />
+				<div className='choropleth-container'>
+					<Choropleth results={results} shapefile={REPORTING_UNITS} tooltipCallback={this.tooltipCallback} />
+					{tooltip}
+				</div>
 			</div>
 		);
 	}

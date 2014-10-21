@@ -5,11 +5,12 @@
 // for the time being, this component isn't responsible for fetching the topojson.
 // it expects to receive it immediately.
 
-var React = require('react');
-var d3 = require('d3');
+var React    = require('react');
+var d3       = require('d3');
 var topojson = require('topojson');
-var d3util = require('../assets/js/d3util.js');
-var util = require('../assets/js/util.js');
+
+var d3util   = require('../assets/js/d3util.js');
+var util     = require('../assets/js/util.js');
 
 var Choropleth = React.createClass({
 
@@ -64,6 +65,7 @@ var Choropleth = React.createClass({
 			var results = opts.results;
 			var node = opts.node;
 			var path = opts.path;
+			var tooltipCallback = opts.tooltipCallback;
 			// opts.features;
 
 			var features = [];
@@ -115,6 +117,9 @@ var Choropleth = React.createClass({
 						return Choropleth.chooseFillClass(d, results);
 					})
 					.attr('d', path)
+					.on('mousemove', function(d) {
+						tooltipCallback(d);
+					})
 					.on('mouseover', select)
 					.on('mouseout', deselect);
 		},
@@ -326,6 +331,7 @@ var Choropleth = React.createClass({
 	path: null,
 
 	render: function() {
+
 		return (
 			<div className='choropleth'>
 				<div className='fullmap'>
@@ -450,7 +456,8 @@ var Choropleth = React.createClass({
 				results: props.results,
 				features: this.geometryObjects.raceTowns,
 				node: node,
-				path: this.path
+				path: this.path,
+				tooltipCallback: this.props.tooltipCallback
 			});
 
 		}
