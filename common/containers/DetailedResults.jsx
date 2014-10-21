@@ -2,8 +2,6 @@
  * @jsx React.DOM
  */
 
-				// <Choropleth results={results} shapefile={REPORTING_UNITS} />
-
 var React             = require('react');
 
 var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
@@ -47,6 +45,7 @@ var DetailedResults = React.createClass({
 				<RaceName race={results} />
 				<ShareTools />
 				<Summary results={results} />
+				<Choropleth results={results} shapefile={REPORTING_UNITS} />
 			</div>
 		);
 	}
