@@ -11,8 +11,8 @@ var PollClock         = require('../components/PollClock.jsx');
 var RaceName          = require('../components/RaceName.jsx');
 var ShareTools        = require('../components/ShareTools.jsx');
 var Summary           = require('../components/Summary.jsx');
-
 var Tooltip           = require('../components/Tooltip.jsx');
+var TownByTownResults = require('../components/TownByTownResults.jsx');
 
 var REPORTING_UNITS   = require('../../data/output/MA/REPORTING_UNITS.json');
 
@@ -70,11 +70,7 @@ var DetailedResults = React.createClass({
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 				<RaceName race={results} />
 				<ShareTools />
-				<Summary results={results} />
-				<div className='choropleth-container'>
-					<Choropleth results={results} shapefile={REPORTING_UNITS} tooltipCallback={this.tooltipCallback} />
-					{tooltip}
-				</div>
+				<TownByTownResults results={results} />
 			</div>
 		);
 	}
@@ -82,3 +78,9 @@ var DetailedResults = React.createClass({
 });
 
 module.exports = DetailedResults;
+
+				// <Summary results={results} />
+				// <div className='choropleth-container'>
+				// 	<Choropleth results={results} shapefile={REPORTING_UNITS} tooltipCallback={this.tooltipCallback} />
+				// 	{tooltip}
+				// </div>
