@@ -3,7 +3,27 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 50%;
+	width: 100%;
+	max-width: 200px;
 	border: solid red 1px;
+
+	.candidates-table {
+		@include rhythm(0, 0, 0, 0);
+	}
+
+	.candidate-name {
+
+		.name {
+			@include adjust-font-size-to($s4, 1);
+		}
+
+	}
+
+	.candidate-percent {
+
+		.percent {
+			@include adjust-font-size-to($s3, 1);
+		}
+	}
 
 }
