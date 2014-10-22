@@ -9,11 +9,14 @@ var util  = require('../assets/js/util.js');
 var CandidateTh = React.createClass({
 	render: function() {
 
+		var winner = !this.props.isLite && this.props.candidate.winner === 'X' ?
+			<span className='winner'>✔</span> : null;
+
 		var first = this.props.isFirst ? <div><span>Votes</span></div> : null;
 
 		return (
 			<th>
-				<div><span>{this.props.candidate.last_name}</span></div>
+				<div>{winner}<span>{this.props.candidate.last_name}</span></div>
 				{first}
 			</th>
 		);

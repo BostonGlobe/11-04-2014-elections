@@ -35,6 +35,13 @@
 				div:first-child > span {
 					font-weight: bold;
 					color: black;
+
+					&.winner {
+						font-family: $sansSerif;
+						@include adjust-font-size-to($s4, 1);
+						color: $midGreen;
+						padding-right: 0.25em;
+					}
 				}
 			}
 		}
