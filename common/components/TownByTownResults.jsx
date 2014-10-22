@@ -9,11 +9,11 @@ var util  = require('../assets/js/util.js');
 var CandidateTh = React.createClass({
 	render: function() {
 
-		var first = this.props.isFirst ? <div>Votes</div> : null;
+		var first = this.props.isFirst ? <div><span>Votes</span></div> : null;
 
 		return (
 			<th>
-				<div>{this.props.candidate.last_name}</div>
+				<div><span>{this.props.candidate.last_name}</span></div>
 				{first}
 			</th>
 		);
@@ -34,8 +34,8 @@ var CandidateTd = React.createClass({
 
 		return (
 			<td>
-				<div>{pct}%</div>
-				<div>{votesForDisplay}</div>
+				<div><span>{pct}%</span></div>
+				<div><span>{votesForDisplay}</span></div>
 			</td>
 		);
 	}
@@ -58,8 +58,8 @@ var TownTr = React.createClass({
 		return (
 			<tr>
 				<td>
-					<div>{this.props.name}</div>
-					<div>{this.props.precinctsReporting} of {this.props.totalPrecincts}</div>
+					<div><span>{this.props.name}</span></div>
+					<div><span>{this.props.precinctsReporting} of {this.props.totalPrecincts}</span></div>
 				</td>
 				{candidateTds}
 			</tr>
@@ -137,8 +137,8 @@ var TownByTownResults = React.createClass({
 						<thead>
 							<tr>
 								<th>
-									<div>City/town</div>
-									<div>Pcts. reporting</div>
+									<div><span>City/town</span></div>
+									<div><span>Pcts. reporting</span></div>
 								</th>
 								{candidateThs}
 							</tr>
