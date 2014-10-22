@@ -1,11 +1,17 @@
+body {
+	overflow-x: hidden;
+}
+
 .elections-graphic .tooltip {
 
+	pointer-events: none;
+
 	position: absolute;
-	top: 0;
-	left: 0;
 	width: 100%;
 	max-width: 200px;
-	border: solid red 1px;
+	border: solid black 1px;
+	padding: 1em;
+	background: white;
 
 	.candidates-table {
 		@include rhythm(0, 0, 0, 0);

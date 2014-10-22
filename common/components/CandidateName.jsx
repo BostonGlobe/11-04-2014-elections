@@ -8,7 +8,7 @@ var CandidateName = React.createClass({
 
 	render: function() {
 
-		var winner = this.props.candidate.winner === 'X' ?
+		var winner = !this.props.isLite && this.props.candidate.winner === 'X' ?
 			<span className='winner'>✔</span> : null;
 
 		var candidate = this.props.candidate;

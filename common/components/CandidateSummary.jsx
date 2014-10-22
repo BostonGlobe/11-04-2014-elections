@@ -24,7 +24,7 @@ var CandidateSummary = React.createClass({
 
 		return (
 			<tr className={classes}>
-				<Name candidate={this.props.candidate} />
+				<Name candidate={this.props.candidate} isLite={this.props.candidate} />
 				<Percent candidate={this.props.candidate} totalVotes={this.props.totalVotes} />
 				{votes}
 			</tr>

@@ -30,6 +30,25 @@ var Choropleth = React.createClass({
 			return point[0] > cx;
 		},
 
+		getViewBoxDimensions: function(svg) {
+
+			var dimensions = null;
+
+			// get aspect directly from svg
+			var viewBoxAttribute = svg.getAttribute('viewBox');
+
+			if (viewBoxAttribute) {
+				var viewBox = viewBoxAttribute.split(' ');
+
+				dimensions = {
+					width: +viewBox[2],
+					height: +viewBox[3]
+				};
+			}
+
+			return dimensions;
+		},
+
 		// this gets called on viewport resize. it resizes the svg container.
 		updateSvgDimensions: function(svgs) {
 			
@@ -41,12 +60,10 @@ var Choropleth = React.createClass({
 
 			svgs.each(function() {
 
-				// get aspect directly from svg
-				var viewBoxAttribute = this.getAttribute('viewBox');
+				var dimensions = self.getViewBoxDimensions(this);
 
-				if (viewBoxAttribute) {
-					var viewBox = viewBoxAttribute.split(' ');
-					var aspect = viewBox[2]/viewBox[3];
+				if (dimensions) {
+					var aspect = dimensions.width/dimensions.height;
 
 					var targetWidth = $(this).parent().width();
 
@@ -61,6 +78,8 @@ var Choropleth = React.createClass({
 		},
 
 		updateFullMap: function(opts) {
+
+			var self = this;
 
 			var results = opts.results;
 			var node = opts.node;
@@ -94,13 +113,13 @@ var Choropleth = React.createClass({
 
 			var g = node;
 
-			function select(d) {
-				d3.select(this).classed('active', true);
-				d3util.moveToFront.call(this);
+			function select(self) {
+				d3.select(self).classed('active', true);
+				d3util.moveToFront.call(self);
 			}
 
-			function deselect(d) {
-				d3.select(this).classed('active', false);
+			function deselect(self) {
+				d3.select(self).classed('active', false);
 			}
 
 			g.selectAll('path')
@@ -118,10 +137,24 @@ var Choropleth = React.createClass({
 					})
 					.attr('d', path)
 					.on('mousemove', function(d) {
-						tooltipCallback(d);
+
+						var svg = $(this).parents('svg').get(0);
+
+						var dimensions = self.getViewBoxDimensions(svg);
+						var mouse = d3.mouse(this);
+
+						var position = {
+							x: (100 * mouse[0]/dimensions.width).toFixed(1),
+							y: (100 * mouse[1]/dimensions.height).toFixed(1),
+						};
+
+						tooltipCallback(d, position);
+						select(this);
 					})
-					.on('mouseover', select)
-					.on('mouseout', deselect);
+					.on('mouseout', function() {
+						tooltipCallback(null, null);
+						deselect(this);
+					});
 		},
 
 		drawOutlines: function(opts) {
