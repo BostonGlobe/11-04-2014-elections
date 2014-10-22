@@ -61,7 +61,7 @@ var DetailedResults = React.createClass({
 
 		var tooltip = null;
 
-		if (!Modernizr.touch && results) {
+		if (!Modernizr.touch && results && false) {
 			tooltip = <Tooltip ref='theTooltip' reportingUnit={this.state.selectedReportingUnit} candidates={results.candidates} isBallot={results.race_type === 'Ballot Issue'} />;
 		}
 
@@ -70,6 +70,11 @@ var DetailedResults = React.createClass({
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 				<RaceName race={results} />
 				<ShareTools />
+				<Summary results={results} />
+				<div className='choropleth-container'>
+					<Choropleth results={results} shapefile={REPORTING_UNITS} tooltipCallback={this.tooltipCallback} />
+					{tooltip}
+				</div>
 				<TownByTownResults results={results} />
 			</div>
 		);
@@ -78,9 +83,3 @@ var DetailedResults = React.createClass({
 });
 
 module.exports = DetailedResults;
-
-				// <Summary results={results} />
-				// <div className='choropleth-container'>
-				// 	<Choropleth results={results} shapefile={REPORTING_UNITS} tooltipCallback={this.tooltipCallback} />
-				// 	{tooltip}
-				// </div>
