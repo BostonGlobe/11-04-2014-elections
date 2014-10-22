@@ -1,3 +1,7 @@
 .elections-graphic .candidate-summary {
 
+	&.add-top-space td {
+		@include padding-leader(1/2);
+	}
+
 }

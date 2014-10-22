@@ -16,6 +16,7 @@ var CandidatesTable = React.createClass({
 		var reportingUnit = this.props.reportingUnit;
 		var candidates = this.props.candidates;
 		var isBallot = this.props.isBallot;
+		var isLite = this.props.isLite;
 		var precincts = null;
 
 		// <CandidateSummary /> needs the total number of votes
@@ -42,8 +43,21 @@ var CandidatesTable = React.createClass({
 				var extendedResult = _.extend({}, result, candidate);
 
 				var components = [];
-				components.push(<Party candidate={extendedResult} isBallot={isBallot} key={'party' + extendedResult.id} />);
-				components.push(<CandidateSummary candidate={extendedResult} key={'candidate' + extendedResult.id} totalVotes={totalVotes} isBallot={isBallot} />);
+
+				if (!isBallot && !isLite) {
+					components.push(<Party
+						key={'party' + extendedResult.id}
+						candidate={extendedResult}
+					/>);
+				}
+
+				components.push(<CandidateSummary
+					key={'candidate' + extendedResult.id}
+					candidate={extendedResult}
+					totalVotes={totalVotes}
+					isBallot={isBallot}
+					isLite={isLite}
+				/>);
 
 				return components;
 			})
@@ -54,14 +68,19 @@ var CandidatesTable = React.createClass({
 			<Precincts reportingUnit={reportingUnit} hasIncumbent={hasIncumbent} />
 		);
 
+		var theadRows = isLite ? (<tr>
+			<th></th>
+			<th></th>
+		</tr>) : (<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>);
+
 		return (
 			<table className='candidates-table'>
 				<thead>
-					<tr>
-						<th></th>
-						<th></th>
-						<th></th>
-					</tr>
+					{theadRows}
 				</thead>
 				{precincts}
 				<tbody>

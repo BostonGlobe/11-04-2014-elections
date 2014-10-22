@@ -12,23 +12,16 @@ var CandidateParty = React.createClass({
 
 		var component = null;
 
-		// if this is a ballot, don't return anything
-		if (!this.props.isBallot) {
+		var party = util.partyAbbreviationToParty(this.props.candidate.party) || 'independent';
 
-			var party = util.partyAbbreviationToParty(this.props.candidate.party) || 'independent';
-
-			component = (
-				<tr>
-					<td className='candidate-party' colSpan='100%'>
-						<span className={'square ' + party}>&#9632;</span>
-						<span className='party'>{party}</span>
-					</td>
-				</tr>
-			);
-
-		}
-
-		return component;
+		return (
+			<tr>
+				<td className='candidate-party' colSpan='100%'>
+					<span className={'square ' + party}>&#9632;</span>
+					<span className='party'>{party}</span>
+				</td>
+			</tr>
+		);
 	}
 
 });

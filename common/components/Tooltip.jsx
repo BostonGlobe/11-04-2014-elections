@@ -16,7 +16,12 @@ var Tooltip = React.createClass({
 		var isBallot = this.props.isBallot;
 
 		if (reportingUnit && candidates) {
-			table = <CandidatesTable reportingUnit={reportingUnit} candidates={candidates} isBallot={isBallot} />
+			table = <CandidatesTable
+				reportingUnit={reportingUnit}
+				candidates={candidates}
+				isBallot={isBallot}
+				isLite={true}
+			/>;
 		}
 
 		return (
