@@ -4,6 +4,8 @@
 
 var React = require('react');
 
+var util  = require('../assets/js/util.js');
+
 var CandidateTh = React.createClass({
 	render: function() {
 
@@ -20,10 +22,20 @@ var CandidateTh = React.createClass({
 
 var CandidateTd = React.createClass({
 	render: function() {
+
+		var totalVotes = this.props.totalVotes;
+		var voteCount = this.props.candidate.vote_count;
+
+		var pct = totalVotes > 0 ?
+			util.formatPercent(voteCount/totalVotes, 1) :
+			0;
+
+		var votesForDisplay = util.numberWithCommas(this.props.candidate.vote_count);
+
 		return (
 			<td>
-				<div>87%</div>
-				<div>55,423</div>
+				<div>{pct}%</div>
+				<div>{votesForDisplay}</div>
 			</td>
 		);
 	}
@@ -32,14 +44,24 @@ var CandidateTd = React.createClass({
 var TownTr = React.createClass({
 	render: function() {
 
+		var candidates = this.props.candidates;
+
+		var totalVotes = _.chain(candidates)
+			.pluck('vote_count')
+			.reduce(function(a, b) { return a + b; })
+			.value();
+
+		var candidateTds = _.map(candidates, function(candidate) {
+			return <CandidateTd candidate={candidate} totalVotes={totalVotes} key={candidate.ap_candidate_id} />;
+		});
+
 		return (
 			<tr>
 				<td>
 					<div>{this.props.name}</div>
 					<div>{this.props.precinctsReporting} of {this.props.totalPrecincts}</div>
 				</td>
-				<CandidateTd />
-				<CandidateTd />
+				{candidateTds}
 			</tr>
 		);
 	}
@@ -62,6 +84,7 @@ var TownByTownResults = React.createClass({
 			var summaryReportingUnitCandidates = _.sortBy(summaryReportingUnit.results, function(result) {
 				return -result.vote_count;
 			});
+			var summaryReportingUnitCandidateIds = _.pluck(summaryReportingUnitCandidates, 'ap_candidate_id');
 
 			var candidateThs = _.chain(summaryReportingUnitCandidates)
 				.map(function(result, index) {
@@ -80,17 +103,26 @@ var TownByTownResults = React.createClass({
 				.value();
 
 			var townTrs = _.chain(results.reporting_units)
-				.first(2)
 				.sortBy('county_name')
 				.map(function(reporting_unit) {
 
 					var name = reporting_unit.county_name;
+
+					var theseCandidates = _.sortBy(reporting_unit.results, function(result) {
+						return _.indexOf(summaryReportingUnitCandidateIds, result.ap_candidate_id);
+					});
+
+					// really make sure they're the same order
+					if (!_.isEqual(_.pluck(theseCandidates, 'ap_candidate_id'), summaryReportingUnitCandidateIds)) {
+						throw Exception('DATA IS WRONG');
+					}
 
 					return <TownTr
 						name={name}
 						key={name}
 						precinctsReporting={reporting_unit.precincts_reporting}
 						totalPrecincts={reporting_unit.total_precincts}
+						candidates={theseCandidates}
 					/>;
 				})
 				.value();
@@ -100,11 +132,12 @@ var TownByTownResults = React.createClass({
 
 			component = (
 				<div className='town-by-town-results'>
+					<div className='title'>Town by town results</div>
 					<table>
 						<thead>
 							<tr>
 								<th>
-									<div>City/Town</div>
+									<div>City/town</div>
 									<div>Pcts. reporting</div>
 								</th>
 								{candidateThs}
@@ -114,7 +147,6 @@ var TownByTownResults = React.createClass({
 							{townTrs}
 						</tbody>
 					</table>
-					<pre>{JSON.stringify(this.props.results, null, 4)}</pre>
 				</div>
 			);
 		}
