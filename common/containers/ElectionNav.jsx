@@ -26,8 +26,19 @@ var ElectionNav = React.createClass({
 						Campaign 2014
 					</span>
 				</div>
-				<div className='dropdown'></div>
-				<div className='links'></div>
+				<select>
+					<option>Choose a race</option>
+					<option>Choose a race</option>
+					<option>Choose a race</option>
+					<option>Choose a race</option>
+					<option>Choose a race</option>
+				</select>
+				<ul className='links'>
+					<li><span><a href='#'>All results</a></span></li>
+					<li><span><a href='#'>Governor</a></span></li>
+					<li><span><a href='#'>Attorney General</a></span></li>
+					<li><span><a href='#'>Town results</a></span></li>
+				</ul>
 			</div>
 		);
 	}
