@@ -78,6 +78,10 @@
 			font-family: $sansSerif;
 			font-weight: bold;
 			@include adjust-font-size-to($s4, 1);
+
+			@include breakpoint(600px) {
+				@include adjust-font-size-to($s3p5, 1);
+			}
 		}
 
 		@include breakpoint($yesToBars) {
