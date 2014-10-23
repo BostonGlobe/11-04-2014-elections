@@ -5,7 +5,7 @@
 	width: 100%;
 
 	%rowRhythm {
-		@include rhythm(0, 0, 1/4, 0);
+		// @include rhythm(0, 0, 1/4, 0);
 		border-bottom: solid $bw10 1px;
 	}
 
@@ -15,7 +15,7 @@
 		bottom: 2px;
 		border: solid $bw75 1px;
 		border-radius: 3px;
-		color: $bw90;
+		color: $bw75;
 		padding-left: 0.5em;
 		padding-right: 0.5em;
 		font-family: $sansSerif;
@@ -24,10 +24,8 @@
 
 	td.candidate-party {
 
-		@include rhythm(0, 1/4, 0, 0);
-
 		.square {
-			@include adjust-font-size-to($s5, 1);
+			@include adjust-font-size-to($s5, 0.5);
 			padding-right: 0.125em;
 
 			&.republican { color: $republican; }
@@ -42,8 +40,8 @@
 		.party {
 			text-transform: capitalize;
 			font-family: $sansSerif;
-			@include adjust-font-size-to($s3, 1);
-			color: $bw100;
+			@include adjust-font-size-to($s3, 0.5);
+			color: $bw90;
 		}
 	}
 
@@ -59,7 +57,7 @@
 		}
 
 		.name {
-			font-family: $sansSerifStrong;
+			font-family: $serif;
 			@include adjust-font-size-to($s5, 1);
 		}
 
@@ -83,7 +81,7 @@
 		}
 
 		@include breakpoint($yesToBars) {
-			padding-left: 1em;
+			padding-left: 2em;
 			padding-right: 0.5em;
 		}
 	}
@@ -104,13 +102,13 @@
 			display: inline-block;
 			width: 100%;
 			background: $bw10;
-			@include adjust-leading-to(2/3);
+			@include adjust-leading-to(1/3);
 		}
 
 		.fill {
 			display: inline-block;
 			&.republican { background: $republican; }
-			&.democratic { background: $democratic; }
+			&.democftic { background: $democratic; }
 			&.independent { background: $independent; }
 		}
 	}
@@ -145,7 +143,7 @@
 			}
 
 			.text {
-				color: $bw90;
+				color: $bw75;
 				font-family: $sansSerif;
 				@include adjust-font-size-to($s3, 1);
 				text-transform: capitalize;
@@ -159,7 +157,7 @@
 		.precincts {
 			font-family: $sansSerif;
 			@include adjust-font-size-to($s3, 1);
-			color: $bw90;
+			color: $bw75;
 		}
 	}
 

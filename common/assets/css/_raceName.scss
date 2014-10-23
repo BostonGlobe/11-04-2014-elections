@@ -1,5 +1,5 @@
 .elections-graphic .race-name {
-	font-family: $serifSuperStrong;
-	@include adjust-font-size-to($s7, 1);
+	font-family: $serifStrong;
+	@include adjust-font-size-to($s8, 2);
 	text-align: center;
 }
