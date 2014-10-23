@@ -1,5 +1,7 @@
 .elections-graphic .candidates-table {
 
+	$yesToBars: 480px;
+
 	width: 100%;
 
 	%rowRhythm {
@@ -31,6 +33,10 @@
 			&.republican { color: $republican; }
 			&.democratic { color: $democratic; }
 			&.independent { color: $independent; }
+
+			@include breakpoint($yesToBars) {
+				display: none;
+			}
 		}
 
 		.party {
@@ -74,6 +80,19 @@
 			font-family: $sansSerif;
 			font-weight: bold;
 			@include adjust-font-size-to($s4, 1);
+		}
+
+		@include breakpoint($yesToBars) {
+			padding-left: 1em;
+			padding-right: 0.5em;
+		}
+	}
+
+	.candidate-bar {
+		display: none;
+
+		@include breakpoint($yesToBars) {
+			display: table-cell;
 		}
 	}
 
