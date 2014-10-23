@@ -1,0 +1,16 @@
+.elections-graphic .election-nav {
+
+	background: $bw10;
+	border: solid $bw35 1px;
+
+	.logo {
+		.text {
+			font-family: $sansSerifStrong;
+			@include adjust-font-size-to($s7);
+
+			svg {
+				width: 2em;
+			}
+		}
+	}
+}
