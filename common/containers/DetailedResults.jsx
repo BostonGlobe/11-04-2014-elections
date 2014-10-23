@@ -71,6 +71,11 @@ var DetailedResults = React.createClass({
 				<RaceName race={results} />
 				<ShareTools />
 				<Summary results={results} />
+				<div className='choropleth-container'>
+					<Choropleth results={results} shapefile={REPORTING_UNITS} tooltipCallback={this.tooltipCallback} />
+					{tooltip}
+				</div>
+				<TownByTownResults results={results} />
 			</div>
 		);
 	}
@@ -78,9 +83,3 @@ var DetailedResults = React.createClass({
 });
 
 module.exports = DetailedResults;
-
-				// <div className='choropleth-container'>
-				// 	<Choropleth results={results} shapefile={REPORTING_UNITS} tooltipCallback={this.tooltipCallback} />
-				// 	{tooltip}
-				// </div>
-				// <TownByTownResults results={results} />
