@@ -72,10 +72,6 @@ var TownTr = React.createClass({
 
 var TownByTownResults = React.createClass({
 
-	componentDidUpdate: function() {
-		$('table', $(this.getDOMNode())).floatThead();
-	},
-
 	render: function() {
 
 		var component = null;
@@ -140,22 +136,20 @@ var TownByTownResults = React.createClass({
 			component = (
 				<div className='town-by-town-results'>
 					<div className='title'>Town by town results</div>
-					<div className='full'>
-						<table>
-							<thead>
-								<tr>
-									<th>
-										<div><span>City/town</span></div>
-										<div><span>Pcts. reporting</span></div>
-									</th>
-									{candidateThs}
-								</tr>
-							</thead>
-							<tbody>
-								{townTrs}
-							</tbody>
-						</table>
-					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>
+									<div><span>City/town</span></div>
+									<div><span>Pcts. reporting</span></div>
+								</th>
+								{candidateThs}
+							</tr>
+						</thead>
+						<tbody>
+							{townTrs}
+						</tbody>
+					</table>
 				</div>
 			);
 		}
