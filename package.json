@@ -4,6 +4,7 @@
   "dependencies": {
     "d3": "^3.4.12",
     "fixed-sticky": "git+https://github.com/filamentgroup/fixed-sticky.git",
+    "floatthead": "^1.2.8",
     "react": "^0.11.2",
     "topojson": "^1.6.18"
   },
