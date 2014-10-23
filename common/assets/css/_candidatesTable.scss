@@ -77,6 +77,25 @@
 		}
 	}
 
+	td.candidate-bar {
+
+		width: 100%;
+
+		.bar {
+			display: inline-block;
+			width: 100%;
+			background: $bw10;
+			@include adjust-leading-to(2/3);
+		}
+
+		.fill {
+			display: inline-block;
+			&.republican { background: $republican; }
+			&.democratic { background: $democratic; }
+			&.independent { background: $independent; }
+		}
+	}
+
 	td.candidate-votes {
 
 		@extend %rowRhythm;

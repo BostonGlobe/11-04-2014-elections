@@ -69,12 +69,13 @@ var CandidatesTable = React.createClass({
 		);
 
 		var theadRows = isLite ? (<tr>
-			<th></th>
-			<th></th>
+			<th className='candidate-name'></th>
+			<th className='candidate-votes'></th>
 		</tr>) : (<tr>
-			<th></th>
-			<th></th>
-			<th></th>
+			<th className='candidate-name'></th>
+			<th className='candidate-percent'></th>
+			<th className='candidate-bar'></th>
+			<th className='candidate-votes'></th>
 		</tr>);
 
 		return (
