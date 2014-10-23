@@ -20,7 +20,7 @@
 		@include adjust-font-size-to($s2, 1);
 	}
 
-	.candidate-party {
+	td.candidate-party {
 
 		@include rhythm(0, 1/4, 0, 0);
 
@@ -41,7 +41,7 @@
 		}
 	}
 
-	.candidate-name {
+	td.candidate-name {
 
 		@extend %rowRhythm;
 
@@ -63,7 +63,7 @@
 
 	}
 
-	.candidate-percent {
+	td.candidate-percent {
 
 		@extend %rowRhythm;
 
@@ -77,7 +77,7 @@
 		}
 	}
 
-	.candidate-votes {
+	td.candidate-votes {
 
 		@extend %rowRhythm;
 
