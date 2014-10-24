@@ -4,6 +4,8 @@
 
 var React = require('react');
 
+var util  = require('../assets/js/util.js');
+
 var RaceName = React.createClass({
 
 	statics: {
@@ -16,7 +18,7 @@ var RaceName = React.createClass({
 
 				var date = Date(race.election_date);
 
-				var primary = race.race_type_id ? race.race_type_id + ' primary' : null;
+				var primary = race.race_type === 'Primary' ? race.race_type_id + ' primary' : null;
 
 				var name = _.chain([race.state_postal, race.office_name, race.seat_name, primary])
 					.filter(function(v) {

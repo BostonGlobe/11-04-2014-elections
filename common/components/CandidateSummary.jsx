@@ -13,21 +13,40 @@ var CandidateSummary = React.createClass({
 
 	render: function() {
 
-		var cx = React.addons.classSet;
 		var isLite = this.props.isLite;
+		var isBallot = this.props.isBallot;
+		var isPrimary = this.props.isPrimary;
+		var candidate = this.props.candidate;
+		var candidates = this.props.candidates;
+		var totalVotes = this.props.totalVotes;
+
+		var cx = React.addons.classSet;
 
 		var classes = cx({
 			'candidate-summary': true,
-			'add-top-space': isLite || this.props.isBallot
+			'add-top-space': isLite || isBallot
 		});
 
-		var votes = !isLite ? <Votes candidate={this.props.candidate} /> : null;
-		var bar = !isLite ? <Bar candidate={this.props.candidate} totalVotes={this.props.totalVotes} /> : null;
+		var votes = !isLite ? <Votes candidate={candidate} /> : null;
+
+		var bar = !isLite ? <Bar
+			candidate={candidate}
+			candidates={candidates}
+			totalVotes={totalVotes}
+			isBallot={isBallot}
+			isPrimary={isPrimary}
+		/> : null;
 
 		return (
 			<tr className={classes}>
-				<Name candidate={this.props.candidate} isLite={this.props.candidate} />
-				<Percent candidate={this.props.candidate} totalVotes={this.props.totalVotes} />
+				<Name
+					candidate={candidate}
+					isLite={candidate}
+				/>
+				<Percent
+					candidate={candidate}
+					totalVotes={totalVotes}
+				/>
 				{bar}
 				{votes}
 			</tr>

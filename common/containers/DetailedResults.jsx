@@ -62,7 +62,11 @@ var DetailedResults = React.createClass({
 				<ShareTools />
 				<Summary results={results} />
 				<div className='choropleth-container'>
-					<Choropleth results={results} shapefile={REPORTING_UNITS} tooltipCallback={this.tooltipCallback} />
+					<Choropleth
+						results={results}
+						shapefile={REPORTING_UNITS}
+						tooltipCallback={this.tooltipCallback}
+					/>
 					{tooltip}
 				</div>
 				<TownByTownResults results={results} />

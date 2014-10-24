@@ -10,23 +10,34 @@ var CandidateBar = React.createClass({
 
 	render: function() {
 
-		var party = util.partyAbbreviationToParty(this.props.candidate.party) || 'independent';
-
+		var isBallot = this.props.isBallot;
+		var isPrimary = this.props.isPrimary;
+		var candidate = this.props.candidate;
+		var candidates = this.props.candidates;
 		var totalVotes = this.props.totalVotes;
-		var voteCount = this.props.candidate.vote_count;
+
+		var color = util.getColor({
+			isBallot: isBallot,
+			isPrimary: isPrimary,
+			candidate: candidate,
+			candidates: candidates
+		});
+
+		var voteCount = candidate.vote_count;
 
 		var pct = totalVotes > 0 ?
 			util.formatPercent(voteCount/totalVotes, 1) :
 			0;
 
 		var style = {
-			width: pct + '%'
+			width: pct + '%',
+			background: color
 		};
 
 		return (
 			<td className='candidate-bar'>
 				<span className='bar'>
-					<span style={style} className={'fill ' + party}>&nbsp;</span>
+					<span style={style} className='fill'>&nbsp;</span>
 				</span>
 			</td>
 		);

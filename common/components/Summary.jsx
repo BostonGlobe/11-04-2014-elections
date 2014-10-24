@@ -18,6 +18,7 @@ var Summary = React.createClass({
 		if (results) {
 
 			var isBallot = results.race_type === 'Ballot Issue';
+			var isPrimary = results.race_type === 'Primary';
 
 			// we're only interested in the top-level results
 			var reportingUnit = _.find(results.reporting_units, {fips_code: 0});
@@ -26,7 +27,12 @@ var Summary = React.createClass({
 			var candidates = results.candidates;
 
 			candidatesTable = (
-				<CandidatesTable reportingUnit={reportingUnit} candidates={candidates} isBallot={isBallot} />
+				<CandidatesTable
+					reportingUnit={reportingUnit}
+					candidates={candidates}
+					isBallot={isBallot}
+					isPrimary={isPrimary}
+				/>
 			);
 		}
 

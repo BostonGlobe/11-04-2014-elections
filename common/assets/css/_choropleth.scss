@@ -41,6 +41,15 @@
 		}
 	}
 
+	g.features path {
+		stroke: white;
+
+		&.active {
+			stroke-width: 5px;
+			stroke: black;
+		}
+	}
+
 	.all-towns-outline {
 		stroke: $bw25;
 		stroke-width: 2px;
@@ -51,68 +60,6 @@
 		stroke-width: 1px;
 	}
 
-	.notinrace {
-		fill: white;
-	}
-
-	.inrace-nowinner-novotes {
-		stroke: white;
-		fill: white;
-	}
-
-	.inrace-nowinner-votes-tie {
-		stroke: white;
-		fill: $bw25;
-	}
-
-	.inrace-nowinner-votes-notie {
-		stroke: white;
-		&.democratic  { fill: $democraticLeaning;  }
-		&.republican  { fill: $republicanLeaning;  }
-		&.independent { fill: $independentLeaning; }
-		&.color_0     { fill: $qualitativeColor_0; }
-		&.color_1     { fill: $qualitativeColor_1; }
-		&.color_2     { fill: $qualitativeColor_2; }
-		&.color_3     { fill: $qualitativeColor_3; }
-		&.color_4     { fill: $qualitativeColor_4; }
-		&.color_5     { fill: $qualitativeColor_5; }
-		&.color_6     { fill: $qualitativeColor_6; }
-		&.color_7     { fill: $qualitativeColor_7; }
-		&.color_8     { fill: $qualitativeColor_8; }
-		&.color_9     { fill: $qualitativeColor_9; }
-	}
-
-	.inrace-winner-novotes {
-		stroke: white;
-		fill: white;
-	}
-
-	.inrace-winner-votes-tie {
-		stroke: white;
-		fill: $bw25;
-	}
-
-	.inrace-winner-votes-notie {
-		stroke: white;
-		&.democratic  { fill: $democratic;         }
-		&.republican  { fill: $republican;         }
-		&.independent { fill: $independent;        }
-		&.color_0     { fill: $qualitativeColor_0; }
-		&.color_1     { fill: $qualitativeColor_1; }
-		&.color_2     { fill: $qualitativeColor_2; }
-		&.color_3     { fill: $qualitativeColor_3; }
-		&.color_4     { fill: $qualitativeColor_4; }
-		&.color_5     { fill: $qualitativeColor_5; }
-		&.color_6     { fill: $qualitativeColor_6; }
-		&.color_7     { fill: $qualitativeColor_7; }
-		&.color_8     { fill: $qualitativeColor_8; }
-		&.color_9     { fill: $qualitativeColor_9; }
-	}
-
-	.active {
-		stroke-width: 5px;
-		stroke: black;
-	}
 
 	.minimap {
 		position: absolute;

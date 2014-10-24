@@ -8,6 +8,8 @@ var CandidateSummary = require('./CandidateSummary.jsx');
 var Precincts        = require('./Precincts.jsx');
 var Party            = require('./CandidateParty.jsx');
 
+var util             = require('../assets/js/util.js');
+
 var CandidatesTable = React.createClass({
 
 	render: function() {
@@ -17,6 +19,7 @@ var CandidatesTable = React.createClass({
 		var candidates = this.props.candidates;
 		var isBallot = this.props.isBallot;
 		var isLite = this.props.isLite;
+		var isPrimary = this.props.isPrimary;
 		var precincts = null;
 
 		// <CandidateSummary /> needs the total number of votes
@@ -44,19 +47,23 @@ var CandidatesTable = React.createClass({
 
 				var components = [];
 
-				if (!isBallot && !isLite) {
+				// don't display party if it's ballot, or lite, or primary
+				if (!(isBallot || isLite || isPrimary)) {
 					components.push(<Party
 						key={'party' + extendedResult.id}
 						candidate={extendedResult}
+						candidates={candidates}
 					/>);
 				}
 
 				components.push(<CandidateSummary
 					key={'candidate' + extendedResult.id}
 					candidate={extendedResult}
-					totalVotes={totalVotes}
+					candidates={candidates}
 					isBallot={isBallot}
+					isPrimary={isPrimary}
 					isLite={isLite}
+					totalVotes={totalVotes}
 				/>);
 
 				return components;

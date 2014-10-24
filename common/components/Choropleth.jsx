@@ -127,13 +127,13 @@ var Choropleth = React.createClass({
 					.data(features, function(d) {
 						return d.properties.REPORTING_UNIT;
 					})
-					.attr('class', function(d) {
-						return Choropleth.chooseFillClass(d, results);
+					.style('fill', function(d) {
+						return Choropleth.chooseFillColor(d, results);
 					})
 				// enter
 				.enter().append('path')
-					.attr('class', function(d) {
-						return Choropleth.chooseFillClass(d, results);
+					.style('fill', function(d) {
+						return Choropleth.chooseFillColor(d, results);
 					})
 					.attr('d', path)
 					.on('mousemove', function(d) {
@@ -281,21 +281,11 @@ var Choropleth = React.createClass({
 		// this function returns a string, e.g. 'inrace-nowinner-novotes Dem' which
 		// will be used to color a town
 		// the function gets called for every town, and every time there's new data
-		chooseFillClass: function(d, race) {
-
-			// how many different colors can a town have?
-			// 1: not in race                          - e.g. non-state-wide races
-
-			// 2: in race, no winner, no votes         - e.g. results are in, no winner yet, and no one voted in this town
-			// 3: in race, no winner,    votes,    tie - e.g. results are in, no winner yet, and this town is supporting all candidates equally
-			// 4: in race, no winner,    votes, no tie - e.g. results are in, no winner yet, and this town is favoring one candidate (COLOR)
-
-			// 5: in race,    winner, no votes         - e.g. results are in, there is a winner, and no one voted in this town
-			// 6: in race,    winner,    votes,    tie - e.g. results are in, there is a winner, and this town is supporting all candidates equally
-			// 7: in race,    winner,    votes, no tie - e.g. results are in, there is a winner, and this town is favoring one candidate (COLOR)
+		chooseFillColor: function(d, race) {
 
 			var reportingUnit = d.properties.reporting_unit;
-			var klass = 'notinrace';
+
+			var color = 'white';
 
 			if (reportingUnit) {
 
@@ -311,55 +301,35 @@ var Choropleth = React.createClass({
 				var thereAreVotes = _.last(results).vote_count > 0;
 
 				// is there a tie?
-				var thereIsATie = _.first(results).vote_count === _.last(results).vote_count;
+				var thereIsATie = _.first(results).vote_count === _.last(results).vote_count && thereAreVotes;
 
 				// is this a primary?
 				var isPrimary = race.race_type === 'Primary';
 
-				// if this is a primary, sort candidates by id - we'll need them later
-				// otherwise don't do it - save a nanosecond
-				var candidateIds = null;
-				if (isPrimary) {
-					candidateIds = _.chain(race.candidates)
-						.sortBy('id')
-						.pluck('id')
-						.value();
-				}
+				// is this a ballot question?
+				var isBallot = race.race_type === 'Ballot Issue';
 
-				if (!thereIsAWinner) {
-					if (!thereAreVotes) {
-						klass = 'inrace-nowinner-novotes';
-					} else {
-						if (thereIsATie) {
-							klass = 'inrace-nowinner-votes-tie';
-						} else {
-							klass = 'inrace-nowinner-votes-notie';
-							klass += ' ' + util.getColor({
-								isPrimary: isPrimary,
-								candidateIds: candidateIds,
-								result: _.first(results)
-							});
-						}
-					}
+				// get the leading candidate
+				var candidate = _.first(results);
+
+				if (thereIsATie) {
+
+					color = 'rgba(221, 222, 224, 1)';
+
 				} else {
-					if (!thereAreVotes) {
-						klass = 'inrace-winner-novotes';
-					} else {
-						if (thereIsATie) {
-							klass = 'inrace-winner-votes-tie';
-						} else {
-							klass = 'inrace-winner-votes-notie';
-							klass += ' ' + util.getColor({
-								isPrimary: isPrimary,
-								candidateIds: candidateIds,
-								result: _.first(results)
-							});
-						}
-					}
+
+					// TODO: take into account leading vs winner
+					color = util.getColor({
+						isBallot: isBallot,
+						isPrimary: isPrimary,
+						candidate: candidate,
+						candidates: race.candidates
+					});
+
 				}
 			}
 
-			return klass;
+			return color;
 		}
 
 	},

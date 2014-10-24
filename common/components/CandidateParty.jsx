@@ -10,14 +10,26 @@ var CandidateParty = React.createClass({
 
 	render: function() {
 
+		var candidate = this.props.candidate;
+		var candidates = this.props.candidates;
+
+		var color = util.getColor({
+			candidate: candidate,
+			candidates: candidates
+		});
+
 		var component = null;
 
-		var party = util.partyAbbreviationToParty(this.props.candidate.party) || 'independent';
+		var party = util.partyAbbreviationToParty(candidate.party) || 'independent';
+
+		var style = {
+			color: color
+		};
 
 		return (
 			<tr>
 				<td className='candidate-party' colSpan='100%'>
-					<span className={'square ' + party}>&#9632;</span>
+					<span className='square' style={style}>&#9632;</span>
 					<span className='party'>{party}</span>
 				</td>
 			</tr>
