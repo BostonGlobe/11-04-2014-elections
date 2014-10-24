@@ -9,7 +9,7 @@ var ReportingUnitName = React.createClass({
 	render: function() {
 		return (
 			<div className='reporting-unit-name'>
-				{this.props.reportingUnit.county_name}
+				<span className='name'>{this.props.reportingUnit.county_name}</span>
 			</div>
 		);
 	}

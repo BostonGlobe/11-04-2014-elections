@@ -24,7 +24,7 @@ var CandidateSummary = React.createClass({
 
 		var classes = cx({
 			'candidate-summary': true,
-			'add-top-space': isLite || isBallot
+			'add-top-space': isLite || isBallot || isPrimary
 		});
 
 		var votes = !isLite ? <Votes candidate={candidate} /> : null;

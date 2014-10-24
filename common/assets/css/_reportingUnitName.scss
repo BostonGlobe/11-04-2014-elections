@@ -1,5 +1,7 @@
 .elections-graphic .reporting-unit-name {
-	font-family: $serifStrong;
-	@include adjust-font-size-to($s5, 1);
-	@include rhythm(0, 0, 1/4, 0);
+
+	.name {
+		font-family: $serifStrong;
+		@include adjust-font-size-to($s5);
+	}
 }
