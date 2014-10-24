@@ -13,9 +13,14 @@ var RaceName = React.createClass({
 			var display = '';
 
 			if (race) {
-				var name = _.chain([race.office_name, race.seat_name])
+
+				var date = Date(race.election_date);
+
+				var primary = race.race_type_id ? race.race_type_id + ' primary' : null;
+
+				var name = _.chain([race.state_postal, race.office_name, race.seat_name, primary])
 					.filter(function(v) {
-						return v.length;
+						return v;
 					})
 					.value()
 					.join(' - ');
