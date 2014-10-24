@@ -3,7 +3,7 @@
  */
 
 var React = require('react');
-var MultipleBalanceOfPowerResults = require('../../../common/components/MultipleBalanceOfPowerResults/component.jsx');
+var BalanceOfPowerResults = require('../../../common/containers/BalanceOfPowerResults.jsx');
 
 var nodes = document.querySelectorAll('.elections-balanceofpower');
 
@@ -13,7 +13,7 @@ for (var i = 0; nodes[i]; i++) {
 	var offices = node.getAttribute('data-offices').split(',');
 
 	React.renderComponent(
-		<MultipleBalanceOfPowerResults choices={offices} />,
+		<BalanceOfPowerResults choices={offices} />,
 		node
 	);
 }

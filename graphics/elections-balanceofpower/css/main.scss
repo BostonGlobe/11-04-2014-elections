@@ -1,9 +1,15 @@
+// libraries
 @import "compass";
 @import "compass/typography/vertical_rhythm";
 @import "breakpoint";
 
-@import "common/css/_type";
-@import "common/css/_pollclock";
-@import "common/css/_colors";
-@import "graphics/elections-balanceofpower/css/_typography";
+// utilities
+@import "common/assets/css/_typography";
+@import "common/assets/css/_colors";
+
+// components
+@import "common/assets/css/_pollclock";
+@import "common/assets/css/_raceName";
+
+// structure
 @import "graphics/elections-balanceofpower/css/_layout";
