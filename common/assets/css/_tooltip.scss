@@ -9,9 +9,15 @@ body {
 	position: absolute;
 	width: 100%;
 	max-width: 200px;
-	border: solid black 1px;
-	padding: 1em;
-	background: white;
+	display: none;
+	margin-bottom: 2em;
+
+	.tooltip-inner {
+		border: solid black 1px;
+		background: white;
+		position: relative;
+		left: -50%;
+	}
 
 	.candidates-table {
 		@include rhythm(0, 0, 0, 0);

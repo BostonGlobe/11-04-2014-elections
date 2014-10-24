@@ -144,16 +144,22 @@ var Choropleth = React.createClass({
 						var mouse = d3.mouse(this);
 
 						var position = {
-							x: (100 * mouse[0]/dimensions.width).toFixed(1),
-							y: (100 * mouse[1]/dimensions.height).toFixed(1),
+							x: 100 * mouse[0]/dimensions.width,
+							y: 100 * mouse[1]/dimensions.height,
 						};
 
-						// tooltipCallback(d, position);
-						// select(this);
+						tooltipCallback({
+							reportingUnit: d.properties.reporting_unit,
+							coordinates: position
+						});
+						select(this);
 					})
 					.on('mouseout', function() {
-						// tooltipCallback(null, null);
-						// deselect(this);
+
+						tooltipCallback({
+							reportingUnit: null
+						});
+						deselect(this);
 					});
 		},
 

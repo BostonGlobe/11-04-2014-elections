@@ -37,22 +37,8 @@ var DetailedResults = React.createClass({
 	// 	return false;
 	// },
 
-	tooltipCallback: function(d, coordinates) {
-
-		// set tooltip x / y position
-		this.refs.theTooltip.updatePosition(coordinates);
-
-		if (d) {
-			// each tooltip needs: the reporting unit, and the candidate info
-			// find the reporting unit
-			var results = this.state.results[0];
-			this.setState({selectedReportingUnit: d.properties.reporting_unit});
-		}
-
-	},
-
-	getInitialState: function() {
-		return {selectedReportingUnit: null};
+	tooltipCallback: function(opts) {
+		this.refs.theTooltip.setState(opts);
 	},
 
 	render: function() {
@@ -61,8 +47,12 @@ var DetailedResults = React.createClass({
 
 		var tooltip = null;
 
-		if (!Modernizr.touch && results && false) {
-			tooltip = <Tooltip ref='theTooltip' reportingUnit={this.state.selectedReportingUnit} candidates={results.candidates} isBallot={results.race_type === 'Ballot Issue'} />;
+		if (!Modernizr.touch && results) {
+			tooltip = <Tooltip
+				ref='theTooltip'
+				candidates={results.candidates}
+				isBallot={results.race_type === 'Ballot Issue'}
+			/>;
 		}
 
 		return (
