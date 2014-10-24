@@ -101,6 +101,7 @@
 	td.candidate-bar {
 
 		width: 100%;
+		@extend %rowRhythm;
 
 		.bar {
 			display: inline-block;
