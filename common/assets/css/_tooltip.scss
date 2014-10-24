@@ -13,29 +13,44 @@ body {
 	margin-bottom: 2em;
 
 	.tooltip-inner {
-		border: solid black 1px;
+
+		@include rhythm(0, 1/2, 1/2, 0);
+		padding-left: 1em;
+		padding-right: 1em;
+
+		border: solid $bw90 1px;
 		background: white;
 		position: relative;
 		left: -50%;
-	}
 
-	.candidates-table {
-		@include rhythm(0, 0, 0, 0);
-	}
+		.candidates-table {
+			@include rhythm(0, 0, 0, 0);
 
-	.candidate-name {
+			.candidate-summary {
 
-		.name {
-			@include adjust-font-size-to($s4, 1);
+				&.add-top-space td {
+					@include padding-leader(0);
+				}
+
+			}
+
+			.candidate-name {
+
+				.name {
+					@include adjust-font-size-to($s4, 1);
+				}
+
+			}
+
+			.candidate-percent {
+
+				padding-left: 0;
+				padding-right: 0;
+
+				.percent {
+					@include adjust-font-size-to($s3, 1);
+				}
+			}
 		}
-
 	}
-
-	.candidate-percent {
-
-		.percent {
-			@include adjust-font-size-to($s3, 1);
-		}
-	}
-
 }
