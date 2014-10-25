@@ -1,0 +1,72 @@
+.elections-graphic .balance-of-power {
+
+	.bars {
+
+		width: 100%;
+		overflow: hidden;
+		background: $bw10;
+		@include rhythm(1, 0, 0, 1/4);
+
+		.democratic {
+			float: left;
+			background: $democratic;
+		}
+
+		.republican {
+			float: right;
+			background: $republican;
+		}
+
+	}
+
+	.total {
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+
+		> div > span {
+			font-family: $sansSerif;
+			@include adjust-font-size-to($s5);
+			@include adjust-leading-to(1);
+			font-weight: bold;
+			color: black;
+		}
+
+		.democratic {
+			float: left;
+		}
+
+		.republican {
+			float: right;
+		}
+
+		.undecided {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			text-align: center;
+		}
+	}
+
+	.change {
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+
+		> div > span {
+			font-family: $sansSerif;
+			@include adjust-font-size-to($s5, 1);
+			color: $bw90;
+		}
+
+		.democratic {
+			float: left;
+		}
+
+		.republican {
+			float: right;
+		}
+	}
+
+}
