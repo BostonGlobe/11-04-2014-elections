@@ -1,19 +1,4 @@
 .elections-graphic .town-by-town-results {
-	position: relative;
-
-		&:before {
-		content: '';
-		position: absolute;
-		top: 0;
-		right: -1px;
-		height: 100%;
-		width: 35px;
-		background: -webkit-linear-gradient( right , #FFF 10%, rgba(255, 255, 255, 0));
-		background: linear-gradient(to left, #FFF 10%, rgba(255, 255, 255, 0));
-		z-index: 5;
-		pointer-events: none;
-}
-
 
 	.title {
 		@include adjust-font-size-to($s5, 1);
@@ -21,6 +6,24 @@
 		border-bottom: solid $bw50 1px;
 		padding-bottom: 0.5em;
 		margin-bottom: 1em;
+	}
+
+	.table-position {
+		position: relative;
+
+			&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: -1px;
+			height: 100%;
+			width: 35px;
+			background: -webkit-linear-gradient( right , #FFF 10%, rgba(255, 255, 255, 0));
+			background: linear-gradient(to left, #FFF 10%, rgba(255, 255, 255, 0));
+			z-index: 5;
+			pointer-events: none;
+		}
+
 	}
 
 	.table-container { //horizontal scroll effects
@@ -43,6 +46,7 @@
 			th {
 				color: $bw90;
 				padding: 0.5em 0.5em 0.5em 0; //equal spacing of content in table
+				min-width: 5em; //even spacing between cells
 				
 				&:first-child {
 					padding-left: 0.5em; //indents first th/tr for equal-looking spcing
@@ -94,6 +98,7 @@
 			td {
 				vertical-align: middle; //vertically aligns text in middle of cell
 				padding: 0.5em 0.5em 0.5em 0; //equal spacing of content in table
+				min-width: 5em; //even spacing between cells
 				
 				&:first-child {
 					padding-left: 0.5em; //indents first th/tr for equal-looking spcing
@@ -117,9 +122,8 @@
 
 			td:first-child {
 				div:first-child > span {
-					font-family: $serif;
-					@include adjust-font-size-to($s5, 1);
-					font-weight: normal;
+					@include adjust-font-size-to($s4, 1);
+					font-weight: bold;
 				}
 			}
 		}
