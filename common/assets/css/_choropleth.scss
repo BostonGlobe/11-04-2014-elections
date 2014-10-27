@@ -45,8 +45,9 @@
 		stroke: white;
 
 		&.active {
-			stroke-width: 5px;
-			stroke: black;
+			// stroke-width: 5px;
+			// stroke: black;
+			opacity: 0.6;
 		}
 	}
 
@@ -56,8 +57,8 @@
 	}
 
 	.race-towns-outline {
-		stroke: black;
-		stroke-width: 1px;
+		// stroke: black;
+		// stroke-width: 1px;
 	}
 
 
