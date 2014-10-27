@@ -15,6 +15,6 @@ var DetailedResults = require('../../../common/containers/DetailedResults.jsx');
 
 
 React.renderComponent(
-	<DetailedResults raceNumbers={[22091]} state={'MA'} />,
+	<DetailedResults raceNumbers={[22957]} state={'MA'} />,
 	document.getElementById('elections-detailedresults')
 );
