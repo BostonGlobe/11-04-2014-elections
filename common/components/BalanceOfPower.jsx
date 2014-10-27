@@ -30,6 +30,12 @@ var BalanceOfPower = React.createClass({
 				});
 
 			return results;
+		},
+
+		getNameFromFeed: function(feed) {
+
+			return feed.trendtable.office.replace('U.S.', 'US');
+
 		}
 
 	},
@@ -53,7 +59,7 @@ var BalanceOfPower = React.createClass({
 
 		return (
 			<div className='balance-of-power'>
-				<RaceName name={this.props.results.trendtable.office} />
+				<RaceName name={BalanceOfPower.getNameFromFeed(this.props.results)} />
 				<div className='bars'>
 					<div className='democratic' style={democraticBar}>&nbsp;</div>
 					<div className='republican' style={republicanBar}>&nbsp;</div>

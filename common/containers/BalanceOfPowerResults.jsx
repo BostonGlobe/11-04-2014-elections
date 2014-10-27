@@ -39,13 +39,31 @@ var BalanceOfPowerResults = React.createClass({
 		return allResultsAreIn;
 	},
 
-	render: function() {
+	sortByDefault: function(results, ordering) {
 
-		var powers = _.chain(this.state.results)
-			.map(function(results, index) {
-				return <BalanceOfPower results={results} key={index} />;
+		var choices = ordering.map(function(s) {
+			return s.trim();
+		});
+
+		var sorted = _.chain(results)
+			.filter(function(result) {
+				var name = BalanceOfPower.getNameFromFeed(result);
+				return _.contains(choices, name);
+			})
+			.sortBy(function(result) {
+				var name = BalanceOfPower.getNameFromFeed(result);
+				return _.indexOf(choices, name);
 			})
 			.value();
+
+		return sorted;
+	},
+
+	render: function() {
+
+		var powers = _.map(this.state.results, function(results, index) {
+			return <BalanceOfPower results={results} key={index} />;
+		});
 
 		return (
 			<div className='balance-of-power-results'>

@@ -13,7 +13,7 @@ for (var i = 0; nodes[i]; i++) {
 	var offices = node.getAttribute('data-offices').split(',');
 
 	React.renderComponent(
-		<BalanceOfPowerResults choices={offices} />,
+		<BalanceOfPowerResults raceNumbers={offices} />,
 		node
 	);
 }
