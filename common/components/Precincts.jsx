@@ -39,14 +39,12 @@ var Precincts = React.createClass({
 			</td>;
 		}
 
-		var colSpan = this.props.hasIncumbent ? '2' : '100%';
-
 		return (
-			<tfoot className='precincts'>
+			<tfoot>
 				<tr>
 					{incumbent}
-					<td colSpan={colSpan}>
-						<span className='precincts'>{forDisplay}% precincts reporting</span>
+					<td className='precincts'>
+						<span>{forDisplay}% precincts reporting</span>
 					</td>
 				</tr>
 			</tfoot>

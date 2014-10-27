@@ -1,5 +1,7 @@
 .elections-graphic .candidates-table {
 
+	position: relative;
+
 	$yesToBars: 480px;
 
 	width: 100%;
@@ -136,7 +138,7 @@
 		}
 	}
 
-	tfoot.precincts {
+	tfoot {
 
 		tr td.incumbent {
 
@@ -156,11 +158,9 @@
 			}
 		}
 
-		tr td:last-child {
-			text-align: right;
-		}
-
-		.precincts {
+		tr td.precincts {
+			position: absolute;
+			right: 0;
 			font-family: $sansSerif;
 			@include adjust-font-size-to($s3, 1);
 			color: $bw75;
