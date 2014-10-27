@@ -1,7 +1,8 @@
 .elections-graphic .reporting-unit-name {
 
 	.name {
-		font-family: $serifStrong;
+		font-family: $sansSerif;
 		@include adjust-font-size-to($s5);
+		font-weight: bold;
 	}
 }

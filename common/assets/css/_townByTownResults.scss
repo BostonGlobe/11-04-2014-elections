@@ -35,10 +35,10 @@
 		font-family: $sansSerif;
 		border-collapse: collapse;
 		border-spacing: 0;
-		border: solid $bw50 1px;
+
 
 		thead {
-			border-bottom: solid $bw50 1px;
+			border: solid $bw25 1px;
 		}
 
 		thead tr {
@@ -99,6 +99,7 @@
 				vertical-align: middle; //vertically aligns text in middle of cell
 				padding: 0.5em 0.5em 0.5em 0; //equal spacing of content in table
 				min-width: 5em; //even spacing between cells
+				border-bottom: 1px solid shade($bw10, 8%);
 				
 				&:first-child {
 					padding-left: 0.5em; //indents first th/tr for equal-looking spcing

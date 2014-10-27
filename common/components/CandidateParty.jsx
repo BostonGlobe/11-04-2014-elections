@@ -29,7 +29,6 @@ var CandidateParty = React.createClass({
 		return (
 			<tr>
 				<td className='candidate-party' colSpan='100%'>
-					<span className='square' style={style}>&#9632;</span>
 					<span className='party'>{party}</span>
 				</td>
 			</tr>
