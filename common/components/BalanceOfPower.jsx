@@ -10,22 +10,33 @@ var util     = require('../assets/js/util.js');
 
 var BalanceOfPower = React.createClass({
 
+	statics: {
+
+		convertFeedToResults: function(feed) {
+
+			var results = {};
+
+			_.chain(feed.trendtable.party)
+				.forEach(function(party) {
+
+					var Won       = _.find(party.trend, {name: 'Won'}).value;
+					var Holdovers = _.find(party.trend, {name: 'Holdovers'}).value;
+					var NetChangeWinners = _.find(party.NetChange.trend, {name: 'Winners'}).value;
+
+					results[party.title] = {
+						'WonHoldovers': Won + Holdovers,
+						'NetChangeWinners': NetChangeWinners
+					};
+				});
+
+			return results;
+		}
+
+	},
+
 	render: function() {
 
-		var results = {};
-
-		_.chain(this.props.results.trendtable.party)
-			.forEach(function(party) {
-
-				var Won       = _.find(party.trend, {name: 'Won'}).value;
-				var Holdovers = _.find(party.trend, {name: 'Holdovers'}).value;
-				var NetChangeWinners = _.find(party.NetChange.trend, {name: 'Winners'}).value;
-
-				results[party.title] = {
-					'WonHoldovers': Won + Holdovers,
-					'NetChangeWinners': NetChangeWinners
-				};
-			});
+		var results = BalanceOfPower.convertFeedToResults(this.props.results);
 
 		var total =
 			results.Dem.WonHoldovers +

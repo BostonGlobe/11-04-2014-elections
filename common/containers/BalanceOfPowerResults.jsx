@@ -26,7 +26,17 @@ var BalanceOfPowerResults = React.createClass({
 	},
 
 	allResultsAreIn: function() {
-		return false;
+
+		var allResultsAreIn = _.chain(this.state.results)
+			.map(BalanceOfPower.convertFeedToResults)
+			.pluck('Others')
+			.pluck('WonHoldovers')
+			.every(function(v) {
+				return v === 0;
+			})
+			.value();
+
+		return allResultsAreIn;
 	},
 
 	render: function() {

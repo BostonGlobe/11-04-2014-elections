@@ -1,5 +1,7 @@
 .elections-graphic .balance-of-power {
 
+	@include rhythm(0, 0, 0, 2);
+
 	.race-name {
 		text-align: left;
 		@include trailing-border();
