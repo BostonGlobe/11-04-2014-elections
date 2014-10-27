@@ -397,8 +397,6 @@ var Choropleth = React.createClass({
 				raceTownsOutline: this.geometryObjects.raceTownsOutline
 			});
 
-
-
 			if (!isStatewideRace) {
 
 				// next, draw the full map label and text
@@ -454,8 +452,11 @@ var Choropleth = React.createClass({
 					allTownsOutline: this.geometryObjects.allTownsOutline,
 					raceTownsOutline: this.geometryObjects.raceTownsOutline
 				});
+
+				$(this.getDOMNode().querySelector('.minimap')).show();
+
 			} else {
-				$(this.getDOMNode().querySelector('.minimap')).addClass('hide');
+				$(this.getDOMNode().querySelector('.minimap')).hide();
 			}
 
 			// on viewport resize, maintain svg aspect
