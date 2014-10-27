@@ -312,21 +312,26 @@ var Choropleth = React.createClass({
 				// get the leading candidate
 				var candidate = _.first(results);
 
-				if (thereIsATie) {
+				if (thereAreVotes) {
+	
+					if (thereIsATie) {
 
-					color = 'rgba(221, 222, 224, 1)';
+						color = 'rgba(221, 222, 224, 1)';
 
-				} else {
+					} else {
 
-					// TODO: take into account leading vs winner
-					color = util.getColor({
-						isBallot: isBallot,
-						isPrimary: isPrimary,
-						candidate: candidate,
-						candidates: race.candidates
-					});
+						// TODO: take into account leading vs winner
+						color = util.getColor({
+							isBallot: isBallot,
+							isPrimary: isPrimary,
+							candidate: candidate,
+							candidates: race.candidates
+						});
+
+					}
 
 				}
+
 			}
 
 			return color;
