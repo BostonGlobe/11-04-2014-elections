@@ -47,6 +47,7 @@ var OfficesResults = React.createClass({
 					<div className='office' key={race.race_number}>
 						<RaceName name={race.seat_name} race={race} />
 						<Summary results={race} />
+						<button>Go to full results</button>
 					</div>
 				);
 			})
