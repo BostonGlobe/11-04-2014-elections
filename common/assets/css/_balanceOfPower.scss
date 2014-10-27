@@ -1,5 +1,13 @@
 .elections-graphic .balance-of-power {
 
+	.race-name {
+		text-align: left;
+		@include trailing-border();
+		border-width: 1px;
+		border-color: $bw35;
+		@include rhythm(0, 0, 1/4, 0);
+	}
+
 	.bars {
 
 		width: 100%;
@@ -53,6 +61,10 @@
 		width: 100%;
 		overflow: hidden;
 		position: relative;
+		@include trailing-border();
+		border-width: 1px;
+		border-color: $bw10;
+		@include rhythm(0, 0, 1, 0);
 
 		> div > span {
 			font-family: $sansSerif;

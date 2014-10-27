@@ -37,8 +37,10 @@ var RaceName = React.createClass({
 
 	render: function() {
 
+		var name = this.props.name || RaceName.format(this.props.race);
+
 		return (
-			<div className='race-name'>{RaceName.format(this.props.race)}</div>
+			<div className='race-name'>{name}</div>
 		);
 	}
 

@@ -2,9 +2,11 @@
  * @jsx React.DOM
  */
 
-var React = require('react');
+var React    = require('react');
 
-var util  = require('../assets/js/util.js');
+var RaceName = require('./RaceName.jsx');
+
+var util     = require('../assets/js/util.js');
 
 var BalanceOfPower = React.createClass({
 
@@ -40,6 +42,7 @@ var BalanceOfPower = React.createClass({
 
 		return (
 			<div className='balance-of-power'>
+				<RaceName name={this.props.results.trendtable.office} />
 				<div className='bars'>
 					<div className='democratic' style={democraticBar}>&nbsp;</div>
 					<div className='republican' style={republicanBar}>&nbsp;</div>
