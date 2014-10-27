@@ -29,7 +29,6 @@ var DetailedResults = React.createClass({
 			this.props.raceNumbers.map(function(value) {
 				return 'number=' + value;
 			}).join('&') + '&state=' + this.props.state;
-		util.log(url);
 		return url;
 	},
 

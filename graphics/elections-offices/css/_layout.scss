@@ -1,8 +1,21 @@
-.igraphic-graphic.elections-offices {
-	
-	.hed,
-	.subhed {
-		display: none;
+#elections-offices {
+
+	.office {
+
+		@include rhythm(3, 0, 0, 4);
+
+		.race-name {
+			@include adjust-font-size-to($s6);
+			@include trailing-border();
+			border-width: 1px;
+			border-color: $bw35;
+			@include rhythm(0, 0, 1/5, 1/5);
+			text-align: left;
+		}
+
+		table {
+			@include rhythm(0, 0, 0, 0);
+		}
+
 	}
-	
 }

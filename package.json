@@ -6,6 +6,7 @@
     "fixed-sticky": "git+https://github.com/filamentgroup/fixed-sticky.git",
     "floatthead": "^1.2.8",
     "react": "^0.11.2",
+    "slug": "^0.8.0",
     "topojson": "^1.6.18"
   },
   "devDependencies": {
