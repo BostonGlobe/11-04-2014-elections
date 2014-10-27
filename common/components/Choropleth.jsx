@@ -392,46 +392,50 @@ var Choropleth = React.createClass({
 				raceTownsOutline: this.geometryObjects.raceTownsOutline
 			});
 
-			// next, draw the full map label and text
-			// first, find the town with most population
-			var largestTown = _.chain(this.geometryObjects.raceTowns)
-				.sortBy(function(town) {
-					return -town.properties.POPULATION;
-				})
-				.first()
-				.value();
 
-			var labels = fullMapSvgAndPath.svg.append('g').attr('class', 'labels');
-
-			labels.append('line')
-				.datum(largestTown)
-				.attr({
-					transform: function(d) {
-						var coordinates = fullMapSvgAndPath.projection(d3.geo.centroid(d));
-						return "translate(" + coordinates + ")";
-					}
-				});
-
-			labels.append('text')
-				.datum(largestTown)
-				.attr({
-					transform: function(d) {
-						var coordinates = fullMapSvgAndPath.projection(d3.geo.centroid(d));
-						return "translate(" + coordinates + ")";
-					},
-					x: function(d) {
-						return Choropleth.pointIsLeftOfCenter({point: d3.geo.centroid(d), feature: self.geometryObjects.raceTownsOutline}) ? -15 : 15;
-					},
-					dy: '0.3em'
-				})
-				.text(function(d) {
-					return d.properties.REPORTING_UNIT.toLowerCase();
-				})
-				.style('text-anchor', function(d) {
-					return Choropleth.pointIsLeftOfCenter({point: d3.geo.centroid(d), feature: self.geometryObjects.raceTownsOutline}) ? 'end' : 'start';
-				});
 
 			if (!isStatewideRace) {
+
+				// next, draw the full map label and text
+				// first, find the town with most population
+				var largestTown = _.chain(this.geometryObjects.raceTowns)
+					.sortBy(function(town) {
+						return -town.properties.POPULATION;
+					})
+					.first()
+					.value();
+
+				var labels = fullMapSvgAndPath.svg.append('g').attr('class', 'labels');
+
+				labels.append('line')
+					.datum(largestTown)
+					.attr({
+						transform: function(d) {
+							var coordinates = fullMapSvgAndPath.projection(d3.geo.centroid(d));
+							return "translate(" + coordinates + ")";
+						}
+					});
+
+				labels.append('text')
+					.datum(largestTown)
+					.attr({
+						transform: function(d) {
+							var coordinates = fullMapSvgAndPath.projection(d3.geo.centroid(d));
+							return "translate(" + coordinates + ")";
+						},
+						x: function(d) {
+							return Choropleth.pointIsLeftOfCenter({point: d3.geo.centroid(d), feature: self.geometryObjects.raceTownsOutline}) ? -15 : 15;
+						},
+						dy: '0.3em'
+					})
+					.text(function(d) {
+						return d.properties.REPORTING_UNIT.toLowerCase();
+					})
+					.style('text-anchor', function(d) {
+						return Choropleth.pointIsLeftOfCenter({point: d3.geo.centroid(d), feature: self.geometryObjects.raceTownsOutline}) ? 'end' : 'start';
+					});
+
+
 				// next, create the mini map svg container
 				var miniMapSvgAndPath = Choropleth.createSvgAndPath({
 					feature: this.geometryObjects.allTownsOutline,
