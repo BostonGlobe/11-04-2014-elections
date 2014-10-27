@@ -11,7 +11,8 @@ var DetailedResults = require('../../../common/containers/DetailedResults.jsx');
 // 5th Suffolk is 23098
 // something up north is 22014
 // casino is 24698
-// governor is 22796
+// governor primary is 22796
+
 
 React.renderComponent(
 	<DetailedResults raceNumbers={[22091]} state={'MA'} />,
