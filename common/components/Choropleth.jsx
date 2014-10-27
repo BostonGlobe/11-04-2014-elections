@@ -113,13 +113,9 @@ var Choropleth = React.createClass({
 
 			var g = node;
 
-			function select(self) {
+			function selectNode(self) {
 				d3.select(self).classed('active', true);
 				d3util.moveToFront.call(self);
-			}
-
-			function deselect(self) {
-				d3.select(self).classed('active', false);
 			}
 
 			g.selectAll('path')
@@ -138,6 +134,10 @@ var Choropleth = React.createClass({
 					.attr('d', path)
 					.on('mousemove', function(d) {
 
+						// find selected paths
+						var actives = this.parentNode.querySelectorAll('.active');
+						d3.selectAll(actives).classed('active', false);
+
 						var svg = $(this).parents('svg').get(0);
 
 						var dimensions = self.getViewBoxDimensions(svg);
@@ -152,16 +152,16 @@ var Choropleth = React.createClass({
 							reportingUnit: d.properties.reporting_unit,
 							coordinates: position
 						});
-						select(this);
+						selectNode(this);
 					})
 					.on('mouseout', function() {
 
 						tooltipCallback({
 							reportingUnit: null
 						});
-						deselect(this);
+						d3.select(this).classed('active', false);
 					});
-		},
+				},
 
 		drawOutlines: function(opts) {
 
