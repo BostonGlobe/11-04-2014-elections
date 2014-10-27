@@ -59,6 +59,7 @@
 		.name {
 			font-family: $serif;
 			@include adjust-font-size-to($s5, 1);
+			white-space: nowrap;
 		}
 
 		.incumbent {

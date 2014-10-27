@@ -38,6 +38,7 @@ body {
 
 				.name {
 					@include adjust-font-size-to($s4, 1);
+					white-space: nowrap;
 				}
 
 			}
