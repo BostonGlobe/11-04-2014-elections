@@ -31,11 +31,15 @@ var Precincts = React.createClass({
 
 		var forDisplay = this.format(this.props.reportingUnit.precincts_reporting, this.props.reportingUnit.total_precincts);
 
-		var incumbent = null;
+		var incumbent;
 		if (this.props.hasIncumbent) {
 			incumbent = <td className='incumbent'>
 				<span className='logo'>i</span>
 				<span className='text'>incumbent</span>
+			</td>;
+		} else {
+			incumbent = <td className='incumbent'>
+				<span className='text'>&nbsp;</span>
 			</td>;
 		}
 
