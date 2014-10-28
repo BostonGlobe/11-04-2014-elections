@@ -3,8 +3,8 @@
 	$second: 1000px;
 	$third: 1120px;
 
-	background: $bw10;
-	border: solid $bw35 1px;
+	// background: $bw10;
+	border-bottom: solid $bw35 1px;
 
 	@include rhythm(0, 1, 1, 0);
 	padding-left: 10px;
@@ -14,15 +14,17 @@
 
 	.logo {
 		@include breakpoint(810px) {
-			padding-left: 3em;
+			// padding-left: 3em;
 		}
 		display: inline-block;
 		> span {
-			font-family: $sansSerifStrong;
+			font-family: $sansSerif;
+			font-weight: bold;
+			color: black;
 			@include adjust-font-size-to($s6, 1);
 
 			@include breakpoint($second) {
-				@include adjust-font-size-to($s7, 1);
+				// @include adjust-font-size-to($s7, 1);
 			}
 
 			svg {
@@ -34,11 +36,37 @@
 		}
 	}
 
-	select {
+	.election-nav-select {
 		margin-left: 4em;
 		position: relative;
 		bottom: 0.5em;
-		display: none;
+		margin-top: 0.5em;
+
+			&:after {
+				content:'\25BE';
+				position: absolute;
+		        top: 4px;
+		        right: 5px;
+		        bottom: 0;
+		        font-size: 150%;
+		}
+
+		select {
+			background: white;
+			border: 1px solid $bw35;
+			-webkit-appearance: none;
+			@include border-radius(3px);
+			padding: 0.5em 2em 0.5em 1em;
+			font-family: $sansSerif;
+			@include adjust-font-size-to($s5, 1);
+			font-weight: bold;
+			display: inline-block;
+			width: 100%;
+		}
+
+
+		// display: none;
+
 		@include breakpoint($third) {
 			display: inline-block;
 		}
@@ -56,12 +84,21 @@
 			display: inline-block;
 			padding-left: 4em;
 
+
 			> span {
-				font-family: $sansSerifStrong;
+				font-family: $sansSerif;
 				@include adjust-font-size-to($s5, 1);
+				font-weight: bold;
 
 				@include breakpoint($second) {
-					@include adjust-font-size-to($s6, 1);
+					// @include adjust-font-size-to($s6, 1);
+				}
+
+				>a {
+
+					&:hover {
+						color: #9B1518; //globe red
+					}
 				}
 			}
 		}
