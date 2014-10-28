@@ -15,8 +15,12 @@ var Title = React.createClass({
 			'title': true
 		});
 
+		var prefix = this.props.number && this.props.ordinal ?
+			<span>{this.props.number}<sup>{this.props.ordinal}</sup> </span> :
+			null;
+
 		return (
-			<div className={classes}>{this.props.name}</div>
+			<div className={classes}>{prefix}{this.props.name}</div>
 		);
 	}
 

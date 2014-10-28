@@ -1,5 +1,10 @@
 .elections-graphic .title {
 
+	sup {
+		vertical-align: super;
+		font-size: smaller;
+	}
+
 	&.is-subheader {
 		font-family: $sansSerifStrong;
 		@include adjust-font-size-to($s5);

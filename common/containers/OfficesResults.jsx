@@ -44,13 +44,11 @@ var OfficesResults = React.createClass({
 
 				// seat_name e.g. 2ndBristol&Plymouth
 				// extract ordinal
-				var regex = /^(\d*(th|st|nd|rd))?(.*)/;
+				var regex = /^((\d)*(th|st|nd|rd))?(.*)/;
 				var match = regex.exec(race.seat_name);
 
-				var ordinal = match[1];
-
 				// now let's work on the towns
-				var towns = match[3]
+				var towns = _.last(match)
 					.trim() // remove start and end whitespace
 					.replace(/,/g, '&') // replace all commas with &
 					.replace(/ /g, '') // remove all whitespace
@@ -63,13 +61,14 @@ var OfficesResults = React.createClass({
 				return {
 					race: race,
 					ordinalAndTowns: {
-						ordinal: ordinal,
+						number: match[2], 
+						ordinal: match[3],
 						towns: townsForDisplay
 					}
 				};
 			})
 			.sortBy(function(augmentedRace) {
-				return augmentedRace.ordinalAndTowns.ordinal;
+				return augmentedRace.ordinalAndTowns.number;
 			})
 			.sortBy(function(augmentedRace) {
 				return augmentedRace.ordinalAndTowns.towns;
@@ -81,7 +80,7 @@ var OfficesResults = React.createClass({
 
 				return (
 					<div className='office' key={race.race_number}>
-						<Title name={[ordinalAndTowns.ordinal, ordinalAndTowns.towns].join(' ').trim()} />
+						<Title name={ordinalAndTowns.towns} number={ordinalAndTowns.number} ordinal={ordinalAndTowns.ordinal} />
 						<Summary results={race} />
 						<button className='go-to-full-results'>Go to full results</button>
 					</div>

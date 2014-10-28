@@ -32,10 +32,6 @@ var DetailedResults = React.createClass({
 		return url;
 	},
 
-	// allResultsAreIn: function() {
-	// 	return false;
-	// },
-
 	tooltipCallback: function(opts) {
 		this.refs.theTooltip.setState(opts);
 	},
