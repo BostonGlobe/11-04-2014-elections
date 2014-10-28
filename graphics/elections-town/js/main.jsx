@@ -5,7 +5,11 @@
 var React = require('react');
 var TownResults = require('../../../common/containers/TownResults.jsx');
 
+var node = document.querySelector('#elections-town');
+
 React.renderComponent(
-	<TownResults town={'Henniker'} state={'NH'} />,
-	document.getElementById('elections-town')
+	<TownResults
+		town={node.getAttribute('data-town')}
+		state={node.getAttribute('data-state')} />,
+	node
 );
