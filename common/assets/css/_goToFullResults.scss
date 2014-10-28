@@ -1,3 +1,42 @@
+//Button color mixin
+@mixin btn-color($color) {
+	background-color: $color;
+	border: 1px solid shade($color, 20);
+
+	&:hover:not(.btn--disabled), 
+	&:active:not(.btn--disabled), 
+	&:focus:not(.btn--disabled) {
+		background-color: shade($color, 10);
+	}
+}
+
+
 .elections-graphic .go-to-full-results {
-	border: solid red 1px;
+	//Base button styles
+		display: inline-block;			// Inline-block for box model properties
+		text-align: center; 			// Text align center
+		overflow: visible;				// Fixes spacing issue in IE7
+		vertical-align: middle;			// Line up buttons in groups`
+		border: none;					// Normalize styles
+		padding: 0 1em;					// Consistent inner spacing
+		line-height: 3;					// Consistent inner spacing
+	    height: 3em; 					// Consistent inner spacing
+	    cursor:pointer;					// Force all buttons to appear clickable
+		text-decoration: none;			// Removes text decoration from anchor links
+		@include border-radius(3px);	// Default border radius
+		font-family: $sansSerifStrong;	// Default font family 
+		transition: all 0.25s ease;		// Default hover transition timing
+		color: $black;					// Default text color
+
+	//Primary Button
+		@include btn-color(#f2f2e8); //Globe beige color
+
+	//Full-Width
+		width: 100%;
+
+	//Bit smaller
+		font-size: 75%;
+
+	//Margin up top 
+		margin-top: 1em;
 }
