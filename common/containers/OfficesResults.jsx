@@ -26,8 +26,9 @@ var OfficesResults = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
-		var isDev = true;
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/offices?office_name=' + encodeURIComponent(this.props.office) + '&state_postal=' + encodeURIComponent(this.props.state);
+		var isDev = false;
+
+		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + encodeURIComponent(this.props.office) + '/?date=20141104&state=' + encodeURIComponent(this.props.state);
 		util.log(url);
 		return url;
 	},
@@ -39,13 +40,48 @@ var OfficesResults = React.createClass({
 	render: function() {
 
 		var summaries = _.chain(this.state.results)
-			.sortBy(function(race) {
-				return race.seat_name;
-			})
 			.map(function(race) {
+
+				// seat_name e.g. 2ndBristol&Plymouth
+				// extract ordinal
+				var regex = /^(\d*(th|st|nd|rd))?(.*)/;
+				var match = regex.exec(race.seat_name);
+
+				var ordinal = match[1];
+
+				// now let's work on the towns
+				var towns = match[3]
+					.trim() // remove start and end whitespace
+					.replace(/,/g, '&') // replace all commas with &
+					.replace(/ /g, '') // remove all whitespace
+					.split('&'); // create an array of towns
+
+				var townsForDisplay = towns.length === 1 ?
+					towns[0] :
+					[_.initial(towns).join(', '), _.last(towns)].join(' & ');
+
+				return {
+					race: race,
+					ordinalAndTowns: {
+						ordinal: ordinal,
+						towns: townsForDisplay
+					}
+				};
+			})
+			.sortBy(function(augmentedRace) {
+				return augmentedRace.ordinalAndTowns.ordinal;
+			})
+			.sortBy(function(augmentedRace) {
+				return augmentedRace.ordinalAndTowns.towns;
+			})
+			.map(function(augmentedRace) {
+
+				var race = augmentedRace.race;
+				var ordinalAndTowns = augmentedRace.ordinalAndTowns;
+
 				return (
 					<div className='office' key={race.race_number}>
-						<RaceName name={race.seat_name} race={race} />
+						<RaceName name={[ordinalAndTowns.ordinal, ordinalAndTowns.towns].join(' ').trim()} race={race} />
 						<Summary results={race} />
 						<button>Go to full results</button>
 					</div>
