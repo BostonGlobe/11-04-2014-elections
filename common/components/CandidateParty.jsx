@@ -22,9 +22,6 @@ var CandidateParty = React.createClass({
 
 		var party = util.partyAbbreviationToParty(candidate.party) || 'independent';
 
-		var style = {
-			color: color
-		};
 
 		return (
 			<tr>

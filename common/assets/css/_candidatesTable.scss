@@ -26,25 +26,16 @@
 
 	td.candidate-party {
 
-		.square {
-			@include adjust-font-size-to($s5, 0.5);
-			padding-right: 0.125em;
-
-			&.republican { color: $republican; }
-			&.democratic { color: $democratic; }
-			&.independent { color: $independent; }
-
-			@include breakpoint($yesToBars) {
-				display: none;
-			}
-		}
-
 		.party {
 			text-transform: capitalize;
 			font-family: $sansSerif;
 			@include adjust-font-size-to($s3, 0.5);
 			color: $bw90;
 		}
+	}
+
+	tr.candidate-summary {
+		line-height: 2;
 	}
 
 	td.candidate-name {
