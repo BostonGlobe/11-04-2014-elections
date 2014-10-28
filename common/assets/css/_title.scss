@@ -6,13 +6,15 @@
 	}
 
 	&.is-subheader {
-		font-family: $sansSerifStrong;
-		@include adjust-font-size-to($s5);
+		font-family: $sansSerif;
+		@include adjust-font-size-to($s5, 1);
 		@include trailing-border();
 		border-width: 1px;
 		border-color: $bw35;
 		text-align: left;
 		@include rhythm(0, 0, 0, 1/2);
+		font-weight: bold;
+		padding-bottom: 0.25em;
 	}
 
 	&.is-header {

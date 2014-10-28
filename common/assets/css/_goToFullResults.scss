@@ -24,9 +24,10 @@
 	    cursor:pointer;					// Force all buttons to appear clickable
 		text-decoration: none;			// Removes text decoration from anchor links
 		@include border-radius(3px);	// Default border radius
-		font-family: $sansSerifStrong;	// Default font family 
+		font-family: $sansSerif;	// Default font family 
 		transition: all 0.25s ease;		// Default hover transition timing
 		color: $black;					// Default text color
+		font-weight: bold;
 
 	//Primary Button
 		@include btn-color(#f2f2e8); //Globe beige color
