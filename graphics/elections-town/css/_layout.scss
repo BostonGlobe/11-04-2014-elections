@@ -6,13 +6,13 @@
 
 #elections-town {
 
-	// .town {
+	.town {
 
-	// 	@include rhythm(3, 0, 0, 4);
+		@include rhythm(3, 0, 0, 4);
 
-	// 	table {
-	// 		@include rhythm(0, 0, 0, 0);
-	// 	}
+		table {
+			@include rhythm(0, 0, 0, 0);
+		}
 
-	// }
+	}
 }

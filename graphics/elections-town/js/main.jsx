@@ -3,9 +3,9 @@
  */
 
 var React = require('react');
-var OfficesResults = require('../../../common/containers/OfficesResults.jsx');
+var TownResults = require('../../../common/containers/TownResults.jsx');
 
 React.renderComponent(
-	<OfficesResults office={'State Senate'} state={'MA'} />,
+	<TownResults town={'Henniker'} state={'NH'} />,
 	document.getElementById('elections-town')
 );

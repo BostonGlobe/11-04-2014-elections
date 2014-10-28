@@ -20,21 +20,14 @@ var OfficesResults = React.createClass({
 	// FetchResultsMixin needs this
 	apiCallback: function() {
 		var callback = [this.props.office, this.props.state].join('').replace(' ', '');
-		util.log(callback);
 		return callback;
 	},
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
 		var isDev = false;
-
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + encodeURIComponent(this.props.office) + '/?state=' + encodeURIComponent(this.props.state);
-		util.log(url);
+		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + encodeURIComponent(this.props.office) + '?state=' + encodeURIComponent(this.props.state);
 		return url;
-	},
-
-	allResultsAreIn: function() {
-		return false;
 	},
 
 	render: function() {
