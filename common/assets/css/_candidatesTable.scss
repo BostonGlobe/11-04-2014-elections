@@ -35,7 +35,7 @@
 	}
 
 	tr.candidate-summary {
-		line-height: 2;
+		@include adjust-leading-to(4/3);
 	}
 
 	td.candidate-name {
