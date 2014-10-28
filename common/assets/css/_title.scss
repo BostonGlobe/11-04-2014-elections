@@ -1,4 +1,4 @@
-.elections-graphic .race-name {
+.elections-graphic .title {
 
 	&.is-subheader {
 		font-family: $sansSerifStrong;
@@ -7,7 +7,7 @@
 		border-width: 1px;
 		border-color: $bw35;
 		text-align: left;
-		@include rhythm(0, 0, 1/5, 1/5);
+		@include rhythm(0, 0, 0, 1/2);
 	}
 
 	&.is-header {

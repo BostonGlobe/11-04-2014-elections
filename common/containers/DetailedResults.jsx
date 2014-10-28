@@ -8,7 +8,7 @@ var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
 
 var Choropleth        = require('../components/Choropleth.jsx');
 var PollClock         = require('../components/PollClock.jsx');
-var RaceName          = require('../components/RaceName.jsx');
+var Title             = require('../components/Title.jsx');
 var ShareTools        = require('../components/ShareTools.jsx');
 var Summary           = require('../components/Summary.jsx');
 var Tooltip           = require('../components/Tooltip.jsx');
@@ -57,7 +57,7 @@ var DetailedResults = React.createClass({
 		return (
 			<div className='detailed-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<RaceName isHeader={true} race={results} />
+				<Title isHeader={true} name={util.raceName(results)} />
 				<ShareTools />
 				<Summary results={results} />
 				<div className='choropleth-container'>

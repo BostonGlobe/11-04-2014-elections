@@ -4,6 +4,29 @@ module.exports = {
 		console.log(JSON.stringify(value, null, 4));
 	},
 
+	raceName: function(race) {
+
+		var display = '';
+
+		if (race) {
+
+			var date = Date(race.election_date);
+
+			var primary = race.race_type === 'Primary' ? race.race_type_id + ' primary' : null;
+
+			var name = _.chain([race.state_postal, race.office_name, race.seat_name, primary])
+				.filter(function(v) {
+					return v;
+				})
+				.value()
+				.join(' - ');
+
+			display = name;
+		}
+
+		return display;
+	},
+
 	raceTypeIDToParty: function(race_type_id) {
 		return {
 			'd': 'democratic',

@@ -4,6 +4,8 @@
 
 var React = require('react');
 
+var Title = require('../components/Title.jsx');
+
 var util  = require('../assets/js/util.js');
 
 var CandidateTh = React.createClass({
@@ -135,7 +137,7 @@ var TownByTownResults = React.createClass({
 
 			component = (
 				<div className='town-by-town-results'>
-					<div className='title'>Town by town results</div>
+					<Title name={'Town by town results'} />
 					<div className='table-position'>
 						<div className='table-container'>
 							<table>

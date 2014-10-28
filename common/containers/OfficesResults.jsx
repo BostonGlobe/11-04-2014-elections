@@ -9,7 +9,7 @@ var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
 var PollClock         = require('../components/PollClock.jsx');
 var ShareTools        = require('../components/ShareTools.jsx');
 var Summary           = require('../components/Summary.jsx');
-var RaceName          = require('../components/RaceName.jsx');
+var Title             = require('../components/Title.jsx');
 
 var util              = require('../assets/js/util.js');
 
@@ -81,7 +81,7 @@ var OfficesResults = React.createClass({
 
 				return (
 					<div className='office' key={race.race_number}>
-						<RaceName name={[ordinalAndTowns.ordinal, ordinalAndTowns.towns].join(' ').trim()} race={race} />
+						<Title name={[ordinalAndTowns.ordinal, ordinalAndTowns.towns].join(' ').trim()} />
 						<Summary results={race} />
 						<button className='go-to-full-results'>Go to full results</button>
 					</div>
@@ -92,7 +92,7 @@ var OfficesResults = React.createClass({
 		return (
 			<div className='offices-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<RaceName isHeader={true} name={[this.props.state, this.props.office].join(' ')} />
+				<Title isHeader={true} name={[this.props.state, this.props.office].join(' ')} />
 				<ShareTools />
 				{summaries}
 			</div>

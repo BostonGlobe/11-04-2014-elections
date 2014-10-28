@@ -1,12 +1,12 @@
 .elections-graphic .town-by-town-results {
 
-	.title {
-		@include adjust-font-size-to($s5, 1);
-		font-family: $sansSerifStrong;
-		border-bottom: solid $bw50 1px;
-		padding-bottom: 0.5em;
-		margin-bottom: 1em;
-	}
+	// .title {
+	// 	@include adjust-font-size-to($s5, 1);
+	// 	font-family: $sansSerifStrong;
+	// 	border-bottom: solid $bw50 1px;
+	// 	padding-bottom: 0.5em;
+	// 	margin-bottom: 1em;
+	// }
 
 	.table-position {
 		position: relative;
@@ -35,7 +35,6 @@
 		font-family: $sansSerif;
 		border-collapse: collapse;
 		border-spacing: 0;
-
 
 		thead {
 			border: solid $bw25 1px;
