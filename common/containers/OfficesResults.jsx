@@ -28,7 +28,7 @@ var OfficesResults = React.createClass({
 	apiUrl: function() {
 		var isDev = false;
 
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + encodeURIComponent(this.props.office) + '/?date=20141104&state=' + encodeURIComponent(this.props.state);
+		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + encodeURIComponent(this.props.office) + '/?state=' + encodeURIComponent(this.props.state);
 		util.log(url);
 		return url;
 	},
