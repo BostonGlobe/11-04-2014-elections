@@ -57,7 +57,7 @@ var DetailedResults = React.createClass({
 		return (
 			<div className='detailed-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<RaceName race={results} />
+				<RaceName isHeader={true} race={results} />
 				<ShareTools />
 				<Summary results={results} />
 				<div className='choropleth-container'>

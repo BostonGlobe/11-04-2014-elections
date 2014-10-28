@@ -2,7 +2,7 @@
  * @jsx React.DOM
  */
 
-var React = require('react');
+var React = require('react/addons');
 
 var util  = require('../assets/js/util.js');
 
@@ -37,10 +37,17 @@ var RaceName = React.createClass({
 
 	render: function() {
 
+		var cx = React.addons.classSet;
+		var classes = cx({
+			'is-header': this.props.isHeader,
+			'is-subheader': !this.props.isHeader,
+			'race-name': true
+		});
+
 		var name = this.props.name || RaceName.format(this.props.race);
 
 		return (
-			<div className='race-name'>{name}</div>
+			<div className={classes}>{name}</div>
 		);
 	}
 

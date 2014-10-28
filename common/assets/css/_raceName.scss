@@ -1,5 +1,18 @@
 .elections-graphic .race-name {
-	font-family: $serifStrong;
-	@include adjust-font-size-to($s8, 2);
-	text-align: center;
+
+	&.is-subheader {
+		font-family: $sansSerifStrong;
+		@include adjust-font-size-to($s5);
+		@include trailing-border();
+		border-width: 1px;
+		border-color: $bw35;
+		text-align: left;
+		@include rhythm(0, 0, 1/5, 1/5);
+	}
+
+	&.is-header {
+		font-family: $serifStrong;
+		@include adjust-font-size-to($s8, 2);
+		text-align: center;
+	}
 }

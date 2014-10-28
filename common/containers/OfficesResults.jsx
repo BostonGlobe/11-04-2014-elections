@@ -83,7 +83,7 @@ var OfficesResults = React.createClass({
 					<div className='office' key={race.race_number}>
 						<RaceName name={[ordinalAndTowns.ordinal, ordinalAndTowns.towns].join(' ').trim()} race={race} />
 						<Summary results={race} />
-						<button>Go to full results</button>
+						<button className='go-to-full-results'>Go to full results</button>
 					</div>
 				);
 			})
@@ -92,7 +92,7 @@ var OfficesResults = React.createClass({
 		return (
 			<div className='offices-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<RaceName name={[this.props.state, this.props.office].join(' ')} />
+				<RaceName isHeader={true} name={[this.props.state, this.props.office].join(' ')} />
 				<ShareTools />
 				{summaries}
 			</div>
