@@ -38,7 +38,7 @@ var OfficesResults = React.createClass({
 
 				// seat_name e.g. 2ndBristol&Plymouth
 				// extract ordinal
-				var regex = /^((\d)*(th|st|nd|rd))?(.*)/;
+				var regex = /^((\d*)(th|st|nd|rd))?(.*)/;
 				var match = regex.exec(race.seat_name);
 
 				// now let's work on the towns
@@ -62,7 +62,7 @@ var OfficesResults = React.createClass({
 				};
 			})
 			.sortBy(function(augmentedRace) {
-				return augmentedRace.ordinalAndTowns.number;
+				return +augmentedRace.ordinalAndTowns.number;
 			})
 			.sortBy(function(augmentedRace) {
 				return augmentedRace.ordinalAndTowns.towns;
