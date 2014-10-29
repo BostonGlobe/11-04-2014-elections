@@ -41,7 +41,7 @@ var CandidateSummary = React.createClass({
 			<tr className={classes}>
 				<Name
 					candidate={candidate}
-					isLite={candidate}
+					isLite={isLite}
 				/>
 				<Percent
 					candidate={candidate}
