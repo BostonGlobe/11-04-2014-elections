@@ -3,6 +3,9 @@ R:
 	Rscript -e "rmarkdown::render('data/11-04-2014-elections.Rmd')"
 	open data/11-04-2014-elections.html
 
+upload:
+	rsync -rv deploy/* /Volumes/www_html/multimedia/graphics/projectFiles/2014/11/assets
+
 R_deploy:
 
 	cp data/11-04-2014-elections.html /Volumes/www_html/multimedia/graphics/projectFiles/Rmd/
