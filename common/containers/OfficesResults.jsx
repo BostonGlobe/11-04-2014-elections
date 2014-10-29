@@ -10,6 +10,7 @@ var PollClock         = require('../components/PollClock.jsx');
 var ShareTools        = require('../components/ShareTools.jsx');
 var Summary           = require('../components/Summary.jsx');
 var Title             = require('../components/Title.jsx');
+var Ad                = require('../components/Ad.jsx');
 
 var util              = require('../assets/js/util.js');
 
@@ -86,7 +87,9 @@ var OfficesResults = React.createClass({
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 				<Title isHeader={true} name={[this.props.state, this.props.office].join(' ')} />
 				<ShareTools />
-				{summaries}
+				{_.first(summaries)}
+				<Ad />
+				{_.rest(summaries)}
 			</div>
 		);
 	}

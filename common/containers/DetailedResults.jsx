@@ -13,6 +13,7 @@ var ShareTools        = require('../components/ShareTools.jsx');
 var Summary           = require('../components/Summary.jsx');
 var Tooltip           = require('../components/Tooltip.jsx');
 var TownByTownResults = require('../components/TownByTownResults.jsx');
+var Ad                = require('../components/Ad.jsx');
 
 var REPORTING_UNITS   = require('../../data/output/MA/REPORTING_UNITS.json');
 
@@ -66,6 +67,7 @@ var DetailedResults = React.createClass({
 					/>
 					{tooltip}
 				</div>
+				<Ad />
 				<TownByTownResults results={results} />
 			</div>
 		);

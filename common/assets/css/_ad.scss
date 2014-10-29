@@ -1,0 +1,11 @@
+.elections-graphic .ad {
+	@include leading-border();
+	@include trailing-border();
+	border-width: 1px;
+	border-color: $bw35;
+	@include rhythm(2, 1, 1, 2);
+
+	iframe {
+		@include rhythm(0, 0, 0, 0);
+	}
+}
