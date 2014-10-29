@@ -18,6 +18,7 @@ var node = document.querySelector('#elections-detailedresults');
 React.renderComponent(
 	<DetailedResults
 		state={node.getAttribute('data-state')}
+		date={node.getAttribute('data-date')}
 		office={node.getAttribute('data-office')}
 		seat={node.getAttribute('data-seat')} />,
 	node

@@ -24,14 +24,14 @@ var DetailedResults = React.createClass({
 	mixins: [FetchResultsMixin],
 
 	apiCallback: function() {
-		var callback = [this.props.state, this.props.office, this.props.seat].join('').replace(/ /g, '').replace(/-/g, '');
+		var callback = [this.props.date, this.props.state, this.props.office, this.props.seat].join('').replace(/ /g, '').replace(/-/g, '');
 		return callback;
 	},
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
 		var isDev = false;
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + this.props.state + '/' + this.props.office + '/' + this.props.seat + '?detail=true';
+		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + this.props.state + '/' + this.props.office + '/' + this.props.seat + '?detail=true&date=' + this.props.date;
 		return url;
 	},
 
@@ -56,7 +56,7 @@ var DetailedResults = React.createClass({
 		return (
 			<div className='detailed-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<Title isHeader={true} name={util.raceName(results)} />
+				<Title isHeader={true} name={[this.props.date, util.raceName(results)].join(' ')} />
 				<ShareTools />
 				<Summary results={results} />
 				<div className='choropleth-container'>

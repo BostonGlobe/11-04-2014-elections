@@ -20,14 +20,14 @@ var OfficesResults = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiCallback: function() {
-		var callback = [this.props.office, this.props.state].join('').replace(' ', '');
+		var callback = [this.props.office, this.props.state, this.props.date].join('').replace(/ /g, '').replace(/-/g, '');
 		return callback;
 	},
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
 		var isDev = false;
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + this.props.state + '/' + encodeURIComponent(this.props.office);
+		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + this.props.state + '/' + encodeURIComponent(this.props.office) + '?date=' + this.props.date;
 		return url;
 	},
 
@@ -85,7 +85,7 @@ var OfficesResults = React.createClass({
 		return (
 			<div className='offices-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<Title isHeader={true} name={[this.props.state, this.props.office].join(' ')} />
+				<Title isHeader={true} name={[this.props.date, this.props.state, this.props.office].join(' ')} />
 				<ShareTools />
 				{_.first(summaries)}
 				<Ad />
