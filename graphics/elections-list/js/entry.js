@@ -1,13 +1,17 @@
+var Moment = require('moment');
+
 (function() { globe.onDefine('window.jQuery && $(".igraphic-graphic.elections-list").length', function() {
 
-var states = ['ma', 'nh'];
+var states = ['ma'];
 
 function stateOfficesCallback(json) {
 
 	// make a list of offices
 	var offices = _.chain(json)
 		.map(function(result) {
-			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/office/' + result.state_postal + '/' + result.office_name + '">' + [result.office_name].join(', ') + '</a></li>';
+			var moment = Moment(result.election_date);
+			var displayDate = moment.format('YYYY-MM-DD');
+			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/office/' + result.state_postal + '/' + result.office_name + '">' + [displayDate, result.office_name].join(', ') + '</a></li>';
 		})
 		.uniq()
 		.sortBy(function(v, i) {
@@ -25,7 +29,9 @@ function stateRacesCallback(json) {
 	// make a list of races
 	var races = _.chain(json)
 		.map(function(result) {
-			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/race/' + result.state_postal + '/' + result.office_name + '/' + result.seat_name + '">' + [result.office_name, result.seat_name].join(', ') + '</a></li>';
+			var moment = Moment(result.election_date);
+			var displayDate = moment.format('YYYY-MM-DD');
+			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + result.office_name + '/' + result.seat_name + '">' + [displayDate, result.office_name, result.seat_name].join(', ') + '</a></li>';
 		})
 		.uniq()
 		.sortBy(function(v, i) {
@@ -46,7 +52,9 @@ function stateTownsCallback(json) {
 	var towns = _.chain(json[0].reporting_units)
 		.reject({fips_code: 0})
 		.map(function(result) {
-			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/town/' + state + '/' + result.county_name + '">' + [result.county_name].join(', ') + '</a></li>';
+			var moment = Moment(result.election_date);
+			var displayDate = moment.format('YYYY-MM-DD');
+			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/town/' + state + '/' + result.county_name + '">' + [displayDate, result.county_name].join(', ') + '</a></li>';
 		})
 		.uniq()
 		.sortBy(function(v, i) {
@@ -100,8 +108,5 @@ states.forEach(function(state) {
 	});
 
 });
-
-
-
 
 }); }());
