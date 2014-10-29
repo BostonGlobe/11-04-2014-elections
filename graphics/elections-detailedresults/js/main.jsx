@@ -13,8 +13,12 @@ var DetailedResults = require('../../../common/containers/DetailedResults.jsx');
 // casino is 24698
 // governor primary is 22796
 
+var node = document.querySelector('#elections-detailedresults');
 
 React.renderComponent(
-	<DetailedResults raceNumbers={[22957]} state={'MA'} />,
-	document.getElementById('elections-detailedresults')
+	<DetailedResults
+		state={node.getAttribute('data-state')}
+		office={node.getAttribute('data-office')}
+		seat={node.getAttribute('data-seat')} />,
+	node
 );
