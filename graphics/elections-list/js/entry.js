@@ -2,7 +2,7 @@ var Moment = require('moment');
 
 (function() { globe.onDefine('window.jQuery && $(".igraphic-graphic.elections-list").length', function() {
 
-var states = ['ma'];
+var states = ['ma', 'nh'];
 
 function stateOfficesCallback(json) {
 
@@ -52,7 +52,7 @@ function stateTownsCallback(json) {
 	var towns = _.chain(json[0].reporting_units)
 		.reject({fips_code: 0})
 		.map(function(result) {
-			var moment = Moment(result.election_date);
+			var moment = Moment(json[0].election_date);
 			var displayDate = moment.format('YYYY-MM-DD');
 			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/town/' + state + '/' + result.county_name + '">' + [displayDate, result.county_name].join(', ') + '</a></li>';
 		})
@@ -102,7 +102,7 @@ states.forEach(function(state) {
 	window[callback] = stateTownsCallback;
 	
 	$.ajax({
-		url: 'http://devweb.bostonglobe.com/electionapi/races/office/' + state + '/governor?detail=true',
+		url: 'http://devweb.bostonglobe.com/electionapi/races/office/' + state + '/governor?detail=true&date=20141104',
 		dataType: 'jsonp',
 		jsonpCallback: callback
 	});
