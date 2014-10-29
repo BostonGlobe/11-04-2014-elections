@@ -11,7 +11,7 @@ function stateOfficesCallback(json) {
 		.map(function(result) {
 			var moment = Moment(result.election_date);
 			var displayDate = moment.format('YYYY-MM-DD');
-			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/office/' + result.state_postal + '/' + result.office_name + '">' + [displayDate, result.office_name].join(', ') + '</a></li>';
+			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/offices/' + result.state_postal + '/' + result.office_name + '">' + [displayDate, result.office_name].join(', ') + '</a></li>';
 		})
 		.uniq()
 		.sortBy(function(v, i) {
