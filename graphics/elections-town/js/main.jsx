@@ -9,6 +9,7 @@ var node = document.querySelector('#elections-town');
 
 React.renderComponent(
 	<TownResults
+		date={node.getAttribute('data-date')}
 		town={node.getAttribute('data-town')}
 		state={node.getAttribute('data-state')} />,
 	node
