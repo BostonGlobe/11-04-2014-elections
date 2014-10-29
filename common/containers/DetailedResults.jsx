@@ -23,7 +23,7 @@ var DetailedResults = React.createClass({
 	mixins: [FetchResultsMixin],
 
 	apiCallback: function() {
-		var callback = [this.props.state, this.props.office, this.props.seat].join('').replace(/ /g, '');
+		var callback = [this.props.state, this.props.office, this.props.seat].join('').replace(/ /g, '').replace(/-/g, '');
 		return callback;
 	},
 
