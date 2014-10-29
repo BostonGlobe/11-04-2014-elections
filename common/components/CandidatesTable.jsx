@@ -72,7 +72,7 @@ var CandidatesTable = React.createClass({
 			.value();
 
 		precincts = (
-			<Precincts reportingUnit={reportingUnit} hasIncumbent={hasIncumbent} />
+			<Precincts reportingUnit={reportingUnit} hasIncumbent={hasIncumbent} isLite={isLite} />
 		);
 
 		var theadRows = isLite ? (<tr>
