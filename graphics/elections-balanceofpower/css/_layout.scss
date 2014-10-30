@@ -10,10 +10,10 @@
 
 	$numberPadding: 0.5em;
 
-	%democratic {
+	%democrat {
 		float: left;
 		text-align: left;
-		color: $democratic;
+		color: $democrat;
 	}
 
 	%republican {
@@ -27,8 +27,8 @@
 		overflow: hidden;
 		position: relative;
 
-		.democratic {
-			@extend %democratic;
+		.democrat {
+			@extend %democrat;
 
 			.number {
 				padding-right: $numberPadding;
@@ -59,7 +59,7 @@
 	&._400,
 	&._500 {
 		.numbersAndLabels {
-			.democratic > div,
+			.democrat > div,
 			.undecided > div,
 			.republican > div {
 				display: inline-block;
@@ -73,11 +73,11 @@
 		width: 100%;
 		overflow: hidden;
 
-		.democratic {
-			@extend %democratic;
+		.democrat {
+			@extend %democrat;
 
 			height: 100%;
-			background: $democratic;
+			background: $democrat;
 		}
 
 		.republican {
@@ -89,8 +89,8 @@
 	}
 
 	.change {
-		.democratic {
-			@extend %democratic;
+		.democrat {
+			@extend %democrat;
 		}
 
 		.republican {

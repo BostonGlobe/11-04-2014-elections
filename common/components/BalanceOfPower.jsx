@@ -49,7 +49,7 @@ var BalanceOfPower = React.createClass({
 			results.GOP.WonHoldovers +
 			results.Others.WonHoldovers;
 
-		var democraticBar = {
+		var democratBar = {
 			width: (100 * results.Dem.WonHoldovers/total) + '%'
 		};
 
@@ -61,16 +61,16 @@ var BalanceOfPower = React.createClass({
 			<div className='balance-of-power'>
 				<RaceName name={BalanceOfPower.getNameFromFeed(this.props.results)} />
 				<div className='bars'>
-					<div className='democratic' style={democraticBar}>&nbsp;</div>
+					<div className='democrat' style={democratBar}>&nbsp;</div>
 					<div className='republican' style={republicanBar}>&nbsp;</div>
 				</div>
 				<div className='total'>
-					<div className='democratic'><span>{results.Dem.WonHoldovers} democrats</span></div>
+					<div className='democrat'><span>{results.Dem.WonHoldovers} democrats</span></div>
 					<div className='republican'><span>{results.GOP.WonHoldovers} republicans</span></div>
 					<div className=' undecided'><span>{results.Others.WonHoldovers} undecided</span></div>
 				</div>
 				<div className='change'>
-					<div className='democratic'><span>{results.Dem.NetChangeWinners} seats</span></div>
+					<div className='democrat'><span>{results.Dem.NetChangeWinners} seats</span></div>
 					<div className='republican'><span>{results.GOP.NetChangeWinners} seats</span></div>
 				</div>
 			</div>

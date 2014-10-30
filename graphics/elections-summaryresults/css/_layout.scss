@@ -65,7 +65,7 @@
 					}
 				}
 
-				&.democratic .checkmark { background: $blue; }
+				&.democrat .checkmark { background: $blue; }
 				&.republican .checkmark { background: $red; }
 				&.independent .checkmark { background: $yellow; }
 
@@ -125,7 +125,7 @@
 			font-weight: bold;
 			padding-left: 0;
 
-			&.democratic {
+			&.democrat {
 				color: $blue;
 			}
 

@@ -29,14 +29,14 @@ module.exports = {
 
 	raceTypeIDToParty: function(race_type_id) {
 		return {
-			'd': 'democratic',
+			'd': 'democrat',
 			'r': 'republican'
 		}[race_type_id.toLowerCase()];
 	},
 
 	partyAbbreviationToParty: function(abbreviation) {
 		var result = {
-			'dem': 'democratic',
+			'dem': 'democrat',
 			'gop': 'republican'
 		}[abbreviation.toLowerCase()];
 
@@ -80,8 +80,8 @@ module.exports = {
 
 		var REPUBLICAN = 'rgba(191, 97, 81, 1)';
 		var REPUBLICANLEANING = 'rgba(223, 195, 182, 1)';
-		var DEMOCRATIC = 'rgba(89, 136, 157, 1)';
-		var DEMOCRATICLEANING = 'rgba(195, 213, 222, 1)';
+		var DEMOCRAT = 'rgba(89, 136, 157, 1)';
+		var DEMOCRATLEANING = 'rgba(195, 213, 222, 1)';
 		var INDEPENDENT = 'rgba(253, 205, 128, 1)';
 		var INDEPENDENTLEANING = 'rgba(253, 205, 128, 0.5)';
 
@@ -122,7 +122,7 @@ module.exports = {
 			var party = this.partyAbbreviationToParty(candidate.party) || 'independent';
 
 			color = {
-				'democratic': DEMOCRATIC,
+				'democrat': DEMOCRAT,
 				'republican': REPUBLICAN,
 				'independent': INDEPENDENT
 			}[party];
