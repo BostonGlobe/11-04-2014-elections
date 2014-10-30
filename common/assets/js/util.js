@@ -1,8 +1,19 @@
 module.exports = {
 
-	standardizeOffice: function(office) {
+	officeToUrl: function(office) {
+		return this.standardizeOffice(office);
+	},
 
+	seatToUrl: function(seat) {
+		return this.standardizeSeat(seat);
+	},
+
+	standardizeOffice: function(office) {
 		return office.replace(/[uU]\.[sS]\./g, 'US');
+	},
+
+	standardizeSeat: function(seat) {
+		return seat.replace(/&/g, '%2526');
 	},
 
 	log: function(value) {
