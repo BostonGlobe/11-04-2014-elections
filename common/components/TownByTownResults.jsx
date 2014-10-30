@@ -108,6 +108,7 @@ var TownByTownResults = React.createClass({
 				.value();
 
 			var townTrs = _.chain(results.reporting_units)
+				.reject({fips_code: 0})
 				.sortBy('county_name')
 				.map(function(reporting_unit) {
 
