@@ -11,18 +11,18 @@
 	.table-position {
 		position: relative;
 
-			&:before {
-			content: '';
-			position: absolute;
-			top: 0;
-			right: -1px;
-			height: 100%;
-			width: 35px;
-			background: -webkit-linear-gradient( right , #FFF 10%, rgba(255, 255, 255, 0));
-			background: linear-gradient(to left, #FFF 10%, rgba(255, 255, 255, 0));
-			z-index: 5;
-			pointer-events: none;
-		}
+		// 	&:before {
+		// 	content: '';
+		// 	position: absolute;
+		// 	top: 0;
+		// 	right: -1px;
+		// 	height: 100%;
+		// 	width: 35px;
+		// 	background: -webkit-linear-gradient( right , #FFF 10%, rgba(255, 255, 255, 0));
+		// 	background: linear-gradient(to left, #FFF 10%, rgba(255, 255, 255, 0));
+		// 	z-index: 5;
+		// 	pointer-events: none;
+		// }
 
 	}
 
