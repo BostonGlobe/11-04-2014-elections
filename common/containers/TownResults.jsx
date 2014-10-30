@@ -35,6 +35,12 @@ var TownResults = React.createClass({
 	render: function() {
 
 		var summaries = _.chain(this.state.results)
+			.filter(function(race) {
+				return race.seat_name && race.seat_name.length;
+			})
+			.sortBy(function(race) {
+				return [race.office_name, race.seat_name].join(' ');
+			})
 			.map(function(race) {
 
 				var moment = Moment(race.election_date);
