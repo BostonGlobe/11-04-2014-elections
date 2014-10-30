@@ -1,0 +1,20 @@
+#elections-nav {
+  font-family: $sansSerif;
+  font-size: 1.25em;
+  font-weight: bold;
+
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+
+  input,
+  select {
+    font-family: $sansSerif;
+    font-size: 1em;
+    font-weight: bold;
+  }
+}
