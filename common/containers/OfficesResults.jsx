@@ -13,6 +13,7 @@ var Title             = require('../components/Title.jsx');
 var Ad                = require('../components/Ad.jsx');
 
 var util              = require('../assets/js/util.js');
+var Moment            = require('moment');
 
 var OfficesResults = React.createClass({
 
@@ -32,6 +33,8 @@ var OfficesResults = React.createClass({
 	},
 
 	render: function() {
+
+		var self = this;
 
 		var summaries = _.chain(this.state.results)
 			.map(function(race) {
@@ -71,12 +74,16 @@ var OfficesResults = React.createClass({
 
 				var race = augmentedRace.race;
 				var ordinalAndTowns = augmentedRace.ordinalAndTowns;
+				var moment = Moment(race.election_date);
+				var displayDate = moment.format('YYYY-MM-DD');
+
+				var url = 'http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + race.office_name + '/' + race.seat_name;
 
 				return (
 					<div className='office' key={race.race_number}>
 						<Title name={ordinalAndTowns.towns} number={ordinalAndTowns.number} ordinal={ordinalAndTowns.ordinal} />
 						<Summary results={race} />
-						<button className='go-to-full-results'>Go to full results</button>
+						<a href={url}><button className='go-to-full-results'>Go to full results</button></a>
 					</div>
 				);
 			})
