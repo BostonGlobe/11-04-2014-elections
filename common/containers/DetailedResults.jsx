@@ -53,20 +53,22 @@ var DetailedResults = React.createClass({
 			/>;
 		}
 
+		var choropleth = this.props.state.toUpperCase() === 'MA' ? <div className='choropleth-container'>
+			<Choropleth
+				results={results}
+				shapefile={REPORTING_UNITS}
+				tooltipCallback={this.tooltipCallback}
+			/>
+			{tooltip}
+		</div> : null;
+
 		return (
 			<div className='detailed-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 				<Title isHeader={true} name={[this.props.date, util.raceName(results)].join(' ')} />
 				<ShareTools />
 				<Summary results={results} />
-				<div className='choropleth-container'>
-					<Choropleth
-						results={results}
-						shapefile={REPORTING_UNITS}
-						tooltipCallback={this.tooltipCallback}
-					/>
-					{tooltip}
-				</div>
+				{choropleth}
 				<Ad />
 				<TownByTownResults results={results} />
 			</div>
