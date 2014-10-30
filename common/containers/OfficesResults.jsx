@@ -28,7 +28,7 @@ var OfficesResults = React.createClass({
 	// FetchResultsMixin needs this
 	apiUrl: function() {
 		var isDev = false;
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + this.props.state + '/' + encodeURIComponent(this.props.office) + '?date=' + this.props.date;
+		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + this.props.state + '/' + this.props.office + '?date=' + this.props.date;
 		return url;
 	},
 

@@ -1,4 +1,5 @@
 var Moment = require('moment');
+var util = require('../../../common/assets/js/util.js');
 
 (function() { globe.onDefine('window.jQuery && $(".igraphic-graphic.elections-list").length', function() {
 
@@ -11,7 +12,7 @@ function stateOfficesCallback(json) {
 		.map(function(result) {
 			var moment = Moment(result.election_date);
 			var displayDate = moment.format('YYYY-MM-DD');
-			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/offices/' + result.state_postal + '/' + encodeURIComponent(encodeURIComponent(result.office_name)) + '">' + [displayDate, result.office_name].join(', ') + '</a></li>';
+			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/offices/' + result.state_postal + '/' + encodeURIComponent(util.standardizeOffice(result.office_name)) + '">' + [displayDate, util.standardizeOffice(result.office_name)].join(', ') + '</a></li>';
 		})
 		.uniq()
 		.sortBy(function(v, i) {
@@ -31,7 +32,7 @@ function stateRacesCallback(json) {
 		.map(function(result) {
 			var moment = Moment(result.election_date);
 			var displayDate = moment.format('YYYY-MM-DD');
-			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + encodeURIComponent(encodeURIComponent(result.office_name)) + '/' + encodeURIComponent(encodeURIComponent(result.seat_name)) + '">' + [displayDate, result.office_name, result.seat_name].join(', ') + '</a></li>';
+			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + encodeURIComponent(util.standardizeOffice(result.office_name)) + '/' + encodeURIComponent(result.seat_name) + '">' + [displayDate, util.standardizeOffice(result.office_name), result.seat_name].join(', ') + '</a></li>';
 		})
 		.uniq()
 		.sortBy(function(v, i) {
@@ -54,7 +55,7 @@ function stateTownsCallback(json) {
 		.map(function(result) {
 			var moment = Moment(json[0].election_date);
 			var displayDate = moment.format('YYYY-MM-DD');
-			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/town/' + state + '/' + encodeURIComponent(encodeURIComponent(result.county_name)) + '">' + [displayDate, result.county_name].join(', ') + '</a></li>';
+			return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/town/' + state + '/' + ncodeURIComponent(result.county_name) + '">' + [displayDate, result.county_name].join(', ') + '</a></li>';
 		})
 		.uniq()
 		.sortBy(function(v, i) {

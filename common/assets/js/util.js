@@ -1,5 +1,10 @@
 module.exports = {
 
+	standardizeOffice: function(office) {
+
+		return office.replace(/[uU]\.[sS]\./g, 'US');
+	},
+
 	log: function(value) {
 		console.log(JSON.stringify(value, null, 4));
 	},
