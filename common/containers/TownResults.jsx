@@ -13,6 +13,7 @@ var Title             = require('../components/Title.jsx');
 var Ad                = require('../components/Ad.jsx');
 
 var util              = require('../assets/js/util.js');
+var Moment            = require('moment');
 
 var TownResults = React.createClass({
 
@@ -36,11 +37,16 @@ var TownResults = React.createClass({
 		var summaries = _.chain(this.state.results)
 			.map(function(race) {
 
+				var moment = Moment(race.election_date);
+				var displayDate = moment.format('YYYY-MM-DD');
+
+				var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + race.office_name + '/' + race.seat_name;
+
 				return (
 					<div className='town' key={race.race_number}>
 						<Title name={util.raceName(race)} />
 						<Summary results={race} />
-						<button className='go-to-full-results'>Go to full results</button>
+						<a href='{url}'><button className='go-to-full-results'>Go to full results</button></a>
 					</div>
 				);
 			})
