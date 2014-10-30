@@ -129,6 +129,22 @@
 		}
 	}
 
+	td.candidate-uncontested {
+
+		@extend %rowRhythm;
+
+		padding-left: 2em;
+
+		text-align: right;
+		white-space: nowrap;
+
+		.uncontested {
+			font-family: $sansSerif;
+			@include adjust-font-size-to($s3, 1);
+			color: $bw90;
+		}
+	}
+
 	tfoot {
 
 		tr td.incumbent {

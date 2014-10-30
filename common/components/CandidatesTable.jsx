@@ -31,6 +31,8 @@ var CandidatesTable = React.createClass({
 
 		var hasIncumbent = _.find(reportingUnit.results, {incumbent: true});
 
+		var isUncontested = candidates.length < 2;
+
 		// next, sort results by vote_count desc
 		candidateSummaries = _.chain(reportingUnit.results)
 			.sortBy(function(result) {
@@ -75,15 +77,28 @@ var CandidatesTable = React.createClass({
 			<Precincts reportingUnit={reportingUnit} hasIncumbent={hasIncumbent} isLite={isLite} />
 		);
 
-		var theadRows = isLite ? (<tr>
-			<th className='candidate-name'></th>
-			<th className='candidate-votes'></th>
-		</tr>) : (<tr>
-			<th className='candidate-name'></th>
-			<th className='candidate-percent'></th>
-			<th className='candidate-bar'></th>
-			<th className='candidate-votes'></th>
-		</tr>);
+		var theadRows;
+
+		if (isUncontested) {
+			theadRows = <tr>
+				<th className='candidate-name'></th>
+				<th className='candidate-uncontested'></th>
+			</tr>;
+		} else {
+			if (isLite) {
+				theadRows = <tr>
+					<th className='candidate-name'></th>
+					<th className='candidate-votes'></th>
+				</tr>;
+			} else {
+				theadRows = <tr>
+					<th className='candidate-name'></th>
+					<th className='candidate-percent'></th>
+					<th className='candidate-bar'></th>
+					<th className='candidate-votes'></th>
+				</tr>;
+			}
+		}
 
 		return (
 			<table className='candidates-table'>

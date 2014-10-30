@@ -39,14 +39,17 @@ var TownResults = React.createClass({
 
 				var moment = Moment(race.election_date);
 				var displayDate = moment.format('YYYY-MM-DD');
+				var isUncontested = race.candidates.length < 2;
 
 				var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + race.office_name + '/' + race.seat_name;
+
+				var button = !isUncontested ? <a href={url}><button className='go-to-full-results'>Go to full results</button></a> : null;
 
 				return (
 					<div className='town' key={race.race_number}>
 						<Title name={util.raceName(race)} />
 						<Summary results={race} />
-						<a href='{url}'><button className='go-to-full-results'>Go to full results</button></a>
+						{button}
 					</div>
 				);
 			})
