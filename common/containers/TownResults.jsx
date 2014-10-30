@@ -21,7 +21,7 @@ var TownResults = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiCallback: function() {
-		var callback = [this.props.town, this.props.state, this.props.date].join('').replace(/ /g, '').replace(/-/g, '');
+		var callback = [this.props.town, this.props.state, this.props.date].join('');
 		return callback;
 	},
 

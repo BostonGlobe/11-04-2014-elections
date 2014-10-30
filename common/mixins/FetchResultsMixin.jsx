@@ -30,7 +30,7 @@ var FetchResultsMixin = {
 		var apiCallbackFunc = this.apiCallback ?
 			this.apiCallback() :
 			this.defaultApiCallback();
-		var apiCallback = '_' + apiCallbackFunc;
+		var apiCallback = '_' + apiCallbackFunc.replace(/\W/g, '');
 
 		window[apiCallback] = function(json) {
 
