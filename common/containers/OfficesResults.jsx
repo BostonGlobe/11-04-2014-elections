@@ -87,6 +87,10 @@ var OfficesResults = React.createClass({
 						<Title name={ordinalAndTowns.towns} number={ordinalAndTowns.number} ordinal={ordinalAndTowns.ordinal} />
 						<Summary results={race} />
 						{button}
+						<div className='election-related-story'>
+							<span className='election-related-overline'>More governor coverage</span>
+							<a href=''>Related election headline goes here just like this</a>
+						</div>
 					</div>
 				);
 			})
