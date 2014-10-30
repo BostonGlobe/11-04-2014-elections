@@ -62,10 +62,12 @@ var DetailedResults = React.createClass({
 			{tooltip}
 		</div> : null;
 
+		var title = results ? <Title isHeader={true} name={util.raceTitle(results)} /> : null;
+
 		return (
 			<div className='detailed-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<Title isHeader={true} name={[this.props.date, util.raceName(results)].join(' ')} />
+				{title}				
 				<ShareTools />
 				<Summary results={results} />
 				{choropleth}

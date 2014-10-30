@@ -1,11 +1,47 @@
 module.exports = {
 
+	sentenceStyle: function(s) {
+		return _.first(s).toUpperCase() + _.rest(s).join('').toLowerCase();
+	},
+
+	titleCase: function(str) {
+	    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	},
+
+	raceTitle: function(results) {
+
+		var title;
+		var seat = results.seat_name;
+		var office = results.office_name;
+		var state = this.standardizeState(results.state_postal);
+
+		// seat, e.g. County commissioner -> County commissioner, Bristol, Mass.
+		if (seat.length) {
+
+			title = [this.sentenceStyle(office), this.titleCase(seat), state].join(', ');
+
+		} else {
+			// no seat, e.g. Governor -> Mass. governor
+			title = [state, office.toLowerCase()].join(' ');
+		}
+
+		return title;
+	},
+
 	officeToUrl: function(office) {
 		return this.standardizeOffice(office);
 	},
 
 	seatToUrl: function(seat) {
 		return this.standardizeSeat(seat);
+	},
+
+	standardizeState: function(state) {
+
+		return state ? {
+			'MA': 'Mass.',
+			'NH': 'NH'
+		}[state] : '';
 	},
 
 	standardizeOffice: function(office) {
@@ -20,28 +56,28 @@ module.exports = {
 		console.log(JSON.stringify(value, null, 4));
 	},
 
-	raceName: function(race) {
+	// raceName: function(race) {
 
-		var display = '';
+	// 	var display = '';
 
-		if (race) {
+	// 	if (race) {
 
-			var date = Date(race.election_date);
+	// 		var date = Date(race.election_date);
 
-			var primary = race.race_type === 'Primary' ? race.race_type_id + ' primary' : null;
+	// 		var primary = race.race_type === 'Primary' ? race.race_type_id + ' primary' : null;
 
-			var name = _.chain([race.office_name, race.seat_name, primary])
-				.filter(function(v) {
-					return v;
-				})
-				.value()
-				.join(' - ');
+	// 		var name = _.chain([race.office_name, race.seat_name, primary])
+	// 			.filter(function(v) {
+	// 				return v;
+	// 			})
+	// 			.value()
+	// 			.join(' - ');
 
-			display = name;
-		}
+	// 		display = name;
+	// 	}
 
-		return display;
-	},
+	// 	return display;
+	// },
 
 	raceTypeIDToParty: function(race_type_id) {
 		return {
