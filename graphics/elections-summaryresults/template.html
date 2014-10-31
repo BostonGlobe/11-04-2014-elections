@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]> <html lang="en" class="ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en" class="ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html lang="en" class="ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+    var methode = {};
+    methode.freeviewCount = 0;
+    methode.freeviewCountIncremented = false;
+    methode.showPaywall = false;
+    methode.subscribed = false;
+    methode.debug = false;
+
+    window.globe = window.globe || {};
+    globe.hashes = {};
+    globe.hashes.js = "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    globe.hashes.css = "99e609918a416b448db50024f9858e371116316b"
+    </script>
+    <!-- / -->
+    <title>The Boston Globe</title>
+    <!-- Methode uuid: "483d0324-acb5-11e0-b0f1-7f46ddf534c2" -->
+    <!-- <meta name="eomportal-instanceid" content="15"/>
+<meta name="eomportal-id" content="1"/>
+<meta name="eomportal-loid" content="1.0.123723696"/>
+<meta name="eomportal-uuid" content="483d0324-acb5-11e0-b0f1-7f46ddf534c2"/>
+<meta name="eomportal-lastUpdate" content="Fri Oct 31 12:32:36 EDT 2014"/>
+-->
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="A leading news source for Massachusetts, breaking news, business, sports, health, arts & entertainment, politics, education, cars, jobs, real estate & more." />
+    <meta property="og:title" content="The Boston Globe" />
+    <meta property="og:site_name" content="BostonGlobe.com" />
+    <meta property="fb:admins" content="100001044693856,507486035" />
+    <meta property="fb:app_id" content="103933749691726" />
+    <meta property="article:publisher" content="https://www.facebook.com/globe" />
+    <meta http-equiv="Refresh" content="900;url=?refresh=true">
+    <!-- sDate Sun Aug 25 00:01:00 EDT 2013-->
+    <!-- eDate Mon Aug 26 23:59:00 EDT 2013-->
+    <!-- current date is Fri Oct 31 12:34:22 EDT 2014-->
+    <meta property="flashsale" id="flashsale" content="false" />
+    <link rel="apple-touch-icon" href="//c.o0bg.com/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/bookmark-114.png" />
+    <link rel="shortcut icon" type="image/gif" href="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/favicon.ico" />
+
+    <!-- override section by workfolder-->
+    <!--[if gte IE 9 ]> 
+    <meta name="application-name" content="Homepage"/>
+    <meta name="msapplication-tooltip" content="This is the tooltip"/>
+    <meta name="msapplication-starturl" content="/?comp=9"/>
+    <![endif]-->
+
+    <!--[if lte IE 8 ]>
+    <meta name="application-name" content="Boston Globe"/> 
+    <meta name="msapplication-TileColor" content="#000000"/> 
+    <meta name="msapplication-TileImage" content="25a75e8d-4542-40a4-80aa-253aea7efc28.png"/> 
+    <link rel="stylesheet" media="print" href="/css/hash/99e609918a416b448db50024f9858e371116316b/dist/globe-ie-print.css" type="text/css" />
+    <![endif]-->
+
+    <meta property="twitter:account_id" content="95431448" />
+    <meta name="robots" content="noarchive" />
+    <meta name="description" content="A leading news source for Massachusetts, breaking news, business, sports, health, arts & entertainment, politics, education, cars, jobs, real estate & more." />
+    <meta name="keywords" content="" />
+    <meta name="news_keywords" content="" />
+    <meta property="og:url" content="https://www.bostonglobe.com" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="BostonGlobe">
+    <meta property="og:image" content="http://c.o0bg.com/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/logo-bg-small-square.jpg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/css/hash/99e609918a416b448db50024f9858e371116316b/dist/globe-basic.css" id="basic-css">
+    <!--[if gte IE 6]><link href="/css/html5reset.css,globe-globals.css,globe-masthead.css,globe-nav.css,globe-nav-menus.css,globe-saved.css,globe-main.css,globe-footer.css,globe-print.css" rel="stylesheet"><![endif]-->
+    <!--[if !IE]><link href="/css/hash/99e609918a416b448db50024f9858e371116316b/dist/html5reset.css,dist/globe-globals.css,dist/globe-masthead.css,dist/globe-nav.css,dist/globe-nav-menus.css,dist/globe-saved.css,dist/globe-main.css,dist/globe-footer.css,dist/globe-print.css" rel="stylesheet" media="only all"><![endif]-->
+    <link rel="stylesheet" type="text/css" href="/css/hash/99e609918a416b448db50024f9858e371116316b/dist/globe-trialHeaders.css" id="trial-banner-css">
+    <script src="/js/hash/da39a3ee5e6b4b0d3255bfef95601890afd80709/dist/lib/rwd-images.js,dist/lib/respond.min.js,dist/lib/modernizr.custom.min.js,dist/globe-define.js,dist/globe-controller.js"></script>
+    <script type="text/javascript" title="https://iconizr.com | © 2014 Joschi Kuphal | MIT">
+    ! function() {
+        var a = window,
+            b = a.document,
+            c = arguments,
+            d = "createElementNS",
+            e = "http://www.w3.org/",
+            f = "svg",
+            g = function(a) {
+                var g = b.getElementsByTagName("script")[0],
+                    h = b.createElement("link");
+                h.rel = "stylesheet", h.type = "text/css", h.href = c[1 * a | 2 * (b[d] && b[d](e + "2000/" + f, f).createSVGRect && b.implementation.hasFeature(e + "TR/SVG11/feature#Image", "1.1"))], g.parentNode.insertBefore(h, g)
+            },
+            h = new a.Image;
+        h.onerror = function() {
+            g(0)
+        }, h.onload = function() {
+            g(1 === h.width && 1 === h.height)
+        }, h.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+    }("/css/icon-png-sprite.css", "/css/icon-png-data.css", "/css/icon-svg-sprite.css", "/css/icon-svg-data.css");
+    </script>
+    <noscript>
+        <link href="/css/hash/99e609918a416b448db50024f9858e371116316b/dist/icon-png-sprite.css" rel="stylesheet" type="text/css" media="all">
+    </noscript>
+    <script src="/js/hash/da39a3ee5e6b4b0d3255bfef95601890afd80709/dist/lib/jquery.js,dist/lib/magnific.js,dist/lib/lo-dash-custom-2.4.1.js,dist/globe-modal-meter.js,dist/globe-newsletter.js"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="/css/hash/99e609918a416b448db50024f9858e371116316b/dist/html5reset.css,dist/globe-globals.css,dist/globe-masthead.css,dist/globe-nav.css,dist/globe-nav-menus.css,dist/globe-main.css,dist/globe-footer.css,dist/globe-trialHeaders.css,dist/modal-login.css,dist/globe-polldaddy.css,dist/article.css,dist/gallery.css,dist/shame.css,dist/state.css" />
+    <link rel="stylesheet" type="text/css" media="print" href="/css/hash/99e609918a416b448db50024f9858e371116316b/dist/globe-print.css" />
+    <!-- webtype is dwp_homepage section is / adPageType sectfront oas_sitepage www.bostonglobe.com/homepage-->
+
+    <style>@font-face{font-family:"Benton Sans Black";src:url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/BentonSans-Black/cd378061-6625-4ff0-8a52-906e943df050-2.eot") format("eot");src:url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/BentonSans-Black/cd378061-6625-4ff0-8a52-906e943df050-2.eot?iefix") format("eot"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/BentonSans-Black/cd378061-6625-4ff0-8a52-906e943df050-3.woff") format("woff"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/BentonSans-Black/cd378061-6625-4ff0-8a52-906e943df050-1.ttf") format("truetype"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/BentonSans-Black/cd378061-6625-4ff0-8a52-906e943df050-4.svg") format("svg")}@font-face{font-family:"Benton Sans Bold";src:url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/BentonSans-Bold/79e52a98-c6b6-4ed0-a074-409e1de09fd6-2.eot") format("eot");src:url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/BentonSans-Bold/79e52a98-c6b6-4ed0-a074-409e1de09fd6-2.eot?iefix") format("eot"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/BentonSans-Bold/79e52a98-c6b6-4ed0-a074-409e1de09fd6-3.woff") format("woff"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/BentonSans-Bold/79e52a98-c6b6-4ed0-a074-409e1de09fd6-1.ttf") format("truetype"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/BentonSans-Bold/79e52a98-c6b6-4ed0-a074-409e1de09fd6-4.svg") format("svg")}@font-face{font-family:"Miller Headline Roman";src:url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerHeadline/4d418a22-c167-4249-be16-b789d221d18d-2.eot") format("eot");src:url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerHeadline/4d418a22-c167-4249-be16-b789d221d18d-2.eot?iefix") format("eot"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerHeadline/4d418a22-c167-4249-be16-b789d221d18d-3.woff") format("woff"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerHeadline/4d418a22-c167-4249-be16-b789d221d18d-1.ttf") format("truetype"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerHeadline/4d418a22-c167-4249-be16-b789d221d18d-4.svg") format("svg")}@font-face{font-family:"Miller Headline Bold";src:url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerHeadline-Bold/3c91bd2d-bc82-4bba-944e-ab157bcdeae2-2.eot") format("eot");src:url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerHeadline-Bold/3c91bd2d-bc82-4bba-944e-ab157bcdeae2-2.eot?iefix") format("eot"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerHeadline-Bold/3c91bd2d-bc82-4bba-944e-ab157bcdeae2-3.woff") format("woff"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerHeadline-Bold/3c91bd2d-bc82-4bba-944e-ab157bcdeae2-1.ttf") format("truetype"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerHeadline-Bold/3c91bd2d-bc82-4bba-944e-ab157bcdeae2-4.svg") format("svg")}@font-face{font-family:"Miller Globe Headline CondLarge";src:url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerGlobeHead-CondLarge/07ac6474-5c01-4c20-adf5-813ccbd172de-2.eot") format("eot");src:url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerGlobeHead-CondLarge/07ac6474-5c01-4c20-adf5-813ccbd172de-2.eot?iefix") format("eot"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerGlobeHead-CondLarge/07ac6474-5c01-4c20-adf5-813ccbd172de-3.woff") format("woff"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerGlobeHead-CondLarge/07ac6474-5c01-4c20-adf5-813ccbd172de-1.ttf") format("truetype"),url("/rw/SysConfig/WebPortal/BostonGlobe/Framework/type/MillerGlobeHead-CondLarge/07ac6474-5c01-4c20-adf5-813ccbd172de-4.svg") format("svg")}
+/*# sourceMappingURL=globe-fonts.css.map */</style>
+    <link rel='stylesheet' type="text/css" href='http://cache.boston.com/multimedia/graphics/projectFiles/lib/css/0.0.3/common.css'></link>
+    @@include('html/css.html')
+
+    <script>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function() {
+        var gads = document.createElement("script");
+        gads.async = true;
+        gads.type = "text/javascript";
+        var useSSL = "https:" == document.location.protocol;
+        gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
+        var node = document.getElementsByTagName("script")[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+    </script>
+
+
+
+    <script>
+    globe.dfp.keyValuePairs = {
+        s1: 'bostonglobe.com',
+        s2: 'homepage',
+        s3: '',
+        s4: '',
+        pgtype: 'sectfront',
+        pageurl: '',
+        freetrial: "n",
+        logstat: "n",
+        sub: "n",
+        meta: "",
+        weather: "",
+        temp: ""
+    }
+    globe.dfp.adUnit = 'bostonglobe.com/homepage';
+    </script>
+    <script src="//cdn.optimizely.com/js/124489811.js"></script>
+    <script type="text/javascript">
+    var aam_optimizely = function(data) {
+        var json = JSON.stringify(data, undefined, 2),
+            obj = JSON && JSON.parse(json) || window.jQuery.parseJSON(json);
+
+        for (var i = 0; i < obj.stuff.length; i++) {
+            var current = obj.stuff[i];
+
+            if (current.cn == "aam_optimizely") {
+                var audiences = current.cv;
+                if (audiences) {
+                    window['optimizely'] = window['optimizely'] || [];
+                    var segArray = audiences.split('aam=')[1].
+                    split(',');
+
+                    for (var j = 0; j < segArray.length; j++) {
+                        window['optimizely'].push(['addToSegment', segArray[j]]);
+                        window['optimizely'].push(['trackEvent', window.location.href]);
+                    }
+                }
+            }
+        }
+    }
+    var getAudiences = function() {
+        var url = 'http://bostonglobe.demdex.net/event?d_stuff=1&d_dst=1&d_rtbd=json&d_cb=aam_optimizely';
+        var tempScriptTag = document.createElement('script');
+
+        tempScriptTag.type = 'text/javascript';
+        tempScriptTag.src = url;
+        document.head.appendChild(tempScriptTag);
+    }
+    getAudiences();
+    </script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="type-home">
+
+
+    <!-- empty statusBar  -->
+    <a href="http://digitalaccess.bostonglobe.com/da/33/?eglobe_rc=WW113960&p1=BGMessageBar" class="global-bar bar-yellow" onClick="var s=s_gi('nytbostonglobecom,nytbgglobal');s.tl(this,'o','BG Header - Smart Bar');">   
+            Read as much as you want on BostonGlobe.com, anywhere and anytime, for just 99¢.
+</a>
+    <div id="contain">
+
+        <!-- Page header -->
+        <div class="masthead-spacer"></div>
+        <header id="masthead">
+            <div class="logo-bg">
+
+                <h1>
+                    <a href="/">
+                        <img src="//c.o0bg.com/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/logo-bg.png" alt="The Boston Globe" />
+                    </a>
+                </h1>
+                <p class="bg-issuedate">
+                    <time datetime="2014-10-31">
+                        <span class="day">Friday,</span>
+                        October 31, 2014</time>
+                </p>
+            </div>
+            <div class="weather">
+                <div class="weather-info">
+                    <a href="tmpl-weather.html#bg-forecast" class="weather-info-link" data-after="/Fragment/SysConfig/WebPortal/BostonGlobe/Framework/frameset/header/weather-forecast.jpt" data-target="#masthead">
+                        <h2 class="a11y-only">Weather:</h2>
+                        <img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/weather/07s.gif" alt="Cloudy">
+                        <p>
+                            <span class="weather-temp">51
+                                <span>&deg;</span>
+                            </span>
+                            <span class="weather-cond">Cloudy</span>
+                        </p>
+                    </a>
+                    <nav>
+                        <ul>
+                            <li class="last"><a class="traffic" href="http://www.boston.com/news/traffic">Traffic</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- /end a.weather-info -->
+            </div>
+            <!-- /end .weather -->
+            <div class="bg-high-value">
+                <p>
+                    <a class="bostoncom" href="http://www.boston.com/?p1=BGHeader_BComLogo"><b>Boston.com</b></a>
+                </p>
+                <div class="bg-classifieds mini-menu">
+                    <nav>
+                        <p class="title">Classifieds<i>:</i>
+                        </p>
+
+                        <ul>
+                            <li><a href="http://www.boston.com/cars/?p1=BGHeader_Cars">Cars</a>
+                            </li>
+                            <li><a href="http://www.boston.com/jobs/?p1=BGHeader_Jobs">Jobs</a>
+                            </li>
+                            <li class="last"><a href="http://www.boston.com/realestate/?p1=BGHeader_RE">Real Estate</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <nav class="utils">
+                <p class="a11y-only no-border"><a class="top" href="/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/final-login.jsp?p1=BGHeader_LogIn" onClick="var s=s_gi('nytbostonglobecom');s.linkTrackVars='eVar27,events';s.linkTrackEvents='event15';s.eVar27='BG Header';s.events='event15';s.tl(this,'o','BG Header - Log In');">Log In</a>
+                </p>
+                <ul>
+                    <li class="headerSubscribeTag no-border">Subscribe:</li>
+                    <li class="headerSubscribe mobile-consolidated"><a href="http://digitalaccess.bostonglobe.com/da/2/1?eglobe_rc=WW111946&amp;globe_rc=WW111947&amp;p1=BGHeader_DigitalSubscription" onClick="var s=s_gi('nytbostonglobecom');s.linkTrackVars='eVar25,events';s.linkTrackEvents='event13';s.eVar25='BG Header';s.events='event13';s.tl(this,'o','BG Header - Subscribe');">Subscribe</a>
+                    </li>
+                    <li class="headerSubscribe"><a href="http://digitalaccess.bostonglobe.com/da/2/1?eglobe_rc=WW111946&amp;globe_rc=WW111947&amp;p1=BGHeader_DigitalSubscription" onClick="var s=s_gi('nytbostonglobecom');s.linkTrackVars='eVar25,events';s.linkTrackEvents='event13';s.eVar25='BG Header';s.events='event13';s.tl(this,'o','BG Header - Subscribe');">Digital</a>
+                    </li>
+                    <li class="headerSubscribe"><a href="http://homedelivery.bostonglobe.com/hd/control/order/zip/?rc=WW011964&amp;p1=BGHeader_HomeDeliverySubscription" onClick="var s=s_gi('nytbostonglobecom');s.linkTrackVars='eVar25,events';s.linkTrackEvents='event13';s.eVar25='BG Header';s.events='event13';s.tl(this,'o','BG Header - Subscribe');">Home Delivery</a>
+                    </li>
+                    <li class="my-account logged-out"><a class="top" href="https://www.bostonglobe.com/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/final-login.jsp?p1=BGHeader_LogIn" onClick="var s=s_gi('nytbostonglobecom');s.linkTrackVars='eVar27,events';s.linkTrackEvents='event15';s.eVar27='BG Header';s.events='event15';s.tl(this,'o','BG Header - Log In');">Log In</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="nav-primary">
+                <form action="/search" class="search bg-search-primary" method="post">
+                    <fieldset>
+                        <label for="q">
+                            Search
+                        </label>
+                        <div class="search-inputs">
+                            <div>
+                                <input type="text" class="search" name="search" id="q" placeholder="Search" />
+                                <input type="submit" class="submit" value="Go" />
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+
+                <nav class="sections" data-menu-content="/Fragment/SysConfig/WebPortal/BostonGlobe/Framework/ajaxsamples/global-nav-menus.jpt">
+                    <h1 class="sections-heading">Sections</h1>
+                    <ul>
+                        <li class="news" data-section="news"><a href="/">News</a>
+                        </li>
+                        <li class="metro" data-section="metro"><a href="/metro">Metro</a>
+                        </li>
+                        <li class="arts" data-section="arts"><a href="/arts">Arts</a>
+                        </li>
+                        <li class="business" data-section="business"><a href="/business">Business</a>
+                        </li>
+                        <li class="sports" data-section="sports"><a href="/sports">Sports</a>
+                        </li>
+                        <li class="opinion" data-section="opinion"><a href="/opinion">Opinion</a>
+                        </li>
+                        <li class="politics" data-section="politics"><a href="/news/politics">Politics</a>
+                        </li>
+                        <li class="lifestyle" data-section="lifestyle"><a href="/lifestyle">Lifestyle</a>
+                        </li>
+                        <li class="magazine" data-section="magazine"><a href="/magazine">Magazine</a>
+                        </li>
+                        <li class="insiders" data-section="insiders"><a href="/insiders">Insiders</a>
+                        </li>
+                        <li class="todayspaper" data-section="todayspaper"><a href="/todayspaper">Today's Paper</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </header>
+        <!-- Page header ends -->
+
+
+        <div class="ad billboard" id="ad_outofpage2"></div>
+        <!-- /end .ad -->
+
+        <div class="mod live-update">
+        </div>
+        <!-- /live-update -->
+
+        <div id="main" role="main">
+            <div class="mod bg-home-lead">
+                <div class="col bg-col-ab">
+
+                    <div class="stories-top">
+
+
+                        <div class="mod dl-bottom">
+
+                            <div class="story main-story saveable">
+                                <p class="hed-cat">
+                                </p>
+                                <a href="/metro/2014/10/31/downtown-crossing-makeshift-memorial-visited-those-mourning-thomas-menino/3srEAE7KePgrJJxVJtkhiN/story.html" data-uuid="bd71cce0-610e-11e4-bd74-d3b429d7ddab" class="story-perm">
+                                    <h1 class="story-title big-hed">Mourners pay respects to Menino</h1>
+                                </a>
+
+                                <div class="group p-less">
+
+                                    <div class="excerpt">
+                                        <p>At Downtown Crossing, a diverse group of people took the time to pause at a memorial for the former mayor.
+                                            <time datetime="2014-10-31T11:30:20" class="stamp" data-pubtime="20141031153020">&nbsp;</time>
+                                        </p>
+                                    </div>
+
+                                    <ul class="related-stories">
+                                        <li><a href="/metro/2014/10/31/downtown-crossing-makeshift-memorial-visited-those-mourning-thomas-menino/3srEAE7KePgrJJxVJtkhiN/picture.html" class="icon ico-pic">Photos: Boston mourns Menino</a>
+                                        </li>
+                                        <li><a href="/metro/2014/10/30/boston-residents-recall-thomas-menino-city-longest-serving-mayor/9JQcSea2lJlaztSnPyxoLL/story.html" class="">Tears, memories of Menino flow</a>
+                                        </li>
+                                        <!-- raw hyperlink -->
+                                        <!-- related headline == '' -->
+                                    </ul>
+                                    <!-- /end .related-stories -->
+                                </div>
+                                <div class="group-alt p-more">
+
+                                    @@include('html/html.html')
+                                    @@include('html/js.html')
+
+                                    <div class="story first-story">
+
+                                        <a href="http://www.bostonglobe.com/2014/10/30/boston-through-menino-eyes/DKr6OQyerDEttM6Fa1lfbP/story.html" data-uuid="c05261f0-608b-11e4-bd74-d3b429d7ddab" class="story-perm">
+
+                                            <div class="figure lead-figure">
+                                                <img src="//www.bostonglobe.com/rf/image_r/Boston/2011-2020/2014/03/16/BostonGlobe.com/Metro/Images/maeda_menino_met.r.jpg" data-fullsrc="//c.o0bg.com/rf/image_585w/Boston/2011-2020/2014/03/16/BostonGlobe.com/Metro/Images/maeda_menino_met.jpg" alt="
+
+">
+                                                <div class="figcaption">
+                                                    <p class="credit">Wendy Maeda/Globe Staff
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p class="hed-cat">Multimedia</p>
+                                            <h2 class="story-title">Menino in his own words</h2>
+                                        </a>
+
+                                        <div class="excerpt">
+                                            <p>A look at the former mayor&rsquo;s life and history in Boston through speeches and interviews he gave over the years.
+                                                <time datetime="2014-10-30T19:23:26" class="stamp" data-pubtime="20141030232326">&nbsp;</time>
+                                            </p>
+                                        </div>
+
+                                        <ul class="related-stories">
+                                            <!-- raw hyperlink -->
+                                            <!-- related headline == '' -->
+                                        </ul>
+                                        <!-- /end .related-stories -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /end .story -->
+
+                            <div class="group p-less">
+                                <div class="story">
+                                    <p class="hed-cat">Obituary</p>
+                                    <h2 class="story-title">
+                                        <a href="http://www.bostonglobe.com/metro/2014/10/30/thomas-menino-boston-longest-serving-mayor-has-died-age/zAuWXQ4ccPJSv7uuW0kcDK/story.html" data-uuid="92d8648e-604c-11e4-bd74-d3b429d7ddab" class="story-perm">
+                                            <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/30/BostonGlobe.com/Metro/Images/mayor22].jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/30/BostonGlobe.com/Metro/Images/mayor22].jpg"></i>
+                                            Menino, who reshaped city, dies at 71</a>
+                                    </h2>
+                                    <div class="excerpt">
+                                        <p>Thomas Menino molded the city&rsquo;s skyline &mdash; and its very identity &mdash; through an unprecedented five consecutive terms.
+                                            <time datetime="2014-10-30T11:51:11" class="stamp" data-pubtime="20141030155111">&nbsp;</time>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="story">
+                                    <p class="hed-cat">
+                                    </p>
+                                    <h2 class="story-title">
+                                        <a href="/metro/2014/10/31/menino-cast-absentee-ballot-upcoming-election/dF6CeR53bbXZUcErwoXegN/story.html" data-uuid="bc5b70c0-6101-11e4-bd74-d3b429d7ddab" class="story-perm">
+                                            <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/31/BostonGlobe.com/Metro/Images/menino150-8369.jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/31/BostonGlobe.com/Metro/Images/menino150-8369.jpg"></i>
+                                            Menino still managed to fill out his absentee ballot</a>
+                                    </h2>
+                                    <div class="excerpt">
+                                        <p>The former mayor&rsquo;s effort underscored &ldquo;the importance of voting,&rdquo; said longtime spokeswoman Dot Joyce.
+                                            <time datetime="2014-10-31T09:28:00" class="stamp" data-pubtime="20141031132800">&nbsp;</time>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="mod l-60-40">
+
+                            <div class="group p-more">
+                                <div class="story">
+                                    <p class="hed-cat">
+                                    </p>
+                                    <h2 class="story-title">
+                                        <a href="/metro/2014/10/31/maine-asking-court-limit-movements-nurse-kaci-hickox/9tGSogqyPYlu3Vq7WjG84L/story.html" data-uuid="879dc7f0-6108-11e4-bd74-d3b429d7ddab" class="story-perm">
+                                            <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/31/BostonGlobe.com/Metro/Images/hickox150-8376.jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/31/BostonGlobe.com/Metro/Images/hickox150-8376.jpg"></i>
+                                            Temporary court order restricts movement of nurse</a>
+                                    </h2>
+                                    <div class="excerpt">
+                                        <p>Kaci Hickox repeatedly defied Maine&rsquo;s quarantine for medical workers who have treated Ebola patients.
+                                            <time datetime="2014-10-31T11:25:23" class="stamp" data-pubtime="20141031152523">&nbsp;</time>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="story">
+
+                                    <a href="/lifestyle/health-wellness/2014/10/31/brittany-maynard-dilemma-choosing-right-time-die/1h0D0mDpVwMhoXrKUvYruK/story.html" data-uuid="615132e8-610e-11e4-bd74-d3b429d7ddab" class="story-perm">
+
+                                        <div class="figure lead-figure">
+                                            <img src="//www.bostonglobe.com/rf/image_r/Boston/2011-2020/2014/10/31/BostonGlobe.com/HealthScience/Images/maynard-cut-300.r.jpg" data-fullsrc="//c.o0bg.com/rf/image_460w/Boston/2011-2020/2014/10/31/BostonGlobe.com/HealthScience/Images/maynard-cut-300.jpg" alt="
+">
+                                            <div class="figcaption">
+                                                <p class="credit">AP Photo/Maynard Family, FILE
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <p class="hed-cat">Daily Dose</p>
+                                        <h2 class="story-title">Brittany Maynard struggles with choosing time to die</h2>
+                                    </a>
+
+                                    <div class="excerpt">
+                                        <p>In a new video, the 29-year-old terminally ill brain cancer patient said she may not end her life on Nov. 1, as originally planned.
+                                            <time datetime="2014-10-31T10:58:30" class="stamp" data-pubtime="20141031145830">&nbsp;</time>
+                                        </p>
+                                    </div>
+
+                                    <ul class="related-stories">
+                                        <!-- raw hyperlink -->
+                                        <!-- related headline == '' -->
+                                        <!-- raw hyperlink -->
+                                        <!-- related headline == '' -->
+                                        <!-- raw hyperlink -->
+                                        <!-- related headline == '' -->
+                                    </ul>
+                                    <!-- /end .related-stories -->
+                                </div>
+                                <div class="story">
+                                    <p class="hed-cat">
+                                    </p>
+                                    <h2 class="story-title">
+                                        <a href="/news/nation/2014/10/31/gaunt-and-battered-suspect-trooper-ambush-appears-court/LKr76gBlBsQgexGkiEoMfN/story.html" data-uuid="bbacf730-6114-11e4-bd74-d3b429d7ddab" class="story-perm">
+                                            <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/31/BostonGlobe.com/National/Images/frein150-1319.jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/31/BostonGlobe.com/National/Images/frein150-1319.jpg"></i>
+                                            Suspect in Pa. trooper ambush appears in court</a>
+                                    </h2>
+                                    <div class="excerpt">
+                                        <p>Eric Frein, who appeared to have a bloody gash on his nose and abrasions on his cheek and above his right eye, remains jailed without bail.
+                                            <time datetime="2014-10-31T11:43:58" class="stamp" data-pubtime="20141031154358">&nbsp;</time>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="story">
+                                    <p class="hed-cat">
+                                    </p>
+                                    <h2 class="story-title">
+                                        <a href="/metro/2014/10/31/that-letter-future-golden-lion-time-capsule-was-blank/ppDna55Awd2fazyAqFNaQK/story.html" data-uuid="514593d0-6113-11e4-bd74-d3b429d7ddab" class="story-perm">
+                                            <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/31/BostonGlobe.com/Metro/Images/rathe_capsule_met11-8388.jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/31/BostonGlobe.com/Metro/Images/rathe_capsule_met11-8388.jpg"></i>
+                                            Envelope in time capsule labeled ‘letter to posterity’ was empty</a>
+                                    </h2>
+                                    <div class="excerpt">
+                                        <p>&ldquo;We think they did it as a joke,&rdquo; a Bostonian Society spokeswoman said of the empty envelope.
+                                            <time datetime="2014-10-31T11:33:52" class="stamp" data-pubtime="20141031153352">&nbsp;</time>
+                                        </p>
+                                    </div>
+                                </div>
+                                <style>
+                                .capital-logo {
+                                    font-family: 'Benton Sans', Helvetica, Arial, sans-serif;
+                                    font-size: 24px;
+                                    font-weight: bold;
+                                    line-height: 1.2;
+                                    text-align: center;
+                                    margin-bottom: 15px;
+                                }
+                                .capital-logo span {
+                                    font-size: 11px;
+                                    font-family: Helvetica, Arial, sans-serif;
+                                    font-weight: normal;
+                                    text-transform: uppercase;
+                                }
+                                .capital-logo a {
+                                    text-decoration: none;
+                                    color: #666;
+                                }
+                                .capital-logo img {
+                                    max-width: 18px;
+                                }
+                                </style>
+                                <div class="capital-logo">
+                                    <a href="/news/politics">Capit<img src="http://cache.boston.com/multimedia/graphics/projectFiles/2014/06/politics/img/dome.png">l<span> </span></a>
+                                </div>
+                                <div class="story">
+                                    <h2 class="story-title">
+                                        <a href="http://www.bostonglobe.com/2014/10/30/how-congress-interacts-twitter/LoAAnEClYSgbIF6YltzinN/story.html" data-uuid="46475966-6102-11e4-bd74-d3b429d7ddab" class="story-perm">
+                                            <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/31/BostonGlobe.com/Politics/Images/nodes.jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/31/BostonGlobe.com/Politics/Images/nodes.jpg"></i>
+                                            How Congress connects on Twitter</a>
+                                    </h2>
+                                    <div class="excerpt">
+                                        <p>Is Congress truly polarized? Here&rsquo;s how the House and Senate interact on Twitter.
+                                            <time datetime="2014-10-31T09:31:51" class="stamp" data-pubtime="20141031133151">&nbsp;</time>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group-alt p-less">
+
+                                <!-- medal count -->
+                                <div class="pol2012-leaderboard">
+
+                                    <h2 class="hed-section">Memorials for Thomas M. Menino</h2>
+                                    <div class="story">
+
+
+
+                                        <div class="pol2012-leaderboard-main-result">
+                                            <table>
+
+
+                                                <tbody>
+
+                                                    <!--
+            ************************************
+            
+            First place
+            
+            ************************************
+            -->
+
+
+
+
+
+
+
+
+                                                    <tr scope="row" class="primary">
+                                                        <td class="pol2012-state">
+                                                            <p>
+                                                                <strong>Sunday</strong>
+                                                            </p>
+                                                            <p>10 a.m.: Lying in state at Faneuil Hall</p>
+                                                        </td>
+
+
+                                                    </tr>
+                                                    <tr scope="row" class="primary">
+                                                        <td class="pol2012-state">
+                                                            <p>
+                                                                <strong>Monday</strong>
+                                                            </p>
+                                                            <p>12 p.m.: Private Mass at Most Precious Blood Church, 25 Maple St. in Hyde Park</p>
+                                                        </td>
+
+
+                                                    </tr>
+                                                    <tr scope="row" class="primary">
+                                                        <td class="pol2012-state">
+                                                            <p>
+                                                                <strong>Ongoing</strong>
+                                                            </p>
+                                                            <p>Flowers and mementos may be left in City Hall, inside the main entrance, on the City Hall Plaza side.</p>
+                                                            <p>Condolence books will be located in all of the city’s neighborhood libraries and community centers.</p>
+                                                            <p>Letters and cards may be sent to Menino’s office at Boston University, 75 Bay State Road, Boston MA 02215.</p>
+                                                        </td>
+
+
+                                                    </tr>
+                                                    <tr class="pol2012-results-border">
+                                                        <th colspan="100%">
+                                                            <div class="border"></div>
+                                                        </th>
+                                                    </tr>
+
+
+                                                    <tr scope="row" class="primary">
+                                                        <th class="pol2012-state">
+                                                            <a href="http://www.bostonglobe.com/2014/10/30/thankyou/hPIrqKFfpzrlXOheVhaEnN/story.html">
+                                                                <strong>Share Menino memories >></strong>
+                                                            </a>
+                                                        </th>
+
+                                                        <tr class="pol2012-results-border">
+                                                            <th colspan="100%">
+                                                                <div class="border"></div>
+                                                            </th>
+                                                        </tr>
+                                                    </tr>
+                                                    <tr scope="row" class="primary">
+                                                        <th class="pol2012-state">
+                                                            <a href="http://tommenino.org/" target="_blank">
+                                                                <strong>Send condolences >></strong>
+                                                            </a>
+                                                        </th>
+
+
+                                                    </tr>
+
+
+                                                    <!-- <tr scope="row" class="primary">
+                    <td class="pol2012-state"><strong>More coverage:</strong> <a href="http://www.bostonglobe.com/news/politics/senate-2013">The US Senate special election</a></td>
+                    
+                    
+                </tr>  -->
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- end pol2012-leaderboard-main-result -->
+
+                                        <!--
+            ************************************
+            
+            Update time stamp here
+            
+            ************************************
+            -->
+
+
+                                        <ul class="campaign-leaderboard-links">
+                                            <li><i></i>
+                                            </li>
+                                        </ul>
+                                        <ul class="campaign-leaderboard-links">
+                                            <li>
+                                                <a href=""></a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+
+
+                                </div>
+                                <!-- end pol2012-leaderboard -->
+
+
+
+                                <div class="story">
+                                    <p class="hed-cat">Yvonne Abraham</p>
+                                    <h2 class="story-title">
+                                        <a href="/metro/2014/10/30/tom-menino-was-master-heart/vKaPiyfN3a6hTaV1sAjt8L/story.html" data-uuid="899ca154-6057-11e4-bd74-d3b429d7ddab" class="story-perm">
+                                            <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/30/BostonGlobe.com/Metro/Images/abrahamy-8525.jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/30/BostonGlobe.com/Metro/Images/abrahamy-8525.jpg"></i>
+                                            Tom Menino was a master of the heart</a>
+                                    </h2>
+                                    <div class="excerpt">
+                                        <p>His greatness was in the follow-through after critical moments.
+                                            <time datetime="2014-10-30T23:43:40" class="stamp" data-pubtime="20141031034340">&nbsp;</time>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="popular-list">
+                                    <nav>
+                                        <h1 class="hed-cat">More headlines</h1>
+                                        <ol id="most-viewed">
+                                            <li class="saveable">
+                                                <a href="/metro/2014/10/30/residents-and-others-pay-respects-menino-memory-city-hall/fQp9PiliuPQlK4SmnxQITP/story.html" data-uuid="f6fe18ee-60b7-11e4-bd74-d3b429d7ddab">Residents, others pay respects to Menino at City Hall</a>
+                                            </li>
+                                            <li class="saveable">
+                                                <a href="/metro/2014/10/30/mattapan-church-marks-life-boston-mayor/fUTzgi7Re15uvNuc8l3enO/story.html" data-uuid="e0ed97a6-6098-11e4-bd74-d3b429d7ddab">Mattapan church marks the life of Boston’s former mayor</a>
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                                <h2 STYLE="text-align:center; border-width: .5px 0; clear: both; font:  1.7em/1.1 'Benton Sans', Arial, Helvetica, sans-serif; padding: 0.3em 0; margin-bottom: 0.5em;"><a href="http://www.bostonglobe.com/metro/specials/menino">More Menino coverage</a> 
+                                    <img src="http://c.o0bg.com/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/arrow-red-chunky.gif">
+                                </h2>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col bg-col-c">
+
+                    <div class="ad ad-slot-b" id="ad_bigbox1"></div>
+                    <!-- /end .ad -->
+
+                    <div class="mod-b">
+                    </div>
+                    <div class="mod-a">
+                        <div id="tp-section-metro" class="tod-paper-section">
+
+                            <a href="/opinion"></a>
+                            <h2 class="hed-section"><a href="/opinion">Opinion</a>
+                            </h2>
+                            <div class="content">
+
+                                <div class="story">
+                                    <p class="hed-cat">editorial</p>
+                                    <h2 class="story-title">
+                                        <a href="/opinion/editorials/2014/10/30/thomas-menino/dFIbBEk7h4OvOpHXmOZFOM/story.html" data-uuid="91bf6e2a-604d-11e4-bd74-d3b429d7ddab" class="story-perm">
+                                            <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/24/BostonGlobe.com/BigPicture/Images/MENINO/2005%20menino.jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/24/BostonGlobe.com/BigPicture/Images/MENINO/2005%20menino.jpg"></i>
+                                            Boston was Menino’s extended family</a>
+                                    </h2>
+                                    <div class="excerpt">
+                                        <p>The former mayor stood apart as a politician with a common touch and uncommon skill at overcoming obstacles.
+                                            <time datetime="2014-10-30T11:58:19" class="stamp" data-pubtime="20141030155819">&nbsp;</time>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /end .content -->
+                        </div>
+                        <div class="popular-list">
+                            <nav>
+                                <h1 class="hed-cat">More in Opinion</h1>
+                                <ol id="most-viewed">
+                                    <li class="saveable">
+                                        <a href="/opinion/2014/10/30/michael-bloomberg-was-lucky-enough-call-tom-menino-friend/hJ1T6UwKre2b5UqnUjr5sL/story.html" data-uuid="813c84a2-607a-11e4-bd74-d3b429d7ddab">Michael R. Bloomberg: Lucky to call Tom Menino a friend</a>
+                                    </li>
+                                    <li class="saveable">
+                                        <a href="/opinion/2014/10/30/tom-menino-tough-and-beloved-mayor/ZzusARIWFNAXYWOcU6p8HN/story.html" data-uuid="af5e0e3c-6066-11e4-bd74-d3b429d7ddab">Joan Vennochi: The tough — and beloved — mayor</a>
+                                    </li>
+                                    <li class="saveable">
+                                        <a href="/opinion/2014/10/30/tom-menino-brought-childhoods-kids/1R0FHwf3VZbkMKUnFDq6CJ/story.html" data-uuid="2945ed86-6059-11e4-bd74-d3b429d7ddab">Lawrence Harmon: Tom Menino prepared the future for Boston’s kids</a>
+                                    </li>
+                                    <li class="saveable">
+                                        <a href="/opinion/2014/10/30/editorial-cartoon-thomas-menino/DiBpHmWPBjgxBQI5kvTTfN/story.html" data-uuid="bbbb90f0-604d-11e4-bd74-d3b429d7ddab">Editorial cartoon: Remembering Thomas M. Menino</a>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="mod-b">
+                        <div class="bg-newsletter-signup">
+                            <h1 class="bg-newsletter-signup__text--header--red">Today's Headlines Newsletter</h1>
+                            <p class="bg-newsletter-signup__text--subhead">Get the day's top stories delivered to your inbox every morning.</p>
+                            <form action="/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/mc-politics-newsletter-update-action.jsp" class="signup-form" id="newsletter-form" method="post" accept-charset="utf-8">
+                                <input type="email" class="bg-newsletter-signup__input--email--flat" name="username" id="username" required="" placeholder="Enter your email address">
+                                <input checked type="checkbox" value="" name="subscribeNewsletter" id="bg-newsletter-signup__input" class="bg-newsletter-signup__input--checkbox" data-registered-id="5" data-unregistered-id="54">
+                                <label class="bg-newsletter-signup__label--checkbox" for="bg-newsletter-signup__input">Sign me up for Today's headlines</label>
+
+                                <div class="clearfix"></div>
+
+                                <div class="widget-status error invalid-email hidden">
+                                    <img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/error-alert.gif" />
+                                    <span>Please Enter a valid email address.</span>
+                                </div>
+
+                                <div class="widget-status error hidden">
+                                    <img src="/img/error-alert.gif" />
+                                    <span>You have already signed up to receive {subscribed_newsletter}. Select additional newsletters and sign up to receive them.</span>
+                                    <p>
+                                        Subscription preferences may be managed in your Account Settings.
+                                    </p>
+                                    <p class="settings-link">
+                                        <a href="#">Go to your account settings</a>
+                                    </p>
+                                </div>
+
+                                <div class="widget-status error no-info-given hidden">
+                                    <img src="/img/error-alert.gif" />
+                                    <span>Please select a Newsletter to receive.</span>
+                                </div>
+
+                                <div class="widget-status success hidden">
+                                    <img src="/img/icon-success.png" />
+                                    <span>Thank you for subscribing!</span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <fieldset>
+                                    <input type="submit" value="Subscribe" id="nl-user-signup-submit" class="bg-button--red--full" onClick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','Newsletter signup widget - Sign Up Button');" formnovalidate />
+                                </fieldset>
+                                <span class="privacy-policy"><a href="http://www.bostonglobe.com/tools/help/privacy?p1=IndividualPaidTrial_Registration_Privacy">PRIVACY POLICY</a>
+                                </span>
+                            </form>
+                        </div>
+                        <div id="tp-section-metro" class="tod-paper-section">
+
+                            <h2 class="hed-section"><a href="http://www.bostonglobe.com/insiders">Globe Insiders</a>
+                            </h2>
+                            <div class="content">
+
+                                <div class="story">
+                                    <p class="hed-cat">Nov. 5</p>
+                                    <h2 class="story-title">
+                                        <a href="http://www.bostonglobe.com/specials/insiders/2014/10/22/ether-dome-globe-insider-night/fucEofzJzgYAlWQ1kn0JrK/story.html" data-uuid="53a4c71a-5ee6-11e4-bd74-d3b429d7ddab" class="story-perm">
+                                            <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/17/BostonGlobe.com/Arts/Images/15403030612_ac38f15130_o-001.jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/17/BostonGlobe.com/Arts/Images/15403030612_ac38f15130_o-001.jpg"></i>
+                                            ‘Ether Dome’: Globe Insider Night</a>
+                                    </h2>
+                                    <div class="excerpt">
+                                        <p>After the Huntington Theatre Company production, join Boston Globe Ideas editor Stephen Heuser and Dr. Emery N. Brown.
+                                            <time datetime="2014-10-28T17:06:45" class="stamp" data-pubtime="20141028210645">&nbsp;</time>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /end .content -->
+                        </div>
+                        <div class="rail-tease">
+                            <h2 class="hed-section"><a href="http://epaper.bostonglobe.com/">Boston Globe ePaper</a>
+                            </h2>
+                            <div class="story">
+                                <a href="http://epaper.bostonglobe.com/">
+                                    <i class="figure rel"><img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/epaper_thumb.jpg" alt="ePaper"></i>
+                                    <h2 class="story-title">Read the ePaper edition</h2>
+                                    <div class="excerpt">
+                                        <p>The complete print edition, in its exact layout. Browse the print edition page by page, including stories and ads.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <!--/.story -->
+
+                            <ul class="related-stories">
+                                <li><a href="http://epaper.bostonglobe.com/">Check out the ePaper format</a>
+                                </li>
+                                <li>Download the app now for <a href="http://itunes.apple.com/us/app/the-boston-globe-epaper/id511127322?ls=1&mt=8">iPhone/iPad</a> or <a href="https://play.google.com/store/apps/details?id=com.newspaperdirect.bostonglobe.android.hc">Android</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <!-- /.rail-tease -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="mod bg-home-sub">
+            <div class="col bg-col-ab">
+
+                <div class="inside top-features">
+                    <h2 class="hed-section">Globe must-reads</h2>
+
+                    <div class="content" data-carousel="standard">
+                        <div class="feat-thumb">
+                            <a href="/metro/2014/10/30/baker-says-may-have-gotten-some-details-fisherman-story-wrong/dHDSOAmgnUsW9i9yN3Ua2I/story.html" data-uuid="23b27d3c-6057-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/31/BostonGlobe.com/Metro/Images/baker150-8355.jpg" alt="Charlie Baker became emotional during a debate. " />
+                                <h3 class="hed-cat">
+                                </h3>
+                                <h4 class="story-title">No sign of Baker’s fisherman</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/sports/2014/10/31/report-boston-marathon-women-champ-rita-jeptoo-failed-drug-test/RveoAiHHlHsKMueTr1oL3O/story.html" data-uuid="e93e2b38-610a-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/31/BostonGlobe.com/Sports/Images/jepto150.jpg" alt="" />
+                                <h3 class="hed-cat">
+                                </h3>
+                                <h4 class="story-title">Boston Marathon women’s champ failed drug test</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/arts/2014/11/01/swift-kick/nSwjAsyjnEnMV2Wg3LB06H/story.html" data-uuid="052dffe6-6082-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/30/BostonGlobe.com/Arts/Images/SwiftAd-3.jpg" alt="
+" />
+                                <h3 class="hed-cat"></h3>
+                                <h4 class="story-title">Compassion for N.Y. after Swift campaign</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/metro/2014/10/28/where-all-dentists-massachusetts-live/rqhYpwY6BtYl65r5pqE4VK/story.html" data-uuid="542d42e0-5ec1-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/31/BostonGlobe.com/Metro/Images/dentists150.jpg" alt="
+" />
+                                <h3 class="hed-cat">Graphic</h3>
+                                <h4 class="story-title">Where all the dentists in Mass. live</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/metro/2014/10/31/getting-ready-for-election-day/tDpu7pAe7JwbHQIhyims8K/story.html" data-uuid="68bf3656-6104-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/31/BostonGlobe.com/Politics/Images/horowitz-090.jpg" alt="
+" />
+                                <h3 class="hed-cat">Evan Horowitz</h3>
+                                <h4 class="story-title">Are you ready to vote on election day?</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/magazine/2014/10/30/why-people-earn-what-they-earn/PAhbjmYnoD1fcfjduUCWjI/story.html" data-uuid="19976884-6049-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/30/BostonGlobe.com/Magazine/Images/porlan%20last1--150x150.jpg" alt="
+" />
+                                <h3 class="hed-cat">
+                                </h3>
+                                <h4 class="story-title">Why do people earn what they earn?</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/sports/2014/10/30/real-contest-bill-belichick-peyton-manning/3SkfyJYdT2nwjmoutz00RO/story.html" data-uuid="d574f5ba-6096-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/gasper.png" alt="When Bill Belichick and Peyton Manning bump heads, it’s like a chess match Barry Chin/ Globe Staff" />
+                                <h3 class="hed-cat">CHRISTOPHER L. GASPER</h3>
+                                <h4 class="story-title">Real contest is Belichick vs. Manning</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/metro/2014/10/30/tom-menino-forged-his-own-party/3m8Wkw5jhacj7FB2ODZqDJ/story.html" data-uuid="29a9fbee-6060-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/30/BostonGlobe.com/Metro/Images/3-460428.jpg" alt="Menino reached out to his grandchild Taylor Menino outside his Hyde Park polling place in 2001." />
+                                <h3 class="hed-cat">Political Intelligence</h3>
+                                <h4 class="story-title">Menino forged his own political party</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/sports/2014/10/30/tom-menino-was-proud-mayor-when-boston-was-city-champions/BpV7WnFvLKk2T32wTmLLjJ/story.html" data-uuid="3a5b0560-609b-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/shaughnessy.png" alt="Mayor Menino and David Ortiz at Fenway Park during the 2013 AL Division Series. (Jim Davis/Globe Staff" />
+                                <h3 class="hed-cat">DAN SHAUGHNESSY</h3>
+                                <h4 class="story-title">Tom Menino was the mayor to a city of champions</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="http://www.bostonglobe.com/metro/2014/10/30/menino-globe-era-front-page/Vpekj7ANesgvllWvkLeNNN/story.html" data-uuid="2e4bf994-604d-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/30/BostonGlobe.com/Metro/Images/menino150-8496.jpg" alt="
+" />
+                                <h3 class="hed-cat">
+                                </h3>
+                                <h4 class="story-title">Menino in the Globe: A look back</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/metro/2014/10/30/tom-menino-accidental-visionary/9zJaGF8CF1AOH61EbGbl2K/story.html" data-uuid="65817d10-6059-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/walkera.png" alt="Thomas M. Menino" />
+                                <h3 class="hed-cat">Adrian Walker</h3>
+                                <h4 class="story-title">From accidental mayor to transformative figure</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/lifestyle/style/2014/10/29/threatening-video-gaming-industry-movement-grows-arlington-game-developer-forced-flee-her-home/BRHwDSGjMsSnHquH9jYQIJ/story.html" data-uuid="2c1768f0-5fdc-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/30/BostonGlobe.com/Metro/Images/gamer150.jpg" alt="Brianna Wu with a poster of some of her video game characters." />
+                                <h3 class="hed-cat">
+                                </h3>
+                                <h4 class="story-title">Anger at women all too real for gamemaker</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-well">
+
+                    <h2 class="hed-section"><a href="http://www.bostonglobe.com/news/politics/capital">Capital</a>
+                    </h2>
+                    <div class="tags">
+                        <p>Tags in this section:</p>
+                        <ul>
+                            <li><a href="http://www.bostonglobe.com/news/politics/dashboard">Dashboard</a>
+                            </li>
+                            <li><a href="http://www.bostonglobe.com/news/politics/2014/06/05/talk/ffiEx4Mf0sJjGrX3EJP3xL/story.html">The Talk</a>
+                            </li>
+                            <li><a href="/news/politics">Politics</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content">
+
+
+                        <!-- Using p:getPartPage -->
+                        <div class="main">
+                            <div class="feat-excerpt ">
+                                <a href="/news/politics/2014/10/30/capitalpoll/ZryACEVZKBFiaikCmrhXoJ/story.html" data-uuid="3d1c64c8-607e-11e4-bd74-d3b429d7ddab">
+                                    <img alt="The two leading candidates for governor, Republican Charlie Baker (left), and Democrat Martha Coakley, right. " src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/30/BostonGlobe.com/Metro/Images/3dd8e241f73f419b8b3c3cb211c33e36-3dd8e241f73f419b8b3c3cb211c33e36-0[1]--150x150.jpg" />
+                                    <h3 class="hed-cat">Weekly Poll
+                                    </h3>
+                                    <h4 class="story-title">Baker leads Coakley by 7 points in latest poll</h4>
+                                </a>
+                                <p>In a Globe poll, 44 percent of likely voters say they support Charlie Baker, while 37 percent intend to vote for Martha Coakley.</p>
+                            </div>
+                        </div>
+                        <div class="in-section">
+                            <nav>
+                                <h1>Latest Headlines in</h1>
+                                <ul>
+                                    <div class="story">
+                                        <h2 class="story-title">
+                                            <a href="http://www.bostonglobe.com/news/politics/dashboard" data-uuid="0519b124-0e09-11e4-be73-327f017fb01c" class="story-perm">
+                                                <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/07/14/BostonGlobe.com/Politics/Images/Poll070112-105.jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/07/14/BostonGlobe.com/Politics/Images/Poll070112-105.jpg"></i>
+                                                The Dashboard: Polling on politics and issues</a>
+                                        </h2>
+                                        <div class="excerpt">
+                                            <p>See the latest poll numbers in Mass. political races, and get a look at the week&rsquo;s biggest influencers on Twitter.
+                                                <time datetime="2014-07-17T00:20:00" class="stamp" data-pubtime="20140717042000">&nbsp;</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="story">
+                                        <h2 class="story-title">
+                                            <a href="http://www.bostonglobe.com/news/politics/2014/06/05/talk/ffiEx4Mf0sJjGrX3EJP3xL/story.html" data-uuid="056ae8b4-0e09-11e4-be73-327f017fb01c" class="story-perm">
+                                                <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/07/15/BostonGlobe.com/Politics/Images/coakley-patrick2--90x90.jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/07/15/BostonGlobe.com/Politics/Images/coakley-patrick2--90x90.jpg"></i>
+                                                The Talk</a>
+                                        </h2>
+                                        <div class="excerpt">
+                                            <p>Tracking the stories that the Massachusetts political community is talking about on Twitter.
+                                                <time datetime="2014-07-17T00:20:00" class="stamp" data-pubtime="20140717042000">&nbsp;</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-well">
+
+                    <h2 class="hed-section"><a href="/metro">Metro</a>
+                    </h2>
+                    <div class="tags">
+                        <p>Tags in this section:</p>
+                        <ul>
+                            <li><a href="/metro/obituaries">Obituaries</a>
+                            </li>
+                            <li><a href="/metro/regionals/north">North</a>
+                            </li>
+                            <li><a href="/metro/regionals/south">South</a>
+                            </li>
+                            <li><a href="/metro/regionals/west">West</a>
+                            </li>
+                            <li><a href="/metro/specials/data-desk">Data Desk</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content">
+
+
+                        <!-- Using p:getPartPage -->
+                        <div class="main">
+                            <div class="feat-excerpt ">
+                                <a href="/news/politics/2014/10/31/providence-obama-plugs-policies-for-women/B3kt3q80jcI8iGe9KFCzIK/story.html" data-uuid="4d3e8ea4-6118-11e4-bd74-d3b429d7ddab">
+                                    <img alt="President Obama spoke about the economy at Rhode Island College in Providence on Friday." src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/31/BostonGlobe.com/Politics/Images/598deec5b1b74518a58ab3dc9d64d02a-598deec5b1b74518a58ab3dc9d64d02a-0.jpg" />
+                                    <h3 class="hed-cat">
+
+                                    </h3>
+                                    <h4 class="story-title">In Providence, Obama plugs policies for women</h4>
+                                </a>
+                                <p>President Obama said policies that ease financial and other burdens on women will help make the economy stronger overall.</p>
+                            </div>
+                        </div>
+                        <div class="in-section">
+                            <nav>
+                                <h1>Latest Headlines in Metro</h1>
+                                <ul>
+                                    <li><a href="/metro/2014/10/31/six-massachusetts-hospitals-agree-handle-ebola-patient-one-found-bay-state/rcsjyq1UXncx4oA3wAyiPM/story.html" data-uuid="92876dd0-6115-11e4-bd74-d3b429d7ddab">Six Mass. hospitals agree to handle Ebola patients</a>
+                                    </li>
+                                    <li><a href="/metro/2014/10/31/dorchester-man-sentenced-drunk-driving-crash-that-killed-biker/jQKCFKWMxBgoXToqSgTBLI/story.html" data-uuid="0cb20e00-6114-11e4-bd74-d3b429d7ddab">Dorchester man to be sentenced in fatal drunken driving crash</a>
+                                    </li>
+                                    <li><a href="/metro/2014/10/31/mit-shuts-down-fraternity-house-citing-poor-conduct-members/BNLfZyAEmzAYas1o1mRbLJ/story.html" data-uuid="2dc63c4a-610c-11e4-bd74-d3b429d7ddab">MIT shuts down fraternity house, citing poor conduct</a>
+                                    </li>
+                                    <li><a href="/metro/2014/10/31/girl-struck-mission-hill-hit-and-run-crash/vWKOJLTDuuOhk6WRNPLxXI/story.html" data-uuid="1376cca2-6101-11e4-bd74-d3b429d7ddab">Girl struck by a car in Mission Hill</a>
+                                    </li>
+                                    <li><a href="/metro/2014/10/31/dry-halloween-followed-cold-wet-saturday/ZriKvQK9gt5Qjhc07WgGvM/story.html" data-uuid="a33ee1c2-6100-11e4-bd74-d3b429d7ddab">Dry Halloween to be followed by cold, wet Saturday</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-well">
+
+                    <h2 class="hed-section"><a href="/sports">Sports</a>
+                    </h2>
+                    <div class="tags">
+                        <p>Tags in this section:</p>
+                        <ul>
+                            <li><a href="/sports/baseball">Baseball</a>
+                            </li>
+                            <li><a href="/sports/football">Football</a>
+                            </li>
+                            <li><a href="/sports/basketball">Basketball</a>
+                            </li>
+                            <li><a href="/sports/hockey">Hockey</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content">
+
+
+                        <!-- Using p:getPartPage -->
+                        <div class="main">
+                            <div class="feat-excerpt ">
+                                <a href="/sports/2014/10/31/bill-belichick-says-weather-reports-just-lot-hot-air/nmyRJKvyzLZInRXk4yLc7K/story.html" data-uuid="68139734-6108-11e4-bd74-d3b429d7ddab">
+                                    <img alt="New England Patriots head coach Bill Belichick applauds as his team warms up before an NFL football game against the Chicago Bears on Sunday, Oct. 26, 2014, in Foxborough, Mass. (AP Photo/Elise Amendola)" src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/31/BostonGlobe.com/Sports/Images/a38ea21d823f4e8fb15b183269a766f0-a38ea21d823f4e8fb15b183269a766f0-0-7280.jpg" />
+                                    <h3 class="hed-cat">
+
+                                    </h3>
+                                    <h4 class="story-title">Bill Belichick says weather forecasts ‘almost always wrong’</h4>
+                                </a>
+                                <p>The Patriots coach said he&rsquo;s game-planning for the Broncos on Sunday, not the weather.</p>
+                            </div>
+                        </div>
+                        <div class="in-section">
+                            <nav>
+                                <h1>Latest Headlines in Sports</h1>
+                                <ul>
+                                    <li><a href="/sports/2014/10/30/four-downs-just-how-low-can-jets-sink/dn3kMDkkST6x3HvLepMpgN/story.html" data-uuid="bc731f60-6082-11e4-bd74-d3b429d7ddab">Four downs: Just how low can the Jets sink?</a>
+                                    </li>
+                                    <li><a href="/sports/2014/10/30/bob-neumeier-hospitalized-after-stroke/1hIFgqBpIhe6vb4Yo6Hq6H/story.html" data-uuid="05185b30-6093-11e4-bd74-d3b429d7ddab">Boston sportscaster Bob Neumeier hospitalized after suffering stroke</a>
+                                    </li>
+                                    <li><a href="/sports/2014/10/30/bruins-beat-sabres/R17lGHYtAtBTqzH8yMzScL/story.html" data-uuid="786cc6c4-60a3-11e4-bd74-d3b429d7ddab">Brad Marchand lifts Bruins over Sabres in OT</a>
+                                    </li>
+                                    <li><a href="/sports/2014/10/30/koji-uehara-signs-two-year-deal-with-red-sox/BhRjcMvZ9dHqRwTH4jFTkM/story.html" data-uuid="9d860ba2-6079-11e4-bd74-d3b429d7ddab">Koji Uehara signs two-year deal with Red Sox</a>
+                                    </li>
+                                    <li><a href="/sports/2014/10/30/john-elway-wishes-had-rivalry-like-manning-brady/ZDeyJl0QVu6b8zVe3gE4JL/story.html" data-uuid="6eac9b44-607d-11e4-bd74-d3b429d7ddab">John Elway wishes he had had rivalry like Manning-Brady</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-well">
+
+                    <h2 class="hed-section">Nation & World</h2>
+                    <div class="tags">
+                        <p>Tags in this section:</p>
+                        <ul>
+                            <li><a href="/news/nation">Nation</a>
+                            </li>
+                            <li><a href="/news/world">World</a>
+                            </li>
+                            <li><a href="/news/science">Science</a>
+                            </li>
+                            <li><a href="http://www.cruxnow.com">Crux</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content">
+
+
+                        <!-- Using p:getPartPage -->
+                        <div class="main">
+                            <div class="feat-excerpt ">
+                                <a href="/news/politics/2014/10/31/graham-says-remark-about-helping-white-men-was-joke/N5axp9sGXtx7d2jSkjC8fM/story.html" data-uuid="9b3951d0-60fe-11e4-bd74-d3b429d7ddab">
+                                    <img alt="About 20 seconds of clips of Lindsey Graham’s speech were provided to the Associated Press, and Graham’s campaign confirmed that it was him speaking." src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/31/BostonGlobe.com/National/Images/25be80cb3bbd4046bd3aae63739709ac-25be80cb3bbd4046bd3aae63739709ac-0.jpg" />
+                                    <h3 class="hed-cat">
+
+                                    </h3>
+                                    <h4 class="story-title">Graham says remark about helping white men was joke</h4>
+                                </a>
+                                <p>Senator Lindsey Graham&rsquo;s comment at a private, all-male dinner was a joke taken out of context, his campaign said.</p>
+                            </div>
+                        </div>
+                        <div class="in-section">
+                            <nav>
+                                <h1>Latest Headlines in</h1>
+                                <ul>
+                                    <li><a href="/news/world/2014/10/30/ebola-danger-sierra-leone-progress-liberia/jiJRtfBTEDzJAre5O6nblI/story.html" data-uuid="1ab302a8-6091-11e4-bd74-d3b429d7ddab">Liberia makes inroads on Ebola, but outlook grim in Sierra Leone</a>
+                                    </li>
+                                    <li><a href="/news/nation/2014/10/31/federal-actions-reflect-limited-role-quarantine/P0xOtrBa74aQgYNFLJ56lO/story.html" data-uuid="e01b94de-60c7-11e4-bd74-d3b429d7ddab">Federal actions reflect limited role in quarantine</a>
+                                    </li>
+                                    <li><a href="/news/nation/2014/10/30/new-york-state-offers-protections-for-medical-workers-joining-ebola-fight/vkjBCveLyHUlN06hzW5vMN/story.html" data-uuid="b1e87d26-60a3-11e4-bd74-d3b429d7ddab">New York offers protections for Ebola medical workers</a>
+                                    </li>
+                                    <li><a href="/news/world/2014/10/30/fearing-uprising-iraq-militants-hunt-police/3MJ9x8PMdiFqBMVpv2s85K/story.html" data-uuid="674b71f6-6099-11e4-bd74-d3b429d7ddab">ISIS killing off former Iraqi police, army officers</a>
+                                    </li>
+                                    <li><a href="/news/world/2014/10/30/rare-move-israel-cuts-off-holy-site-access/pn67WJ5tqiZpUHMi0nQsnJ/story.html" data-uuid="3cc21386-60a3-11e4-bd74-d3b429d7ddab">Israel relents after shutting access to holy site</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="inside top-features">
+                    <h2 class="hed-section">Columnists</h2>
+
+                    <div class="content" data-carousel="standard">
+                        <div class="feat-thumb">
+                            <a href="/business/2014/10/30/don-vote-for-charlie-because-can-cry/nUPMNCfNSS1SgEACjaapfP/story.html" data-uuid="fda2a6b8-609b-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/leung.png" alt="
+" />
+                                <h3 class="hed-cat">Shirley Leung</h3>
+                                <h4 class="story-title">Don’t let Baker’s tears influence your vote</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/metro/massachusetts/2014/10/30/from-fringe-empathy-for-fringe/729p5r4BpPm6OFxMHh3jPI/story.html" data-uuid="0f1c644e-606d-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/cullen.png" alt="The Hyde Park YMCA is named for Thomas M Menino." />
+                                <h3 class="hed-cat">KEVIN CULLEN</h3>
+                                <h4 class="story-title">Menino had empathy for the fringe</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/opinion/2014/10/30/tom-menino-brought-childhoods-kids/1R0FHwf3VZbkMKUnFDq6CJ/story.html" data-uuid="2945ed86-6059-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/harmon.png" alt="Menino spoke with Cosette Cummins, 6, in March at a book signing in Dorchester." />
+                                <h3 class="hed-cat">Lawrence Harmon</h3>
+                                <h4 class="story-title">Tom Menino prepared the future for Boston’s kids</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/metro/2014/10/30/tom-menino-accidental-visionary/9zJaGF8CF1AOH61EbGbl2K/story.html" data-uuid="65817d10-6059-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/walkera.png" alt="Thomas M. Menino" />
+                                <h3 class="hed-cat">Adrian Walker</h3>
+                                <h4 class="story-title">From accidental mayor to transformative figure</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/opinion/2014/10/30/tom-menino-tough-and-beloved-mayor/ZzusARIWFNAXYWOcU6p8HN/story.html" data-uuid="af5e0e3c-6066-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/vennochi.png" alt="Tom Menino practiced his golf swing after declaring it the “end of winter” outside City Hall in March of 1996." />
+                                <h3 class="hed-cat">JOAN VENNOCHI</h3>
+                                <h4 class="story-title">The tough — and beloved — mayor</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/metro/2014/10/30/tom-menino-was-master-heart/vKaPiyfN3a6hTaV1sAjt8L/story.html" data-uuid="899ca154-6057-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/abrahamy.png" alt="Mayor Thomas M. Menino attended Steven Odom's funeral Oct. 13, 2007. " />
+                                <h3 class="hed-cat">Yvonne Abraham</h3>
+                                <h4 class="story-title">Tom Menino was a master of the heart</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/sports/2014/10/30/tom-menino-was-proud-mayor-when-boston-was-city-champions/BpV7WnFvLKk2T32wTmLLjJ/story.html" data-uuid="3a5b0560-609b-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/shaughnessy.png" alt="Mayor Menino and David Ortiz at Fenway Park during the 2013 AL Division Series. (Jim Davis/Globe Staff" />
+                                <h3 class="hed-cat">DAN SHAUGHNESSY</h3>
+                                <h4 class="story-title">Tom Menino was the mayor to a city of champions</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/sports/2014/10/30/real-contest-bill-belichick-peyton-manning/3SkfyJYdT2nwjmoutz00RO/story.html" data-uuid="d574f5ba-6096-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/gasper.png" alt="When Bill Belichick and Peyton Manning bump heads, it’s like a chess match Barry Chin/ Globe Staff" />
+                                <h3 class="hed-cat">CHRISTOPHER L. GASPER</h3>
+                                <h4 class="story-title">Real contest is Belichick vs. Manning</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/opinion/2014/10/29/field-guide-book-book/zuhaaqbfsHBpZoDTkgay7K/story.html" data-uuid="68443fe0-5fde-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/30/BostonGlobe.com/EditorialOpinion/Images/Alex_Beam_150px-1092.png" alt="
+" />
+                                <h3 class="hed-cat">Alex Beam</h3>
+                                <h4 class="story-title">Book vs. ‘Book’</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/metro/2014/10/29/abraham/9LxKj9P0VwYdVxhAiVwNhJ/story.html" data-uuid="39515c10-5fd2-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/abrahamy.png" alt="
+" />
+                                <h3 class="hed-cat">Yvonne Abraham</h3>
+                                <h4 class="story-title">Turning the tables</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/business/2014/10/28/diagnosing-partners-healthcare-with-case-unhappiness/ZVXIuONyWhA8HgHg6XcGFK/story.html" data-uuid="4b460436-5f0d-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/Library/Staff/Caricatures/leung.png" alt="
+" />
+                                <h3 class="hed-cat">Shirley Leung</h3>
+                                <h4 class="story-title">What ails Partners HealthCare?</h4>
+                            </a>
+                        </div>
+
+                        <div class="feat-thumb">
+                            <a href="/lifestyle/food-dining/2014/10/28/sports-writer-turned-top-chef-judge-for-day/HOetBxXvaoPXh9Xd4cSJBJ/story.html" data-uuid="28523530-5e18-11e4-bd74-d3b429d7ddab">
+                                <img src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/29/BostonGlobe.com/Lifestyle/Images/shaughnessy.jpg" alt="Seated at a table at Fenway Park for the taping of an episode of “Top Chef” are (clockwise from left) judge Richard Blais, Red Sox legend Dennis Eckersley, head judge Tom Colicchio, Globe columnist Dan Shaughnessy, host Padma Lakshmi, judge Hugh Acheson, and chef Ming Tsai. " />
+                                <h3 class="hed-cat">Dan Shaughnessy</h3>
+                                <h4 class="story-title">A ‘Top Chef’ judge for a day at Fenway</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-well">
+
+                    <h2 class="hed-section"><a href="/business">Business</a>
+                    </h2>
+                    <div class="tags">
+                        <p>Tags in this section:</p>
+                        <ul>
+                            <li><a href="http://betaboston.com/">BetaBoston</a>
+                            </li>
+                            <li><a href="http://finance.boston.com/boston/markets">Markets</a>
+                            </li>
+                            <li><a href="/business/technology">Technology</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content">
+
+
+                        <!-- Using p:getPartPage -->
+                        <div class="main">
+                            <div class="feat-excerpt ">
+                                <a href="http://betaboston.com/news/2014/10/30/how-menino-made-the-innovation-district-happen/" data-uuid="d8450166-60ca-11e4-bd74-d3b429d7ddab">
+                                    <img alt="
+" src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/31/BostonGlobe.com/Business/Images/innovation_district.jpg" />
+                                    <h3 class="hed-cat">BETABOSTON
+                                    </h3>
+                                    <h4 class="story-title">How Menino made the Innovation District happen</h4>
+                                </a>
+                                <p>The former mayor and his team had the vision and doggedness required to make it work.</p>
+                            </div>
+                        </div>
+                        <div class="in-section">
+                            <nav>
+                                <h1>Latest Headlines in Business</h1>
+                                <ul>
+                                    <li><a href="/business/2014/10/30/from-heartbreak-comes-invention-help-others/JzC2NH674xcR52qpyfAy7K/story.html" data-uuid="684354da-60a2-11e4-bd74-d3b429d7ddab">From heartbreak comes invention to help others </a>
+                                    </li>
+                                    <li><a href="/business/2014/10/30/investment-firms-buy-post-office-square-for/lTJpLZQBTUwI2D5EkaraEL/story.html" data-uuid="6bc5ffba-605f-11e4-bd74-d3b429d7ddab">Investment firms buy 10 Post Office Square for $143m</a>
+                                    </li>
+                                    <li><a href="/business/2014/10/30/homeless-population-massachusetts-rose-past-four-years/vKAIjJFwX9g0bw7zJd6zFP/story.html" data-uuid="eff2524a-6058-11e4-bd74-d3b429d7ddab">Homeless population in Mass. rising faster than any other state</a>
+                                    </li>
+                                    <li><a href="/business/2014/10/30/economy-grew-more-than-forecast-third-quarter/TK11MMJz0LVhUgimTYLDiN/story.html" data-uuid="bd2f42c2-6045-11e4-bd74-d3b429d7ddab">Economy grew more than forecast in third quarter</a>
+                                    </li>
+                                    <li><a href="/business/2014/10/30/market-basket-celebrates-opening-its-new-supermarket-revere/zgWutoYiKZiRw1hChqQA1H/story.html" data-uuid="02166d16-604b-11e4-bd74-d3b429d7ddab">Market Basket celebrates the opening of its new supermarket in Revere</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-well">
+
+                    <h2 class="hed-section"><a href="/arts">Arts</a>
+                    </h2>
+                    <div class="tags">
+                        <p>Tags in this section:</p>
+                        <ul>
+                            <li><a href="/arts/movies">Movies</a>
+                            </li>
+                            <li><a href="/arts/music">Music</a>
+                            </li>
+                            <li><a href="/arts/books">Books</a>
+                            </li>
+                            <li><a href="/arts/television">Television</a>
+                            </li>
+                            <li><a href="/arts/theater-art">Theater & art</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content">
+
+
+                        <!-- Using p:getPartPage -->
+                        <div class="main">
+                            <div class="feat-excerpt ">
+                                <a href="/arts/television/2014/10/30/olive-kitteridge-ordinary-life-extraordinarily-rendered/3isbC6uUO8Suhetzk65pNJ/story.html" data-uuid="2ef5a082-5fa5-11e4-bd74-d3b429d7ddab">
+                                    <img alt="Frances McDormand plays the flinty title character in the two-part miniseries, which runs Sunday and Monday nights on HBO." src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/24/BostonGlobe.com/Arts/Images/olivekitteridge02.jpg" />
+                                    <h3 class="hed-cat">Television Review
+                                    </h3>
+                                    <h4 class="story-title">McDormand a strong lead in ‘Olive Kitteridge’</h4>
+                                </a>
+                                <p>The HBO series accumulates with steady, earned drama into a searing portrait of quiet desperation.</p>
+                            </div>
+                        </div>
+                        <div class="in-section">
+                            <nav>
+                                <h1>Latest Headlines in Arts</h1>
+                                <ul>
+                                    <li><a href="/arts/books/2014/10/30/book-review-the-new-annotated-lovecraft-edited-leslie-klinger/fULXmjL7I0YQiMloNtZpRO/story.html" data-uuid="d55beeec-5f99-11e4-bd74-d3b429d7ddab">‘The New Annotated H.P. Lovecraft’ edited by Leslie Klinger</a>
+                                    </li>
+                                    <li><a href="/arts/theater-dance/2014/10/30/stand-comedy-all-its-glory/tnfGydtGnpmxigSfuNhfzM/story.html" data-uuid="a59448d0-5fbc-11e4-bd74-d3b429d7ddab">For comics, Naked Comedy is all about exposure</a>
+                                    </li>
+                                    <li><a href="/arts/theater-art/2014/10/30/christmas-comes-early-worcester/ns9FvXkQrqp23kFDiXQCDO/story.html" data-uuid="cd9aed18-5fab-11e4-bd74-d3b429d7ddab">Holy Cross show documents Italian nativity art</a>
+                                    </li>
+                                    <li><a href="/arts/music/2014/10/30/cockburn-celebrates-career-with-spiritual-memoir-box-set/NfzAHzpSTvL3AM0GbSozyL/story.html" data-uuid="845d4690-5fc5-11e4-bd74-d3b429d7ddab">Cockburn celebrates with memoir, box set</a>
+                                    </li>
+                                    <li><a href="/arts/television/2014/10/29/the-mccarthys-from-here-and-another-era/dbZqFjSP45OxbqhegbPAwK/story.html" data-uuid="62021cc2-5ee6-11e4-bd74-d3b429d7ddab">‘The McCarthys’: From here — and another era</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-well">
+
+                    <h2 class="hed-section"><a href="/arts/movies">Movies</a>
+                    </h2>
+                    <div class="tags">
+                        <p>Tags in this section:</p>
+                        <ul>
+                            <li><a href="/arts">Arts</a>
+                            </li>
+                            <li><a href="/arts/music">Music</a>
+                            </li>
+                            <li><a href="/arts/television">Television</a>
+                            </li>
+                            <li><a href="/arts/theater-art">Theater & art</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content">
+
+
+                        <!-- Using p:getPartPage -->
+                        <div class="main">
+                            <div class="feat-excerpt ">
+                                <a href="/arts/movies/2014/10/30/thriller-and-star-get-under-your-skin/fGsncNcdh7ZjpfiE3vX8oM/story.html" data-uuid="9fff1226-5fb5-11e4-bd74-d3b429d7ddab">
+                                    <img alt="Jake Gyllenhaal stars as a creepy crime-news chaser in “Nightcrawler.”" src="//c.o0bg.com/rf/image_150x150/Boston/2011-2020/2014/10/22/BostonGlobe.com/Arts/Images/nightcrawler-NC_03214_rgb.jpg" />
+                                    <h3 class="hed-cat">Movie Review
+                                    </h3>
+                                    <h4 class="story-title">Thriller and star get under your skin in ‘Nightcrawler’</h4>
+                                </a>
+                                <p>Jake Gyllenhaal lets his hair down to play a Los Angeles creep who finds his calling as a news video &ldquo;stringer.&rdquo;</p>
+                            </div>
+                        </div>
+                        <div class="in-section">
+                            <nav>
+                                <h1>Latest Headlines in Movies</h1>
+                                <ul>
+                                    <li><a href="/lifestyle/names/2014/10/30/michael-bay-eyeing-movie-based-zuckoff-book-about-benghazi/rCNYZazjbRgitLvPweCaDI/story.html" data-uuid="08aad278-6089-11e4-bd74-d3b429d7ddab">Michael Bay eyes film based on Mitch Zuckoff book</a>
+                                    </li>
+
+                                    <li><a href="/lifestyle/names/2014/10/29/quote-day-katie-holmes/PotfPG6NOZGpPs3aXkDiGO/story.html" data-uuid="cf777f54-5fbd-11e4-bd74-d3b429d7ddab">Quote of the day: Katie Holmes</a>
+                                    </li>
+
+                                    <li><a href="/arts/movies/2014/10/30/nothing-memorable-about-before-sleep/9RWvJdsNOIOQWfIhBUNpLM/story.html" data-uuid="9076c882-5fbd-11e4-bd74-d3b429d7ddab">Nothing memorable about ‘Before I Go to Sleep’</a>
+                                    </li>
+
+                                    <li><a href="/arts/movies/2014/10/30/thriller-and-star-get-under-your-skin/fGsncNcdh7ZjpfiE3vX8oM/story.html" data-uuid="9fff1226-5fb5-11e4-bd74-d3b429d7ddab">Thriller and star get under your skin in ‘Nightcrawler’</a>
+                                    </li>
+
+                                    <li><a href="/arts/movies/2014/10/30/review-citizenfour-documentary-about-edward-snowden/32EaWMjJ3YVpTfE8TS8jcI/story.html" data-uuid="16003b28-5faf-11e4-bd74-d3b429d7ddab">Edward Snowden’s story unfolds in chilling ‘Citizenfour’</a>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col bg-col-c">
+                <div class="ad promo-ad" id="ad_bigbox2"></div>
+                <!-- /end .ad -->
+
+                <div class="mod-a">
+                    <div id="tp-section-metro" class="tod-paper-section">
+
+                        <h2 class="hed-section"><a href="http://www.bostonglobe.com/news/bigpicture">The Big Picture</a>
+                        </h2>
+                        <div class="content">
+
+                            <div class="story">
+
+                                <a href="http://www.bostonglobe.com/news/bigpicture/2014/10/30/mayor-thomas-menino/dfdhkR07LT4vU5PWkGPPWN/story.html" data-uuid="e195a7c6-4ffd-11e4-9c64-4faa5b1f13d1" class="story-perm">
+
+                                    <div class="figure lead-figure">
+                                        <img src="//www.bostonglobe.com/rf/image_r/Boston/2011-2020/2014/10/30/BostonGlobe.com/Special/Images/meninochild.r.jpg" data-fullsrc="//c.o0bg.com/rf/image_460w/Boston/2011-2020/2014/10/30/BostonGlobe.com/Special/Images/meninochild.jpg" alt="
+">
+                                        <div class="figcaption">
+                                            <p class="credit">(Yoon S. Byun/Globe Staff
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class="hed-cat">
+                                    </p>
+                                    <h2 class="story-title">The mayorship of Thomas Menino</h2>
+                                </a>
+
+                                <div class="excerpt">
+                                    <p>Menino took a ground-level view of the city on a hill, earning himself a nickname for his focus on the nuts and bolts of everyday life: the urban mechanic.
+                                        <time datetime="2014-10-09T17:47:35" class="stamp" data-pubtime="20141009214735">&nbsp;</time>
+                                    </p>
+                                </div>
+
+                                <ul class="related-stories">
+                                    <!-- raw hyperlink -->
+                                    <!-- related headline == '' -->
+                                </ul>
+                                <!-- /end .related-stories -->
+                            </div>
+                        </div>
+                        <!-- /end .content -->
+                    </div>
+                </div>
+                <div class="mod-b"></div>
+                <div class="mod-a mag-preview">
+                    <h2 class="mag-hed hed-section">
+                        <a href="/magazine">Magazine</a>
+                    </h2>
+
+                    <div class="content" data-carousel="standard">
+                        <div class="slide">
+                            <a href="/magazine/2014/10/26" class="cover secondary">
+                                <img alt="The cover for the October 26 2014 issue" src="//c.o0bg.com/rf/pdf_160x193/Boston/2011-2020/2014/10/26/FrontPages/001RXMXXX1026F.jpg" />
+                            </a>
+
+                            <p class="date">
+                                <time datetime="2014-10-26">
+                                    <abbr title="October">Oct</abbr>
+                                    26, 2014</time>
+                            </p>
+
+                            <a href="/magazine/2014/10/23/silicon-valley-boston-one-friendlier-women/foBgYVthKnEeyng007XgxO/story.html" class="story-perm">
+                                <h3 class="story-title">
+                                    Silicon Valley vs. Boston: Is one friendlier to women?</h3>
+
+                                <p>
+                                    <tgb:getTease var="tease" echo="true" path="/Boston/2011-2020/2014/10/14/BostonGlobe.com/Magazine/Stories/102614silicon.xml" />
+                                </p>
+                            </a>
+                            <ul class="story-discuss">
+
+                            </ul>
+                            <div class="latest-headlines">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="/magazine/2014/10/22/why-female-ceos-get-fired-more-often-than-male-ones/h5xII63gdClkhVn8innf4J/story.html">Why do female CEOs get fired more often than male ones?</a>
+                                        </li>
+                                        <li>
+                                            <a href="/magazine/2014/10/22/wonder-women-secret-history-and-surprising-lessons/3usRZf3zxiRbhWExSQAjTJ/story.html">Wonder Woman’s secret history and surprising lessons</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <a href="/magazine/2014/10/19" class="cover secondary">
+                                <img alt="The cover for the October 19 2014 issue" src="//c.o0bg.com/rf/pdf_160x193/Boston/2011-2020/2014/10/19/FrontPages/001RXMXXX1019F.jpg" />
+                            </a>
+
+                            <p class="date">
+                                <time datetime="2014-10-19">
+                                    <abbr title="October">Oct</abbr>
+                                    19, 2014</time>
+                            </p>
+
+                            <a href="/magazine/2014/10/18/smart-approach-combining-households-needham/bfH1MdXIY3h9Z5CHK7goQL/story.html" class="story-perm">
+                                <h3 class="story-title">
+                                    A smart approach to combining households in Needham</h3>
+
+                                <p>
+                                    <tgb:getTease var="tease" echo="true" path="/Boston/2011-2020/2014/10/02/BostonGlobe.com/Magazine/Stories/101914needham.xml" />
+                                </p>
+                            </a>
+                            <ul class="story-discuss">
+
+                            </ul>
+                            <div class="latest-headlines">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="/magazine/2014/10/16/bea-peltre-designs-her-arlington-home-organically/hGN7EKO5RYdmoVkb9KEJuN/story.html">Foodie Bea Peltre designs her Arlington home organically</a>
+                                        </li>
+                                        <li>
+                                            <a href="/magazine/2014/10/16/could-one-your-habits-cause-house-fire/7bRtReAGByJYOgjMkTcZzL/story.html">Could one of your habits cause a house fire?</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <a href="/magazine/2014/10/12" class="cover secondary">
+                                <img alt="The cover for the October 12 2014 issue" src="//c.o0bg.com/rf/pdf_160x193/Boston/2011-2020/2014/10/12/FrontPages/001RXMXXX1012F.jpg" />
+                            </a>
+
+                            <p class="date">
+                                <time datetime="2014-10-12">
+                                    <abbr title="October">Oct</abbr>
+                                    12, 2014</time>
+                            </p>
+
+                            <a href="/magazine/2014/10/10/cracking-memory-mystery/3l7fXg75ftnKxpGiaefFxL/story.html" class="story-perm">
+                                <h3 class="story-title">
+                                    Cracking a memory mystery</h3>
+
+                                <p>
+                                    <tgb:getTease var="tease" echo="true" path="/Boston/2011-2020/2014/09/23/BostonGlobe.com/Magazine/Stories/101214Excerpt.xml" />
+                                </p>
+                            </a>
+                            <ul class="story-discuss">
+
+                            </ul>
+                            <div class="latest-headlines">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="/magazine/2014/10/08/the-day-screen-time-diet/XDmzilsTCCE6mL1tD4SniN/story.html">The 7-day screen time diet</a>
+                                        </li>
+                                        <li>
+                                            <a href="/magazine/2014/10/09/brain-games-work/rXjTWOKUYK5UOiNQ6St0fN/story.html">Do brain games work?</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <a href="/magazine/2014/10/05" class="cover secondary">
+                                <img alt="The cover for the October 5 2014 issue" src="//c.o0bg.com/rf/pdf_160x193/Boston/2011-2020/2014/10/05/FrontPages/001RXMXXX1005F.jpg" />
+                            </a>
+
+                            <p class="date">
+                                <time datetime="2014-10-05">
+                                    <abbr title="October">Oct</abbr>
+                                    5, 2014</time>
+                            </p>
+
+                            <a href="/magazine/2014/10/02/stem-newest-darling-robotics/FrQEOiiLNbWXL5GI6UE8WP/story.html" class="story-perm">
+                                <h3 class="story-title">
+                                    STEM’s newest darling: Robotics</h3>
+
+                                <p>
+                                    <tgb:getTease var="tease" echo="true" path="/Boston/2011-2020/2014/09/25/BostonGlobe.com/Magazine/Stories/100514robotics.xml" />
+                                </p>
+                            </a>
+                            <ul class="story-discuss">
+
+                            </ul>
+                            <div class="latest-headlines">
+                                <nav>
+                                    <ul>
+                                        <li>
+                                            <a href="/magazine/2014/10/01/are-teachers-really-ready-for-common-core/bAhagn3zzkQ0bM9w8GgYzN/story.html">Are teachers really ready for the Common Core?</a>
+                                        </li>
+                                        <li>
+                                            <a href="/magazine/2014/10/04/what-keeps-teacher-going/b6gnAoJvP5yPWQH5lnmIqN/story.html">What keeps a teacher going?</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mod-b op-preview">
+                    <h2 class="hed-section">
+                        <a href="/ideas">Ideas</a>
+                    </h2>
+
+                    <div class="promo feat-pq has-speaker">
+                        <div class="box">
+
+                            <div class="story">
+                                <p class="hed-cat">ideas</p>
+                                <h2 class="story-title">
+                                    <a href="/ideas/2014/10/24/who-rules-hip-hop-past/D6Z6fFkrBhORqOtYvSgCoL/story.html" data-uuid="7ea51a44-5bb9-11e4-9d68-f82d5ee43173" class="story-perm">
+                                        <i class="figure rel"><img src="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/24/BostonGlobe.com/Ideas/Images/web-collage-hiphop200-593.jpg" alt="//c.o0bg.com/rf/image_90x90/Boston/2011-2020/2014/10/24/BostonGlobe.com/Ideas/Images/web-collage-hiphop200-593.jpg"></i>
+                                        Who rules hip-hop’s past?</a>
+                                </h2>
+                                <div class="excerpt">
+                                    <p>Biggie or Kool Herc? As a cultural juggernaut hits middle age, two parallel visions emerge for what &ldquo;classic&rdquo; should mean.
+                                        <time datetime="2014-10-24T16:08:16" class="stamp" data-pubtime="20141024200816">&nbsp;</time>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /end .box -->
+                    </div>
+                    <!-- /end .promo.feat-pq -->
+
+                    <div class="latest-headlines">
+                        <nav>
+                            <h1 class="a11y-only">Latest Headlines in Opinion</h1>
+                            <ul>
+                                <li><a href="/ideas/2014/10/25/why-time-stop-fearing-opec/v4P5wK8T6axAbXeSCANR9O/story.html" data-uuid="ec785108-5bbe-11e4-9d68-f82d5ee43173">Why it’s time to stop fearing OPEC</a>
+                                </li>
+                                <li><a href="/ideas/2014/10/25/what-salem-witch-trials-taught-about-language/d75xhHOIjhLLg2yABKYVvO/story.html" data-uuid="e5161ffa-5cc5-11e4-9d68-f82d5ee43173">What the Salem witch trials taught us about language</a>
+                                </li>
+                                <li><a href="/ideas/2014/10/25/how-would-earthly-religions-handle-aliens/fiY71Skj1Mhd7QMM2empHK/story.html" data-uuid="4ca24b28-5b0c-11e4-9d68-f82d5ee43173">How would earthly religions handle aliens?</a>
+                                </li>
+                                <li><a href="/ideas/2014/10/25/how-different-religions-would-deal-with-aliens/LMaD7Mwuit4vQXELgICSQK/story.html" data-uuid="5133af74-5b0c-11e4-9d68-f82d5ee43173">What different religions say about aliens</a>
+                                </li>
+                                <li><a href="/ideas/2014/10/25/having-siblings-makes-you-like-kids/XILQSlL1AdjEHpXtMY9lvO/story.html" data-uuid="e53a731e-5cc5-11e4-9d68-f82d5ee43173">Having siblings makes you like kids</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- /end .latest-headlines -->
+                </div>
+                <div class="rail-tease">
+                    <div id="circularhub_module_261"></div>
+                </div>
+                <!-- /.rail-tease -->
+            </div>
+        </div>
+    </div>
+    <!-- Page footer -->
+    <footer class="bg-footer">
+        <div class="lead">
+            <nav>
+                <h3 class="bg-footer__lead-menu__heading">Learn more</h3>
+                <ul>
+                    <li><a href="https://digitalaccess.bostonglobe.com/da/2/1?eglobe_rc=WW111927&globe_rc=WW111945">Subscribe</a>
+                    </li>
+                    <li><a href="/insiders">Boston Globe Insiders</a>
+                    </li>
+                    <li><a href="http://epaper.bostonglobe.com/">EPaper Edition</a>
+                    </li>
+                    <li><a href="http://nieonline.com/bostonglobe/">News in education</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="sub">
+            <nav>
+                <h3 class="bg-footer__sub-menu__heading">My Account</h3>
+                <ul>
+                    <li><a href="https://www.bostonglobe.com/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/final-login.jsp">Log in</a>
+                    </li>
+                    <li>
+                        <a href="/mysaved">
+                            <span class="count">
+                                <span>&nbsp;</span>
+                            </span>My Saved List</a>
+                    </li>
+                    <li><a href="https://www.bostonglobe.com/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/mc-login.jsp?redirect=manage">Manage home delivery</a>
+                    </li>
+                    <!-- BGLOBE-3350 in progress... -->
+                    <li><a href="https://itunes.apple.com/us/app/boston-globe-customer-service/id842897634?mt=8">Manage on iPhone</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="even">
+                <h3 class="bg-footer__sub-menu__heading">Contact</h3>
+                <ul>
+                    <li><a href="https://bostonglobe.custhelp.com/app/home">Help</a>
+                    </li>
+                    <li><a href="https://bostonglobe.custhelp.com/app/answers/list">FAQs</a>
+                    </li>
+                    <li><a href="/tools/help/stafflist">Globe newsroom</a>
+                    </li>
+                    <li><a href="http://services.bostonglobe.com/advertiser/default.aspx">Advertise</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="opt">
+                <h3 class="bg-footer__sub-menu__heading">Social</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/globe">Facebook</a>
+                    </li>
+                    <li><a href="https://twitter.com/#!/BostonGlobe">Twitter</a>
+                    </li>
+                    <li><a href="https://plus.google.com/108227564341535363126/about">Google+</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="even last">
+                <h3 class="bg-footer__sub-menu__heading">More</h3>
+                <ul>
+                    <li><a href="https://secure.pqarchiver.com/boston-sub/no_default.html?ss=1&url=%2Fboston-sub%2Fadvancedsearch.html">Archives</a>
+                    </li>
+                    <li><a href="/tools/help/privacy">Privacy policy</a>
+                    </li>
+                    <li><a href="/tools/help/terms-service">Terms of service</a>
+                    </li>
+                    <li><a href="/tools/help/terms-purchase">Terms of purchase</a>
+                    </li>
+                    <li><a href="http://www.bostonglobe.com/2014/03/07/your-choices/dwLYdic9FdW82vCiUsS4eL/story.html">Your Ad Choices</a>
+                    </li>
+                    <li><a href="http://www.boston.com/digitaljobs/">Digital Jobs at Boston Globe Media</a>
+                    </li>
+                    <li><a href="https://services.bostonglobe.com/aboutus/career/default.aspx?id=7098">View All Jobs at BGM</a>
+                    </li>
+                </ul>
+            </nav>
+            <p class="bg-copy">&copy; 2014 Boston Globe Media Partners, LLC</p>
+        </div>
+    </footer>
+    <div style="display:none;">
+
+        <!-- meter - 1 article read -->
+
+        <div id="modal_1" class="bg-modal--meter">
+            <div class="bg-modal--meter__panel--sub">
+                <img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/White-B-Logo-non-transparent.jpg" alt="Boston Globe Logo" />
+            </div>
+            <!-- end sub-panel -->
+            <div class="meter-modal-close"><a href="#" class="meter-close" aria-label="Close">X</a>
+            </div>
+            <div class="bg-modal--meter__panel--main">
+                <p class="bg-modal--meter__status-text">Enjoy your frst free article</p>
+                <h1 class="bg-modal--meter__call-to-action-text">
+                    You can now read 10 free articles. Get unlimited access for just 99&cent;.
+                    <br>
+                </h1>
+                <form action="http://digitalaccess.bostonglobe.com/da/33/?eglobe_rc=WW113959">
+                    <button class="bg-modal--meter__button" onclick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Meter 1 Offer');">Sign up</button>
+                </form>
+                <p class="bg-modal--meter__login-text">
+                    Subscriber <a href="https://www.bostonglobe.com/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/final-login.jsp" onclick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Meter Login');"> &nbsp;Log In</a>
+                </p>
+            </div>
+        </div>
+
+
+        <!-- meter - 5 articles read -->
+
+        <div id="modal_5" class="bg-modal--meter">
+            <div class="bg-modal--meter__panel--sub">
+                <img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/White-B-Logo-non-transparent.jpg" alt="Boston Globe Logo" />
+            </div>
+            <!-- end sub-panel -->
+            <div class="meter-modal-close"><a href="#" class="meter-close" aria-label="Close">X</a>
+            </div>
+            <div class="bg-modal--meter__panel--main">
+                <h2 class="bg-modal--meter__status-text">You have read
+                    <span class="bold">5 of 10</span>free articles in a month.</h2>
+                <h1 class="bg-modal--meter__call-to-action-text">Continue reading with unlimited access for just 99&cent;</h1>
+                <form action="http://digitalaccess.bostonglobe.com/da/33/?eglobe_rc=WW113959">
+                    <button class="bg-modal--meter__button" onclick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Meter 5 Offer');">Sign up</button>
+                </form>
+                <p class="bg-modal--meter__login-text">Subscriber <a href="https://www.bostonglobe.com/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/final-login.jsp" onClick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Meter Login');">Log In</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- meter - 7 articles read -->
+
+        <div id="modal_7" class="bg-modal--meter">
+            <div class="bg-modal--meter__panel--sub">
+                <img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/White-B-Logo-non-transparent.jpg" alt="Boston Globe Logo" />
+            </div>
+            <!-- end sub-panel -->
+            <div class="meter-modal-close"><a href="#" class="meter-close" aria-label="Close">X</a>
+            </div>
+            <div class="bg-modal--meter__panel--main">
+                <h2 class="bg-modal--meter__status-text">You have read
+                    <span class="bold">7 of 10</span>free articles in a month.</h2>
+                <h1 class="bg-modal--meter__call-to-action-text">Continue reading with unlimited access for just 99&cent;</h1>
+                <form action="http://digitalaccess.bostonglobe.com/da/33/?eglobe_rc=WW113959">
+                    <button class="bg-modal--meter__button" onclick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Meter 7 Offer');">Sign up</button>
+                </form>
+                <p class="bg-modal--meter__login-text">Subscriber <a href="https://www.bostonglobe.com/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/final-login.jsp" onClick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Meter Login');">Log In</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- meter - 9 articles read -->
+
+        <div id="modal_9" class="bg-modal--meter">
+            <div class="bg-modal--meter__panel--sub">
+                <img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/White-B-Logo-non-transparent.jpg" alt="Boston Globe Logo" />
+            </div>
+            <!-- end sub-panel -->
+            <div class="meter-modal-close"><a href="#" class="meter-close" aria-label="Close">X</a>
+            </div>
+            <div class="bg-modal--meter__panel--main">
+                <h2 class="bg-modal--meter__status-text">You have read
+                    <span class="bold">9 of 10</span>free articles in a month.</h2>
+                <h1 class="bg-modal--meter__call-to-action-text">Continue reading with unlimited access for just 99&cent;</h1>
+                <form action="http://digitalaccess.bostonglobe.com/da/33/?eglobe_rc=WW113959">
+                    <button class="bg-modal--meter__button" onclick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Meter 9 Offer');">Sign up</button>
+                </form>
+                <p class="bg-modal--meter__login-text">Subscriber <a href="https://www.bostonglobe.com/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/final-login.jsp" onClick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Meter Login');">Log In</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- meter - 9 articles read -->
+
+        <div id="modal_10" class="bg-modal--meter">
+            <div class="bg-modal--meter__panel--sub">
+                <img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/White-B-Logo-non-transparent.jpg" alt="Boston Globe Logo" />
+            </div>
+            <!-- end sub-panel -->
+            <div class="meter-modal-close"><a href="#" class="meter-close" aria-label="Close">X</a>
+            </div>
+            <div class="bg-modal--meter__panel--main">
+                <h2 class="bg-modal--meter__status-text">This is your last free article in a month.</h2>
+                <h1 class="bg-modal--meter__call-to-action-text">Continue reading with unlimited access for just 99&cent;</h1>
+                <form action="http://digitalaccess.bostonglobe.com/da/33/?eglobe_rc=WW113959">
+                    <button class="bg-modal--meter__button" onclick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Meter 10 Offer');">Sign up</button>
+                </form>
+                <p class="bg-modal--meter__login-text">Subscriber <a href="https://www.bostonglobe.com/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/final-login.jsp" onClick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Meter Login');">Log In</a>
+                </p>
+            </div>
+        </div>
+
+
+        <div id="modal_takeover" class="white-popup-block paywall-square-meter">
+            <div class="inner">
+                <div class="header-text">
+                    <button title="Close (Esc)" type="button" class="mfp-close" aria-label="Close">×</button>
+                    <h1>Read it all, now.</h1>
+                </div>
+                <div class="tease-text">
+                    <p>Don't miss any of your favorite stories again. Read the stories that matter to you as much as you want, whenever you want when you subscribe to BostonGlobe.com.</p>
+                    <p class="meter-bold">Get full access today for just 99¢</p>
+                </div>
+
+                <div class="paywall-clearfix"></div>
+
+                <footer>
+                    <div class="button-section">
+                        <a href="http://digitalaccess.bostonglobe.com/da/33/?eglobe_rc=WW113967" title="desktop" onclick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Meter 2 - Get Access Now')">
+                            <button class="paywall-full-access-button">SIGN UP</button>
+                        </a>
+                    </div>
+                    <div class="paywall-logo-img">
+                        <img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/Globe-Logo-non-transparent.jpg">
+                    </div>
+
+                    <p>No thanks, <a href="#">take me to my article</a>.</p>
+
+                    <p> <a href="https://www.bostonglobe.com/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/final-login.jsp" alt="mobile" onclick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Fullpage Paywall Login');">Subscribers log in here</a>
+                    </p>
+
+
+
+
+                </footer>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!--  ends display:none; div -->
+    <div id="meter-limit-met-popup" class="mfp-hide white-popup-block paywall-square-meter">
+
+        <div class="paywall-section-1">
+            <h1>You have reached the limit of 10 free articles in a month</h1>
+            <p class="paywall-mobile-link">Continue reading by subscribing to BostonGlobe.com for <a href="http://digitalaccess.bostonglobe.com/da/33/?eglobe_rc=WW113971" alt="mobile" onClick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Fullpage Paywall Offer');">just 99&cent;</a>.</p>
+
+            <p class="paywall-desktop-link">Continue reading by subscribing to BostonGlobe.com for <a href="http://digitalaccess.bostonglobe.com/da/33/?eglobe_rc=WW113971" alt="desktop" onClick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Modal Paywall Offer');">just 99&cent;</a>.</p>
+        </div>
+        <div class="paywall-section-2">
+            <div class="list-section">
+                <h2>Stay informed with unlimited access to Boston’s trusted news source.</h2>
+                <ul>
+                    <li>High-quality journalism from the region’s largest newsroom</li>
+                    <li>Convenient access across all of your devices</li>
+                    <li>Today’s Headlines daily newsletter</li>
+                    <li>Subscriber-only access to exclusive offers, events, contests, eBooks, and more</li>
+                    <li class="bold">Less than 25&#162; a week</li>
+                </ul>
+            </div>
+            <!-- /list section -->
+
+            <div class="image-section">
+                <div class="paywall-main-device-img">
+                    <img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/Device-LockUp-non-transparent.jpg">
+                </div>
+            </div>
+            <!-- /image-section -->
+        </div>
+        <!-- /paywall-section-2 -->
+
+        <div class="paywall-clearfix"></div>
+
+        <div class="paywall-section-3">
+            <div class="button-section">
+                <a class="paywall-desktop-link" href="http://digitalaccess.bostonglobe.com/da/33/?eglobe_rc=WW113972" alt="desktop" onClick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Modal Paywall Get Access');">
+                    <button class="paywall-full-access-button">GET FULL ACCESS NOW</button>
+                </a>
+
+                <a class="paywall-mobile-link" href="http://digitalaccess.bostonglobe.com/da/33/?eglobe_rc=WW113972" alt="mobile" onClick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Fullpage Paywall Get Access');">
+                    <button class="paywall-full-access-button">GET FULL ACCESS NOW</button>
+                </a>
+            </div>
+            <div class="logo-section">
+                <div class="paywall-logo-img">
+                    <img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/Globe-Logo-non-transparent.jpg">
+                </div>
+                <p class="paywall-desktop-link">Subscriber <a href="https://www.bostonglobe.com/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/final-login.jsp" alt="desktop" onClick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Modal Paywall Login');">Log In</a>
+                </p>
+
+                <p class="paywall-mobile-link">Subscriber <a href="https://www.bostonglobe.com/eom/SysConfig/WebPortal/BostonGlobe/Framework/regi/final-login.jsp" alt="mobile" onClick="var s=s_gi('nytbostonglobecom');s.tl(this,'o','BG Fullpage Paywall Login');">Log In</a>
+                </p>
+            </div>
+            <!-- /logo-section -->
+        </div>
+        <!-- /paywall-section-3  -->
+        <div class="paywall-clearfix"></div>
+
+        <div class="paywall-section-4">
+            <div class="paywall-main-device-img-bottom">
+                <img src="/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/Device-LockUp-Mobile-non-transparent.jpg">
+            </div>
+        </div>
+        <!--  -->
+    </div>
+    <!-- end paywall modal -->
+
+    <div class="ad ad-slot-c" id="EXTRA"></div>
+    <!-- Tracking -->
+    <!-- stubView3 =  -->
+    <!-- sectionTracking1: News -->
+
+
+
+
+
+
+
+
+    <!--  Webtype is dwp_homepage -->
+
+
+
+
+
+
+
+
+
+
+    <!-- sectionpath / -->
+
+
+
+    <!-- Determine sprop_3 -->
+
+
+
+
+
+
+
+    <script>
+    var sPageName = 'News | BGC Homepage';
+    var sChannel = 'News';
+    var sProp1 = 'News | BGC Homepage';
+    var sProp3 = '';
+    var sProp6 = 'BGC Homepage';
+    if (methode.showPaywall) {
+        sChannel = 'Member Center';
+        sProp1 = 'Member Center | BGC Registration';
+        if ($(window).width() <= 768) {
+            // assume mobile 
+            sPageName = 'Member Center | BGC Registration | Fullpage Paywall Challenge';
+            sProp6 = 'BGC Registration Page - Fullpage';
+        } else {
+            // assume desktop
+            sPageName = 'Member Center | BGC Registration | Modal Paywall Challenge';
+            sProp6 = 'BGC Registration Page - Modal';
+        }
+    }
+    globe.extend(globe.analytics.omniture, {
+        'pageType': '',
+        'pageName': sPageName,
+        'channel': sChannel,
+        'prop1': sProp1,
+        'prop3': sProp3,
+        'prop6': sProp6,
+
+        'prop35': 'logged out',
+        'eVar20': 'logged out',
+        'prop42': 'Metered',
+        'eVar42': 'Metered',
+
+        'eVar41': 'BostonGlobe.com',
+        'prop41': 'BostonGlobe.com',
+        'WT omnituretracking.tag': 'dwp_homepage'
+    });
+    </script>
+
+    <noscript>
+        <img src="http://newyorktimes.112.2o7.net/b/ss/nytbostonglobecom/1/H.23.3--NS/0?pageName=News%20%7C%20BGC%20Homepage&amp;ch=News&amp;c1=News%20%7C%20BGC%20Homepage&amp;c6=BGC%20Homepage&amp;c41=BostonGlobe.com&amp;v41=BostonGlobe.com" height="1" width="1" border="0" alt="" />
+    </noscript>
+
+    </div>
+    <script type="text/javascript">
+    setTimeout(function() {
+        var a = document.createElement("script");
+        var b = document.getElementsByTagName("script")[0];
+        a.src = document.location.protocol + "//dnn506yrbagrg.cloudfront.net/pages/scripts/0014/1023.js?" + Math.floor(new Date().getTime() / 3600000);
+        a.async = true;
+        a.type = "text/javascript";
+        b.parentNode.insertBefore(a, b)
+    }, 1);
+    </script>
+</body>
+
+</html>
