@@ -83,7 +83,8 @@ module.exports = {
 
 	clean: function(s) {
 		return s
-			.replace(/([a-z])([A-Z])/g, '$1 $2')
+			.replace(/'/g, '’')		// replace dumb quote with smart quote
+			.replace(/([a-z])([A-Z])/g, '$1 $2')	// add a space between aZ, e.g. CoonCounty -> Coon County
 			.replace(/(\d+)(th|st|nd|rd)/g, '$1$2 ') // add space after 1st
 			.replace(/\(/g, ' (') 	// add space before (
 			.replace(/\)/g, ') ') 	// add space after (
@@ -122,29 +123,6 @@ module.exports = {
 	log: function(value) {
 		console.log(JSON.stringify(value, null, 4));
 	},
-
-	// raceName: function(race) {
-
-	// 	var display = '';
-
-	// 	if (race) {
-
-	// 		var date = Date(race.election_date);
-
-	// 		var primary = race.race_type === 'Primary' ? race.race_type_id + ' primary' : null;
-
-	// 		var name = _.chain([race.office_name, race.seat_name, primary])
-	// 			.filter(function(v) {
-	// 				return v;
-	// 			})
-	// 			.value()
-	// 			.join(' - ');
-
-	// 		display = name;
-	// 	}
-
-	// 	return display;
-	// },
 
 	raceTypeIDToParty: function(race_type_id) {
 		return {
