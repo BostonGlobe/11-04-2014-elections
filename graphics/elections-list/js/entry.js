@@ -3,7 +3,7 @@ var util = require('../../../common/assets/js/util.js');
 
 (function() { globe.onDefine('window.jQuery && $(".igraphic-graphic.elections-list").length', function() {
 
-	var states = ['ma', 'nh'];
+	var states = ['ma'];
 
 	function stateOfficesCallback(json) {
 
@@ -29,10 +29,13 @@ var util = require('../../../common/assets/js/util.js');
 
 		// make a list of races
 		var races = _.chain(json)
+			.filter(function(result) {
+				return result.race_type !== 'Ballot Issue';
+			})
 			.map(function(result) {
 				var moment = Moment(result.election_date);
 				var displayDate = moment.format('YYYY-MM-DD');
-				return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + util.officeToUrl(result.office_name) + '/' + util.seatToUrl(result.seat_name) + '">' + [displayDate, util.officeToUrl(result.office_name), util.seatToUrl(result.seat_name)].join(', ') + '</a></li>';
+				return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + util.officeToUrl(result.office_name) + '/' + util.seatToUrl(result.seat_name) + '">' + util.raceTitle(result) + '</a></li>';
 			})
 			.uniq()
 			.sortBy(function(v, i) {
@@ -68,19 +71,19 @@ var util = require('../../../common/assets/js/util.js');
 			.append('<ul>' + towns.join('') + '</ul>');
 	}
 
-	states.forEach(function(state) {
+	// states.forEach(function(state) {
 
-		var callback = state + 'offices';
+	// 	var callback = state + 'offices';
 
-		window[callback] = stateOfficesCallback;
+	// 	window[callback] = stateOfficesCallback;
 		
-		$.ajax({
-			url: 'http://devweb.bostonglobe.com/electionapi/race/location/' + state + '?detail=true&date=20141104',
-			dataType: 'jsonp',
-			jsonpCallback: callback
-		});
+	// 	$.ajax({
+	// 		url: 'http://devweb.bostonglobe.com/electionapi/race/location/' + state + '?detail=true&date=20141104',
+	// 		dataType: 'jsonp',
+	// 		jsonpCallback: callback
+	// 	});
 
-	});
+	// });
 
 	states.forEach(function(state) {
 
@@ -96,18 +99,18 @@ var util = require('../../../common/assets/js/util.js');
 
 	});
 
-	states.forEach(function(state) {
+	// states.forEach(function(state) {
 
-		var callback = state + 'towns';
+	// 	var callback = state + 'towns';
 
-		window[callback] = stateTownsCallback;
+	// 	window[callback] = stateTownsCallback;
 		
-		$.ajax({
-			url: 'http://devweb.bostonglobe.com/electionapi/races/office/' + state + '/governor?detail=true&date=20141104',
-			dataType: 'jsonp',
-			jsonpCallback: callback
-		});
+	// 	$.ajax({
+	// 		url: 'http://devweb.bostonglobe.com/electionapi/races/office/' + state + '/governor?detail=true&date=20141104',
+	// 		dataType: 'jsonp',
+	// 		jsonpCallback: callback
+	// 	});
 
-	});
+	// });
 
 }); }());

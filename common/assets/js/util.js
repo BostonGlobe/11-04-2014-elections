@@ -18,11 +18,11 @@ module.exports = {
 		// seat, e.g. County commissioner -> County commissioner, Bristol, Mass.
 		if (seat.length) {
 
-			title = [this.sentenceStyle(office), this.titleCase(seat), state].join(', ');
+			title = [this.standardizeOffice(office), this.standardizeSeat(seat), state].join(', ');
 
 		} else {
 			// no seat, e.g. Governor -> Mass. governor
-			title = [state, office.toLowerCase()].join(' ');
+			title = [state, this.standardizeOffice(office)].join(' ');
 		}
 
 		return title;
@@ -33,7 +33,7 @@ module.exports = {
 	},
 
 	seatToUrl: function(seat) {
-		return this.standardizeSeat(seat);
+		return seat.replace(/&/g, '%2526');
 	},
 
 	standardizeState: function(state) {
@@ -45,11 +45,36 @@ module.exports = {
 	},
 
 	standardizeOffice: function(office) {
-		return office.replace(/[uU]\.[sS]\./g, 'US');
+		return office.replace(/[uU]\.[sS]\. /g, 'US ');
+	},
+
+	clean: function(s) {
+		return s
+			.replace(/\(/g, ' (') 	// add space before (
+			.replace(/\)/g, ') ') 	// add space after (
+			.replace(/&/g, ' & ')	// add space before and after &
+			.replace(/\,/g, ', ')	// add space after ,
+			.trim()					// trim string
+			.replace(/\s+/g, ' ')	// collapse multiple whitespaces to one
+			;
 	},
 
 	standardizeSeat: function(seat) {
-		return seat.replace(/&/g, '%2526');
+		return this.clean(seat)
+			.replace('Frankln', 'Franklin')
+			.replace('Frnkln', 'Franklin')
+
+			.replace('Hampshre', 'Hampshire')
+			.replace('Hmpshire', 'Hampshire')
+			.replace('Hampshr', 'Hampshire')
+
+			.replace('Brkshire', 'Berkshire')
+
+			.replace('Hampdn', 'Hampden')
+
+			.replace('Worcstr', 'Worcester')
+
+			.replace('Middlesx', 'Middlesex');
 	},
 
 	log: function(value) {
