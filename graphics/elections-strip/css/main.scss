@@ -1,6 +1,15 @@
+// libraries
 @import "compass";
 @import "compass/typography/vertical_rhythm";
 @import "breakpoint";
 
-@import "common/css/_type";
+// utilities
+@import "common/assets/css/_typography";
+@import "common/assets/css/_colors";
+
+// components
+@import "common/assets/css/_pollclock";
+@import "common/assets/css/_donut";
+
+// structure
 @import "graphics/elections-strip/css/_layout";

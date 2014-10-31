@@ -1,7 +1,4 @@
-(function() { globe.onDefine('window.jQuery && $(".homepage-graphic.elections-strip").length', function() {
-
-	var masterSelector = '.homepage-graphic.elections-strip';
-	var master = $(masterSelector);
+(function() { globe.onDefine('window.jQuery && $("#elections-strip").length', function() {
 
 	require('./main.jsx');
 
