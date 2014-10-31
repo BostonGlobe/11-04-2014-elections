@@ -1,19 +1,25 @@
 <div class='igraphic-graphic'>
 
 	<div id='elections-nav' class='elections-nav elections-graphic'>
-		<h1><div class="elections-nav__check-icon"></div>Campaign 2014</h1>
-		<div class="elections-nav__toggle">
-			<div class="elections-nav__toggle-race"></div>
-			<div class="elections-nav__toggle-place"></div>
+		<div class="elections-nav__upper-panel">
+			<h1><div class="elections-nav__check-icon"></div>Campaign 2014</h1>
+			<div class="elections-nav__toggles">
+				<div class="elections-nav__toggle elections-nav__toggle-race elections-nav__toggle--active" data-panel="race">
+					<div class="elections-nav__toggle-icon"></div>
+				</div>
+				<div class="elections-nav__toggle elections-nav__toggle-place" data-panel="place">
+					<div class="elections-nav__toggle-icon"></div>
+				</div>
+			</div>
 		</div>
-		<div class="elections-nav__panel-race">
+		<div class="elections-nav__panel-race elections-nav__panel elections-nav__panel--active">
 			<select class='elections-nav__race-select'>
 				<option value="choose">Choose a Race</option>
 				<option value="top">Top Races</option>
 				<option value="gov">Governor</option>
 			</select>
 		</div>
-		<div class="elections-nav__panel-place">
+		<div class="elections-nav__panel elections-nav__panel-place">
 <!-- 		<form class='fuzzy-search-auto'>
 			<div class='ui-widget'>
 				<input class='fuzzy-search-auto-input elections-nav__town-select' placeholder='Enter a town in MA'>

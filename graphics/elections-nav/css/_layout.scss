@@ -1,7 +1,9 @@
 $toggle-break: 750px;
+$nav-rule-width: 1px;
+$nav-rule: $nav-rule-width #ccc solid;
 
 .elections-nav {
-	border-bottom: 2px #ccc solid;
+	border-bottom: $nav-rule;
 	width: 100%;
 	line-height: 1;
 	padding-bottom: .5em;
@@ -41,26 +43,83 @@ $toggle-break: 750px;
 		height: 31px;
 	}
 
+	@media all and (max-width: $toggle-break) {
+		h1 {
+			position: relative;
+			bottom: .25em;
+		}
+
+		&__upper-panel {
+			width: 100%;
+			border-bottom: $nav-rule;
+		}
+	}
+
 	&__toggle {
-		@media all and (min-width: $toggle-break) {
-			display: none !important;
+		&s {
+			@media all and (min-width: $toggle-break) {
+				display: none !important;
+			}
+			float: right;
+			position: relative;
+			bottom: -$nav-rule-width;
 		}
 
 		&-race,
 		&-place {
+			cursor: pointer;
+			float: left;
+			width: 3em;
+			height: 2.5em;
+			border-left: $nav-rule;
+			border-right: $nav-rule;
+			padding-top: .25em;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		&--active {
+			border-bottom: $nav-rule-width #fff solid;
+		}
+
+		&-icon {
 			@extend %elections-nav-sprite;
+			margin: auto;
 		}
 
 		&-race {
-			background-position: 0 -55px;
-			width: 17px;
-			height: 22px;
+			.elections-nav__toggle-icon {
+				background-position: 0 -55px;
+				width: 17px;
+				height: 22px;
+			}
 		}
 
 		&-place {
-			background-position: 0 -31px;
-			width: 14px;
-			height: 24px;
+			border-left: none;
+
+			.elections-nav__toggle-icon {
+				background-position: 0 -31px;
+				width: 14px;
+				height: 24px;
+			}
+		}
+	}
+
+	@media all and (max-width: $toggle-break) {
+		&__panel {
+			display: none !important;
+
+			&--active {
+				display: block !important;
+				width: 100%;
+				padding-top: 1em;
+
+				input,
+				select {
+					width: 90%;
+				}
+			}
 		}
 	}
 
