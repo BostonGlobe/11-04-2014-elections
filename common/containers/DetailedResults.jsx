@@ -24,7 +24,7 @@ var DetailedResults = React.createClass({
 	mixins: [FetchResultsMixin],
 
 	apiCallback: function() {
-		var callback = [this.props.date, this.props.state, this.props.office, this.props.seat].join('').replace(/ /g, '').replace(/-/g, '');
+		var callback = [this.props.date, this.props.state, this.props.office, this.props.seat].join('').replace(/ /g, '');
 		return callback;
 	},
 
@@ -62,10 +62,12 @@ var DetailedResults = React.createClass({
 			{tooltip}
 		</div> : null;
 
+		var title = results ? <Title isHeader={true} name={util.raceTitle(results)} /> : null;
+
 		return (
 			<div className='detailed-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<Title isHeader={true} name={[this.props.date, util.raceName(results)].join(' ')} />
+				{title}				
 				<ShareTools />
 				<Summary results={results} />
 				{choropleth}

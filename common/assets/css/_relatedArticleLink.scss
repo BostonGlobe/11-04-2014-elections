@@ -1,0 +1,26 @@
+//Related article link styles
+
+.election-related-story {
+
+	border-left: 5px solid $bw25;
+	padding-left: 1em;
+	margin-top: 1em;
+	
+	span.election-related-overline {
+		text-transform: uppercase;
+		font-family: $sansSerif;
+		@include adjust-font-size-to($s2, 1);
+		display: block;
+		color: #9B1518; //globe red
+	}
+
+	a {
+		text-decoration: none;
+		font-weight: bold;
+		transition: all 0.2s ease;
+
+		&:hover {
+			color: black;
+		}
+	}
+}

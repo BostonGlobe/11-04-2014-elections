@@ -21,14 +21,14 @@ var OfficesResults = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiCallback: function() {
-		var callback = [this.props.office, this.props.state, this.props.date].join('').replace(/ /g, '').replace(/-/g, '');
+		var callback = [this.props.office, this.props.state, this.props.date].join('');
 		return callback;
 	},
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
 		var isDev = false;
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + this.props.state + '/' + encodeURIComponent(this.props.office) + '?date=' + this.props.date;
+		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + this.props.state + '/' + this.props.office + '?date=' + this.props.date;
 		return url;
 	},
 
@@ -39,41 +39,33 @@ var OfficesResults = React.createClass({
 		var summaries = _.chain(this.state.results)
 			.map(function(race) {
 
-				// seat_name e.g. 2ndBristol&Plymouth
-				// extract ordinal
-				var regex = /^((\d*)(th|st|nd|rd))?(.*)/;
-				var match = regex.exec(race.seat_name);
+				var name = util.seatName(race);
 
-				// now let's work on the towns
-				var towns = _.last(match)
-					.trim() // remove start and end whitespace
-					.replace(/,/g, '&') // replace all commas with &
-					.replace(/ /g, '') // remove all whitespace
-					.split('&'); // create an array of towns
-
-				var townsForDisplay = towns.length === 1 ?
-					towns[0] :
-					[_.initial(towns).join(', '), _.last(towns)].join(' & ');
-
-				return {
+				var augmentedRace = {
 					race: race,
-					ordinalAndTowns: {
-						number: match[2], 
-						ordinal: match[3],
-						towns: townsForDisplay
-					}
+					name: name
 				};
+
+				// extract number
+				var regex = /(\d*)(th|st|nd|rd) (.*)/;
+				var match = regex.exec(name);
+				var number;
+
+				augmentedRace.number = match ? +match[1] : -1;
+				augmentedRace.rest = match ? match[3] : name;
+
+				return augmentedRace;
 			})
 			.sortBy(function(augmentedRace) {
-				return +augmentedRace.ordinalAndTowns.number;
+				return augmentedRace.number;
 			})
 			.sortBy(function(augmentedRace) {
-				return augmentedRace.ordinalAndTowns.towns;
+				return augmentedRace.rest;
 			})
 			.map(function(augmentedRace) {
 
+				var name = augmentedRace.name;
 				var race = augmentedRace.race;
-				var ordinalAndTowns = augmentedRace.ordinalAndTowns;
 				var moment = Moment(race.election_date);
 				var displayDate = moment.format('YYYY-MM-DD');
 				var isUncontested = race.candidates.length < 2;
@@ -84,18 +76,24 @@ var OfficesResults = React.createClass({
 
 				return (
 					<div className='office' key={race.race_number}>
-						<Title name={ordinalAndTowns.towns} number={ordinalAndTowns.number} ordinal={ordinalAndTowns.ordinal} />
+						<Title name={name} />
 						<Summary results={race} />
 						{button}
+						<div className='election-related-story'>
+							<span className='election-related-overline'>More governor coverage</span>
+							<a href=''>Related election headline goes here just like this</a>
+						</div>
 					</div>
 				);
 			})
 			.value();
 
+		var title = this.state.results[0] ? <Title isHeader={true} name={util.officeTitle(this.state.results[0])} /> : null;
+
 		return (
 			<div className='offices-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<Title isHeader={true} name={[this.props.date, this.props.state, this.props.office].join(' ')} />
+				{title}
 				<ShareTools />
 				{_.first(summaries)}
 				<Ad />

@@ -21,14 +21,14 @@ var TownResults = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiCallback: function() {
-		var callback = [this.props.town, this.props.state, this.props.date].join('').replace(/ /g, '').replace(/-/g, '');
+		var callback = [this.props.town, this.props.state, this.props.date].join('');
 		return callback;
 	},
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
 		var isDev = false;
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/town/' + encodeURIComponent(this.props.town) + '?state=' + encodeURIComponent(this.props.state) + '&date=' + this.props.date;
+		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/town/' + this.props.town + '?state=' + this.props.state + '&date=' + this.props.date;
 		return url;
 	},
 
@@ -64,7 +64,7 @@ var TownResults = React.createClass({
 		return (
 			<div className='town-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<Title isHeader={true} name={[this.props.date, this.props.town, this.props.state].join(', ')} />
+				<Title isHeader={true} name={util.townTitle({town:this.props.town, state:this.props.state})} />
 				<ShareTools />
 				{_.first(summaries)}
 				<Ad />

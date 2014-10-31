@@ -1,30 +1,127 @@
+var ordinal = require('ordinal');
+
 module.exports = {
+
+	sentenceStyle: function(s) {
+		return _.first(s).toUpperCase() + _.rest(s).join('').toLowerCase();
+	},
+
+	titleCase: function(str) {
+	    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	},
+
+	townTitle: function(opts) {
+		var town = opts.town;
+		var state = opts.state;
+
+		return [town, this.standardizeState(state)].join(', ');
+	},
+
+	officeTitle: function(results) {
+
+		var title;
+		var office = results.office_name;
+		var state = this.standardizeState(results.state_postal);
+
+		title = [state, this.standardizeOffice(office.toLowerCase())].join(' ');
+
+		return title;
+	},
+
+	seatName: function(results) {
+		return this.standardizeSeat(results.seat_name);
+	},
+
+	raceName: function(results) {
+
+		return this.raceTitle(results).replace(', ' + this.standardizeState(results.state_postal), '');
+	},
+
+	raceTitle: function(results) {
+
+		var title;
+		var seat = results.seat_name;
+		var office = results.office_name;
+		var state = this.standardizeState(results.state_postal);
+
+		// seat, e.g. County commissioner -> County commissioner, Bristol, Mass.
+		if (seat.length) {
+
+			title = [this.standardizeOffice(this.sentenceStyle(office)), this.standardizeSeat(seat), state].join(', ');
+		} else {
+			// no seat, e.g. Governor -> Mass. governor
+			title = [state, this.standardizeOffice(office.toLowerCase())].join(' ');
+		}
+
+		return title;
+	},
+
+	officeToUrl: function(office) {
+		return this.standardizeOffice(office);
+	},
+
+	seatToUrl: function(seat) {
+		return seat.replace(/&/g, '%2526');
+	},
+
+	standardizeState: function(state) {
+
+		return state ? {
+			'MA': 'Mass.',
+			'NH': 'NH'
+		}[state] : '';
+	},
+
+	standardizeOffice: function(office) {
+		return this.clean(office)
+			.replace(/u\.s\. /gi, 'US ')
+			.replace(/state house/i, 'State House')
+			.replace(/state senate/i, 'State Senate')
+			.replace(/us house/i, 'US House')
+			.replace(/us senate/i, 'US Senate');
+	},
+
+	clean: function(s) {
+		return s
+			.replace(/'/g, '’')		// replace dumb quote with smart quote
+			.replace(/([a-z])([A-Z])/g, '$1 $2')	// add a space between aZ, e.g. CoonCounty -> Coon County
+			.replace(/(\d+)(th|st|nd|rd)/g, '$1$2 ') // add space after 1st
+			.replace(/\(/g, ' (') 	// add space before (
+			.replace(/\)/g, ') ') 	// add space after (
+			.replace(/&/g, ' & ')	// add space before and after &
+			.replace(/\,/g, ', ')	// add space after ,
+			.trim()					// trim string
+			.replace(/\s+/g, ' ')	// collapse multiple whitespaces to one
+			;
+	},
+
+	standardizeSeat: function(seat) {
+		return this.clean(seat)
+			.replace(/(District)(\d+)/g, '$1 $2')
+			.replace(/(District) (\d+)/g, function(match, $1, $2, offset, original) {
+				return [ordinal(+$2), $1].join(' ');
+			})
+			.replace('Frankln', 'Franklin')
+			.replace('Frnkln', 'Franklin')
+
+			.replace('Hampshre', 'Hampshire')
+			.replace('Hmpshire', 'Hampshire')
+			.replace('Hampshr', 'Hampshire')
+
+			.replace('Brkshire', 'Berkshire')
+
+			.replace('Hampdn', 'Hampden')
+
+			.replace('Worcstr', 'Worcester')
+
+			.replace('Middlesx', 'Middlesex')
+
+			.replace('Rockinghm', 'Rockingham')
+			;
+	},
 
 	log: function(value) {
 		console.log(JSON.stringify(value, null, 4));
-	},
-
-	raceName: function(race) {
-
-		var display = '';
-
-		if (race) {
-
-			var date = Date(race.election_date);
-
-			var primary = race.race_type === 'Primary' ? race.race_type_id + ' primary' : null;
-
-			var name = _.chain([race.office_name, race.seat_name, primary])
-				.filter(function(v) {
-					return v;
-				})
-				.value()
-				.join(' - ');
-
-			display = name;
-		}
-
-		return display;
 	},
 
 	raceTypeIDToParty: function(race_type_id) {

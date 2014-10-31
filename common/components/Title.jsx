@@ -15,12 +15,12 @@ var Title = React.createClass({
 			'title': true
 		});
 
-		var prefix = this.props.number && this.props.ordinal ?
-			<span>{this.props.number}<sup>{this.props.ordinal}</sup> </span> :
-			null;
+		var title = this.props.name.replace(/(.*)(\d+)(th|st|nd|rd) (.*)/g, function(match, $1, $2, $3, $4, offset, original) {
+			return ['<span>',$1,$2,'<sup>',$3,'</sup> ',$4,'</span>'].join('');
+		});
 
 		return (
-			<div className={classes}>{prefix}{this.props.name}</div>
+			<div className={classes} dangerouslySetInnerHTML={{__html: title}} />
 		);
 	}
 
