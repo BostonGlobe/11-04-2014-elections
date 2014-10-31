@@ -2,7 +2,7 @@
  * @jsx React.DOM
  */
 
-var React             = require('react');
+var React = require('react');
 
 var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
 
@@ -10,16 +10,13 @@ var Choropleth        = require('../components/Choropleth.jsx');
 var PollClock         = require('../components/PollClock.jsx');
 var Title             = require('../components/Title.jsx');
 var ShareTools        = require('../components/ShareTools.jsx');
-var Summary           = require('../components/Summary.jsx');
 var Tooltip           = require('../components/Tooltip.jsx');
-var TownByTownResults = require('../components/TownByTownResults.jsx');
-var Ad                = require('../components/Ad.jsx');
 
 var REPORTING_UNITS   = require('../../data/assets/MA/REPORTING_UNITS.json');
 
 var util              = require('../assets/js/util.js');
 
-var DetailedResults = React.createClass({
+var BigMap = React.createClass({
 
 	mixins: [FetchResultsMixin],
 
@@ -37,6 +34,10 @@ var DetailedResults = React.createClass({
 
 	tooltipCallback: function(opts) {
 		this.refs.theTooltip.setState(opts);
+	},
+
+	allResultsAreIn: function(results) {
+		return false;
 	},
 
 	render: function() {
@@ -65,18 +66,13 @@ var DetailedResults = React.createClass({
 		var title = results ? <Title isHeader={true} name={util.raceTitle(results)} /> : null;
 
 		return (
-			<div className='detailed-results'>
+			<div className='big-map'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				{title}				
-				<ShareTools />
-				<Summary results={results} />
+				{title}
 				{choropleth}
-				<Ad />
-				<TownByTownResults results={results} />
 			</div>
 		);
 	}
-
 });
 
-module.exports = DetailedResults;
+module.exports = BigMap;

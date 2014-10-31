@@ -7,7 +7,7 @@ var React = require('react');
 var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
 
 var PollClock         = require('../components/PollClock.jsx');
-var RaceName          = require('../components/RaceName.jsx');
+var Title             = require('../components/Title.jsx');
 var BalanceOfPower    = require('../components/BalanceOfPower.jsx');
 
 var util              = require('../assets/js/util.js');
