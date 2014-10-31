@@ -28,10 +28,13 @@ module.exports = {
 		return title;
 	},
 
+	seatName: function(results) {
+		return this.standardizeSeat(results.seat_name);
+	},
+
 	raceName: function(results) {
 
 		return this.raceTitle(results).replace(', ' + this.standardizeState(results.state_postal), '');
-
 	},
 
 	raceTitle: function(results) {

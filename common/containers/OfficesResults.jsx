@@ -39,41 +39,33 @@ var OfficesResults = React.createClass({
 		var summaries = _.chain(this.state.results)
 			.map(function(race) {
 
-				// seat_name e.g. 2ndBristol&Plymouth
-				// extract ordinal
-				var regex = /^((\d*)(th|st|nd|rd))?(.*)/;
-				var match = regex.exec(race.seat_name);
+				var name = util.seatName(race);
 
-				// now let's work on the towns
-				var towns = _.last(match)
-					.trim() // remove start and end whitespace
-					.replace(/,/g, '&') // replace all commas with &
-					.replace(/ /g, '') // remove all whitespace
-					.split('&'); // create an array of towns
-
-				var townsForDisplay = towns.length === 1 ?
-					towns[0] :
-					[_.initial(towns).join(', '), _.last(towns)].join(' & ');
-
-				return {
+				var augmentedRace = {
 					race: race,
-					ordinalAndTowns: {
-						number: match[2], 
-						ordinal: match[3],
-						towns: util.standardizeSeat(townsForDisplay)
-					}
+					name: name
 				};
+
+				// extract number
+				var regex = /(\d*)(th|st|nd|rd) (.*)/;
+				var match = regex.exec(name);
+				var number;
+
+				augmentedRace.number = match ? +match[1] : -1;
+				augmentedRace.rest = match ? match[3] : name;
+
+				return augmentedRace;
 			})
 			.sortBy(function(augmentedRace) {
-				return +augmentedRace.ordinalAndTowns.number;
+				return augmentedRace.number;
 			})
 			.sortBy(function(augmentedRace) {
-				return augmentedRace.ordinalAndTowns.towns;
+				return augmentedRace.rest;
 			})
 			.map(function(augmentedRace) {
 
+				var name = augmentedRace.name;
 				var race = augmentedRace.race;
-				var ordinalAndTowns = augmentedRace.ordinalAndTowns;
 				var moment = Moment(race.election_date);
 				var displayDate = moment.format('YYYY-MM-DD');
 				var isUncontested = race.candidates.length < 2;
@@ -84,7 +76,7 @@ var OfficesResults = React.createClass({
 
 				return (
 					<div className='office' key={race.race_number}>
-						<Title name={ordinalAndTowns.towns} number={ordinalAndTowns.number} ordinal={ordinalAndTowns.ordinal} />
+						<Title name={name} />
 						<Summary results={race} />
 						{button}
 						<div className='election-related-story'>
