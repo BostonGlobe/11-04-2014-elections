@@ -31,7 +31,7 @@
       $("<ul />", {
         "class": "datalist",
         "id"   : list_id
-      }).appendTo("body");
+      }).appendTo($input.parent());
 
       // Remove old datalist
       $datalist.remove();
