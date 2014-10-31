@@ -15,7 +15,7 @@ var Tooltip           = require('../components/Tooltip.jsx');
 var TownByTownResults = require('../components/TownByTownResults.jsx');
 var Ad                = require('../components/Ad.jsx');
 
-var REPORTING_UNITS   = require('../../data/output/MA/REPORTING_UNITS.json');
+var REPORTING_UNITS   = require('../../data/assets/MA/REPORTING_UNITS.json');
 
 var util              = require('../assets/js/util.js');
 
