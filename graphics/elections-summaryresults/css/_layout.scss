@@ -1,158 +1,37 @@
-.homepage-graphic.elections-summaryresults {
+.elections-graphic.elections-summaryresults {
+	@include adjust-font-size-to($s6);
 
-	@include rhythm(1, 0, 0, 0);
-
-	table.summary-table {
-
+	.summary-result {
 		@include rhythm(0, 0, 0, 1);
+	}
 
-		font-family: $sansSerif;
-		@include adjust-font-size-to(19px);
-		color: black;
+	.title.is-subheader {
+		@include adjust-font-size-to($s4, 1);
+	}
 
-		thead {
-			tr {
-				border-bottom: solid $borderColor 1px;
+	.candidates-table {
+
+		@include rhythm(0, 0, 0, 0);
+
+		td.candidate-name {
+
+			.name {
+				@include adjust-font-size-to($s4, 1);
 			}
 		}
 
-		tbody {
-
-			tr {
-
-				border-bottom: solid $borderColor 1px;
-
-				// let's see. we have several cases here.
-				// no winner, no square -> tr
-				// no winner,    square -> tr.color
-				//    winner, no square -> tr.winner
-				//    winner,    square -> tr.winner.color
-
-				// no winner, no square
-				.checkmark {
-					margin-left: 0.25em;
-					margin-right: 0.25em;
-					display: none;
-
-					&:before {
-						content: '✓';
-						visibility: hidden;
-						font-weight: bold;
-
-					}
-				}
-
-				// no winner, square
-				&.color .checkmark {
-					display: inline-block;
-					width: 1.25em;
-					padding-left: 0.125em;
-				}
-
-				// winner, no square
-				&.winner .checkmark {
-					display: inline-block;
-
-					&:before {
-						visibility: visible;
-					}
-				}
-
-				// winner, square
-				&.winner.color .checkmark {
-					&:before {
-						color: white;
-					}
-				}
-
-				&.democrat .checkmark { background: $blue; }
-				&.republican .checkmark { background: $red; }
-				&.independent .checkmark { background: $yellow; }
-
-				// setup all the qualitative colors for the little squares
-				&.color_0 .checkmark { background: $qualitativeColor_0; }
-				&.color_1 .checkmark { background: $qualitativeColor_1; }
-				&.color_2 .checkmark { background: $qualitativeColor_2; }
-				&.color_3 .checkmark { background: $qualitativeColor_3; }
-				&.color_4 .checkmark { background: $qualitativeColor_4; }
-				&.color_5 .checkmark { background: $qualitativeColor_5; }
-				&.color_6 .checkmark { background: $qualitativeColor_6; }
-				&.color_7 .checkmark { background: $qualitativeColor_7; }
-				&.color_8 .checkmark { background: $qualitativeColor_8; }
-				&.color_9 .checkmark { background: $qualitativeColor_9; }
-
-				// color winning row
-				&.winner {
-					background: $winningBackground;
-				}
-
-			}
-
-			tr:nth-child(n+2) {
-
-				.pct-sign {
-					visibility: hidden;
-				}
-
-			}
-
-		}
-
-		tfoot {
-
-			color: $lessImportant;
-
-			td {
-				padding-left: 0;
-			}
-		}
-
-		th,
-		td {
-			font-weight: normal;
-			&.votes,
-			&.pct,
-			&.votesAndPct {
-				text-align: right;
-			}
-			padding-left: 0.5em;
-			padding-right: 0.5em;
-			@include rhythm(0, 1/5, 1/5, 0);
-		}
-
-		th.name {
-			text-transform: uppercase;
-			font-weight: bold;
+		td.candidate-percent {
 			padding-left: 0;
-
-			&.democrat {
-				color: $blue;
-			}
-
-			&.republican {
-				color: $red;
-			}
+			padding-right: 1em;
 		}
 
-		th.town,
-		th.votes,
-		th.pct,
-		td.metadata {
-			color: $lessImportant;
+		.candidate-bar {
+			display: none;
 		}
 
-		td.metadata {
-			text-align: right;
-		}
-
-		td.name {
+		td.candidate-votes {
 			padding-left: 0;
-			@include adjust-font-size-to(18px);
-		}
-
-		td.pct {
-			font-weight: bold;
-			@include adjust-font-size-to(18px);
 		}
 	}
+
 }
