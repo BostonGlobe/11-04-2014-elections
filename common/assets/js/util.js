@@ -49,7 +49,9 @@ module.exports = {
 	},
 
 	clean: function(s) {
+
 		return s
+			.replace(/(\d+)(th|st|nd|rd)/g, '$1$2 ') // add space after 1st
 			.replace(/\(/g, ' (') 	// add space before (
 			.replace(/\)/g, ') ') 	// add space after (
 			.replace(/&/g, ' & ')	// add space before and after &
