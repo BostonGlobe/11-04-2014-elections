@@ -56,12 +56,14 @@ module.exports = {
 		return title;
 	},
 
-	officeToUrl: function(office) {
-		return this.standardizeOffice(office);
-	},
-
-	seatToUrl: function(seat) {
-		return seat.replace(/&/g, '%2526');
+	toUrl: function(office) {
+		return office
+			.replace(/u\.s\. /gi, 'US ')
+			.replace(/state house/i, 'State House')
+			.replace(/state senate/i, 'State Senate')
+			.replace(/us house/i, 'US House')
+			.replace(/us senate/i, 'US Senate')
+			.replace(/&/g, '%2526');
 	},
 
 	standardizeState: function(state) {
