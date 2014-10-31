@@ -1,6 +1,7 @@
 (function() { globe.onDefine('window.jQuery && $("#elections-nav").length', function() {
 
-	// require('./jquery.relevant-dropdown.js');
+	require('./jquery-autocomplete.js');
+	require('./datalist.js');
 	require('./main.js');
 
 }); }());
