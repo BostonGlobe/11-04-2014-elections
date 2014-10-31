@@ -139,7 +139,6 @@ var TownByTownResults = React.createClass({
 			component = (
 				<div className='town-by-town-results'>
 					<Title name={'Town by town results'} />
-					<div className='table-position'>
 						<div className='table-container'>
 							<table>
 								<thead>
@@ -157,7 +156,6 @@ var TownByTownResults = React.createClass({
 							</table>
 						</div>
 					</div>
-				</div>
 			);
 		}
 

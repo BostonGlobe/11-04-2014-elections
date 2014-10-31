@@ -1,33 +1,13 @@
 .elections-graphic .town-by-town-results {
 
-	// .title {
-	// 	@include adjust-font-size-to($s5, 1);
-	// 	font-family: $sansSerifStrong;
-	// 	border-bottom: solid $bw50 1px;
-	// 	padding-bottom: 0.5em;
-	// 	margin-bottom: 1em;
-	// }
-
-	.table-position {
-		position: relative;
-
-		// 	&:before {
-		// 	content: '';
-		// 	position: absolute;
-		// 	top: 0;
-		// 	right: -1px;
-		// 	height: 100%;
-		// 	width: 35px;
-		// 	background: -webkit-linear-gradient( right , #FFF 10%, rgba(255, 255, 255, 0));
-		// 	background: linear-gradient(to left, #FFF 10%, rgba(255, 255, 255, 0));
-		// 	z-index: 5;
-		// 	pointer-events: none;
-		// }
-
-	}
-
 	.table-container { //horizontal scroll effects
 		overflow-x: auto;
+		@include background-image(linear-gradient(left, #ffffff, rgba(255, 255, 255, 0)), linear-gradient(right, #ffffff, rgba(255, 255, 255, 0)), linear-gradient(left, #c3c3c5, rgba(195, 195, 197, 0)), linear-gradient(right, #c3c3c5, rgba(195, 195, 197, 0)));
+		background-position: 0 0, 100% 0, 0 0, 100% 0;
+		background-repeat: no-repeat;
+		background-color: white;
+		background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
+		background-attachment: local, local, scroll, scroll;
 	}
 
 	table {
@@ -37,7 +17,7 @@
 		border-spacing: 0;
 
 		thead {
-			border: solid $bw25 1px;
+			border: 1px solid rgba(195, 195, 197, 0.3);
 		}
 
 		thead tr {
@@ -91,14 +71,14 @@
 		tbody tr {
 
 			&:nth-child(odd) {
-				background: $bw10;
+				background: rgba(195, 195, 197, 0.1);
 			}
 
 			td {
 				vertical-align: middle; //vertically aligns text in middle of cell
 				padding: 0.5em 0.5em 0.5em 0; //equal spacing of content in table
 				min-width: 5em; //even spacing between cells
-				border-bottom: 1px solid shade($bw10, 8%);
+				border-bottom: 1px solid rgba(195, 195, 197, 0.3);
 				
 				&:first-child {
 					padding-left: 0.5em; //indents first th/tr for equal-looking spcing
