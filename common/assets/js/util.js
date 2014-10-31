@@ -10,6 +10,30 @@ module.exports = {
 	    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 	},
 
+	townTitle: function(opts) {
+		var town = opts.town;
+		var state = opts.state;
+
+		return [town, this.standardizeState(state)].join(', ');
+	},
+
+	officeTitle: function(results) {
+
+		var title;
+		var office = results.office_name;
+		var state = this.standardizeState(results.state_postal);
+
+		title = [state, this.standardizeOffice(office.toLowerCase())].join(' ');
+
+		return title;
+	},
+
+	raceName: function(results) {
+
+		return this.raceTitle(results).replace(', ' + this.standardizeState(results.state_postal), '');
+
+	},
+
 	raceTitle: function(results) {
 
 		var title;
@@ -46,7 +70,7 @@ module.exports = {
 	},
 
 	standardizeOffice: function(office) {
-		return office
+		return this.clean(office)
 			.replace(/u\.s\. /gi, 'US ')
 			.replace(/state house/i, 'State House')
 			.replace(/state senate/i, 'State Senate')
@@ -55,8 +79,8 @@ module.exports = {
 	},
 
 	clean: function(s) {
-
 		return s
+			.replace(/([a-z])([A-Z])/g, '$1 $2')
 			.replace(/(\d+)(th|st|nd|rd)/g, '$1$2 ') // add space after 1st
 			.replace(/\(/g, ' (') 	// add space before (
 			.replace(/\)/g, ') ') 	// add space after (
@@ -69,6 +93,7 @@ module.exports = {
 
 	standardizeSeat: function(seat) {
 		return this.clean(seat)
+			.replace(/(District)(\d+)/g, '$1 $2')
 			.replace(/(District) (\d+)/g, function(match, $1, $2, offset, original) {
 				return [ordinal(+$2), $1].join(' ');
 			})

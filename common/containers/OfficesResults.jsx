@@ -60,7 +60,7 @@ var OfficesResults = React.createClass({
 					ordinalAndTowns: {
 						number: match[2], 
 						ordinal: match[3],
-						towns: townsForDisplay
+						towns: util.standardizeSeat(townsForDisplay)
 					}
 				};
 			})
@@ -96,10 +96,12 @@ var OfficesResults = React.createClass({
 			})
 			.value();
 
+		var title = this.state.results[0] ? <Title isHeader={true} name={util.officeTitle(this.state.results[0])} /> : null;
+
 		return (
 			<div className='offices-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<Title isHeader={true} name={[this.props.date, this.props.state, this.props.office].join(' ')} />
+				{title}
 				<ShareTools />
 				{_.first(summaries)}
 				<Ad />

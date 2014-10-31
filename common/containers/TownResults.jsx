@@ -64,7 +64,7 @@ var TownResults = React.createClass({
 		return (
 			<div className='town-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				<Title isHeader={true} name={[this.props.date, this.props.town, this.props.state].join(', ')} />
+				<Title isHeader={true} name={util.townTitle({town:this.props.town, state:this.props.state})} />
 				<ShareTools />
 				{_.first(summaries)}
 				<Ad />
