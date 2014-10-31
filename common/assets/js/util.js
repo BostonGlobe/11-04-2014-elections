@@ -18,11 +18,10 @@ module.exports = {
 		// seat, e.g. County commissioner -> County commissioner, Bristol, Mass.
 		if (seat.length) {
 
-			title = [this.standardizeOffice(office), this.standardizeSeat(seat), state].join(', ');
-
+			title = [this.standardizeOffice(this.sentenceStyle(office)), this.standardizeSeat(seat), state].join(', ');
 		} else {
 			// no seat, e.g. Governor -> Mass. governor
-			title = [state, this.standardizeOffice(office)].join(' ');
+			title = [state, this.standardizeOffice(office.toLowerCase())].join(' ');
 		}
 
 		return title;
@@ -45,7 +44,12 @@ module.exports = {
 	},
 
 	standardizeOffice: function(office) {
-		return office.replace(/[uU]\.[sS]\. /g, 'US ');
+		return office
+			.replace(/u\.s\. /gi, 'US ')
+			.replace(/state house/i, 'State House')
+			.replace(/state senate/i, 'State Senate')
+			.replace(/us house/i, 'US House')
+			.replace(/us senate/i, 'US Senate');
 	},
 
 	clean: function(s) {
