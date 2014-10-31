@@ -6,8 +6,12 @@ towns = _.map(towns,function(t) {
 					return t.toLowerCase();
 				 });
 
-$('.elections-nav__race-select').change(function() {
-	location.href = $( this ).val();
+$('.elections-nav__race-select')
+	.val("")
+	.change(function() {
+		if ($(this).val()) {
+			location.href = $(this).val();
+		}
 });
 
 $('.elections-nav__toggle').click(function() {
