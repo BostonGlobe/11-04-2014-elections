@@ -1,7 +1,5 @@
-(function() {
-	'use strict';
+'use strict';
 
-	$('.elections-nav__race-select').change(function() {
-		location.href = $( this ).val();
-	});
-})();
+$('.elections-nav__race-select').change(function() {
+	location.href = $( this ).val();
+});
