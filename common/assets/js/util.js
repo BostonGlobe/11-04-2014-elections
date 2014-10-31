@@ -1,3 +1,5 @@
+var ordinal = require('ordinal');
+
 module.exports = {
 
 	sentenceStyle: function(s) {
@@ -67,6 +69,9 @@ module.exports = {
 
 	standardizeSeat: function(seat) {
 		return this.clean(seat)
+			.replace(/(District) (\d+)/g, function(match, $1, $2, offset, original) {
+				return [ordinal(+$2), $1].join(' ');
+			})
 			.replace('Frankln', 'Franklin')
 			.replace('Frnkln', 'Franklin')
 
@@ -80,7 +85,10 @@ module.exports = {
 
 			.replace('Worcstr', 'Worcester')
 
-			.replace('Middlesx', 'Middlesex');
+			.replace('Middlesx', 'Middlesex')
+
+			.replace('Rockinghm', 'Rockingham')
+			;
 	},
 
 	log: function(value) {

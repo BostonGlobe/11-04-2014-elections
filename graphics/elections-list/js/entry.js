@@ -3,7 +3,7 @@ var util = require('../../../common/assets/js/util.js');
 
 (function() { globe.onDefine('window.jQuery && $(".igraphic-graphic.elections-list").length', function() {
 
-	var states = ['ma'];
+	var states = ['ma', 'nh'];
 
 	function stateOfficesCallback(json) {
 
