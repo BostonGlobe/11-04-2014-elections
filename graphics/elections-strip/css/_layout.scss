@@ -1,11 +1,142 @@
 #elections-strip {
+	
+	$bp-large: 1024px;
+	$bp-medium: 760px;
+	$bp-small: 480px;
 
-	pre {
-		font-size: 30px;
+	.strip {
+		height: 100%;
+		overflow: hidden;	
 	}
 
-	.democrat {
-		background: $democrat;
+	margin: 1em 0;
+	height: 100%;
+	overflow: hidden;
+	color: #333;
+	font-size: $s3;
+	font-family: $sansSerif;
+	line-height: 1.3;
+
+	a {
+		font-weight: bold;
+		text-decoration: underline;
+	}
+
+	.social-icon {
+		background: url(http://c.o0bg.com/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/socialmedia-sprite.png) no-repeat;
+		overflow: hidden;
+		color: transparent;
+		width: 35px;
+		height: 35px;
+		display: inline-block;
+	}
+
+	.social-icon.tw {
+		background-position: 8px -111px;
+		background-color: #55acee;
+	}
+
+	.social-icon.fb {
+		background-position: 12px -20px;
+		background-color: #3b5998;
+	}
+
+	.strip-title {
+		font-weight: bold;
+		font-size: $s4;
+	}
+
+	.strip-section {
+		float: left;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.section-reporting {
+		width: 15%;
+		padding-right: 2em;
+	}
+
+	.section-matchup {
+		width: 50%;
+		padding-right: 2em;
+		height: 100%;
+		overflow: hidden;
+		.matchup-container {
+			width: 50%;
+			float: left;
+		}
+		.fl {
+			padding: 0 0.5em;
+			float: left;
+		}
+		.matchup-left {
+			width: 50%;
+		}
+		.matchup-middle {
+			width: 25%;
+		}
+		.matchup-right {
+			width: 25%;
+		}
+		.matchup-party {
+			text-transform: uppercase;
+			color: #666;
+			font-size: $s2;
+			font-weight: bold;
+			margin-bottom: 0.5em;
+		}
+		.matchup-name {
+			font-size: $s4;
+			font-weight: bold;
+		}
+		.matchup-votes {
+			font-size: $s3;
+		}
+
+		.donut-box{
+			position: relative;
+			width: 100%;		/* desired width */
+		}
+		.donut-box:before{
+			content: "";
+			display: block;
+			padding-top: 100%; 	/* initial ratio of 1:1*/
+		}
+		.donut-content{
+		  background: red;
+			position:  absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+		}
+	}
+
+	.section-table {
+		width: 35%;
+		.table-row {
+			height: 100%;
+			overflow: hidden;
+			margin: 0 0 .75em 0;
+			border-bottom: 1px solid #ccc;
+		}
+		.table-name {
+			width: 33.4%;
+			float: left;
+			font-weight: bold;
+		}
+		.table-votes {
+			width: 33.3%;
+			float: left;
+			text-align: center;
+		}
+		.table-percent {
+			width: 33.3%;
+			float: left;
+			text-align: right;
+			font-weight: bold;
+		}
 	}
 	
 }

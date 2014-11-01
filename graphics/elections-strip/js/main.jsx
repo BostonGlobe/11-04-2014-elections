@@ -9,3 +9,5 @@ React.renderComponent(
 	<Strip />,
 	document.querySelector('#elections-strip')
 );
+
+var knob = require('./libs/knob/knob.js');
