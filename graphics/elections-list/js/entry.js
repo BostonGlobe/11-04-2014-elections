@@ -12,7 +12,7 @@ var util = require('../../../common/assets/js/util.js');
 			.map(function(result) {
 				var moment = Moment(result.election_date);
 				var displayDate = moment.format('YYYY-MM-DD');
-				return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/offices/' + result.state_postal + '/' + util.officeToUrl(result.office_name) + '">' + util.officeTitle(result) + '</a></li>';
+				return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/offices/' + result.state_postal + '/' + result.office_name + '">' + util.officeTitle(result) + '</a></li>';
 			})
 			.uniq()
 			.sortBy(function(v, i) {
@@ -35,7 +35,7 @@ var util = require('../../../common/assets/js/util.js');
 			.map(function(result) {
 				var moment = Moment(result.election_date);
 				var displayDate = moment.format('YYYY-MM-DD');
-				return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + util.officeToUrl(result.office_name) + '/' + util.seatToUrl(result.seat_name) + '">' + util.raceTitle(result) + '</a></li>';
+				return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + result.office_name + '/' + util.toUrl(result.seat_name) + '">' + util.raceTitle(result) + '</a></li>';
 			})
 			.uniq()
 			.sortBy(function(v, i) {

@@ -1,7 +1,12 @@
+$toggle-break: 750px;
+$nav-rule-width: 1px;
+$nav-rule: $nav-rule-width #ccc solid;
+
 .elections-nav {
-	border-bottom: 2px #ccc solid;
+	border-bottom: $nav-rule;
 	width: 100%;
-	height: 4em;
+	line-height: 1;
+	padding-bottom: .5em;
 
 	div,
 	h1,
@@ -17,9 +22,10 @@
 	select,
 	input {
 		@include border-radius();
+		background-color: #efefef;
 		border: 1px #ccc solid;
 		height: 2em;
-		line-height: 2em;
+		line-height: 2;
 		margin-left: 1.5em;
 		padding: 0;
 		padding-left: .5em;
@@ -27,10 +33,125 @@
 		top: -.25em;
 	}
 
+	&__check-icon {
+		@extend %elections-nav-sprite;
+		background-position: 0 0;
+		margin-right: .25em;
+		position: relative;
+		top: .25em;
+		width: 33px;
+		height: 31px;
+	}
+
+	@media all and (max-width: $toggle-break) {
+		h1 {
+			position: relative;
+			bottom: .25em;
+		}
+
+		&__upper-panel {
+			width: 100%;
+			border-bottom: $nav-rule;
+		}
+	}
+
+	&__toggle {
+		&s {
+			@media all and (min-width: $toggle-break) {
+				display: none !important;
+			}
+			float: right;
+			position: relative;
+			bottom: -$nav-rule-width;
+		}
+
+		&-race,
+		&-place {
+			cursor: pointer;
+			float: left;
+			width: 3em;
+			height: 2.5em;
+			border-left: $nav-rule;
+			border-right: $nav-rule;
+			padding-top: .25em;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		&--active {
+			border-bottom: $nav-rule-width #fff solid;
+		}
+
+		&-icon {
+			@extend %elections-nav-sprite;
+			margin: auto;
+		}
+
+		&-race {
+			.elections-nav__toggle-icon {
+				background-position: 0 -55px;
+				width: 17px;
+				height: 22px;
+			}
+		}
+
+		&-place {
+			border-left: none;
+
+			.elections-nav__toggle-icon {
+				background-position: 0 -31px;
+				width: 14px;
+				height: 24px;
+			}
+		}
+	}
+
+	@media all and (max-width: $toggle-break) {
+		&__panel {
+			display: none !important;
+
+			&--active {
+				display: block !important;
+				width: 100%;
+				padding-top: 1em;
+
+				input,
+				select {
+					width: 90%;
+				}
+			}
+		}
+	}
+
 	&__links {
 		a {
 			display: inline-block;
 			margin-left: 2em;
 		}
+
+		@media all and (max-width: 1200px) {
+			display: none !important;
+		}
+	}
+}
+
+#town-list {
+	display: none;
+	position: absolute;
+	margin-left: 1.5em;
+	border: 1px #000 solid;
+	background: white;
+	font-weight: normal;
+
+	li {
+		padding: .25em;
+	}
+}
+
+%elections-nav-sprite {
+	background-image: url('//cache.boston.com/multimedia/graphics/projectFiles/2014/11/assets/election-nav__icons.svg');
+
+	.no-svg & {
+		background-image: url('//cache.boston.com/multimedia/graphics/projectFiles/2014/11/assets/election-nav__icons.png');
 	}
 }

@@ -1,7 +1,4 @@
-(function() { globe.onDefine('window.jQuery && $(".homepage-graphic.elections-bigmap").length', function() {
-
-	var masterSelector = '.homepage-graphic.elections-bigmap';
-	var master = $(masterSelector);
+(function() { globe.onDefine('window.jQuery && $("#elections-bigmap").length', function() {
 
 	require('./main.jsx');
 

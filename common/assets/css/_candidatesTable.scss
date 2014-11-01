@@ -169,7 +169,8 @@
 			position: absolute;
 			right: 0;
 			font-family: $sansSerif;
-			@include adjust-font-size-to($s3, 1);
+			@include adjust-font-size-to($s3);
+			@include adjust-leading-to(7/4);
 			color: $bw75;
 		}
 	}
