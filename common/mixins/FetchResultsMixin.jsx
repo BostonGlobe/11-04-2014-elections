@@ -40,7 +40,9 @@ var FetchResultsMixin = {
 
 	fetchResults: function() {
 
-		var url = this.apiUrl();
+		var base = 'http://devweb.bostonglobe.com/electionapi';
+
+		var url = [base, this.apiUrl()].join('');
 		var apiCallbackFunc = this.apiCallback ?
 			this.apiCallback() :
 			this.defaultApiCallback();

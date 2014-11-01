@@ -22,9 +22,7 @@ var BigMap = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
-		var isDev = false;
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + this.props.state + '/' + this.props.office + '/' + this.props.seat + '?detail=true&date=' + this.props.date;
-		return url;
+		return '/races/office/' + this.props.state + '/' + this.props.office + '/' + this.props.seat + '?detail=true&date=' + this.props.date;
 	},
 
 	tooltipCallback: function(opts) {

@@ -16,9 +16,7 @@ var Strip = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
-		var isDev = false;
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/MA/Governor/?date=20141104';
-		return url;
+		return '/races/office/MA/Governor/?date=20141104';
 	},
 
 	render: function() {

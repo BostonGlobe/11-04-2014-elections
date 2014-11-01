@@ -21,9 +21,7 @@ var TownResults = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
-		var isDev = false;
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/town/' + this.props.town + '?state=' + this.props.state + '&date=' + this.props.date;
-		return url;
+		return '/races/town/' + this.props.town + '?state=' + this.props.state + '&date=' + this.props.date;
 	},
 
 	render: function() {

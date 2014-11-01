@@ -36,8 +36,7 @@ var SummaryResults = React.createClass({
 			return [value.key, value.value].join('=');
 		}).join('&');
 
-		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/number?' + queryparams;
-		return url;
+		return '/races/number?' + queryparams;
 	},
 
 	// FetchResultsMixin needs this
