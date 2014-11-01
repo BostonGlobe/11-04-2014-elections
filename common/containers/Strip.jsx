@@ -8,6 +8,7 @@ var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
 var PollClock         = require('../components/PollClock.jsx');
 var Precincts         = require('../components/Precincts.jsx');
 var Donut             = require('../components/Donut.jsx');
+var Knob              = require('../components/Knob.jsx');
 
 var util              = require('../assets/js/util.js');
 
@@ -32,24 +33,33 @@ var Matchup = React.createClass({
 				var party = candidate.party;
 				var votes = candidate.vote_count;
 
-				var pct = totalVotes > 0 ?
+				var percentForDisplay = totalVotes > 0 ?
 					util.formatPercent(votes/totalVotes, 1) :
 					0;
+
+				// this is silly, it duplicates most
+				// of the above. be smarter.
+				var percent = totalVotes > 0 ?
+					votes/totalVotes :
+					0;
+
+				var isWinner = candidate.winner === 'X';
 
 				// this is purely for utility,
 				// a really nice way of avoiding string concatenation
 				// for class creation
 				var classes = cx({
 					'matchup-container': true,
-					'winner': candidate.winner === 'X'
+					'winner': isWinner
 				});
 
 				return (
 					<div className={classes} key={candidate.id}>
+						<Knob percent={percent} isWinner={isWinner} />
 						<div className='fl matchup-left'> 
 							<div className='matchup-party'>{party}</div>
 							<div className='matchup-name'>{name}</div>
-							<div className='matchup-votes'>{pct}%</div>
+							<div className='matchup-votes'>{percentForDisplay}%</div>
 						</div>
 						<div className='fl matchup-middle'> 
 							<div className='matchup-pic'>
