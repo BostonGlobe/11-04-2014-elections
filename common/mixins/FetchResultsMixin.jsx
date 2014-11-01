@@ -3,11 +3,25 @@
  */
 
 var React = require('react');
+var util  = require('../assets/js/util.js');
 
 var FetchResultsMixin = {
 
 	defaultApiCallback: function() {
-		var callback = this.props.raceNumbers.join('_');
+		var propsStringified = _.chain(this.props)
+			.sortBy(function(v, i) {
+				return i;
+			})
+			.values()
+			.flatten()
+			.value()
+			.join('');
+
+		var callback = [
+			this.constructor.displayName,
+			propsStringified
+		].join('');
+
 		return callback;
 	},
 

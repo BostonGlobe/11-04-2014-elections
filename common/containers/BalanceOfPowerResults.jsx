@@ -20,11 +20,6 @@ var BalanceOfPowerResults = React.createClass({
 		return 'http://private.boston.com/multimedia/graphics/projectFiles/2014/11/electionsapi/balanceofpower.jsonp';
 	},
 
-	// FetchResultsMixin needs this
-	apiCallback: function() {
-		return 'balanceofpower';
-	},
-
 	allResultsAreIn: function() {
 
 		var allResultsAreIn = _.chain(this.state.results)

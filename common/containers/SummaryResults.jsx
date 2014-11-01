@@ -15,11 +15,6 @@ var SummaryResults = React.createClass({
 
 	mixins: [FetchResultsMixin],
 
-	apiCallback: function() {
-		var callback = [this.props.raceNumbers.join(''), this.props.date, this.props.state].join('');
-		return callback;
-	},
-
 	allResultsAreIn: function(results) {
 		return false;
 	},

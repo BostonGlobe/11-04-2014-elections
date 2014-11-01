@@ -20,12 +20,6 @@ var TownResults = React.createClass({
 	mixins: [FetchResultsMixin],
 
 	// FetchResultsMixin needs this
-	apiCallback: function() {
-		var callback = [this.props.town, this.props.state, this.props.date].join('');
-		return callback;
-	},
-
-	// FetchResultsMixin needs this
 	apiUrl: function() {
 		var isDev = false;
 		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/town/' + this.props.town + '?state=' + this.props.state + '&date=' + this.props.date;

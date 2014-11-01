@@ -20,12 +20,6 @@ var OfficesResults = React.createClass({
 	mixins: [FetchResultsMixin],
 
 	// FetchResultsMixin needs this
-	apiCallback: function() {
-		var callback = [this.props.office, this.props.state, this.props.date].join('');
-		return callback;
-	},
-
-	// FetchResultsMixin needs this
 	apiUrl: function() {
 		var isDev = false;
 		var url = 'http://' + (isDev ? 'localhost:8080/' : 'devweb.bostonglobe.com/') + 'electionapi/races/office/' + this.props.state + '/' + this.props.office + '?date=' + this.props.date;
