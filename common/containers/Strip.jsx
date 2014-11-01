@@ -6,9 +6,79 @@ var React = require('react');
 
 var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
 var PollClock         = require('../components/PollClock.jsx');
+var Precincts         = require('../components/Precincts.jsx');
 var Donut             = require('../components/Donut.jsx');
 
 var util              = require('../assets/js/util.js');
+
+var Table = React.createClass({
+
+	render: function() {
+
+		// this component only receives candidates (most likely independents)
+		// and total votes
+		var candidates = this.props.candidates;
+		var totalVotes = this.props.totalVotes;
+
+		var rows = _.chain(candidates)
+			.sortBy(function(candidate) {
+				return -candidate.vote_count;
+			})
+			.map(function(candidate) {
+
+				var name = candidate.last_name;
+				var votes = candidate.vote_count;
+				var votesForDisplay = util.numberWithCommas(votes);
+
+				var pct = totalVotes > 0 ?
+					util.formatPercent(votes/totalVotes, 1) :
+					0;
+
+				return <div className='table-row' key={candidate.id}>
+					<div className='table-name'>{name}</div>
+					<div className='table-votes'>{votesForDisplay}</div>
+					<div className='table-percent'>{pct}%</div>
+				</div>;
+			})
+			.value();
+
+		return (
+			<div className='strip-section section-table'>
+				{rows}
+			</div>
+		);
+	}
+
+});
+
+var Reporting = React.createClass({
+
+	render: function() {
+
+		// this component only receives name and reportingUnit
+		var name = this.props.name;
+		var reportingUnit = this.props.reportingUnit;
+
+		// call static method of Precincts component
+		var precincts = Precincts.format(reportingUnit.precincts_reporting, reportingUnit.total_precincts);
+
+		return (
+			<div className='strip-section section-reporting'>
+				<div className='strip-title'>{name}</div>
+				<p className='percent-reporting'>
+					<span>{precincts}</span>% of precincts reporting
+				</p>
+				<p>
+					<a href='#TODO'>Full results</a>
+				</p>
+				<div className='social-share'>
+					Share results: <a className='social-icon tw' href='#'></a><a className='social-icon fb' href='#'></a>
+				</div>
+			</div>
+		);
+	}
+
+});
 
 var Strip = React.createClass({
 
@@ -19,26 +89,61 @@ var Strip = React.createClass({
 		return '/races/office/MA/Governor/?date=20141104';
 	},
 
+	// override FetchResultsMixin.defaultAllResultsAreIn
+	// make it return false to simulate race isn't complete,
+	// so we can see the clock
+	allResultsAreIn: function() {
+		return false;
+	},
+
 	render: function() {
 
 		var results = this.state.results[0];
 
-		var sections = { reporting: null , matchup: null , table: null };
+		var reporting = null;
+		var table = null;
 
-		if(results) {
-			var data = parseData(results);
+		if (results) {
 
-			sections.reporting = sectionMaker.reporting(data);
-			sections.matchup = sectionMaker.matchup(data);
-			sections.table = sectionMaker.table(data);
+			// we only want the summary reporting unit
+			var reportingUnit = _.find(results.reporting_units, {fips_code: 0});
+
+			// calculate total votes here, since <Table /> and <Matchup /> will need it
+			var totalVotes = _.chain(reportingUnit.results)
+				.pluck('vote_count')
+				.reduce(function(a, b) { return a + b; })
+				.value();
+
+			// get the personal info fields
+			var candidates = results.candidates;
+
+			// this will hold personal info AND vote information
+			var extendedCandidates = [];
+
+			// we need to merge both personal info and vote information
+			reportingUnit.results.forEach(function(result) {
+
+				// find this result's candidate
+				var candidate = _.find(candidates, {id:result.ap_candidate_id});
+
+				// extend result with candidate information
+				extendedCandidates.push(_.extend({}, result, candidate));
+			});
+
+			// now, get independents - this array has ALL relevant candidate info (including votes)
+			var independents = _.reject(extendedCandidates, function(result) {
+				return result.party === 'Dem' || result.party === 'GOP';
+			});
+
+			reporting = <Reporting name={results.office_name} reportingUnit={reportingUnit} />;
+			table = <Table totalVotes={totalVotes} candidates={independents} />;
 		}
 
 		return (
 			<div className='strip'>
-				<PollClock ref='thePollClock' pollCallback={true ? this.fetchResults : 'a'} />
-				{sections.reporting}
-				{sections.matchup}
-				{sections.table}
+				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
+				{reporting}
+				{table}
 			</div>
 		);
 	}
@@ -86,21 +191,6 @@ var parseData = function(results) {
 }
 
 var sectionMaker = {
-	reporting: function(data) {
-		return <div className='strip-section section-reporting'>
-					<div className='strip-title'>Governor</div>
-					<p className='percent-reporting'>
-						<span>{data.percentReporting}</span> percent of precincts reporting
-					</p>
-					<p>
-						<a href='#TODO'>Full results</a>
-					</p>
-					<div className='social-share'>
-						Share results: <a className='social-icon tw' href='#'></a><a className='social-icon fb' href='#'></a>
-					</div>
-				</div>;
-	},
-
 	matchup: function(data) {
 		
 		var d = data.candidates[data.democrat[0]];
@@ -154,20 +244,6 @@ var sectionMaker = {
 						</div>
 					</div>
 				</div>;
-	},
-
-	table: function(data) {		
-		var content = _.chain(data.other).map(function(id) {
-			var c = data.candidates[id];
-			var percent = data.totalVotes > 0 ? util.formatPercent(c.votes / data.totalVotes, 0) : 0;
-			return <div className='table-row'>
-					<div className='table-name'>{c.name}</div>
-					<div className='table-votes'>{c.votesFormatted} votes</div>
-					<div className='table-percent'>{percent}%</div>
-					</div>;
-		}).value();
-
-		return <div className='strip-section section-table'> {content} </div>;
 	}
 };
 
