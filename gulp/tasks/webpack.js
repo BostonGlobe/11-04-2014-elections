@@ -30,6 +30,7 @@ gulp.task('webpack', function() {
 	return gulp.src(config.baseDir() + '/js/entry.js')
 		.pipe(webpack({
 			watch: !isProd,
+			externals: { jquery: "jQuery" },
 			module: {
 				loaders: [
 					{ test: /\.json$/, loader: 'json-loader' },

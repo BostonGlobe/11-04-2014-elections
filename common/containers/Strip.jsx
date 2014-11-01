@@ -43,6 +43,8 @@ var Matchup = React.createClass({
 					votes/totalVotes :
 					0;
 
+				percent = Math.random();
+
 				var isWinner = candidate.winner === 'X';
 
 				// this is purely for utility,
@@ -55,7 +57,7 @@ var Matchup = React.createClass({
 
 				return (
 					<div className={classes} key={candidate.id}>
-						<Knob percent={percent} isWinner={isWinner} />
+						<Knob percent={percent * 100} isWinner={isWinner} />
 						<div className='fl matchup-left'> 
 							<div className='matchup-party'>{party}</div>
 							<div className='matchup-name'>{name}</div>

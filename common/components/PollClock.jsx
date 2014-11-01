@@ -9,7 +9,7 @@ var PollClock = React.createClass({
 
 	periodic: null,
 
-	duration: 60,
+	duration: 5,
 
 	getInitialState: function() {
 		return {secondsUntilPoll: this.duration};
