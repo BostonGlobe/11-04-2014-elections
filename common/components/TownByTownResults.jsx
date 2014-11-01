@@ -2,11 +2,12 @@
  * @jsx React.DOM
  */
 
-var React = require('react');
+var React  = require('react');
 
-var Title = require('../components/Title.jsx');
+var Title  = require('../components/Title.jsx');
 
-var util  = require('../assets/js/util.js');
+var util   = require('../assets/js/util.js');
+var Moment = require('moment');
 
 var CandidateTh = React.createClass({
 	render: function() {
@@ -60,10 +61,14 @@ var TownTr = React.createClass({
 			return <CandidateTd candidate={candidate} totalVotes={totalVotes} key={candidate.ap_candidate_id} />;
 		});
 
+		var moment = Moment(this.props.date);
+		var displayDate = moment.format('YYYY-MM-DD');
+		var href = '/news/politics/election-results/' + displayDate + '/town/' + this.props.state + '/' + this.props.name;
+
 		return (
 			<tr>
 				<td>
-					<div><span>{this.props.name}</span></div>
+					<div><span><a href={href}>{this.props.name}</a></span></div>
 					<div><span>{this.props.precinctsReporting} of {this.props.totalPrecincts}</span></div>
 				</td>
 				{candidateTds}
@@ -129,6 +134,8 @@ var TownByTownResults = React.createClass({
 						precinctsReporting={reporting_unit.precincts_reporting}
 						totalPrecincts={reporting_unit.total_precincts}
 						candidates={theseCandidates}
+						date={results.election_date}
+						state={results.state_postal}
 					/>;
 				})
 				.value();
