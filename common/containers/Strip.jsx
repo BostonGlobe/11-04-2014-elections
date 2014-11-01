@@ -6,20 +6,13 @@ var React = require('react');
 
 var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
 var PollClock         = require('../components/PollClock.jsx');
-var Donut         = require('../components/Donut.jsx');
-
+var Donut             = require('../components/Donut.jsx');
 
 var util              = require('../assets/js/util.js');
 
 var Strip = React.createClass({
 
 	mixins: [FetchResultsMixin],
-
-	// FetchResultsMixin needs this
-	apiCallback: function() {
-		var callback = 'MAGovernor20141104';
-		return callback;
-	},
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
