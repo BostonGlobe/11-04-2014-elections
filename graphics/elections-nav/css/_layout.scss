@@ -1,6 +1,14 @@
 $nav-rule-width: 1px;
 $nav-rule: $nav-rule-width #ccc solid;
 
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; } 
+}
+
 .elections-nav {
 	border-bottom: $nav-rule;
 	clear: both;
@@ -22,6 +30,9 @@ $nav-rule: $nav-rule-width #ccc solid;
 	select,
 	input {
 		@include border-radius();
+		@include input-placeholder {
+			color: #000;
+		}
 		background-color: #efefef;
 		border: 1px #ccc solid;
 		height: 2em;
