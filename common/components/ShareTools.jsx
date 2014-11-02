@@ -44,11 +44,9 @@ var ShareTools = React.createClass({
 
 		return (
 			<div className='share-tools'>
-				<a href={twitter}>
-					<span className='tool twitter'></span>
+				<a href={twitter} className='tool twitter'>
 				</a>
-				<a href={facebook}>
-					<span className='tool facebook'></span>
+				<a href={facebook} className='tool facebook'>
 				</a>
 			</div>
 		);

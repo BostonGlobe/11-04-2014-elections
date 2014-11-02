@@ -8,24 +8,43 @@
 
 	.tool {
 		display: inline-block;
-		width: 2.5em;
-		height: 2.5em;
-		background-repeat: no-repeat;
-		margin-right: 0.35em;
-		margin-left: 0.35em;
-		border-radius: 2px;
+		text-align: center;
+		vertical-align: middle;
+		border: none;
+		padding: 1em 2em;
+		font-size: 100%;
+		cursor: pointer;
+		text-decoration: none;
+		@include border-radius(3px);
+		transition: all 0.25s ease;
+		margin-right: 1em;
+
+		&:last-child {
+			margin-right: 0;
+		}
 	}
 
 	.twitter {
 		background-color: rgb(85, 172, 238);
 		background-image: inline-image($twitter);
 		background-position: 50%;
-		background-size: 55%;
+		background-size: 40%;
+		background-repeat: no-repeat;
+
+		&:hover {
+			background-color: shade(rgb(85, 172, 238), 20%);
+		}
 	}
 
 	.facebook {
 		background: rgb(59, 89, 172);
 		background-image: inline-image($facebook);
-		background-position: 100%;
+		background-position: 50%;
+		background-size: 40%;
+		background-repeat: no-repeat;
+
+		&:hover {
+			background-color: shade(rgb(59, 89, 172), 20%);
+		}
 	}
 }
