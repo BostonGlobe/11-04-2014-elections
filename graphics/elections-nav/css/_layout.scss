@@ -107,6 +107,10 @@ $nav-rule: $nav-rule-width #ccc solid;
 }
 
 .nav-breakpoint-show-toggle {
+	&.elections-nav {
+		border-bottom: 0;
+	}
+
 	.elections-nav {
 		&__toggles {
 			display: inline-block !important;
@@ -116,8 +120,10 @@ $nav-rule: $nav-rule-width #ccc solid;
 			display: none !important;
 
 			&--active {
+				border-bottom: $nav-rule;
 				display: block !important;
 				width: 100%;
+				padding-bottom: 0.5em;
 				padding-top: 1em;
 
 				input,
