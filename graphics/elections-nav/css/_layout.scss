@@ -3,6 +3,7 @@ $nav-rule: $nav-rule-width #ccc solid;
 
 .elections-nav {
 	border-bottom: $nav-rule;
+	clear: both;
 	width: 100%;
 	line-height: 1;
 	padding-bottom: .5em;
