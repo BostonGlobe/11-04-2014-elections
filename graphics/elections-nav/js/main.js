@@ -51,7 +51,7 @@ $('.elections-nav__town-select')
 	});
 
 function goToTown(new_town) {
-	var town = (new_town||$(this).val()).toLowerCase();
+	var town = (new_town||$('.elections-nav__town-select').val()).toLowerCase();
 	if (towns.indexOf(town) > 0) {
 		location.href = "/news/politics/election-results/2014-11-04/town/ma/"+town;
 	}

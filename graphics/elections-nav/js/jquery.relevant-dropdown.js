@@ -2,8 +2,14 @@
 
   // Make jQuery's :contains case insensitive (like HTML5 datalist)
   // Changed the name to prevent overriding original functionality
-  $.expr[':'].RD_contains = function(a, i, m) { 
-    return $(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0; 
+  $.expr[':'].RD_contains = function(a, i, m) {
+    var candidate_words = _($(a).text().toUpperCase().split(" ")).filter(function(d){return d.length>0;});
+    var search_words = _(m[3].toUpperCase().split(" ")).filter(function(d){return d.length>0;});
+    return search_words.every(function (s) {
+      return candidate_words.some(function (c) {
+        return c.indexOf(s)===0;
+      })
+    });
   };
 
   $.fn.relevantDropdown = function(options) {
