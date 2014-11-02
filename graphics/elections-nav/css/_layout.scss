@@ -142,9 +142,12 @@ $nav-rule: $nav-rule-width #ccc solid;
 	display: none;
 	position: absolute;
 	margin-left: 1.5em;
+	max-height: 200px;
+	overflow: scroll;
 	border: 1px #000 solid;
 	background: white;
 	font-weight: normal;
+	z-index:2;
 
 	li {
 		padding: .25em;

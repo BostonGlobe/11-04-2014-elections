@@ -17,27 +17,32 @@ function setBreakpointClasses() {
 		.toggleClass('nav-breakpoint-show-toggle',w<750);
 }
 
+$('.elections-nav__toggle').click(function() {
+	var panel = $(this).data('panel');
+	$('.elections-nav__toggle--active').removeClass('elections-nav__toggle--active');
+	$('.elections-nav__panel--active').removeClass('elections-nav__panel--active');
+	$('.elections-nav__toggle-'+panel).addClass('elections-nav__toggle--active');
+	$('.elections-nav__panel-'+panel).addClass('elections-nav__panel--active')
+		.find('input,select')
+			.focus()
+			.val("");
+});
+
 $('.elections-nav__race-select')
 	.val("")
 	.change(function() {
 		if ($(this).val().length > 0) {
 			location.href = $(this).val();
 		}
-});
+	});
 
-$('.elections-nav__toggle').click(function() {
-	var panel = $(this).data('panel');
-	$('.elections-nav__toggle--active').removeClass('elections-nav__toggle--active');
-	$('.elections-nav__panel--active').removeClass('elections-nav__panel--active');
-	$('.elections-nav__toggle-'+panel).addClass('elections-nav__toggle--active');
-	$('.elections-nav__panel-'+panel).addClass('elections-nav__panel--active');
-});
-
-if (!(document.createElement('datalist') && typeof window.HTMLDataListElement != 'undefined')) {
-	$('.elections-nav__town-select')
-		.relevantDropdown();
-}
+// if (!(document.createElement('datalist') && typeof window.HTMLDataListElement != 'undefined')) {
+// 	$('.elections-nav__town-select')
+// 		.relevantDropdown({change:goToTown});
+// }
 $('.elections-nav__town-select')
+	.val("")
+	.relevantDropdown({change:goToTown})
 	.change(goToTown)
 	.keyup(function (e) {
     	if (e.keyCode === 13) {
@@ -45,8 +50,8 @@ $('.elections-nav__town-select')
     	}
 	});
 
-function goToTown() {
-	var town = $(this).val().toLowerCase();
+function goToTown(new_town) {
+	var town = (new_town||$(this).val()).toLowerCase();
 	if (towns.indexOf(town) > 0) {
 		location.href = "/news/politics/election-results/2014-11-04/town/ma/"+town;
 	}
