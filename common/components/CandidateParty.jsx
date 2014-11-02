@@ -4,6 +4,8 @@
 
 var React = require('react');
 
+var CandidatePhoto = require('./CandidatePhoto.jsx');
+
 var util = require('../assets/js/util.js');
 
 var CandidateParty = React.createClass({
@@ -12,6 +14,7 @@ var CandidateParty = React.createClass({
 
 		var candidate = this.props.candidate;
 		var candidates = this.props.candidates;
+		var race = this.props.race;
 
 		var color = util.getColor({
 			candidate: candidate,
@@ -22,10 +25,20 @@ var CandidateParty = React.createClass({
 
 		var party = util.partyAbbreviationToParty(candidate.party) || 'independent';
 
+		var photoExists = CandidatePhoto.exists({
+			office_name: race.office_name,
+			seat_name: race.seat_name,
+			state_postal: race.state_postal,
+			election_date: race.election_date,
+			candidate: candidate
+		});
+
+		var photo = !this.props.isLite && photoExists ? <CandidatePhoto candidate={candidate} race={race} /> : null;
 
 		return (
 			<tr>
-				<td className='candidate-party' colSpan='100%'>
+				{photo}
+				<td className='candidate-party'>
 					<span className='party'>{party}</span>
 				</td>
 			</tr>

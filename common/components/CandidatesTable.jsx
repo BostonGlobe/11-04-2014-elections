@@ -14,6 +14,8 @@ var CandidatesTable = React.createClass({
 
 	render: function() {
 
+		var self = this;
+
 		var candidateSummaries = null;
 		var reportingUnit = this.props.reportingUnit;
 		var candidates = this.props.candidates;
@@ -55,6 +57,8 @@ var CandidatesTable = React.createClass({
 						key={'party' + extendedResult.id}
 						candidate={extendedResult}
 						candidates={candidates}
+						isLite={isLite}
+						race={self.props.race}
 					/>);
 				}
 
@@ -81,6 +85,7 @@ var CandidatesTable = React.createClass({
 
 		if (isUncontested) {
 			theadRows = <tr>
+				<th className='candidate-photo'></th>
 				<th className='candidate-name'></th>
 				<th className='candidate-uncontested'></th>
 			</tr>;
@@ -92,6 +97,7 @@ var CandidatesTable = React.createClass({
 				</tr>;
 			} else {
 				theadRows = <tr>
+					<th className='candidate-photo'></th>
 					<th className='candidate-name'></th>
 					<th className='candidate-percent'></th>
 					<th className='candidate-bar'></th>
