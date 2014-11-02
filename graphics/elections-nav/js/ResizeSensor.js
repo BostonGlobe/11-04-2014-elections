@@ -64,7 +64,7 @@
 
             element.resizeSensor = document.createElement('div');
             element.resizeSensor.className = 'resize-sensor';
-            var style = 'position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;';
+            var style = 'position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;opacity:0;';
             var styleChild = 'position: absolute; left: 0; top: 0;';
 
             element.resizeSensor.style.cssText = style;
