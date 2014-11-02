@@ -19,13 +19,16 @@ function setBreakpointClasses() {
 
 $('.elections-nav__toggle').click(function() {
 	var panel = $(this).data('panel');
+	var alreadyActive = $(this).hasClass('elections-nav__toggle--active');
 	$('.elections-nav__toggle--active').removeClass('elections-nav__toggle--active');
 	$('.elections-nav__panel--active').removeClass('elections-nav__panel--active');
-	$('.elections-nav__toggle-'+panel).addClass('elections-nav__toggle--active');
-	$('.elections-nav__panel-'+panel).addClass('elections-nav__panel--active')
-		.find('input,select')
-			.focus()
-			.val("");
+	if (!alreadyActive) {
+		$('.elections-nav__toggle-'+panel).addClass('elections-nav__toggle--active');
+		$('.elections-nav__panel-'+panel).addClass('elections-nav__panel--active')
+			.find('input,select')
+				.focus()
+				.val("");
+	}
 });
 
 $('.elections-nav__race-select')
