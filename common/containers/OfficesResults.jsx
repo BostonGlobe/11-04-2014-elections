@@ -40,14 +40,19 @@ var OfficesResults = React.createClass({
 			.map(function(race) {
 
 				var name;
+				var isUSHouse = race.office_name === 'U.S. House';
 
 				if (self.props.state) {
 					name = util.seatName(race);
 				} else {
-					name = race.county_name;
-					var date = new Date(race.election_date);
-					if (race.seat_name.length && date.getFullYear() !== +race.seat_name) {
-						name += ', special election';
+					if (isUSHouse) {
+						name = util.raceTitle(race, true);
+					} else {
+						name = race.county_name;
+						var date = new Date(race.election_date);
+						if (race.seat_name.length && date.getFullYear() !== +race.seat_name) {
+							name += ', special election';
+						}
 					}
 				}
 
@@ -63,6 +68,10 @@ var OfficesResults = React.createClass({
 
 				augmentedRace.number = match ? +match[1] : -1;
 				augmentedRace.rest = match ? match[3] : name;
+
+				if (isUSHouse) {
+					augmentedRace.rest = [race.county_name, augmentedRace.rest].join(' ');
+				}
 
 				return augmentedRace;
 			})
