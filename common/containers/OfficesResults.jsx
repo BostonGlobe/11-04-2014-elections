@@ -21,7 +21,15 @@ var OfficesResults = React.createClass({
 
 	// FetchResultsMixin needs this
 	apiUrl: function() {
-		return '/races/office/' + this.props.state + '/' + this.props.office + '?date=' + this.props.date;
+
+		var url;
+		if (this.props.state) {
+			url = '/races/office/' + this.props.state + '/' + this.props.office + '?date=' + this.props.date;
+		} else {
+			url = '/top/office/' + this.props.office + '?date=' + this.props.date;
+		}
+
+		return url;
 	},
 
 	render: function() {
@@ -31,7 +39,17 @@ var OfficesResults = React.createClass({
 		var summaries = _.chain(this.state.results)
 			.map(function(race) {
 
-				var name = util.seatName(race);
+				var name;
+
+				if (self.props.state) {
+					name = util.seatName(race);
+				} else {
+					name = race.county_name;
+					var date = new Date(race.election_date);
+					if (race.seat_name.length && date.getFullYear() !== +race.seat_name) {
+						name += ', special election';
+					}
+				}
 
 				var augmentedRace = {
 					race: race,
@@ -39,7 +57,7 @@ var OfficesResults = React.createClass({
 				};
 
 				// extract number
-				var regex = /(\d*)(th|st|nd|rd) (.*)/;
+				var regex = /(\d+)(th|st|nd|rd) (.*)/;
 				var match = regex.exec(name);
 				var number;
 
@@ -64,17 +82,19 @@ var OfficesResults = React.createClass({
 
 				var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + race.office_name + '/' + race.seat_name;
 
-				var button = !isUncontested ? <a href={url}><button className='go-to-full-results'>Go to full results</button></a> : null;
+				var button = !isUncontested && self.props.state ? <a href={url}><button className='go-to-full-results'>Go to full results</button></a> : null;
+
+				var related = false ? <div className='election-related-story'>
+					<span className='election-related-overline'>More governor coverage</span>
+					<a href=''>Related election headline goes here just like this</a>
+				</div> : null;
 
 				return (
 					<div className='office' key={race.race_number}>
 						<Title name={name} />
 						<Summary results={race} />
 						{button}
-						<div className='election-related-story'>
-							<span className='election-related-overline'>More governor coverage</span>
-							<a href=''>Related election headline goes here just like this</a>
-						</div>
+						{related}
 					</div>
 				);
 			})
