@@ -190,7 +190,7 @@
             // wraps all elements in a div
             // add to DOM before Canvas init is triggered
             this.$div = $('<div style="'
-                + (this.o.inline ? 'display:inline;' : '')
+                + (this.o.inline ? 'display:block;' : '')
                 + 'width:' + this.o.width + 'px;height:' + this.o.height + 'px;'
                 + '"></div>');
 

@@ -1,8 +1,11 @@
 #elections-strip {
 	
+	$bp-full: 1232px;
 	$bp-large: 1024px;
-	$bp-medium: 760px;
+	$bp-medium: 768px;
 	$bp-small: 480px;
+	$globe-red: #9B1518;
+	$globe-red-light: #ef8a8c;
 
 	.strip {
 		height: 100%;
@@ -26,58 +29,81 @@
 		background: url(http://c.o0bg.com/rw/SysConfig/WebPortal/BostonGlobe/Framework/images/socialmedia-sprite.png) no-repeat;
 		overflow: hidden;
 		color: transparent;
-		width: 35px;
-		height: 35px;
+		width: 24px;
+		height: 24px;
+		margin-right: 0.5em;
 		display: inline-block;
+		background-size: cover;
 	}
 
 	.social-icon.tw {
-		background-position: 8px -111px;
+		background-position: 3px -107px;
 		background-color: #55acee;
 	}
 
 	.social-icon.fb {
-		background-position: 12px -20px;
+		background-position: 7px -22px;
 		background-color: #3b5998;
 	}
 
 	.strip-title {
 		font-weight: bold;
 		font-size: $s4;
+		@include breakpoint(max-width $bp-full) {
+			font-size: $s3p5;
+		}
 	}
 
 	.strip-section {
 		float: left;
 		height: 100%;
 		overflow: hidden;
+		@include breakpoint(max-width $bp-medium) {
+			float: none;
+		}
 	}
 
 	.section-reporting {
 		width: 15%;
-		padding-right: 2em;
+		padding-right: 1em;
+		@include breakpoint(max-width $bp-medium) {
+			width: 100%;
+		}
 	}
 
 	.section-matchup {
-		width: 50%;
+		width: 55%;
 		padding-right: 2em;
 		height: 100%;
 		overflow: hidden;
+
+		@include breakpoint(max-width $bp-medium) {
+			width: 100%;
+		}
+
 		.matchup-container {
 			width: 50%;
+			padding-left: 2em;
 			float: left;
 		}
 		.fl {
-			padding: 0 0.5em;
+			padding-right: 0.5em;
 			float: left;
 		}
 		.matchup-left {
 			width: 50%;
+			@include breakpoint(max-width $bp-large) {
+				width: 70%;
+			}
 		}
 		.matchup-middle {
 			width: 25%;
 		}
 		.matchup-right {
 			width: 25%;
+			@include breakpoint(max-width $bp-large) {
+				width: 30%;
+			}
 		}
 		.matchup-party {
 			text-transform: uppercase;
@@ -89,32 +115,37 @@
 		.matchup-name {
 			font-size: $s4;
 			font-weight: bold;
+			@include breakpoint(max-width $bp-full) {
+				font-size: $s3p5;
+			}
 		}
 		.matchup-votes {
 			font-size: $s3;
 		}
 
-		.donut-box{
+		.percent-box{
 			position: relative;
 			width: 100%;		/* desired width */
 		}
-		.donut-box:before{
+		.percent-box:before{
 			content: "";
 			display: block;
 			padding-top: 100%; 	/* initial ratio of 1:1*/
 		}
-		.donut-content{
-		  background: red;
-			position:  absolute;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
+		.percent-content{
+			font-size: $s6;
+			color: $globe-red;
+			font-weight: bold;
 		}
 	}
 
 	.section-table {
-		width: 35%;
+		width: 30%;
+		
+		@include breakpoint(max-width $bp-medium) {
+			width: 100%;
+		}
+
 		.table-row {
 			height: 100%;
 			overflow: hidden;
@@ -136,6 +167,18 @@
 			float: left;
 			text-align: right;
 			font-weight: bold;
+		}
+	}
+
+	.hide-large {
+		@include breakpoint(max-width $bp-large) {
+			display: none;
+		}
+	}
+
+	.show-large {
+		@include breakpoint($bp-large) {
+			display: none;
 		}
 	}
 	

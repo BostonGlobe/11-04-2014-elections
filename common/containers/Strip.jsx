@@ -29,49 +29,51 @@ var Matchup = React.createClass({
 			.sortBy('party')
 			.map(function(candidate) {
 
-				var name = candidate.last_name;
-				var party = candidate.party;
+				var name = candidate.first_name + ' ' + candidate.last_name;
+				var party = candidate.party === 'Dem' ? 'Democrat' : 'Republican';
 				var votes = candidate.vote_count;
 
+				var votesForDisplay = util.numberWithCommas(votes);
+
 				var percentForDisplay = totalVotes > 0 ?
-					util.formatPercent(votes/totalVotes, 1) :
+					util.formatPercent(votes/totalVotes, 0) :
 					0;
 
 				// this is silly, it duplicates most
 				// of the above. be smarter.
 				var percent = totalVotes > 0 ?
-					votes/totalVotes :
+					Math.round(votes/totalVotes * 100) :
 					0;
-
-				percent = Math.random();
 
 				var isWinner = candidate.winner === 'X';
 
 				// this is purely for utility,
 				// a really nice way of avoiding string concatenation
 				// for class creation
-				var classes = cx({
+				var containerClasses = cx({
 					'matchup-container': true,
 					'winner': isWinner
 				});
 
 				return (
-					<div className={classes} key={candidate.id}>
-						<Knob percent={percent * 100} isWinner={isWinner} />
+					<div className={containerClasses} key={candidate.id}>
 						<div className='fl matchup-left'> 
 							<div className='matchup-party'>{party}</div>
 							<div className='matchup-name'>{name}</div>
-							<div className='matchup-votes'>{percentForDisplay}%</div>
+							<div className='matchup-votes'>{votesForDisplay} votes</div>
 						</div>
-						<div className='fl matchup-middle'> 
+						<div className='fl matchup-middle hide-large'> 
 							<div className='matchup-pic'>
 								<img src='http://placehold.it/100x100.jpg'/>
 							</div>
 						</div>
 						<div className='fl matchup-right'> 
-							<div className='matchup-donut'>
-								<div className='donut-box'> 
-									<div className='donut-content'></div> 
+							<div className='matchup-donut hide-large'>
+								<Knob percent={percent} isWinner={isWinner} />
+							</div>
+							<div className='matchup-percent show-large'>
+								<div className='percent-content'>
+									{percent}%
 								</div>
 							</div>
 						</div>
@@ -105,17 +107,17 @@ var Table = React.createClass({
 			})
 			.map(function(candidate) {
 
-				var name = candidate.last_name;
+				var name = candidate.first_name + ' ' + candidate.last_name;
 				var votes = candidate.vote_count;
 				var votesForDisplay = util.numberWithCommas(votes);
 
 				var pct = totalVotes > 0 ?
-					util.formatPercent(votes/totalVotes, 1) :
+					util.formatPercent(votes/totalVotes, 0) :
 					0;
 
 				return <div className='table-row' key={candidate.id}>
 					<div className='table-name'>{name}</div>
-					<div className='table-votes'>{votesForDisplay}</div>
+					<div className='table-votes'>{votesForDisplay} votes</div>
 					<div className='table-percent'>{pct}%</div>
 				</div>;
 			})
@@ -150,11 +152,12 @@ var Reporting = React.createClass({
 				<p>
 					<a href='#TODO'>Full results</a>
 				</p>
-				<div className='social-share'>
-					Share results: <a className='social-icon tw' href='#'></a><a className='social-icon fb' href='#'></a>
-				</div>
 			</div>
 		);
+
+		// <div className='social-share'>
+				// 	Share <span className='hide-large'>results</span>: <a className='social-icon tw' target='_blank' href='#'></a><a className='social-icon fb' target='_blank' href='#'></a>
+				// </div>
 	}
 
 });
