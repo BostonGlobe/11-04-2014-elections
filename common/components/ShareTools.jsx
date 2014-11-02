@@ -27,12 +27,27 @@ var ShareTools = React.createClass({
 			.value()
 			.join('&');
 
+		var facebookFields = [{
+			key: 't',
+			value: 'Election results: ' + this.props.name
+		},{
+			key: 'u',
+			value: 'http://bostonglobe.com' + this.props.url
+		}];
+
+		var facebook = 'http://www.facebook.com/sharer.php?' + _.chain(facebookFields)
+			.map(function(field) {
+				return [field.key, field.value].join('=');
+			})
+			.value()
+			.join('&');
+
 		return (
 			<div className='share-tools'>
 				<a href={twitter}>
 					<span className='tool twitter'></span>
 				</a>
-				<a href=''>
+				<a href={facebook}>
 					<span className='tool facebook'></span>
 				</a>
 			</div>
