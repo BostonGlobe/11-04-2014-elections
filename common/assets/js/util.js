@@ -45,20 +45,35 @@ module.exports = {
 		return this.raceTitle(results).replace(', ' + this.standardizeState(results.state_postal), '');
 	},
 
-	raceTitle: function(results) {
+	_raceTitleForUSHouse: function(race) {
+
+		// should be New Hampshire, 1st District
+		return [race.county_name, race.seat_name].join(' ');
+	},
+
+	raceTitle: function(race, isUSHouse) {
 
 		var title;
-		var seat = results.seat_name;
-		var office = results.office_name;
-		var state = this.standardizeState(results.state_postal);
 
-		// seat, e.g. County commissioner -> County commissioner, Bristol, Mass.
-		if (seat.length) {
+		if (isUSHouse) {
 
-			title = [this.standardizeOffice(this.sentenceStyle(office)), this.standardizeSeat(seat), state].join(', ');
+			title = this.standardizeSeat(this._raceTitleForUSHouse(race));
+
 		} else {
-			// no seat, e.g. Governor -> Mass. governor
-			title = [state, this.standardizeOffice(office.toLowerCase())].join(' ');
+
+			var seat = race.seat_name;
+			var office = race.office_name;
+			var state = this.standardizeState(race.state_postal);
+
+			// seat, e.g. County commissioner -> County commissioner, Bristol, Mass.
+			if (seat.length) {
+
+				title = [this.standardizeOffice(this.sentenceStyle(office)), this.standardizeSeat(seat), state].join(', ');
+			} else {
+				// no seat, e.g. Governor -> Mass. governor
+				title = [state, this.standardizeOffice(office.toLowerCase())].join(' ');
+			}
+
 		}
 
 		return title;
