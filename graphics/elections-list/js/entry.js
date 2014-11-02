@@ -3,6 +3,14 @@ var util = require('../../../common/assets/js/util.js');
 
 (function() { globe.onDefine('window.jQuery && $(".igraphic-graphic.elections-list").length', function() {
 
+	var usOffices = ['Governor', 'U.S. House', 'U.S. Senate'].map(function(office) {
+		return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/2014-11-04/offices/' + office + '">' + util.standardizeOffice(office) + '</a></li>';
+	}).join('');
+
+	$('.igraphic-graphic.elections-list')
+		.append('<h1>US offices</h1>')
+		.append('<ul>' + usOffices +'</ul>');
+
 	var states = ['ma', 'nh'];
 
 	function stateOfficesCallback(json) {
