@@ -55,13 +55,19 @@ var DetailedResults = React.createClass({
 			{tooltip}
 		</div> : null;
 
-		var title = results ? <Title isHeader={true} name={util.raceTitle(results)} /> : null;
+		var title = null;
+		var shareTools = null;
+
+		if (results) {
+			title = <Title isHeader={true} name={util.raceTitle(results)} />;
+			shareTools = <ShareTools name={util.raceName(results)} url={util.raceUrl(results)} />;
+		}
 
 		return (
 			<div className='detailed-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				{title}				
-				<ShareTools />
+				{title}
+				{shareTools}
 				<Summary results={results} />
 				{choropleth}
 				<Ad />

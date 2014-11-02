@@ -1,6 +1,14 @@
 var ordinal = require('ordinal');
+var Moment  = require('moment');
 
 module.exports = {
+
+	raceUrl: function(race) {
+		var moment = Moment(race.election_date);
+		var displayDate = moment.format('YYYY-MM-DD');
+		var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + this.toUrl(race.office_name) + '/' + this.toUrl(race.seat_name);
+		return url;
+	},
 
 	sentenceStyle: function(s) {
 		return _.first(s).toUpperCase() + _.rest(s).join('').toLowerCase();
@@ -57,13 +65,12 @@ module.exports = {
 	},
 
 	toUrl: function(office) {
-		return office
+		return encodeURIComponent(encodeURIComponent(office
 			.replace(/u\.s\. /gi, 'US ')
 			.replace(/state house/i, 'State House')
 			.replace(/state senate/i, 'State Senate')
 			.replace(/us house/i, 'US House')
-			.replace(/us senate/i, 'US Senate')
-			.replace(/&/g, '%2526');
+			.replace(/us senate/i, 'US Senate')));
 	},
 
 	standardizeState: function(state) {
