@@ -89,6 +89,7 @@
 		.matchup-container {
 			width: 50%;
 			padding-left: 1.5em;
+
 			@include breakpoint(max-width $bp-large) {
 				padding-left: 1em;
 			}
@@ -114,7 +115,8 @@
 		.matchup-left {
 			width: 50%;
 			@include breakpoint(max-width $bp-large) {
-				width: 100%;
+				width: 65%;
+				padding-right: 0.25em;
 			}
 		}
 		.matchup-middle {
@@ -127,8 +129,10 @@
 		.matchup-right {
 			width: 25%;
 			@include breakpoint(max-width $bp-large) {
-				display: none;
-				width: 0;
+				width: 35%;
+				padding-right: 0.5em;
+				// display: none;
+				// width: 0;
 			}
 		}
 		.matcup-pic {
@@ -168,6 +172,12 @@
 			}
 			&.republican {
 				color: $republican;
+			}
+		}
+
+		.matchup-pic {
+			img {
+				display: block;
 			}
 		}
 
@@ -233,8 +243,30 @@
 	}
 
 	.show-large {
+		display: none;
 		@include breakpoint(min-width $bp-large + 1) {
 			display: none;
 		}
 	}
 }
+
+.elections-graphic .candidates-table tr.candidate-summary {
+	line-height: 0;
+}
+
+.elections-graphic .candidates-table td.candidate-photo {
+	display: none;
+}
+
+.elections-graphic .candidates-table td.candidate-name .name {
+	font-size: 1.2em;
+}
+
+.elections-graphic .title.is-header {
+	font-size: 2em;
+}
+
+.elections-graphic .candidates-table {
+	margin: 1em 0;
+}
+

@@ -7,10 +7,10 @@ var React = require('react/addons');
 var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
 var PollClock         = require('../components/PollClock.jsx');
 var Precincts         = require('../components/Precincts.jsx');
-var Donut             = require('../components/Donut.jsx');
 var Knob              = require('../components/Knob.jsx');
 var Summary           = require('../components/Summary.jsx');
 var Title             = require('../components/Title.jsx');
+var FullResultsButton = require('../components/FullResultsButton.jsx');
 
 var util              = require('../assets/js/util.js');
 
@@ -62,7 +62,7 @@ var Matchup = React.createClass({
 
 				var donutClasses = cx({
 					'matchup-donut': true,
-					'hide-large': true
+					'hide-large': false
 				});
 
 				var partyClasses = cx({
@@ -78,6 +78,7 @@ var Matchup = React.createClass({
 					'republican': isRepublican
 				});
 				
+				var imageUrl = 'http://cache.boston.com/multimedia/graphics/projectFiles/2014/11/assets/candidate-photos/2014-11-04-MA-Governor-' + candidate['last_name'] + '.png';
 				return (
 					<div className={containerClasses} key={candidate.id}>
 						<div className='fl matchup-left'> 
@@ -87,7 +88,7 @@ var Matchup = React.createClass({
 						</div>
 						<div className='fl matchup-middle hide-large'> 
 							<div className='matchup-pic'>
-								<img src='http://placehold.it/100x100.jpg'/>
+								<img src={imageUrl} />
 							</div>
 						</div>
 						<div className='fl matchup-right'> 
@@ -168,7 +169,7 @@ var Reporting = React.createClass({
 					<span>{precincts}</span>% of precincts reporting
 				</p>
 				<p>
-					<a href='#TODO'>Town by town results</a>
+					<a href='/news/politics/election-results/2014-11-04/race/MA/Governor'>Town by town results</a>
 				</p>
 			</div>
 		);
@@ -247,9 +248,12 @@ var Strip = React.createClass({
 					<Table totalVotes={totalVotes} candidates={independents} />
 				</div>;
 			} else {
+				var url = '/news/politics/election-results/2014-11-04/race/MA/Governor';
+
 				output = <div>
 					<Title isHeader={true} name={util.raceTitle(results)} />
 					<Summary results={results} />
+					<FullResultsButton url={url} />
 				</div>;
 			}
 		}

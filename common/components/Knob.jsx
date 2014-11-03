@@ -48,10 +48,9 @@ var Knob = React.createClass({
 			}
 		});
 
-		window.addEventListener('resize', _.debounce(function() {
-			var w = $(window).width();
-			//TODO fix the bug
-		}, 150));
+		// window.addEventListener('resize', _.debounce(function() {
+		// 	var w = $(window).width();
+		// }, 150));
 	},
 
 	// this is fired after updating, but it's not
