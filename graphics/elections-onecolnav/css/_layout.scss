@@ -1,0 +1,73 @@
+$nav-rule-width: 1px;
+$nav-rule: $nav-rule-width #ccc solid;
+
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; } 
+}
+
+.elections-onecolnav {
+	clear: both;
+	width: 100%;
+	line-height: 1;
+	padding-bottom: .5em;
+
+	h1 {
+		padding-bottom: 0.5em;
+	}
+
+	&__results-link {
+		float: right;
+		clear: none;
+	}
+
+	div,
+	select,
+	input {
+		display: inline-block;
+	}
+
+	select {
+		@include appearance(menulist);
+	}
+
+	select,
+	input {
+		@include border-radius();
+		// @include input-placeholder {
+		// 	color: #000;
+		// }
+		// background-color: #efefef;
+		border: 1px #ccc solid;
+		height: 2em;
+		line-height: 2;
+		margin: 0;
+		padding: 0;
+		padding-left: 2em;
+		width: 49%;
+	}
+}
+
+
+#town-list {
+	display: none;
+	position: absolute;
+	margin-left: 1.5em;
+	max-height: 200px;
+	overflow: scroll;
+	border: 1px #000 solid;
+	background: white;
+	font-weight: normal;
+	z-index:2;
+
+	li {
+		padding: .25em;
+	}
+
+	.active {
+		font-weight: bold;
+	}
+}

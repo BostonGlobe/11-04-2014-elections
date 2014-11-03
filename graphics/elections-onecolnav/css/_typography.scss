@@ -1,0 +1,24 @@
+.elections-onecolnav {
+  font-family: $sansSerif;
+  font-size: 1.3rem;
+  font-weight: bold;
+
+  a {
+    text-decoration: none;
+    color: #999;
+  }
+
+  h1 {
+    @include adjust-font-size-to($s6, 1);
+    font-family: $sansSerifStrong;
+    font-weight: normal;
+  }
+
+  input,
+  select {
+    font-family: $sansSerif;
+    @include adjust-font-size-to($s4, 1);
+    font-weight: bold;
+    color: #999;
+  }
+}
