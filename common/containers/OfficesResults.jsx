@@ -11,6 +11,7 @@ var ShareTools        = require('../components/ShareTools.jsx');
 var Summary           = require('../components/Summary.jsx');
 var Title             = require('../components/Title.jsx');
 var Ad                = require('../components/Ad.jsx');
+var FullResultsButton = require('../components/FullResultsButton.jsx');
 
 var util              = require('../assets/js/util.js');
 var Moment            = require('moment');
@@ -91,7 +92,7 @@ var OfficesResults = React.createClass({
 
 				var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + race.alternate_office_name + '/' + race.seat_name;
 
-				var button = !isUncontested && self.props.state ? <a href={url}><button className='go-to-full-results'>Go to full results</button></a> : null;
+				var button = !isUncontested && self.props.state ? <FullResultsButton url={url} /> : null;
 
 				var related = false ? <div className='election-related-story'>
 					<span className='election-related-overline'>More governor coverage</span>
