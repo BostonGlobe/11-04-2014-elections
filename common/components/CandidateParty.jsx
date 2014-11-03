@@ -26,7 +26,7 @@ var CandidateParty = React.createClass({
 		var party = util.partyAbbreviationToParty(candidate.party) || 'independent';
 
 		var photoExists = CandidatePhoto.exists({
-			office_name: race.alternate_office_name,
+			alternate_office_name: race.alternate_office_name,
 			seat_name: race.seat_name,
 			state_postal: race.state_postal,
 			election_date: race.election_date,
