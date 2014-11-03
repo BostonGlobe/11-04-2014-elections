@@ -240,12 +240,12 @@ var Strip = React.createClass({
 				return result.party === 'Dem' || result.party === 'GOP';
 			});
 
-			if(this.state.isFull) {
-				output = return (<div>
+			if (this.state.isFull) {
+				output = <div>
 					<Reporting name={results.alternate_office_name} reportingUnit={reportingUnit} />
 					<Matchup totalVotes={totalVotes} candidates={mainstreamers} />
 					<Table totalVotes={totalVotes} candidates={independents} />
-				</div>;	
+				</div>;
 			} else {
 				output = <div>
 					<Title isHeader={true} name={util.raceTitle(results)} />
@@ -253,8 +253,6 @@ var Strip = React.createClass({
 				</div>;
 			}
 		}
-
-
 
 		return (
 			<div className='strip'>
@@ -266,10 +264,14 @@ var Strip = React.createClass({
 
 	componentDidMount: function() {
 		var self = this;
-		window.addEventListener('resize', _.debounce(function() {
+		function resize() {
 			var w = $(window).width();
 			self.setState({isFull: w > 767 });
+		}
+		window.addEventListener('resize', _.debounce(function() {
+			resize();
 		}, 150));
+		resize();
 	},
 
 	getInitialState: function() {
