@@ -138,12 +138,14 @@ var CandidatesTable = React.createClass({
 	componentDidMount: function() {
 		var self = this;
 		function resize() {
-			var node = self.getDOMNode();
-			var width = node.offsetWidth;
-			self.setState({
-				hasBars: width >= 360,
-				hasPhotos: width >= 480
-			});
+			if (self.isMounted()) {
+				var node = self.getDOMNode();
+				var width = node.offsetWidth;
+				self.setState({
+					hasBars: width >= 360,
+					hasPhotos: width >= 480
+				});
+			}
 		}
 		window.addEventListener('resize', _.debounce(function() {
 			resize();

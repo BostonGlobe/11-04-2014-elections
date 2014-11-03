@@ -367,18 +367,18 @@ var Choropleth = React.createClass({
 
 		// is this the first time we get results?
 		// if so, draw the map
-		if (!this.props.results && props.results) {
+		if (!self.props.results && props.results) {
 
 			// first, create and set geometry objects as class variable
-			this.geometryObjects = Choropleth.createGeometryObjects(props.results, this.props.shapefile);
+			self.geometryObjects = Choropleth.createGeometryObjects(props.results, self.props.shapefile);
 
-			var isStatewideRace = props.results.reporting_units.length === this.geometryObjects.allTowns.features.length + 1;
+			var isStatewideRace = props.results.reporting_units.length === self.geometryObjects.allTowns.features.length + 1;
 
 			// next, create the full map svg container
 			// and save the svg and path, since we'll need them for later
 			var fullMapSvgAndPath = Choropleth.createSvgAndPath({
-				feature: this.geometryObjects.raceTownsOutline,
-				node: this.getDOMNode().querySelector('.fullmap svg')
+				feature: self.geometryObjects.raceTownsOutline,
+				node: self.getDOMNode().querySelector('.fullmap svg')
 			});
 
 			// create the features container - draw it first,
@@ -387,21 +387,21 @@ var Choropleth = React.createClass({
 
 			// save the path - we'll need it every time we update the map with new data
 			// TODO: maybe it shouldn't be called just 'path'
-			this.path = fullMapSvgAndPath.path;
+			self.path = fullMapSvgAndPath.path;
 
 			// next, draw the full map outlines
 			// for now, let's just draw the race towns outline
 			Choropleth.drawOutlines({
 				svg: fullMapSvgAndPath.svg,
-				path: this.path,
-				raceTownsOutline: this.geometryObjects.raceTownsOutline
+				path: self.path,
+				raceTownsOutline: self.geometryObjects.raceTownsOutline
 			});
 
 			if (!isStatewideRace) {
 
 				// next, draw the full map label and text
 				// first, find the town with most population
-				var largestTown = _.chain(this.geometryObjects.raceTowns)
+				var largestTown = _.chain(self.geometryObjects.raceTowns)
 					.sortBy(function(town) {
 						return -town.properties.POPULATION;
 					})
@@ -441,42 +441,43 @@ var Choropleth = React.createClass({
 
 				// next, create the mini map svg container
 				var miniMapSvgAndPath = Choropleth.createSvgAndPath({
-					feature: this.geometryObjects.allTownsOutline,
-					node: this.getDOMNode().querySelector('.minimap svg')
+					feature: self.geometryObjects.allTownsOutline,
+					node: self.getDOMNode().querySelector('.minimap svg')
 				});
 
 				// next, draw the mini map outlines
 				Choropleth.drawOutlines({
 					svg: miniMapSvgAndPath.svg,
 					path: miniMapSvgAndPath.path,
-					allTownsOutline: this.geometryObjects.allTownsOutline,
-					raceTownsOutline: this.geometryObjects.raceTownsOutline
+					allTownsOutline: self.geometryObjects.allTownsOutline,
+					raceTownsOutline: self.geometryObjects.raceTownsOutline
 				});
 
-				$(this.getDOMNode().querySelector('.minimap')).show();
+				$(self.getDOMNode().querySelector('.minimap')).show();
 
 			} else {
-				$(this.getDOMNode().querySelector('.minimap')).hide();
+				$(self.getDOMNode().querySelector('.minimap')).hide();
 			}
 
 			// on viewport resize, maintain svg aspect
 			window.addEventListener('resize', _.debounce(function() {
-				Choropleth.updateSvgDimensions($('svg', self.getDOMNode()));
+				var node = self.getDOMNode();
+				Choropleth.updateSvgDimensions($('svg', node));
 			}, 150));
 			Choropleth.updateSvgDimensions($('svg', self.getDOMNode()));
 		}
 
 		// next is the part where we draw the data
-		if (props.results && this.geometryObjects.raceTowns) {
+		if (props.results && self.geometryObjects.raceTowns) {
 
-			var node = d3.select(this.getDOMNode().querySelector('.fullmap svg g.features'));
+			var node = d3.select(self.getDOMNode().querySelector('.fullmap svg g.features'));
 
 			Choropleth.updateFullMap({
 				results: props.results,
-				features: this.geometryObjects.raceTowns,
+				features: self.geometryObjects.raceTowns,
 				node: node,
-				path: this.path,
-				tooltipCallback: this.props.tooltipCallback
+				path: self.path,
+				tooltipCallback: self.props.tooltipCallback
 			});
 
 		}
