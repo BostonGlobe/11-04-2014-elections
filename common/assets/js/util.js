@@ -6,7 +6,7 @@ module.exports = {
 	raceUrl: function(race) {
 		var moment = Moment(race.election_date);
 		var displayDate = moment.format('YYYY-MM-DD');
-		var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + this.toUrl(race.office_name) + '/' + this.toUrl(race.seat_name);
+		var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + this.toUrl(race.alternate_office_name) + '/' + this.toUrl(race.seat_name);
 		return url;
 	},
 
@@ -28,7 +28,7 @@ module.exports = {
 	officeTitle: function(results) {
 
 		var title;
-		var office = results.office_name;
+		var office = results.alternate_office_name;
 		var state = this.standardizeState(results.state_postal);
 
 		title = [state, this.standardizeOffice(office.toLowerCase())].join(' ');
@@ -62,7 +62,7 @@ module.exports = {
 		} else {
 
 			var seat = race.seat_name;
-			var office = race.office_name;
+			var office = race.alternate_office_name;
 			var state = this.standardizeState(race.state_postal);
 
 			// seat, e.g. County commissioner -> County commissioner, Bristol, Mass.
@@ -81,7 +81,6 @@ module.exports = {
 
 	toUrl: function(office) {
 		return encodeURIComponent(encodeURIComponent(office
-			.replace(/u\.s\. /gi, 'US ')
 			.replace(/state house/i, 'State House')
 			.replace(/state senate/i, 'State Senate')
 			.replace(/us house/i, 'US House')
@@ -98,7 +97,6 @@ module.exports = {
 
 	standardizeOffice: function(office) {
 		return this.clean(office)
-			.replace(/u\.s\. /gi, 'US ')
 			.replace(/state house/i, 'State House')
 			.replace(/state senate/i, 'State Senate')
 			.replace(/us house/i, 'US House')

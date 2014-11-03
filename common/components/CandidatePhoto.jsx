@@ -13,7 +13,7 @@ var CandidatePhoto = React.createClass({
 
 		filename: function(opts) {
 
-			var office = opts.office_name;
+			var office = opts.alternate_office_name;
 			var seat = opts.seat_name;
 			var state = opts.state_postal;
 			var moment = Moment(opts.election_date);

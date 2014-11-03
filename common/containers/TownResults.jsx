@@ -31,7 +31,7 @@ var TownResults = React.createClass({
 				return race.seat_name && race.seat_name.length;
 			})
 			.sortBy(function(race) {
-				return [race.office_name, race.seat_name].join(' ');
+				return [race.alternate_office_name, race.seat_name].join(' ');
 			})
 			.map(function(race) {
 
@@ -39,7 +39,7 @@ var TownResults = React.createClass({
 				var displayDate = moment.format('YYYY-MM-DD');
 				var isUncontested = race.candidates.length < 2;
 
-				var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + race.office_name + '/' + race.seat_name;
+				var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + race.alternate_office_name + '/' + race.seat_name;
 
 				var button = !isUncontested ? <a href={url}><button className='go-to-full-results'>Go to full results</button></a> : null;
 
