@@ -78,7 +78,7 @@
 
 	.section-matchup {
 		width: 55%;
-		padding-right: 2em;
+		padding-right: 1em;
 		height: 100%;
 		overflow: hidden;
 
@@ -88,10 +88,11 @@
 
 		.matchup-container {
 			width: 50%;
-			padding-left: 2em;
+			padding-left: 1.5em;
 			@include breakpoint(max-width $bp-large) {
 				padding-left: 1em;
 			}
+			border-right: 1px solid #ccc;
 			float: left;
 
 			&.winner {
@@ -101,13 +102,13 @@
 						content: "\02713";
 						position: absolute;
 						color: $midGreen;
-						left: -1em;
+						left: -0.9em;
 					}
 				}
 			}
 		}
 		.fl {
-			padding-right: 0.5em;
+			padding-right: 1.5em;
 			float: left;
 		}
 		.matchup-left {
@@ -130,6 +131,10 @@
 				width: 0;
 			}
 		}
+		.matcup-pic {
+			border-bottom: 1px solid #ccc;
+		}
+
 		.matchup-party {
 			text-transform: uppercase;
 			color: #666;
@@ -159,10 +164,10 @@
 			padding: 0.5em;
 			margin-left: 0.25em;
 			&.democrat {
-				background: $democrat;
+				color: $democrat;
 			}
 			&.republican {
-				background: $republican;
+				color: $republican;
 			}
 		}
 
@@ -185,7 +190,7 @@
 
 	.section-table {
 		width: 30%;
-
+		padding-left: 0.5em;
 		.table-row {
 			height: 100%;
 			overflow: hidden;

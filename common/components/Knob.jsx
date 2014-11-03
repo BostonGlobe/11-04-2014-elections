@@ -26,7 +26,7 @@ var Knob = React.createClass({
 	// this is fired only once, after the initial render
 	componentDidMount: function() {
 		var input = this.getDOMNode().querySelector('input');
-		var party = $(input).attr('data-party');
+		var party = this.props.party;
 		
 		var colors = {
 			'Democrat': {
@@ -47,6 +47,11 @@ var Knob = React.createClass({
 				return d + '%';
 			}
 		});
+
+		window.addEventListener('resize', _.debounce(function() {
+			var w = $(window).width();
+			//TODO fix the bug
+		}, 150));
 	},
 
 	// this is fired after updating, but it's not
