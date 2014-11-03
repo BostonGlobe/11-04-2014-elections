@@ -9,6 +9,8 @@ var PollClock         = require('../components/PollClock.jsx');
 var Precincts         = require('../components/Precincts.jsx');
 var Donut             = require('../components/Donut.jsx');
 var Knob              = require('../components/Knob.jsx');
+var Summary           = require('../components/Summary.jsx');
+var Title             = require('../components/Title.jsx');
 
 var util              = require('../assets/js/util.js');
 
@@ -198,9 +200,7 @@ var Strip = React.createClass({
 
 		var results = this.state.results[0];
 
-		var reporting = null;
-		var matchup = null;
-		var table = null;
+		var output = null;
 
 		if (results) {
 
@@ -240,19 +240,42 @@ var Strip = React.createClass({
 				return result.party === 'Dem' || result.party === 'GOP';
 			});
 
-			reporting = <Reporting name={results.alternate_office_name} reportingUnit={reportingUnit} />;
-			table = <Table totalVotes={totalVotes} candidates={independents} />;
-			matchup = <Matchup totalVotes={totalVotes} candidates={mainstreamers} />;
+			if(this.state.isFull) {
+				output = return (<div>
+					<Reporting name={results.alternate_office_name} reportingUnit={reportingUnit} />
+					<Matchup totalVotes={totalVotes} candidates={mainstreamers} />
+					<Table totalVotes={totalVotes} candidates={independents} />
+				</div>;	
+			} else {
+				output = <div>
+					<Title isHeader={true} name={util.raceTitle(results)} />
+					<Summary results={results} />
+				</div>;
+			}
 		}
+
+
 
 		return (
 			<div className='strip'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				{reporting}
-				{matchup}
-				{table}
+				{output}
 			</div>
 		);
+	},
+
+	componentDidMount: function() {
+		var self = this;
+		window.addEventListener('resize', _.debounce(function() {
+			var w = $(window).width();
+			self.setState({isFull: w > 767 });
+		}, 150));
+	},
+
+	getInitialState: function() {
+		return {
+			isFull: true
+		};
 	}
 
 });
