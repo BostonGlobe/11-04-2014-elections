@@ -14,7 +14,8 @@ var CandidatesTable = React.createClass({
 
 	getInitialState: function() {
 		return {
-			hasBars: true
+			hasBars: false,
+			hasPhotos: false
 		};
 	},
 
@@ -65,6 +66,7 @@ var CandidatesTable = React.createClass({
 						candidates={candidates}
 						isLite={isLite}
 						race={self.props.race}
+						hasPhoto={self.state.hasPhotos}
 					/>);
 				}
 
@@ -88,10 +90,11 @@ var CandidatesTable = React.createClass({
 		);
 
 		var theadRows;
+		var singleTheadRow = this.state.hasPhotos ? <th className='candidate-photo'></th> : null;
 
 		if (isUncontested) {
 			theadRows = <tr>
-				<th className='candidate-photo'></th>
+				{singleTheadRow}
 				<th className='candidate-name'></th>
 				<th className='candidate-uncontested'></th>
 			</tr>;
@@ -103,7 +106,7 @@ var CandidatesTable = React.createClass({
 				</tr>;
 			} else {
 				theadRows = <tr>
-					<th className='candidate-photo'></th>
+					{singleTheadRow}
 					<th className='candidate-name'></th>
 					<th className='candidate-percent'></th>
 					<th className='candidate-bar'></th>
@@ -115,6 +118,7 @@ var CandidatesTable = React.createClass({
 		var cx = React.addons.classSet;
 		var classes = cx({
 			'candidates-table': true,
+			'has-photos': this.state.hasPhotos,
 			'has-bars': this.state.hasBars
 		});
 
@@ -137,7 +141,8 @@ var CandidatesTable = React.createClass({
 			var node = self.getDOMNode();
 			var width = node.offsetWidth;
 			self.setState({
-				hasBars: width >= 480
+				hasBars: width >= 360,
+				hasPhotos: width >= 480
 			});
 		}
 		window.addEventListener('resize', _.debounce(function() {

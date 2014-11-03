@@ -33,7 +33,7 @@ var CandidateParty = React.createClass({
 			candidate: candidate
 		});
 
-		var photo = !this.props.isLite && photoExists ? <CandidatePhoto candidate={candidate} race={race} /> : null;
+		var photo = !this.props.isLite && photoExists && this.props.hasPhoto ? <CandidatePhoto candidate={candidate} race={race} /> : null;
 
 		return (
 			<tr>
