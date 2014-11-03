@@ -22,6 +22,7 @@ body {
 		background: white;
 		position: relative;
 		left: -50%;
+		font-size: 1.5rem;
 
 		.candidates-table {
 			@include rhythm(0, 0, 0, 0);
