@@ -1,0 +1,21 @@
+.elections-linkbar {
+  font-family: $sansSerif;
+  font-size: 1.3rem;
+  font-weight: bold;
+
+  a {
+    @include adjust-font-size-to($s5, 1);
+    text-decoration: none;
+  }
+
+  h1 {
+    @include adjust-font-size-to($s6, 1);
+  }
+
+  input,
+  select {
+    font-family: $sansSerif;
+    @include adjust-font-size-to($s4, 1);
+    font-weight: bold;
+  }
+}
