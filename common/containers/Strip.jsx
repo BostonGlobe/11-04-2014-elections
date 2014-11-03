@@ -166,13 +166,14 @@ var Reporting = React.createClass({
 					<span>{precincts}</span>% of precincts reporting
 				</p>
 				<p>
-					<a href='#TODO'>Full results</a>
+					<a href='#TODO'>Town by town results</a>
 				</p>
-				<div className='social-share'>
-					Share <span className='hide-large'>results</span>: <a className='social-icon tw' target='_blank' href='#'></a><a className='social-icon fb' target='_blank' href='#'></a>
-				</div>
 			</div>
 		);
+
+		// <div className='social-share'>
+		// 			Share <span className='hide-large'>results</span>: <a className='social-icon tw' target='_blank' href='#'></a><a className='social-icon fb' target='_blank' href='#'></a>
+		// 		</div>
 	}
 
 });
