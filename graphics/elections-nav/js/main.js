@@ -17,6 +17,10 @@ function setBreakpointClasses() {
 		.toggleClass('nav-breakpoint-show-toggle',w<600);
 }
 
+if (window.location.pathname.indexOf("/news/politics/election-results/2014-11-04/")===0) {
+	$nav.addClass("nav-show-masthead");
+}
+
 $('.elections-nav__toggle').click(function() {
 	var panel = $(this).data('panel');
 	var alreadyActive = $(this).hasClass('elections-nav__toggle--active');

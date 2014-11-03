@@ -12,6 +12,7 @@
   h1 {
     @include adjust-font-size-to($s6, 1);
     font-family: $sansSerifStrong;
+    font-weight: normal;
   }
 
   input,
