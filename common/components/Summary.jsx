@@ -29,7 +29,7 @@ var Summary = React.createClass({
 			candidatesTable = (
 				<CandidatesTable
 					race={{
-						office_name: results.office_name,
+						alternate_office_name: results.alternate_office_name,
 						seat_name: results.seat_name,
 						state_postal: results.state_postal,
 						election_date: results.election_date

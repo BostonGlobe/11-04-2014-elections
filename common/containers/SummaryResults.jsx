@@ -9,7 +9,9 @@ var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
 var Summary           = require('../components/Summary.jsx');
 var PollClock         = require('../components/PollClock.jsx');
 var Title             = require('../components/Title.jsx');
+var FullResultsButton = require('../components/FullResultsButton.jsx');
 var util              = require('../assets/js/util.js');
+var Moment            = require('moment');
 
 var SummaryResults = React.createClass({
 
@@ -57,13 +59,24 @@ var SummaryResults = React.createClass({
 
 	render: function() {
 
+		var self = this;
+
 		var summaries = _.chain(this.state.results)
 			.map(function(result) {
 				var name = util.raceTitle(result);
 
-				return <div className='summary-result'>
+				var moment = Moment(result.election_date);
+				var displayDate = moment.format('YYYY-MM-DD');
+				var isUncontested = result.candidates.length < 2;
+
+				var url = '/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + result.alternate_office_name + '/' + result.seat_name;
+
+				var button = !isUncontested && self.props.state ? <FullResultsButton url={url} /> : null;
+
+				return <div className='summary-result' key={result.race_number}>
 					<Title name={name} />
-					<Summary results={result} key={result.race_number} />
+					<Summary results={result} />
+					{button}
 				</div>;
 			})
 			.value();

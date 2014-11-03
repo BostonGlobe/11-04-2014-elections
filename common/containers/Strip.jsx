@@ -240,7 +240,7 @@ var Strip = React.createClass({
 				return result.party === 'Dem' || result.party === 'GOP';
 			});
 
-			reporting = <Reporting name={results.office_name} reportingUnit={reportingUnit} />;
+			reporting = <Reporting name={results.alternate_office_name} reportingUnit={reportingUnit} />;
 			table = <Table totalVotes={totalVotes} candidates={independents} />;
 			matchup = <Matchup totalVotes={totalVotes} candidates={mainstreamers} />;
 		}

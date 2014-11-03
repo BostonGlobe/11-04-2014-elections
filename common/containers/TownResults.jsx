@@ -11,6 +11,7 @@ var ShareTools        = require('../components/ShareTools.jsx');
 var Summary           = require('../components/Summary.jsx');
 var Title             = require('../components/Title.jsx');
 var Ad                = require('../components/Ad.jsx');
+var FullResultsButton = require('../components/FullResultsButton.jsx');
 
 var util              = require('../assets/js/util.js');
 var Moment            = require('moment');
@@ -31,7 +32,7 @@ var TownResults = React.createClass({
 				return race.seat_name && race.seat_name.length;
 			})
 			.sortBy(function(race) {
-				return [race.office_name, race.seat_name].join(' ');
+				return [race.alternate_office_name, race.seat_name].join(' ');
 			})
 			.map(function(race) {
 
@@ -39,9 +40,9 @@ var TownResults = React.createClass({
 				var displayDate = moment.format('YYYY-MM-DD');
 				var isUncontested = race.candidates.length < 2;
 
-				var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + race.office_name + '/' + race.seat_name;
+				var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + race.alternate_office_name + '/' + race.seat_name;
 
-				var button = !isUncontested ? <a href={url}><button className='go-to-full-results'>Go to full results</button></a> : null;
+				var button = !isUncontested ? <FullResultsButton url={url} /> : null;
 
 				return (
 					<div className='town' key={race.race_number}>
