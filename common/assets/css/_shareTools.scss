@@ -3,8 +3,6 @@
 	@include rhythm(1, 0, 0, 0);
 
 	text-align: center;
-	$twitter: 'img/twitter_logo_white.png';
-	$facebook: 'img/FB-f-Logo__blue_50.png';
 
 	.tool {
 		display: inline-block;
@@ -26,10 +24,13 @@
 
 	.twitter {
 		background-color: rgb(85, 172, 238);
-		background-image: inline-image($twitter);
+		background-image: inline-image('img/tw-icon.svg');
 		background-position: 50%;
-		background-size: 40%;
 		background-repeat: no-repeat;
+
+		&.no-svg {
+			background-image: inline-image('img/tw-icon.png');
+		}
 
 		&:hover {
 			background-color: shade(rgb(85, 172, 238), 20%);
@@ -38,10 +39,13 @@
 
 	.facebook {
 		background: rgb(59, 89, 172);
-		background-image: inline-image($facebook);
+		background-image: inline-image('img/fb-icon.svg');
 		background-position: 50%;
-		background-size: 40%;
 		background-repeat: no-repeat;
+
+		&.no-svg {
+			background-image: inline-image('img/fb-icon.png');
+		}
 
 		&:hover {
 			background-color: shade(rgb(59, 89, 172), 20%);
