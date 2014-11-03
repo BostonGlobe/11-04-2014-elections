@@ -13,7 +13,7 @@ setBreakpointClasses();
 
 function setBreakpointClasses() {
 	var w = $nav.width();
-	$nav.toggleClass('nav-breakpoint-hide-links',w<800)
+	$nav.toggleClass('nav-breakpoint-hide-links',w<900)
 		.toggleClass('nav-breakpoint-show-toggle',w<600);
 }
 
