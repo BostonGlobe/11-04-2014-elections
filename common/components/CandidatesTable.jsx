@@ -2,7 +2,7 @@
  * @jsx React.DOM
  */
 
-var React = require('react');
+var React = require('react/addons');
 
 var CandidateSummary = require('./CandidateSummary.jsx');
 var Precincts        = require('./Precincts.jsx');
@@ -11,6 +11,12 @@ var Party            = require('./CandidateParty.jsx');
 var util             = require('../assets/js/util.js');
 
 var CandidatesTable = React.createClass({
+
+	getInitialState: function() {
+		return {
+			hasBars: true
+		};
+	},
 
 	render: function() {
 
@@ -106,8 +112,14 @@ var CandidatesTable = React.createClass({
 			}
 		}
 
+		var cx = React.addons.classSet;
+		var classes = cx({
+			'candidates-table': true,
+			'has-bars': this.state.hasBars
+		});
+
 		return (
-			<table className='candidates-table'>
+			<table className={classes}>
 				<thead>
 					{theadRows}
 				</thead>
@@ -117,6 +129,21 @@ var CandidatesTable = React.createClass({
 				</tbody>
 			</table>
 		);
+	},
+
+	componentDidMount: function() {
+		var self = this;
+		function resize() {
+			var node = self.getDOMNode();
+			var width = node.offsetWidth;
+			self.setState({
+				hasBars: width >= 480
+			});
+		}
+		window.addEventListener('resize', _.debounce(function() {
+			resize();
+		}, 150));
+		resize();
 	}
 
 });

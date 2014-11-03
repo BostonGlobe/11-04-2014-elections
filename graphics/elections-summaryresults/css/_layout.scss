@@ -1,37 +1,38 @@
 .elections-graphic.elections-summaryresults {
+	// @include rhythm(0, 0, 0, 2);
+
 	@include adjust-font-size-to($s6);
 
+	&.homepage-graphic {
+		@include adjust-font-size-to($s5p5);
+	}
+
+	&.article-graphic {
+	}
+
 	.summary-result {
-		@include rhythm(0, 0, 0, 1);
-	}
-
-	.title.is-subheader {
-		@include adjust-font-size-to($s4, 1);
-	}
-
-	.candidates-table {
-
 		@include rhythm(0, 0, 0, 0);
+		// font-size: 1.5rem;
 
-		td.candidate-name {
+		.title.is-subheader {
+			@include adjust-font-size-to($s4, 1);
+		}
 
-			.name {
-				@include adjust-font-size-to($s4, 1);
+		.candidates-table {
+
+			@include rhythm(0, 0, 0, 0);
+
+			tr {
+				// line-height: 1.5;
 			}
+
 		}
 
-		td.candidate-percent {
-			padding-left: 0;
-			padding-right: 1em;
-		}
+	}
 
-		.candidate-bar {
-			display: none;
-		}
-
-		td.candidate-votes {
-			padding-left: 0;
-		}
+	.summary-result:nth-child(n+3) {
+		// background: red;
+		// @include rhythm(2, 0, 0, 2);
 	}
 
 }
