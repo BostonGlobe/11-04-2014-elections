@@ -1,9 +1,17 @@
-$toggle-break: 750px;
 $nav-rule-width: 1px;
 $nav-rule: $nav-rule-width #ccc solid;
 
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; } 
+}
+
 .elections-nav {
 	border-bottom: $nav-rule;
+	clear: both;
 	width: 100%;
 	line-height: 1;
 	padding-bottom: .5em;
@@ -22,6 +30,9 @@ $nav-rule: $nav-rule-width #ccc solid;
 	select,
 	input {
 		@include border-radius();
+		@include input-placeholder {
+			color: #000;
+		}
 		background-color: #efefef;
 		border: 1px #ccc solid;
 		height: 2em;
@@ -43,23 +54,9 @@ $nav-rule: $nav-rule-width #ccc solid;
 		height: 31px;
 	}
 
-	@media all and (max-width: $toggle-break) {
-		h1 {
-			position: relative;
-			bottom: .25em;
-		}
-
-		&__upper-panel {
-			width: 100%;
-			border-bottom: $nav-rule;
-		}
-	}
-
 	&__toggle {
 		&s {
-			@media all and (min-width: $toggle-break) {
-				display: none !important;
-			}
+			display: none !important;
 			float: right;
 			position: relative;
 			bottom: -$nav-rule-width;
@@ -106,13 +103,38 @@ $nav-rule: $nav-rule-width #ccc solid;
 		}
 	}
 
-	@media all and (max-width: $toggle-break) {
+
+
+	&__links {
+		a {
+			display: inline-block;
+			margin-left: 2em;
+		}
+
+		.nav-breakpoint-hide-links & {
+			display: none !important;
+		}
+	}
+}
+
+.nav-breakpoint-show-toggle {
+	&.elections-nav {
+		border-bottom: 0;
+	}
+
+	.elections-nav {
+		&__toggles {
+			display: inline-block !important;
+		}
+
 		&__panel {
 			display: none !important;
 
 			&--active {
+				border-bottom: $nav-rule;
 				display: block !important;
 				width: 100%;
+				padding-bottom: 0.5em;
 				padding-top: 1em;
 
 				input,
@@ -121,17 +143,16 @@ $nav-rule: $nav-rule-width #ccc solid;
 				}
 			}
 		}
+
+		&__upper-panel {
+			width: 100%;
+			border-bottom: $nav-rule;
+		}
 	}
 
-	&__links {
-		a {
-			display: inline-block;
-			margin-left: 2em;
-		}
-
-		@media all and (max-width: 1200px) {
-			display: none !important;
-		}
+	h1 {
+		position: relative;
+		bottom: .25em;
 	}
 }
 
@@ -139,12 +160,19 @@ $nav-rule: $nav-rule-width #ccc solid;
 	display: none;
 	position: absolute;
 	margin-left: 1.5em;
+	max-height: 200px;
+	overflow: scroll;
 	border: 1px #000 solid;
 	background: white;
 	font-weight: normal;
+	z-index:2;
 
 	li {
 		padding: .25em;
+	}
+
+	.active {
+		font-weight: bold;
 	}
 }
 

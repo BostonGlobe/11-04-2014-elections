@@ -18,9 +18,8 @@
 		overflow: visible;				// Fixes spacing issue in IE7
 		vertical-align: middle;			// Line up buttons in groups`
 		border: none;					// Normalize styles
-		padding: 0 1em;					// Consistent inner spacing
-		line-height: 3;					// Consistent inner spacing
-	    height: 3em; 					// Consistent inner spacing
+		padding: 1em;					// Consistent inner spacing
+		line-height: 1;					// Consistent inner spacing
 	    cursor:pointer;					// Force all buttons to appear clickable
 		text-decoration: none;			// Removes text decoration from anchor links
 		@include border-radius(3px);	// Default border radius
@@ -28,6 +27,7 @@
 		transition: all 0.25s ease;		// Default hover transition timing
 		color: $black;					// Default text color
 		font-weight: bold;
+		font-size: 100%;
 
 	//Primary Button
 		@include btn-color(#f2f2e8); //Globe beige color
@@ -35,8 +35,6 @@
 	//Full-Width
 		width: 100%;
 
-	//Bit smaller
-		font-size: 75%;
 
 	//Margin up top 
 		margin-top: 1em;

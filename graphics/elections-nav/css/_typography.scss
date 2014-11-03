@@ -1,6 +1,5 @@
 .elections-nav {
   font-family: $sansSerif;
-  font-size: 1em;
   font-weight: bold;
 
   a {
@@ -8,13 +7,13 @@
   }
 
   h1 {
-    font-size: 1.6em;
+    @include adjust-font-size-to($s6, 1);
   }
 
   input,
   select {
     font-family: $sansSerif;
-    font-size: 1em;
+    @include adjust-font-size-to($s4, 1);
     font-weight: bold;
   }
 }

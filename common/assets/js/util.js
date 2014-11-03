@@ -1,6 +1,14 @@
 var ordinal = require('ordinal');
+var Moment  = require('moment');
 
 module.exports = {
+
+	raceUrl: function(race) {
+		var moment = Moment(race.election_date);
+		var displayDate = moment.format('YYYY-MM-DD');
+		var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + this.toUrl(race.office_name) + '/' + this.toUrl(race.seat_name);
+		return url;
+	},
 
 	sentenceStyle: function(s) {
 		return _.first(s).toUpperCase() + _.rest(s).join('').toLowerCase();
@@ -37,33 +45,47 @@ module.exports = {
 		return this.raceTitle(results).replace(', ' + this.standardizeState(results.state_postal), '');
 	},
 
-	raceTitle: function(results) {
+	_raceTitleForUSHouse: function(race) {
+
+		// should be New Hampshire, 1st District
+		return [race.county_name, race.seat_name].join(' ');
+	},
+
+	raceTitle: function(race, isUSHouse) {
 
 		var title;
-		var seat = results.seat_name;
-		var office = results.office_name;
-		var state = this.standardizeState(results.state_postal);
 
-		// seat, e.g. County commissioner -> County commissioner, Bristol, Mass.
-		if (seat.length) {
+		if (isUSHouse) {
 
-			title = [this.standardizeOffice(this.sentenceStyle(office)), this.standardizeSeat(seat), state].join(', ');
+			title = this.standardizeSeat(this._raceTitleForUSHouse(race));
+
 		} else {
-			// no seat, e.g. Governor -> Mass. governor
-			title = [state, this.standardizeOffice(office.toLowerCase())].join(' ');
+
+			var seat = race.seat_name;
+			var office = race.office_name;
+			var state = this.standardizeState(race.state_postal);
+
+			// seat, e.g. County commissioner -> County commissioner, Bristol, Mass.
+			if (seat.length) {
+
+				title = [this.standardizeOffice(this.sentenceStyle(office)), this.standardizeSeat(seat), state].join(', ');
+			} else {
+				// no seat, e.g. Governor -> Mass. governor
+				title = [state, this.standardizeOffice(office.toLowerCase())].join(' ');
+			}
+
 		}
 
 		return title;
 	},
 
 	toUrl: function(office) {
-		return office
+		return encodeURIComponent(encodeURIComponent(office
 			.replace(/u\.s\. /gi, 'US ')
 			.replace(/state house/i, 'State House')
 			.replace(/state senate/i, 'State Senate')
 			.replace(/us house/i, 'US House')
-			.replace(/us senate/i, 'US Senate')
-			.replace(/&/g, '%2526');
+			.replace(/us senate/i, 'US Senate')));
 	},
 
 	standardizeState: function(state) {

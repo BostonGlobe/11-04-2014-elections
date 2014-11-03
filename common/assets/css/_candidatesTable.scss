@@ -38,6 +38,21 @@
 		@include adjust-leading-to(4/3);
 	}
 
+	td.candidate-photo {
+
+		@include rhythm(0, 1/2, 0, 0);
+
+		@extend %rowRhythm;
+		div {
+			width: 4em;
+			margin-right: 0.5em;
+
+			img {
+				vertical-align: text-top;
+			}
+		}
+	}
+
 	td.candidate-name {
 
 		@extend %rowRhythm;

@@ -1,3 +1,50 @@
 .elections-graphic .share-tools {
-	display: none;
+
+	@include rhythm(1, 0, 0, 0);
+
+	text-align: center;
+	$twitter: 'img/twitter_logo_white.png';
+	$facebook: 'img/FB-f-Logo__blue_50.png';
+
+	.tool {
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+		border: none;
+		padding: 1em 2em;
+		font-size: 100%;
+		cursor: pointer;
+		text-decoration: none;
+		@include border-radius(3px);
+		transition: all 0.25s ease;
+		margin-right: 1em;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	.twitter {
+		background-color: rgb(85, 172, 238);
+		background-image: inline-image($twitter);
+		background-position: 50%;
+		background-size: 40%;
+		background-repeat: no-repeat;
+
+		&:hover {
+			background-color: shade(rgb(85, 172, 238), 20%);
+		}
+	}
+
+	.facebook {
+		background: rgb(59, 89, 172);
+		background-image: inline-image($facebook);
+		background-position: 50%;
+		background-size: 40%;
+		background-repeat: no-repeat;
+
+		&:hover {
+			background-color: shade(rgb(59, 89, 172), 20%);
+		}
+	}
 }
