@@ -40,7 +40,7 @@ var OfficesResults = React.createClass({
 			.map(function(race) {
 
 				var name;
-				var isUSHouse = race.alternate_office_name === 'U.S. House';
+				var isUSHouse = race.alternate_office_name === 'US House';
 
 				if (self.props.state) {
 					name = util.seatName(race);
