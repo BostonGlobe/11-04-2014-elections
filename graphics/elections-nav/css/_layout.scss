@@ -30,10 +30,10 @@ $nav-rule: $nav-rule-width #ccc solid;
 	select,
 	input {
 		@include border-radius();
-		@include input-placeholder {
-			color: #000;
-		}
-		background-color: #efefef;
+		// @include input-placeholder {
+		// 	color: #000;
+		// }
+		// background-color: #efefef;
 		border: 1px #ccc solid;
 		height: 2em;
 		line-height: 2;

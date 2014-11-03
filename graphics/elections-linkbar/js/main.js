@@ -5,8 +5,7 @@ setBreakpointClasses();
 
 function setBreakpointClasses() {
 	var w = $linkbar.width();
-	$linkbar.toggleClass('linkbar-breakpoint-hide-links',w<900)
-		.toggleClass('linkbar-breakpoint-show-toggle',w<600);
+	$linkbar.toggleClass('linkbar-breakpoint-show-toggle',w<760);
 }
 
 $('.elections-linkbar__toggle').click(function() {

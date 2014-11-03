@@ -4,12 +4,14 @@
   font-weight: bold;
 
   a {
-    @include adjust-font-size-to($s5, 1);
+    // @include adjust-font-size-to($s5, 1);
     text-decoration: none;
+    color: #999;
   }
 
   h1 {
     @include adjust-font-size-to($s6, 1);
+    font-family: $sansSerifStrong;
   }
 
   input,
