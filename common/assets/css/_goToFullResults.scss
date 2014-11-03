@@ -27,7 +27,7 @@
 		transition: all 0.25s ease;		// Default hover transition timing
 		color: $black;					// Default text color
 		font-weight: bold;
-		font-size: 100%;
+		font-size: 1.25rem;
 
 	//Primary Button
 		@include btn-color(#f2f2e8); //Globe beige color
