@@ -21,6 +21,10 @@
 		@include adjust-font-size-to($s2, 1);
 	}
 
+	tr {
+		line-height: 0;
+	}
+
 	td.candidate-party {
 
 		.party {
@@ -42,7 +46,7 @@
 		@extend %rowBorder;
 
 		div {
-			width: 4em;
+			width: 3.1em;
 			margin-right: 0.5em;
 
 			img {
