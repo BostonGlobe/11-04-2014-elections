@@ -8,7 +8,6 @@ var FetchResultsMixin = require('../mixins/FetchResultsMixin.jsx');
 
 var Choropleth        = require('../components/Choropleth.jsx');
 var PollClock         = require('../components/PollClock.jsx');
-var Title             = require('../components/Title.jsx');
 var ShareTools        = require('../components/ShareTools.jsx');
 var Tooltip           = require('../components/Tooltip.jsx');
 
@@ -56,12 +55,9 @@ var BigMap = React.createClass({
 			{tooltip}
 		</div> : null;
 
-		var title = results ? <Title isHeader={true} name={util.raceTitle(results)} /> : null;
-
 		return (
 			<div className='big-map'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				{title}
 				{choropleth}
 			</div>
 		);
