@@ -1,9 +1,8 @@
 #elections-strip {
 	
 	$bp-full: 1232px;
-	$bp-large: 1024px;
-	$bp-medium: 768px;
-	$bp-small: 480px;
+	$bp-large: 1023px;
+	$bp-medium: 767px;
 	$globe-red: #9B1518;
 	$globe-red-light: #ef8a8c;
 
@@ -23,6 +22,12 @@
 	a {
 		font-weight: bold;
 		text-decoration: underline;
+	}
+
+	.social-share {
+		@include breakpoint(max-width $bp-full) {
+			display: none;
+		}
 	}
 
 	.social-icon {
@@ -59,15 +64,15 @@
 		height: 100%;
 		overflow: hidden;
 		@include breakpoint(max-width $bp-medium) {
-			float: none;
+			display: none;
 		}
 	}
 
 	.section-reporting {
 		width: 15%;
-		padding-right: 1em;
-		@include breakpoint(max-width $bp-medium) {
-			width: 100%;
+		padding-right: 0.5em;
+		@include breakpoint(max-width $bp-large) {
+			width: 17%;
 		}
 	}
 
@@ -77,14 +82,29 @@
 		height: 100%;
 		overflow: hidden;
 
-		@include breakpoint(max-width $bp-medium) {
-			width: 100%;
+		@include breakpoint(max-width $bp-large) {
+			width: 53%;
 		}
 
 		.matchup-container {
 			width: 50%;
 			padding-left: 2em;
+			@include breakpoint(max-width $bp-large) {
+				padding-left: 1em;
+			}
 			float: left;
+
+			&.winner {
+				.matchup-name {
+					position: relative;
+					&:before {
+						content: "\02713";
+						position absolute;
+						color: $midGreen;
+						left: -1em;
+					}
+				}
+			}
 		}
 		.fl {
 			padding-right: 0.5em;
@@ -93,16 +113,21 @@
 		.matchup-left {
 			width: 50%;
 			@include breakpoint(max-width $bp-large) {
-				width: 70%;
+				width: 100%;
 			}
 		}
 		.matchup-middle {
 			width: 25%;
+			@include breakpoint(max-width $bp-large) {
+				display: none;
+				width: 0;
+			}
 		}
 		.matchup-right {
 			width: 25%;
 			@include breakpoint(max-width $bp-large) {
-				width: 30%;
+				display: none;
+				width: 0;
 			}
 		}
 		.matchup-party {
@@ -111,6 +136,12 @@
 			font-size: $s2;
 			font-weight: bold;
 			margin-bottom: 0.5em;
+			&.democrat {
+				color: $democrat;
+			}
+			&.republican {
+				color: $republican;
+			}
 		}
 		.matchup-name {
 			font-size: $s4;
@@ -123,6 +154,18 @@
 			font-size: $s3;
 		}
 
+		.matchup-percent {
+			color: #fff;
+			padding: 0.5em;
+			margin-left: 0.25em;
+			&.democrat {
+				background: $democrat;
+			}
+			&.republican {
+				background: $republican;
+			}
+		}
+
 		.percent-box{
 			position: relative;
 			width: 100%;		/* desired width */
@@ -133,7 +176,8 @@
 			padding-top: 100%; 	/* initial ratio of 1:1*/
 		}
 		.percent-content{
-			font-size: $s6;
+			line-height: 2;
+			font-size: $s5;
 			color: $globe-red;
 			font-weight: bold;
 		}
@@ -141,10 +185,6 @@
 
 	.section-table {
 		width: 30%;
-		
-		@include breakpoint(max-width $bp-medium) {
-			width: 100%;
-		}
 
 		.table-row {
 			height: 100%;
@@ -156,17 +196,28 @@
 			width: 33.4%;
 			float: left;
 			font-weight: bold;
+			@include breakpoint(max-width $bp-large) {
+				width: 60%;
+			}
 		}
 		.table-votes {
 			width: 33.3%;
 			float: left;
 			text-align: center;
+			@include breakpoint(max-width $bp-large) {
+				font-size: $s2;
+				width: 30%;
+				text-align: left;
+			}
 		}
 		.table-percent {
 			width: 33.3%;
 			float: left;
 			text-align: right;
 			font-weight: bold;
+			@include breakpoint(max-width $bp-large) {
+				width: 10%;
+			}
 		}
 	}
 
@@ -177,9 +228,8 @@
 	}
 
 	.show-large {
-		@include breakpoint($bp-large) {
+		@include breakpoint(min-width $bp-large + 1) {
 			display: none;
 		}
 	}
-	
 }

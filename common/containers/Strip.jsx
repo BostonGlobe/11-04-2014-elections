@@ -47,6 +47,9 @@ var Matchup = React.createClass({
 
 				var isWinner = candidate.winner === 'X';
 
+				var isDemocrat = party === 'Democrat';
+				var isRepublican = party === 'Republican';
+
 				// this is purely for utility,
 				// a really nice way of avoiding string concatenation
 				// for class creation
@@ -55,11 +58,29 @@ var Matchup = React.createClass({
 					'winner': isWinner
 				});
 
+				var donutClasses = cx({
+					'matchup-donut': true,
+					'hide-large': true
+				});
+
+				var partyClasses = cx({
+					'matchup-party': true,
+					'democrat': isDemocrat,
+					'republican': isRepublican
+				});
+
+				var percentClasses = cx({
+					'show-large': true,
+					'matchup-percent': true,
+					'democrat': isDemocrat,
+					'republican': isRepublican
+				});
+				
 				return (
 					<div className={containerClasses} key={candidate.id}>
 						<div className='fl matchup-left'> 
-							<div className='matchup-party'>{party}</div>
-							<div className='matchup-name'>{name}</div>
+							<div className={partyClasses}>{party}</div>
+							<div className='matchup-name'>{name} <span className={percentClasses}>{percent}%</span></div>
 							<div className='matchup-votes'>{votesForDisplay} votes</div>
 						</div>
 						<div className='fl matchup-middle hide-large'> 
@@ -68,13 +89,8 @@ var Matchup = React.createClass({
 							</div>
 						</div>
 						<div className='fl matchup-right'> 
-							<div className='matchup-donut hide-large'>
-								<Knob percent={percent} isWinner={isWinner} />
-							</div>
-							<div className='matchup-percent show-large'>
-								<div className='percent-content'>
-									{percent}%
-								</div>
+							<div className={donutClasses}>
+								<Knob percent={percent} isWinner={isWinner} party={party} />
 							</div>
 						</div>
 					</div>
@@ -152,12 +168,11 @@ var Reporting = React.createClass({
 				<p>
 					<a href='#TODO'>Full results</a>
 				</p>
+				<div className='social-share'>
+					Share <span className='hide-large'>results</span>: <a className='social-icon tw' target='_blank' href='#'></a><a className='social-icon fb' target='_blank' href='#'></a>
+				</div>
 			</div>
 		);
-
-		// <div className='social-share'>
-				// 	Share <span className='hide-large'>results</span>: <a className='social-icon tw' target='_blank' href='#'></a><a className='social-icon fb' target='_blank' href='#'></a>
-				// </div>
 	}
 
 });
