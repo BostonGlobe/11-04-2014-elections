@@ -78,7 +78,7 @@ var Matchup = React.createClass({
 					'republican': isRepublican
 				});
 				
-				var imageUrl = 'http://cache.boston.com/multimedia/graphics/projectFiles/2014/11/assets/candidate-photos/2014-11-04-MA-Governor-' + candidate['last_name'] + '.png';
+				var imageUrl = 'http://cache.boston.com/multimedia/graphics/projectFiles/2014/11/assets/candidate-photos/2014-11-04-ma-governor-' + candidate['last_name'].toLowerCase() + '.png';
 				return (
 					<div className={containerClasses} key={candidate.id}>
 						<div className='fl matchup-left'> 
@@ -169,7 +169,7 @@ var Reporting = React.createClass({
 					<span>{precincts}</span>% of precincts reporting
 				</p>
 				<p>
-					<a href='/news/politics/election-results/2014-11-04/race/MA/Governor'>Town by town results</a>
+					<a href='/news/politics/election-results/2014-11-04/race/MA/Governor'>Go to full results</a>
 				</p>
 			</div>
 		);
@@ -243,6 +243,7 @@ var Strip = React.createClass({
 
 			if (this.state.isFull) {
 				output = <div>
+					<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 					<Reporting name={results.alternate_office_name} reportingUnit={reportingUnit} />
 					<Matchup totalVotes={totalVotes} candidates={mainstreamers} />
 					<Table totalVotes={totalVotes} candidates={independents} />
@@ -253,14 +254,16 @@ var Strip = React.createClass({
 				output = <div>
 					<Title isHeader={true} name={util.raceTitle(results)} />
 					<Summary results={results} />
+					<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 					<FullResultsButton url={url} />
 				</div>;
 			}
+		} else {
+			output = <PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 		}
 
 		return (
 			<div className='strip'>
-				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 				{output}
 			</div>
 		);

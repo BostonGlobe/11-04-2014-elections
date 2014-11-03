@@ -9,9 +9,12 @@
 	.strip {
 		height: 100%;
 		overflow: hidden;	
+		@include breakpoint(max-width $bp-medium) {
+			padding: 0 0.5em;
+		}
 	}
 
-	margin: 1em 0;
+	margin: 0.5em 0 1em 0;
 	height: 100%;
 	overflow: hidden;
 	color: #333;
@@ -21,7 +24,7 @@
 
 	a {
 		font-weight: bold;
-		text-decoration: underline;
+		// text-decoration: underline;
 	}
 
 	.social-share {
@@ -73,6 +76,10 @@
 		padding-right: 0.5em;
 		@include breakpoint(max-width $bp-large) {
 			width: 17%;
+		}
+
+		.percent-reporting {
+			color: #999;
 		}
 	}
 
@@ -161,6 +168,7 @@
 		}
 		.matchup-votes {
 			font-size: $s3;
+			color: #999;
 		}
 
 		.matchup-percent {
@@ -204,7 +212,7 @@
 		.table-row {
 			height: 100%;
 			overflow: hidden;
-			margin: 0 0 .75em 0;
+			margin: 0 0 0.25em 0;
 			border-bottom: 1px solid #ccc;
 		}
 		.table-name {
@@ -219,6 +227,7 @@
 			width: 33.3%;
 			float: left;
 			text-align: center;
+			color: #999;
 			@include breakpoint(max-width $bp-large) {
 				font-size: $s2;
 				width: 30%;
@@ -250,12 +259,18 @@
 	}
 }
 
-.elections-graphic .candidates-table tr.candidate-summary {
-	line-height: 0;
+.elections-graphic .candidates-table tr {
+	&:nth-child(n+5) {
+		display: none;
+	}
 }
 
 .elections-graphic .candidates-table td.candidate-photo {
-	display: none;
+	// display: none;
+
+	div {
+		width: 3em;
+	}
 }
 
 .elections-graphic .candidates-table td.candidate-name .name {
@@ -270,6 +285,14 @@
 	margin: 1em 0;
 }
 
-.elections-graphic .summary {
-	padding: 0 0.5em;
+.elections-graphic .strip .poll-clock {
+	text-align: right;
+	@include breakpoint(max-width 767px) {
+		line-height: 1em;
+	}
 }
+
+.elections-graphic .go-to-full-results {
+	margin-top: 0.25em;
+}
+
