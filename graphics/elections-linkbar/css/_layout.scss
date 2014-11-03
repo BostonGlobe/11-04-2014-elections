@@ -14,7 +14,7 @@ $nav-rule: $nav-rule-width #ccc solid;
 	clear: both;
 	width: 100%;
 	line-height: 1;
-	padding-bottom: .5em;
+	padding-bottom: 1em;
 
 	div,
 	h1,
@@ -23,26 +23,6 @@ $nav-rule: $nav-rule-width #ccc solid;
 		display: inline-block;
 	}
 
-	select {
-		@include appearance(menulist);
-	}
-
-	select,
-	input {
-		@include border-radius();
-		@include input-placeholder {
-			color: #000;
-		}
-		background-color: #efefef;
-		border: 1px #ccc solid;
-		height: 2em;
-		line-height: 2;
-		margin-left: 1.5em;
-		padding: 0;
-		padding-left: .5em;
-		position: relative;
-		top: -.25em;
-	}
 
 	&__check-icon {
 		@extend %elections-linkbar-sprite;

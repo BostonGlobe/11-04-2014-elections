@@ -12,6 +12,11 @@
     @include adjust-font-size-to($s6, 1);
     font-family: $sansSerifStrong;
     font-weight: normal;
+
+    a,
+    a:visited {
+      color: #000;
+    }
   }
 
   input,
