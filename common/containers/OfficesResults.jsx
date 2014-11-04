@@ -128,7 +128,9 @@ var OfficesResults = React.createClass({
 
 			titleComponent = <Title isHeader={true} name={title} />;
 
-			shareTools = <ShareTools name={util.raceName(this.state.results[0])} url={util.raceUrl(this.state.results[0])} />;
+			// shareTools = <ShareTools name={util.raceName(this.state.results[0])} url={util.raceUrl(this.state.results[0])} />;
+
+			shareTools = null;
 
 		}
 
