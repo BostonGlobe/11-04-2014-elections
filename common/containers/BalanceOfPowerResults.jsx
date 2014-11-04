@@ -40,7 +40,9 @@ var BalanceOfPowerResults = React.createClass({
 			.every(0)
 			.value();
 
-		return allResultsAreIn;
+		return false;
+
+		// return allResultsAreIn;
 	},
 
 	sortByDefault: function(results, ordering) {

@@ -64,6 +64,10 @@ var TownResults = React.createClass({
 				{_.rest(summaries)}
 			</div>
 		);
+	},
+
+	allResultsAreIn: function(results) {
+		return false;
 	}
 
 });
