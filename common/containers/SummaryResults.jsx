@@ -65,7 +65,7 @@ var SummaryResults = React.createClass({
 				var displayDate = moment.format('YYYY-MM-DD');
 				var isUncontested = result.candidates.length < 2;
 
-				var url = '/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + result.alternate_office_name + '/' + result.seat_name;
+				var url = '/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + result.alternate_office_name + '/' + result.seat_name + '?p1=BG_elections_race_results';
 
 				var button = !isUncontested && self.props.state ? <FullResultsButton url={url} /> : null;
 

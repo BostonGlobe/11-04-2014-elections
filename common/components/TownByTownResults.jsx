@@ -63,7 +63,7 @@ var TownTr = React.createClass({
 
 		var moment = Moment(this.props.date);
 		var displayDate = moment.format('YYYY-MM-DD');
-		var href = '/news/politics/election-results/' + displayDate + '/town/' + this.props.state + '/' + this.props.name;
+		var href = '/news/politics/election-results/' + displayDate + '/town/' + this.props.state + '/' + this.props.name + '?p1=BG_elections_town_results';
 
 		return (
 			<tr>

@@ -241,7 +241,7 @@ var Strip = React.createClass({
 					<Table totalVotes={totalVotes} candidates={independents} />
 				</div>;
 			} else {
-				var url = '/news/politics/election-results/2014-11-04/race/MA/Governor';
+				var url = '/news/politics/election-results/2014-11-04/race/MA/Governor?p1=BG_elections_race_results';
 
 				output = <div>
 					<Title isHeader={true} name={util.raceTitle(results)} />
