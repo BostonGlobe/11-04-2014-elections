@@ -38,8 +38,10 @@ $nav-rule: $nav-rule-width #ccc solid;
 		padding-bottom: .5em;
 		border-bottom: 1px solid #efefef;
 		margin-bottom: .5em;
-		padiing-top: 0.25em;
 
+		@media (max-width: 600px) {
+			padding-top: 1em;
+		}
 
 		img {
 			width: 10em;
