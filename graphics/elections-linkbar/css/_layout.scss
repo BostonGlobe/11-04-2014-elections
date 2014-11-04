@@ -1,159 +1,36 @@
 $nav-rule-width: 1px;
 $nav-rule: $nav-rule-width #ccc solid;
 
-@mixin input-placeholder {
-    &.placeholder { @content; }
-    &:-moz-placeholder { @content; }
-    &::-moz-placeholder { @content; }
-    &:-ms-input-placeholder { @content; }
-    &::-webkit-input-placeholder { @content; } 
-}
-
 .elections-linkbar {
 	border-bottom: $nav-rule;
 	clear: both;
 	width: 100%;
-	line-height: 1;
+	height: 4em;
+	line-height: 4;
 	padding-bottom: 1em;
+	overflow: hidden;
 
-	div,
-	h1,
-	select,
-	input {
+	a,
+	h1, {
 		display: inline-block;
 	}
 
+	a {
+		margin-left: 1em;
+	}
 
 	&__check-icon {
 		@extend %elections-linkbar-sprite;
 		background-position: 0 0;
+		display: inline-block;
 		margin-right: .25em;
 		position: relative;
 		top: .25em;
 		width: 33px;
 		height: 31px;
 	}
-
-	&__toggle {
-		&s {
-			display: none !important;
-			float: right;
-			position: relative;
-			bottom: -$nav-rule-width;
-		}
-
-		&-race,
-		&-place {
-			cursor: pointer;
-			float: left;
-			width: 3em;
-			height: 2.5em;
-			border-left: $nav-rule;
-			border-right: $nav-rule;
-			padding-top: .25em;
-			text-align: center;
-			vertical-align: middle;
-		}
-
-		&--active {
-			border-bottom: $nav-rule-width #fff solid;
-		}
-
-		&-icon {
-			@extend %elections-linkbar-sprite;
-			margin: auto;
-		}
-
-		&-race {
-			.elections-linkbar__toggle-icon {
-				background-position: 0 -55px;
-				width: 17px;
-				height: 22px;
-			}
-		}
-
-		&-place {
-			border-left: none;
-
-			.elections-linkbar__toggle-icon {
-				background-position: 0 -31px;
-				width: 14px;
-				height: 24px;
-			}
-		}
-	}
-
-	&__panel a {
-		display: inline-block;
-		margin-left: 2em;
-	}
-
 }
 
-.linkbar-breakpoint-show-toggle {
-	&.elections-linkbar {
-		border-bottom: 0;
-	}
-
-	.elections-linkbar {
-		&__toggles {
-			display: inline-block !important;
-		}
-
-		&__panel {
-			display: none !important;
-
-			&--active {
-				border-bottom: $nav-rule;
-				display: block !important;
-				width: 100%;
-				padding-bottom: 0.5em;
-				padding-top: 1em;
-
-				input,
-				select {
-					width: 90%;
-				}
-			}
-
-			a {
-				display: block;
-				margin-left: 0;
-				margin-bottom: .25em;
-			}
-		}
-
-		&__upper-panel {
-			width: 100%;
-			border-bottom: $nav-rule;
-		}
-	}
-
-	h1 {
-		position: relative;
-		bottom: .25em;
-	}
-}
-
-#town-list {
-	display: none;
-	position: absolute;
-	margin-left: 1.5em;
-	max-height: 200px;
-	overflow: scroll;
-	border: 1px #000 solid;
-	background: white;
-	font-weight: normal;
-	z-index:2;
-
-	li {
-		padding: .25em;
-	}
-
-	.active {
-		font-weight: bold;
-	}
-}
 
 %elections-linkbar-sprite {
 	background-image: url('//cache.boston.com/multimedia/graphics/projectFiles/2014/11/assets/election-nav__icons.svg');

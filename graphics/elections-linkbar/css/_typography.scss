@@ -24,10 +24,4 @@
     }
   }
 
-  input,
-  select {
-    font-family: $sansSerif;
-    @include adjust-font-size-to($s4, 1);
-    font-weight: bold;
-  }
 }
