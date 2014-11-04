@@ -10,6 +10,14 @@
 
 		@include rhythm(3, 0, 0, 2);
 
+		.candidates-table-wrapper {
+			margin-bottom: 1em;
+		}
+
+		.go-to-full-results {
+			margin-top: 0;
+		}
+
 		table {
 			@include rhythm(0, 0, 0, 0);
 		}
