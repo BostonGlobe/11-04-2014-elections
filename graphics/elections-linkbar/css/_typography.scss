@@ -7,6 +7,10 @@
     // @include adjust-font-size-to($s5, 1);
     text-decoration: none;
     color: #999;
+
+    &:hover {
+      color: #9b1518;
+    }
   }
 
   h1 {
