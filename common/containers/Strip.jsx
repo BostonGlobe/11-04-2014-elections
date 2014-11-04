@@ -243,7 +243,6 @@ var Strip = React.createClass({
 
 			if (this.state.isFull) {
 				output = <div>
-					<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 					<Reporting name={results.alternate_office_name} reportingUnit={reportingUnit} />
 					<Matchup totalVotes={totalVotes} candidates={mainstreamers} />
 					<Table totalVotes={totalVotes} candidates={independents} />
@@ -254,16 +253,14 @@ var Strip = React.createClass({
 				output = <div>
 					<Title isHeader={true} name={util.raceTitle(results)} />
 					<Summary results={results} />
-					<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 					<FullResultsButton url={url} />
 				</div>;
 			}
-		} else {
-			output = <PollClock ref='thePollClock' pollCallback={this.fetchResults} />;
 		}
 
 		return (
 			<div className='strip'>
+				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 				{output}
 			</div>
 		);
@@ -273,7 +270,9 @@ var Strip = React.createClass({
 		var self = this;
 		function resize() {
 			var w = $(window).width();
-			self.setState({isFull: w > 767 });
+			if (self.isMounted()) {
+				self.setState({isFull: w > 767 });
+			}
 		}
 		window.addEventListener('resize', _.debounce(function() {
 			resize();
@@ -290,3 +289,4 @@ var Strip = React.createClass({
 });
 
 module.exports = Strip;
+
