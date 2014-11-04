@@ -33,16 +33,8 @@ var BalanceOfPowerResults = React.createClass({
 
 	allResultsAreIn: function(results) {
 
-		var allResultsAreIn = _.chain(results)
-			.pluck('parties')
-			.flatten()
-			.pluck('Leading')
-			.every(0)
-			.value();
-
-		return false;
-
-		// return allResultsAreIn;
+		var allResultsAreIn = _.every(results, {undecided: 0});
+		return allResultsAreIn;
 	},
 
 	sortByDefault: function(results, ordering) {

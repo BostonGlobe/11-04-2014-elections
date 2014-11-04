@@ -15,7 +15,8 @@ var BalanceOfPower = React.createClass({
 		transformResults: function(input) {
 
 			var results = {
-				name: input.trendtable.office.replace(/\./g, '')
+				name: input.trendtable.office.replace(/\./g, ''),
+				undecided: _.find(input.trendtable.InsufficientVote.trend, {name: 'Total'}).value
 			};
 
 			var parties = input.trendtable.party.map(function(party) {
@@ -24,12 +25,12 @@ var BalanceOfPower = React.createClass({
 				var Holdovers = _.find(party.trend, {name: 'Holdovers'}).value;
 				var Leading   = _.find(party.trend, {name: 'Leading'}).value;
 				var NetChangeWinners = _.find(party.NetChange.trend, {name: 'Winners'}).value;
+				results.undecided += Leading;
 
 				return {
 					name: party.title,
 					'WonHoldovers': Won + Holdovers,
-					'NetChangeWinners': NetChangeWinners,
-					'Leading': Leading
+					'NetChangeWinners': NetChangeWinners
 				};
 			});
 
@@ -52,7 +53,7 @@ var BalanceOfPower = React.createClass({
 		var demSeats = Dem.WonHoldovers;
 		var gopSeats = GOP.WonHoldovers;
 		var indSeats = Ind.WonHoldovers;
-		var undecidedSeats = Dem.Leading + GOP.Leading + Ind.Leading;
+		var undecidedSeats = results.undecided;
 
 		var total = demSeats + gopSeats + indSeats + undecidedSeats;
 
