@@ -44,10 +44,6 @@ var CandidatesTable = React.createClass({
 
 		// next, sort results by vote_count desc
 		candidateSummaries = _.chain(reportingUnit.results)
-			.sortBy(function(result) {
-				// sort rows by vote_count descending
-				return -result.vote_count;
-			})
 			.map(function(result) {
 
 				// find this result's candidate
@@ -55,14 +51,25 @@ var CandidatesTable = React.createClass({
 
 				// extend result with candidate information
 				var extendedResult = _.extend({}, result, candidate);
+				return extendedResult;
+			})
+			.sortBy(function(result) {
+				// sort rows by vote_count descending
+				return result.last_name;
+			})
+			.sortBy(function(result) {
+				// sort rows by vote_count descending
+				return -result.vote_count;
+			})
+			.map(function(result) {
 
 				var components = [];
 
 				// don't display party if it's ballot, or lite, or primary
 				if (!(isBallot || isLite || isPrimary)) {
 					components.push(<Party
-						key={'party' + extendedResult.id}
-						candidate={extendedResult}
+						key={'party' + result.id}
+						candidate={result}
 						candidates={candidates}
 						isLite={isLite}
 						race={self.props.race}
@@ -71,8 +78,8 @@ var CandidatesTable = React.createClass({
 				}
 
 				components.push(<CandidateSummary
-					key={'candidate' + extendedResult.id}
-					candidate={extendedResult}
+					key={'candidate' + result.id}
+					candidate={result}
 					candidates={candidates}
 					isBallot={isBallot}
 					isPrimary={isPrimary}
