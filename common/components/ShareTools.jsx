@@ -11,10 +11,10 @@ var ShareTools = React.createClass({
 
 		var twitterFields = [{
 			key: 'text',
-			value: 'Election results: ' + this.props.name
+			value: encodeURIComponent('Election results: ' + this.props.name)
 		},{
 			key: 'url',
-			value: 'http://bostonglobe.com' + this.props.url
+			value: encodeURI('http://bostonglobe.com' + this.props.url)
 		},{
 			key: 'via',
 			value: 'BostonGlobe'
@@ -29,10 +29,10 @@ var ShareTools = React.createClass({
 
 		var facebookFields = [{
 			key: 't',
-			value: 'Election results: ' + this.props.name
+			value: encodeURIComponent('Election results: ' + this.props.name)
 		},{
 			key: 'u',
-			value: 'http://bostonglobe.com' + this.props.url
+			value: encodeURI('http://bostonglobe.com' + this.props.url)
 		}];
 
 		var facebook = 'http://www.facebook.com/sharer.php?' + _.chain(facebookFields)
@@ -42,7 +42,16 @@ var ShareTools = React.createClass({
 			.value()
 			.join('&');
 
-		return null;
+		util.log(twitter);
+
+		return (
+			<div className='share-tools'>
+				<a href={twitter} className='tool twitter'>
+				</a>
+				<a href={facebook} className='tool facebook'>
+				</a>
+			</div>
+		);
 	}
 
 });

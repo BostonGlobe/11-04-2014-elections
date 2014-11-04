@@ -259,13 +259,13 @@
 	}
 }
 
-.elections-graphic .candidates-table tr {
+.elections-graphic .strip .candidates-table tr {
 	&:nth-child(n+5) {
 		display: none;
 	}
 }
 
-.elections-graphic .candidates-table td.candidate-photo {
+.elections-graphic .strip .candidates-table td.candidate-photo {
 	// display: none;
 
 	div {
@@ -273,15 +273,15 @@
 	}
 }
 
-.elections-graphic .candidates-table td.candidate-name .name {
+.elections-graphic .strip .candidates-table td.candidate-name .name {
 	font-size: 1.2em;
 }
 
-.elections-graphic .title.is-header {
+.elections-graphic .strip .title.is-header {
 	font-size: 2em;
 }
 
-.elections-graphic .candidates-table {
+.elections-graphic .strip .candidates-table {
 	margin: 1em 0;
 }
 
@@ -292,12 +292,11 @@
 	}
 }
 
-.elections-graphic .go-to-full-results {
+.elections-graphic .strip .go-to-full-results {
 	margin-top: 0.25em;
 }
 
 
-.elections-graphic .summary {
+.elections-graphic .strip .summary {
 	font-size: 1.5rem;
 }
-
