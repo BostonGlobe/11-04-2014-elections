@@ -42,8 +42,6 @@ var ShareTools = React.createClass({
 			.value()
 			.join('&');
 
-		util.log(twitter);
-
 		return (
 			<div className='share-tools'>
 				<a href={twitter} className='tool twitter'>
