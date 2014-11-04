@@ -17,9 +17,16 @@ function setBreakpointClasses() {
 		.toggleClass('nav-breakpoint-show-toggle',w<600);
 }
 
+var p1_tag = "?p1=BG_hp_header";
+
 if (window.location.pathname.indexOf("/news/politics/election-results/2014-11-04/")===0) {
 	$nav.addClass("nav-show-masthead");
+	p1_tag = "?p1=BG_header";
 }
+
+$nav.find("a").each(function() {
+	$(this).attr("href",$(this).attr("href")+p1_tag);
+});
 
 $('.elections-nav__toggle').click(function() {
 	var panel = $(this).data('panel');
@@ -39,7 +46,7 @@ $('.elections-nav__race-select')
 	.val("")
 	.change(function() {
 		if ($(this).val().length > 0) {
-			location.href = $(this).val()+"?p1=BG_hp_header";
+			location.href = $(this).val()+p1_tag;
 		}
 	});
 
@@ -61,6 +68,6 @@ function goToTown(new_town) {
 	var town = (new_town||$('.elections-nav__town-select').val()).toLowerCase();
 	var i = lowercaseTowns.indexOf(town);
 	if (i > 0) {
-		location.href = "/news/politics/election-results/2014-11-04/town/MA/"+towns[i]+"?p1=BG_hp_header";
+		location.href = "/news/politics/election-results/2014-11-04/town/MA/"+towns[i]+p1_tag;
 	}
 }
