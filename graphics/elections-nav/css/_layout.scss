@@ -43,6 +43,11 @@ $nav-rule: $nav-rule-width #ccc solid;
 
 	&__bar {
 		text-align: left;
+		width: 100%;
+
+		.nav-show-masthead & {
+			width: auto;
+		}
 	}
 
 
