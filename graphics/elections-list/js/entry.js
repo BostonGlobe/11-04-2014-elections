@@ -4,7 +4,7 @@ var util = require('../../../common/assets/js/util.js');
 (function() { globe.onDefine('window.jQuery && $(".igraphic-graphic.elections-list").length', function() {
 
 	var usOffices = ['Governor', 'US House', 'US Senate'].map(function(office) {
-		return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/2014-11-04/offices/' + office + '">' + util.standardizeOffice(office) + '</a></li>';
+		return '<li><a href="http://www.bostonglobe.com/news/politics/election-results/2014-11-04/offices/' + office + '">' + util.standardizeOffice(office) + '</a></li>';
 	}).join('');
 
 	$('.igraphic-graphic.elections-list')
@@ -20,7 +20,7 @@ var util = require('../../../common/assets/js/util.js');
 			.map(function(result) {
 				var moment = Moment(result.election_date);
 				var displayDate = moment.format('YYYY-MM-DD');
-				return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/offices/' + result.state_postal + '/' + result.alternate_office_name + '">' + util.officeTitle(result) + '</a></li>';
+				return '<li><a href="http://www.bostonglobe.com/news/politics/election-results/' + displayDate + '/offices/' + result.state_postal + '/' + result.alternate_office_name + '">' + util.officeTitle(result) + '</a></li>';
 			})
 			.uniq()
 			.sortBy(function(v, i) {
@@ -43,7 +43,7 @@ var util = require('../../../common/assets/js/util.js');
 			.map(function(result) {
 				var moment = Moment(result.election_date);
 				var displayDate = moment.format('YYYY-MM-DD');
-				return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + result.alternate_office_name + '/' + util.toUrl(result.seat_name) + '">' + util.raceTitle(result) + '</a></li>';
+				return '<li><a href="http://www.bostonglobe.com/news/politics/election-results/' + displayDate + '/race/' + result.state_postal + '/' + result.alternate_office_name + '/' + util.toUrl(result.seat_name) + '">' + util.raceTitle(result) + '</a></li>';
 			})
 			.uniq()
 			.sortBy(function(v, i) {
@@ -66,7 +66,7 @@ var util = require('../../../common/assets/js/util.js');
 			.map(function(result) {
 				var moment = Moment(json[0].election_date);
 				var displayDate = moment.format('YYYY-MM-DD');
-				return '<li><a href="http://devedit.bostonglobe.com/news/politics/election-results/' + displayDate + '/town/' + state + '/' + result.county_name + '">' + [displayDate, result.county_name].join(', ') + '</a></li>';
+				return '<li><a href="http://www.bostonglobe.com/news/politics/election-results/' + displayDate + '/town/' + state + '/' + result.county_name + '">' + [displayDate, result.county_name].join(', ') + '</a></li>';
 			})
 			.uniq()
 			.sortBy(function(v, i) {
