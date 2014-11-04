@@ -39,7 +39,7 @@ $('.elections-nav__race-select')
 	.val("")
 	.change(function() {
 		if ($(this).val().length > 0) {
-			location.href = $(this).val();
+			location.href = $(this).val()+"?p1=BG_hp_header";
 		}
 	});
 
@@ -61,6 +61,6 @@ function goToTown(new_town) {
 	var town = (new_town||$('.elections-nav__town-select').val()).toLowerCase();
 	var i = lowercaseTowns.indexOf(town);
 	if (i > 0) {
-		location.href = "/news/politics/election-results/2014-11-04/town/MA/"+towns[i];
+		location.href = "/news/politics/election-results/2014-11-04/town/MA/"+towns[i]+"?p1=BG_hp_header";
 	}
 }
