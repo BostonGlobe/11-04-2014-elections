@@ -192,6 +192,7 @@ $nav-rule: $nav-rule-width #ccc solid;
 }
 
 #town-list {
+	cursor: pointer;
 	display: none;
 	position: absolute;
 	margin-left: 1.5em;
