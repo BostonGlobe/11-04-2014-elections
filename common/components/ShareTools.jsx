@@ -42,16 +42,18 @@ var ShareTools = React.createClass({
 			.value()
 			.join('&');
 
-		return (
-			<div className='share-tools'>
-				<a href={twitter} className='tool twitter'>
-				</a>
-				<a href={facebook} className='tool facebook'>
-				</a>
-			</div>
-		);
+		return null;
 	}
 
 });
 
 module.exports = ShareTools;
+
+		// return (
+		// 	<div className='share-tools'>
+		// 		<a href={twitter} className='tool twitter'>
+		// 		</a>
+		// 		<a href={facebook} className='tool facebook'>
+		// 		</a>
+		// 	</div>
+		// );
