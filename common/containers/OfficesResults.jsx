@@ -121,6 +121,7 @@ var OfficesResults = React.createClass({
 			.value();
 
 		var titleComponent = null;
+		var shareTools = null;
 
 		if (this.state.results[0]) {
 
@@ -131,13 +132,15 @@ var OfficesResults = React.createClass({
 
 			titleComponent = <Title isHeader={true} name={title} />;
 
+			shareTools = <ShareTools name={util.raceName(this.state.results[0])} url={util.raceUrl(this.state.results[0])} />;
+
 		}
 
 		return (
 			<div className='offices-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 				{titleComponent}
-				<ShareTools />
+				{shareTools}
 				{_.first(summaries)}
 				<Ad />
 				{_.rest(summaries)}
