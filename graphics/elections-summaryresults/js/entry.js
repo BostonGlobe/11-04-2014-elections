@@ -1,4 +1,4 @@
-(function() { globe.onDefine('window.jQuery && $(".homepage-graphic.elections-summaryresults").length', function() {
+(function() { globe.onDefine('window.jQuery && $(".elections-summaryresults").length', function() {
 
 	require('./main.jsx');
 

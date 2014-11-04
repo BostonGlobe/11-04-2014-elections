@@ -1,5 +1,14 @@
+.article-graphic.elections-graphic.elections-summaryresults {
+
+	@include breakpoint(600px) {
+		max-width: 300px;
+		float: right;
+		margin: 0 0 1em 2em;
+	}
+
+}
+
 .elections-graphic.elections-summaryresults {
-	// @include rhythm(0, 0, 0, 2);
 
 	font-size: 1.5rem;
 
@@ -8,6 +17,7 @@
 	}
 
 	&.article-graphic {
+
 	}
 
 	.summary-results {
@@ -27,10 +37,6 @@
 
 			@include rhythm(0, 0, 0, 0);
 
-			tr {
-				// line-height: 1.5;
-			}
-
 			.candidate-summary {
 				line-height: 1em;
 
@@ -42,11 +48,6 @@
 
 		}
 
-	}
-
-	.summary-result:nth-child(n+3) {
-		// background: red;
-		// @include rhythm(2, 0, 0, 2);
 	}
 
 }
