@@ -78,7 +78,7 @@ var Matchup = React.createClass({
 					'republican': isRepublican
 				});
 				
-				var imageUrl = 'http://cache.boston.com/multimedia/graphics/projectFiles/2014/11/assets/candidate-photos/2014-11-04-ma-governor-' + candidate['last_name'].toLowerCase() + '.png';
+				var imageUrl = 'http://cache.boston.com/multimedia/graphics/projectFiles/2014/11/assets/candidate-photos/2014-11-04-ma-governor-' + candidate.last_name.toLowerCase() + '.png';
 				return (
 					<div className={containerClasses} key={candidate.id}>
 						<div className='fl matchup-left'> 
@@ -259,7 +259,7 @@ var Strip = React.createClass({
 				</div>;
 			}
 		} else {
-			output = <PollClock ref='thePollClock' pollCallback={this.fetchResults} />
+			output = <PollClock ref='thePollClock' pollCallback={this.fetchResults} />;
 		}
 
 		return (
