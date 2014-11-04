@@ -10,6 +10,10 @@
 	&.article-graphic {
 	}
 
+	.summary-results {
+		font-size: 1.5rem;
+	}
+
 	.summary-result {
 		@include rhythm(0, 0, 0, 0);
 		font-size: 1.5rem;
