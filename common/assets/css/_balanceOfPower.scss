@@ -2,46 +2,35 @@
 
 	@include rhythm(0, 0, 0, 2);
 
-	.race-name {
-		text-align: left;
-		@include trailing-border();
-		border-width: 1px;
-		border-color: $bw35;
-		@include rhythm(0, 0, 1/4, 0);
+	.title {
+		@include adjust-font-size-to($s6);
 	}
+
+	font-family: $sansSerif;
 
 	.bars {
-
 		width: 100%;
 		overflow: hidden;
-		background: $bw10;
-		@include rhythm(1, 0, 0, 1/4);
 
-		.democrat {
+		> div {
 			float: left;
-			background: $democrat;
 		}
 
-		.republican {
-			float: right;
-			background: $republican;
-		}
-
+		.democrat { background: $democrat; }
+		.independent { background: $independent; }
+		.republican { background: $republican; }
+		.undecided { background: $bw10; }
 	}
 
-	.total {
+	.labels {
+		@include adjust-font-size-to($s5);
+		@include adjust-leading-to(1);
+		font-weight: bold;
+		color: black;
 		width: 100%;
 		overflow: hidden;
 		position: relative;
 
-		> div > span {
-			font-family: $sansSerif;
-			@include adjust-font-size-to($s5);
-			@include adjust-leading-to(1);
-			font-weight: bold;
-			color: black;
-		}
-
 		.democrat {
 			float: left;
 		}
@@ -50,29 +39,19 @@
 			float: right;
 		}
 
-		.undecided {
+		.independent {
 			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
+			width: 100%;
 			text-align: center;
 		}
 	}
 
 	.change {
+		@include adjust-font-size-to($s4);
+		@include adjust-leading-to(1);
+		color: $bw90;
 		width: 100%;
 		overflow: hidden;
-		position: relative;
-		@include trailing-border();
-		border-width: 1px;
-		border-color: $bw10;
-		@include rhythm(0, 0, 1, 0);
-
-		> div > span {
-			font-family: $sansSerif;
-			@include adjust-font-size-to($s5, 1);
-			color: $bw90;
-		}
 
 		.democrat {
 			float: left;
@@ -83,4 +62,38 @@
 		}
 	}
 
+	.key {
+		width: 100%;
+		overflow: hidden;
+
+		.square {
+			display: inline-block;
+			width: 1.25em;
+		}
+
+		.text {
+			color: $bw90;
+		}
+
+		.undecided {
+			float: left;
+
+			.square {
+				margin-right: 0.5em;
+				background: $bw10;
+				border: solid $bw75 1px;
+			}
+		}
+
+		.independent {
+			float: right;
+
+			.square {
+				background: $independent;
+				border: solid darken($independent, 50%) 1px;
+
+				margin-left: 0.5em;
+			}
+		}
+	}
 }

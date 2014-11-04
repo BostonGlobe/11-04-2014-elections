@@ -19,12 +19,12 @@ gulp.task('webpack', function() {
 	];
 
 	if (isProd) {
-		plugins.push(new webpackPlugins.optimize.UglifyJsPlugin());
-		plugins.push(new webpackPlugins.DefinePlugin({
-			'process.env': {
-				NODE_ENV: JSON.stringify('production')
-			}
-		}));
+		// plugins.push(new webpackPlugins.optimize.UglifyJsPlugin());
+		// plugins.push(new webpackPlugins.DefinePlugin({
+		// 	'process.env': {
+		// 		NODE_ENV: JSON.stringify('production')
+		// 	}
+		// }));
 	}
 
 	return gulp.src(config.baseDir() + '/js/entry.js')
