@@ -3,7 +3,7 @@
 	@include rhythm(0, 0, 0, 2);
 
 	.title {
-		@include adjust-font-size-to($s6);
+		@include adjust-font-size-to($s4, 1);
 	}
 
 	font-family: $sansSerif;
@@ -23,7 +23,7 @@
 	}
 
 	.labels {
-		@include adjust-font-size-to($s5);
+		@include adjust-font-size-to($s4);
 		@include adjust-leading-to(1);
 		font-weight: bold;
 		color: black;
@@ -47,7 +47,7 @@
 	}
 
 	.change {
-		@include adjust-font-size-to($s4);
+		@include adjust-font-size-to($s3);
 		@include adjust-leading-to(1);
 		color: $bw90;
 		width: 100%;
@@ -68,11 +68,14 @@
 
 		.square {
 			display: inline-block;
-			width: 1.25em;
+			width: 1em;
+			height: 1em;
+			vertical-align: text-bottom;
 		}
 
 		.text {
 			color: $bw90;
+			@include adjust-font-size-to($s3);
 		}
 
 		.undecided {
