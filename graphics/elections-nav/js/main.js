@@ -67,7 +67,7 @@ $('.elections-nav__town-select')
 function goToTown(new_town) {
 	var town = (new_town||$('.elections-nav__town-select').val()).toLowerCase();
 	var i = lowercaseTowns.indexOf(town);
-	if (i > 0) {
+	if (i >= 0) {
 		location.href = "/news/politics/election-results/2014-11-04/town/MA/"+towns[i]+p1_tag;
 	}
 }
