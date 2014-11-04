@@ -35,8 +35,14 @@ $nav-rule: $nav-rule-width #ccc solid;
 		display: none;
 		margin: auto;
 		text-align: center;
-		padding-bottom: 1em;
-		width: 20em;
+		padding-bottom: .5em;
+		border-bottom: 1px solid #efefef;
+		margin-bottom: .5em;
+
+
+		img {
+			width: 10em;
+		}
 
 		.nav-show-masthead & {
 			display: block;
