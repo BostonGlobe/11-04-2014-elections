@@ -28,7 +28,7 @@ module.exports = {
 	officeTitle: function(opts) {
 
 		var title;
-		var office = opts.alternate_office_name;
+		var office = this.preprocessOffice(opts.alternate_office_name);
 		var state = opts.state_postal ? this.standardizeState(opts.state_postal) : '';
 
 		title = state ? [state, this.standardizeOffice(office.toLowerCase())].join(' ') : this.standardizeOffice(office);
@@ -62,13 +62,18 @@ module.exports = {
 		} else {
 
 			var seat = race.seat_name;
-			var office = race.alternate_office_name;
+			var office = this.preprocessOffice(race.alternate_office_name);
 			var state = this.standardizeState(race.state_postal);
 
 			// seat, e.g. County commissioner -> County commissioner, Bristol, Mass.
 			if (seat.length) {
 
-				title = [this.standardizeOffice(this.sentenceStyle(office)), this.standardizeSeat(seat), state].join(', ');
+				if (race.alternate_office_name === 'Question') {
+					title = [this.standardizeOffice(this.sentenceStyle(office)), this.standardizeSeat(this.sentenceStyle(seat)), state].join(', ');
+				} else {
+					title = [this.standardizeOffice(this.sentenceStyle(office)), this.standardizeSeat(seat), state].join(', ');
+				}
+
 			} else {
 				// no seat, e.g. Governor -> Mass. governor
 				title = [state, this.standardizeOffice(office.toLowerCase())].join(' ');
@@ -77,6 +82,11 @@ module.exports = {
 		}
 
 		return title;
+	},
+
+	preprocessOffice: function(office) {
+		return office
+			.replace(/^question$/i, 'Ballot questions');
 	},
 
 	toUrl: function(office) {

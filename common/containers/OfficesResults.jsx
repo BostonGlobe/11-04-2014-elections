@@ -44,7 +44,13 @@ var OfficesResults = React.createClass({
 				var isUSHouse = race.alternate_office_name === 'US House';
 
 				if (self.props.state) {
-					name = util.seatName(race);
+
+					if (race.alternate_office_name === 'Question') {
+						name = util.sentenceStyle(util.seatName(race));
+					} else {
+						name = util.seatName(race);
+					}
+
 				} else {
 					if (isUSHouse) {
 						name = util.raceTitle(race, true);
@@ -116,7 +122,7 @@ var OfficesResults = React.createClass({
 
 			var title = util.officeTitle({
 				alternate_office_name: this.state.results[0].alternate_office_name,
-				state: this.props.state
+				state_postal: this.props.state
 			});
 
 			titleComponent = <Title isHeader={true} name={title} />;
