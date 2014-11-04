@@ -12,7 +12,7 @@ gulp.task('sass', function() {
 	var isProd = config.getUserChoice('packageToJpt');
 
 	return gulp.src('css/*', {cwd: config.baseDir()})
-		.pipe(sass({compass: true, 'sourcemap=none': true}))
+		.pipe(sass({compass: true}))
 		.pipe(isProd ? csso(true) : util.noop())
 		.pipe(isProd ? rename(graphic + '.css') : util.noop())
 		.pipe(!isProd ? gulp.dest('.tmp', {cwd: config.baseDir()}) : gulp.dest('/Volumes/www_html/multimedia/graphics/projectFiles/2014/11/assets'))
