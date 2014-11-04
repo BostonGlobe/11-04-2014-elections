@@ -46,7 +46,7 @@ var CandidatePhoto = React.createClass({
 	render: function() {
 
 		var filename = [CandidatePhoto.filename(this.props.race), this.props.candidate.last_name.replace(/\W/g, '')].join('-').toLowerCase();
-		var url = ['http://private.boston.com/multimedia/graphics/projectFiles/2014/11/assets/candidate-photos/', filename, '.png'].join('');
+		var url = ['http://cache.boston.com/multimedia/graphics/projectFiles/2014/11/assets/candidate-photos/', filename, '.png'].join('');
 
 		return (
 			<td className='candidate-photo' rowSpan='2'>
