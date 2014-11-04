@@ -86,7 +86,7 @@ var util = require('../../../common/assets/js/util.js');
 		window[callback] = stateOfficesCallback;
 		
 		$.ajax({
-			url: 'http://devweb.bostonglobe.com/electionapi/race/location/' + state + '?detail=true&date=20141104',
+			url: 'http://www.bostonglobe.com/electionapi/race/location/' + state + '?detail=true&date=20141104',
 			dataType: 'jsonp',
 			jsonpCallback: callback
 		});
@@ -100,7 +100,7 @@ var util = require('../../../common/assets/js/util.js');
 		window[callback] = stateRacesCallback;
 		
 		$.ajax({
-			url: 'http://devweb.bostonglobe.com/electionapi/race/location/' + state + '?detail=true&date=20141104',
+			url: 'http://www.bostonglobe.com/electionapi/race/location/' + state + '?detail=true&date=20141104',
 			dataType: 'jsonp',
 			jsonpCallback: callback
 		});
@@ -114,7 +114,7 @@ var util = require('../../../common/assets/js/util.js');
 		window[callback] = stateTownsCallback;
 		
 		$.ajax({
-			url: 'http://devweb.bostonglobe.com/electionapi/races/office/' + state + '/governor?detail=true&date=20141104',
+			url: 'http://www.bostonglobe.com/electionapi/races/office/' + state + '/governor?detail=true&date=20141104',
 			dataType: 'jsonp',
 			jsonpCallback: callback
 		});
