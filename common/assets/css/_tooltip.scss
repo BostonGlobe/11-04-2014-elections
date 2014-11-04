@@ -37,6 +37,14 @@ body {
 
 			}
 
+			tfoot tr {
+				position: relative;
+
+				td.precincts {
+					top: 0;
+				}
+			}
+
 			.candidate-name {
 
 				.name {
