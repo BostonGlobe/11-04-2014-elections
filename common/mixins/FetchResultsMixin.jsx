@@ -50,9 +50,13 @@ var FetchResultsMixin = {
 
 		window[apiCallback] = function(json) {
 
-			var data = this.sortByDefault ?
-				this.sortByDefault(json, this.props.raceNumbers) :
+			var processedJson = this.processJson ?
+				this.processJson(json) :
 				json;
+
+			var data = this.sortByDefault ?
+				this.sortByDefault(processedJson, this.props.raceNumbers) :
+				processedJson;
 
 			this.setState({results: data});
 

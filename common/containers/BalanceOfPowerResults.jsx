@@ -17,18 +17,27 @@ var BalanceOfPowerResults = React.createClass({
 	mixins: [FetchResultsMixin],
 
 	apiUrl: function() {
-		return 'http://private.boston.com/multimedia/graphics/projectFiles/2014/11/electionsapi/balanceofpower.jsonp';
+		return '/trends';
 	},
 
-	allResultsAreIn: function() {
+	processJson: function(json) {
 
-		var allResultsAreIn = _.chain(this.state.results)
-			.map(BalanceOfPower.convertFeedToResults)
-			.pluck('Others')
-			.pluck('WonHoldovers')
-			.every(function(v) {
-				return v === 0;
-			})
+		var data = json.map(function(v) {
+			return JSON.parse(v);
+		});
+
+		var results = data.map(BalanceOfPower.transformResults);
+
+		return results;
+	},
+
+	allResultsAreIn: function(results) {
+
+		var allResultsAreIn = _.chain(results)
+			.pluck('parties')
+			.flatten()
+			.pluck('Leading')
+			.every(0)
 			.value();
 
 		return allResultsAreIn;
@@ -42,12 +51,10 @@ var BalanceOfPowerResults = React.createClass({
 
 		var sorted = _.chain(results)
 			.filter(function(result) {
-				var name = BalanceOfPower.getNameFromFeed(result);
-				return _.contains(choices, name);
+				return _.contains(choices, result.name);
 			})
 			.sortBy(function(result) {
-				var name = BalanceOfPower.getNameFromFeed(result);
-				return _.indexOf(choices, name);
+				return _.indexOf(choices, result.name);
 			})
 			.value();
 
