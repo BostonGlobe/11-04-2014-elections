@@ -96,7 +96,7 @@ var OfficesResults = React.createClass({
 				var displayDate = moment.format('YYYY-MM-DD');
 				var isUncontested = race.candidates.length < 2;
 
-				var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + race.alternate_office_name + '/' + race.seat_name;
+				var url = '/news/politics/election-results/' + displayDate + '/race/' + race.state_postal + '/' + race.alternate_office_name + '/' + util.toUrl(race.seat_name);
 
 				var button = !isUncontested && self.props.state ? <FullResultsButton url={url} /> : null;
 
