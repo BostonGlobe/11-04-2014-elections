@@ -4,6 +4,8 @@ body {
 
 .elections-graphic .tooltip {
 
+	z-index: 10000;
+
 	pointer-events: none;
 
 	position: absolute;
