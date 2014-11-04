@@ -23,6 +23,10 @@ $nav-rule: $nav-rule-width #ccc solid;
 		display: inline-block;
 	}
 
+	h1 {
+		padding-left: .5em;
+	}
+
 	select {
 		@include appearance(menulist);
 	}
@@ -50,6 +54,9 @@ $nav-rule: $nav-rule-width #ccc solid;
 		}
 	}
 
+	&__upper-panel {
+		vertical-align: text-bottom;
+	}
 
 	select,
 	input {
