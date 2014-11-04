@@ -130,15 +130,17 @@ var CandidatesTable = React.createClass({
 		});
 
 		return (
-			<table className={classes}>
-				<thead>
-					{theadRows}
-				</thead>
+			<div className='candidates-table-wrapper'>
+				<table className={classes}>
+					<thead>
+						{theadRows}
+					</thead>
+					<tbody>
+						{candidateSummaries}
+					</tbody>
+				</table>
 				{precincts}
-				<tbody>
-					{candidateSummaries}
-				</tbody>
-			</table>
+			</div>
 		);
 	},
 

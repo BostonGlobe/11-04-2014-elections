@@ -1,4 +1,24 @@
+.elections-graphic .candidates-table-wrapper {
+	@include margin-trailer(1);
+}
+
+%incumbent {
+	margin-left: 0.5em;
+	position: relative;
+	bottom: 2px;
+	border: solid $bw75 1px;
+	border-radius: 3px;
+	color: $bw75;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	font-family: $sansSerif;
+	@include adjust-font-size-to($s2, 1);
+}
+
+
 .elections-graphic .candidates-table {
+
+	@include margin-trailer(0);
 
 	position: relative;
 
@@ -8,18 +28,6 @@
 		border-bottom: solid $bw10 1px;
 	}
 
-	%incumbent {
-		margin-left: 0.5em;
-		position: relative;
-		bottom: 2px;
-		border: solid $bw75 1px;
-		border-radius: 3px;
-		color: $bw75;
-		padding-left: 0.5em;
-		padding-right: 0.5em;
-		font-family: $sansSerif;
-		@include adjust-font-size-to($s2, 1);
-	}
 
 	tr {
 		line-height: 0;
@@ -160,35 +168,39 @@
 			color: $bw90;
 		}
 	}
+}
 
-	tfoot {
+.elections-graphic .candidates-precincts {
 
-		tr td.incumbent {
+	width: 100%;
+	overflow: hidden;
 
-			.logo {
-				@extend %incumbent;
-				margin-left: 0;
-				margin-right: 0.5em;
-				position: relative;
-				bottom: 1px;
-			}
-
-			.text {
-				color: $bw75;
-				font-family: $sansSerif;
-				@include adjust-font-size-to($s3, 1);
-				text-transform: capitalize;
-			}
+	.incumbent {
+		float: left;
+		.logo {
+			@extend %incumbent;
+			margin-left: 0;
+			margin-right: 0.5em;
+			position: relative;
+			bottom: 1px;
+		}
+		.text {
+			color: $bw75;
+			font-family: $sansSerif;
+			@include adjust-font-size-to($s3, 1);
+			text-transform: capitalize;
 		}
 
-		tr td.precincts {
-			position: absolute;
-			right: 0;
+	}
+
+	.precincts {
+		float: right;
+
+		> span {
 			font-family: $sansSerif;
 			@include adjust-font-size-to($s3);
 			@include adjust-leading-to(7/4);
 			color: $bw75;
 		}
 	}
-
 }

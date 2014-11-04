@@ -41,28 +41,26 @@ var Precincts = React.createClass({
 
 		var incumbent;
 		if (this.props.hasIncumbent && !this.props.isLite) {
-			incumbent = <td className='incumbent'>
+			incumbent = <div className='incumbent'>
 				<span className='logo'>i</span>
 				<span className='text'>incumbent</span>
-			</td>;
+			</div>;
 		} else {
-			incumbent = <td className='incumbent'>
+			incumbent = <div className='incumbent'>
 				<span className='text'>&nbsp;</span>
-			</td>;
+			</div>;
 		}
 
 		var precincts = !isUncontested ? (
-			<td className='precincts'>
+			<div className='precincts'>
 				<span>{forDisplay}% precincts reporting</span>
-			</td>) : null;
+			</div>) : null;
 
 		return (
-			<tfoot>
-				<tr>
-					{incumbent}
-					{precincts}
-				</tr>
-			</tfoot>
+			<div className='candidates-precincts'>
+				{incumbent}
+				{precincts}
+			</div>
 		);
 	}
 

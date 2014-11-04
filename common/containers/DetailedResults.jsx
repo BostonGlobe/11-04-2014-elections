@@ -83,3 +83,4 @@ var DetailedResults = React.createClass({
 });
 
 module.exports = DetailedResults;
+
