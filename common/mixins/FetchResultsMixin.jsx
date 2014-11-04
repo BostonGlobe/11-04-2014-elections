@@ -58,15 +58,53 @@ var FetchResultsMixin = {
 				this.sortByDefault(processedJson, this.props.raceNumbers) :
 				processedJson;
 
+			data.forEach(function(race) {
+
+				if (race.office_name === 'Governor' && race.state_postal === 'MA') {
+
+					// first, zero out all winners
+					race.reporting_units.forEach(function(reportingUnit) {
+						reportingUnit.results.forEach(function(result) {
+							result.winner = '';
+						});
+					});
+
+					// next, only proceed if we have a winner
+					if (window.governorWinner.governor.length) {
+
+						var match = _.find(race.candidates, {last_name: window.governorWinner.governor});
+
+						race.reporting_units.forEach(function(reportingUnit) {
+							reportingUnit.results.forEach(function(result) {
+
+								if (result.ap_candidate_id === match.id) {
+									result.winner = 'X';
+								}
+
+							});
+ 						});
+
+					}
+				}
+
+			});
+
 			this.setState({results: data});
 
 		}.bind(this);
 
-		$.ajax({
-			url: url,
-			dataType: 'jsonp',
-			jsonpCallback: apiCallback
+		$.getJSON('http://www.boston.com/newsprojects/2014/elections-winner/winner.php?_cache=' + Date.now(), function(json) {
+
+			window.governorWinner = json;
+	
+			$.ajax({
+				url: url,
+				dataType: 'jsonp',
+				jsonpCallback: apiCallback
+			});
+
 		});
+
 	},
 
 	getInitialState: function() {
