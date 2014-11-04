@@ -1,10 +1,10 @@
 .elections-graphic.elections-summaryresults {
 	// @include rhythm(0, 0, 0, 2);
 
-	@include adjust-font-size-to($s6);
+	font-size: 1.5rem;
 
 	&.homepage-graphic {
-		@include adjust-font-size-to($s5p5);
+		
 	}
 
 	&.article-graphic {
