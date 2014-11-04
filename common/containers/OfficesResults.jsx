@@ -110,12 +110,23 @@ var OfficesResults = React.createClass({
 			})
 			.value();
 
-		var title = this.state.results[0] ? <Title isHeader={true} name={util.officeTitle(this.state.results[0])} /> : null;
+		var titleComponent = null;
+
+		if (this.state.results[0]) {
+
+			var title = util.officeTitle({
+				alternate_office_name: this.state.results[0].alternate_office_name,
+				state: this.props.state
+			});
+
+			titleComponent = <Title isHeader={true} name={title} />;
+
+		}
 
 		return (
 			<div className='offices-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
-				{title}
+				{titleComponent}
 				<ShareTools />
 				{_.first(summaries)}
 				<Ad />

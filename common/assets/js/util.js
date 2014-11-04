@@ -25,13 +25,13 @@ module.exports = {
 		return [town, this.standardizeState(state)].join(', ');
 	},
 
-	officeTitle: function(results) {
+	officeTitle: function(opts) {
 
 		var title;
-		var office = results.alternate_office_name;
-		var state = this.standardizeState(results.state_postal);
+		var office = opts.alternate_office_name;
+		var state = opts.state_postal ? this.standardizeState(opts.state_postal) : '';
 
-		title = [state, this.standardizeOffice(office.toLowerCase())].join(' ');
+		title = state ? [state, this.standardizeOffice(office.toLowerCase())].join(' ') : this.standardizeOffice(office);
 
 		return title;
 	},
