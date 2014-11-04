@@ -33,10 +33,6 @@ var OfficesResults = React.createClass({
 		return url;
 	},
 
-	allResultsAreIn: function(results) {
-		return false;
-	},
-
 	render: function() {
 
 		var self = this;

@@ -190,13 +190,6 @@ var Strip = React.createClass({
 		return '/races/office/MA/Governor/?date=20141104';
 	},
 
-	// override FetchResultsMixin.defaultAllResultsAreIn
-	// make it return false to simulate race isn't complete,
-	// so we can see the clock
-	allResultsAreIn: function() {
-		return false;
-	},
-
 	render: function() {
 
 		var results = this.state.results[0];

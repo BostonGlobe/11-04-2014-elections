@@ -17,10 +17,6 @@ var SummaryResults = React.createClass({
 
 	mixins: [FetchResultsMixin],
 
-	allResultsAreIn: function(results) {
-		return false;
-	},
-
 	// FetchResultsMixin needs this
 	apiUrl: function() {
 		var isDev = false;

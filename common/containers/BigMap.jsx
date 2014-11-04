@@ -28,10 +28,6 @@ var BigMap = React.createClass({
 		this.refs.theTooltip.setState(opts);
 	},
 
-	allResultsAreIn: function(results) {
-		return false;
-	},
-
 	render: function() {
 
 		var results = this.state.results[0];
