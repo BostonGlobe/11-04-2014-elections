@@ -6,6 +6,12 @@
 	$globe-red: #9B1518;
 	$globe-red-light: #ef8a8c;
 
+	border-bottom: 1px solid #ccc;
+
+	@include breakpoint(max-width $bp-medium) {
+		border-bottom: none;
+	}
+
 	.strip {
 		height: 100%;
 		overflow: hidden;	
@@ -212,8 +218,11 @@
 		.table-row {
 			height: 100%;
 			overflow: hidden;
-			margin: 0 0 0.25em 0;
+			margin: 0.25em 0 0.25em 0;
 			border-bottom: 1px solid #ccc;
+			&:last-child {
+				border-bottom: none;
+			}
 		}
 		.table-name {
 			width: 33.4%;
