@@ -28,6 +28,9 @@ var TownResults = React.createClass({
 	render: function() {
 
 		var summaries = _.chain(this.state.results)
+			.reject(function(race) {
+				return race.office_name === 'Question';
+			})
 			.filter(function(race) {
 				return race.seat_name && race.seat_name.length;
 			})
