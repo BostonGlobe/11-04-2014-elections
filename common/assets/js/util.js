@@ -79,7 +79,7 @@ module.exports = {
 			if (seat.length) {
 
 				if (race.alternate_office_name === 'Question') {
-					title = [this.standardizeOffice(this.sentenceStyle(office)), this.standardizeSeat(this.sentenceStyle(seat)), state].join(', ');
+					title = [this.standardizeOffice(this.sentenceStyle(office)), this.questionSentenceStyle(seat), state].join(', ');
 				} else {
 					title = [this.standardizeOffice(this.sentenceStyle(office)), this.standardizeSeat(seat), state].join(', ');
 				}
