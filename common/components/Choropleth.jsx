@@ -298,7 +298,7 @@ var Choropleth = React.createClass({
 				var thereIsAWinner = _.some(results, {winner: 'X'});
 
 				// do we have any votes?
-				var thereAreVotes = _.last(results).vote_count > 0;
+				var thereAreVotes = _.first(results).vote_count > 0;
 
 				// is there a tie?
 				var thereIsATie = _.first(results).vote_count === _.last(results).vote_count && thereAreVotes;
