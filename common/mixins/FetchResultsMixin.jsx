@@ -60,7 +60,11 @@ var FetchResultsMixin = {
 
 			data.forEach(function(race) {
 
+				var override;
+
 				if (race.office_name === 'Governor' && race.state_postal === 'MA') {
+
+					override = overrides.governor;
 
 					// first, zero out all winners
 					race.reporting_units.forEach(function(reportingUnit) {
@@ -70,9 +74,38 @@ var FetchResultsMixin = {
 					});
 
 					// next, only proceed if we have a winner
-					if (window.governorWinner.governor.length) {
+					if (override.length) {
 
-						var match = _.find(race.candidates, {last_name: window.governorWinner.governor});
+						var match = _.find(race.candidates, {last_name: override});
+
+						race.reporting_units.forEach(function(reportingUnit) {
+							reportingUnit.results.forEach(function(result) {
+
+								if (result.ap_candidate_id === match.id) {
+									result.winner = 'X';
+								}
+
+							});
+ 						});
+
+					}
+				}
+
+				if (race.alternate_office_name === 'US Senate' && race.state_postal === 'NH') {
+
+					override = overrides.nh;
+
+					// first, zero out all winners
+					race.reporting_units.forEach(function(reportingUnit) {
+						reportingUnit.results.forEach(function(result) {
+							result.winner = '';
+						});
+					});
+
+					// next, only proceed if we have a winner
+					if (override.length) {
+
+						var match = _.find(race.candidates, {last_name: override});
 
 						race.reporting_units.forEach(function(reportingUnit) {
 							reportingUnit.results.forEach(function(result) {
@@ -95,8 +128,9 @@ var FetchResultsMixin = {
 
 		$.getJSON('http://www.boston.com/newsprojects/2014/elections-winner/winner.php?_cache=' + Date.now(), function(json) {
 
-			window.governorWinner = json;
-	
+			// this could be governor or nh
+			window.overrides = json;
+
 			$.ajax({
 				url: url,
 				dataType: 'jsonp',
