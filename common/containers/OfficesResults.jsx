@@ -46,7 +46,7 @@ var OfficesResults = React.createClass({
 				if (self.props.state) {
 
 					if (race.alternate_office_name === 'Question') {
-						name = util.sentenceStyle(util.seatName(race));
+						name = util.questionSentenceStyle(util.seatName(race));
 					} else {
 						name = util.seatName(race);
 					}

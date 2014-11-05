@@ -10,6 +10,16 @@ module.exports = {
 		return url;
 	},
 
+	questionSentenceStyle: function(s) {
+		return s.replace(/([^a-z]*)([a-z].*)/i, function(match, $1, $2) {
+			var rest = $2.replace(/([a-z])(.*)/i, function(match, $1, $2) {
+				return [$1.toUpperCase(), $2.toLowerCase()].join('');
+			});
+
+			return [$1, rest].join('');
+		});
+	},
+
 	sentenceStyle: function(s) {
 		return _.first(s).toUpperCase() + _.rest(s).join('').toLowerCase();
 	},
