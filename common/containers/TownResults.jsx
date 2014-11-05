@@ -58,7 +58,6 @@ var TownResults = React.createClass({
 			<div className='town-results'>
 				<PollClock ref='thePollClock' pollCallback={this.fetchResults} />
 				<Title isHeader={true} name={util.townTitle({town:this.props.town, state:this.props.state})} />
-				<ShareTools />
 				{_.first(summaries)}
 				<Ad />
 				{_.rest(summaries)}
@@ -69,3 +68,5 @@ var TownResults = React.createClass({
 });
 
 module.exports = TownResults;
+
+				// <ShareTools />
