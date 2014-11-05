@@ -69,7 +69,7 @@ var BalanceOfPower = React.createClass({
 		// convert '0' to seats, '+1' to seat, '-2' to seats
 		function seatOrdinal(count) {
 
-			var absolute = +(count
+			var absolute = +(count.toString()
 				.replace(/\+/g, '') // remove +
 				.replace(/-/g, '') // remove -
 			);
