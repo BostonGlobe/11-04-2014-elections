@@ -5,6 +5,7 @@
 var React    = require('react');
 
 var Title    = require('./Title.jsx');
+var FullResultsButton = require('../components/FullResultsButton.jsx');
 
 var util     = require('../assets/js/util.js');
 
@@ -100,6 +101,8 @@ var BalanceOfPower = React.createClass({
 				<span className='square'>&nbsp;</span>
 			</div> : null;
 
+		var url = '/news/politics/election-results/2014-11-04/offices/' + results.name + '?p1=BG_header';
+
 		return (
 			<div className='balance-of-power'>
 				<Title name={results.name} />
@@ -121,6 +124,7 @@ var BalanceOfPower = React.createClass({
 					{undecidedKey}
 					{independentKey}
 				</div>
+				<FullResultsButton url={url} />
 			</div>
 		);
 	}
