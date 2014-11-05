@@ -1,0 +1,66 @@
+.elections-graphic .loading {
+  text-align: center;
+  margin-top: 4em;
+  margin-bottom: 4em;
+}
+
+svg .loadingdraw {
+  stroke-dasharray: 700;
+  -webkit-animation: loadingdraw 5s 0s linear infinite;
+}
+
+svg .loadingdraw2 {
+    stroke-dasharray: 700;
+  -webkit-animation: loadingdraw2 5s 0s linear infinite;
+}
+
+@-webkit-keyframes loadingdraw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+@keyframes loadingdraw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 1000;
+  }
+  
+}
+
+@-webkit-keyframes loadingdraw2 {
+  from {
+    stroke-dashoffset: 1300;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 1300;
+  }
+}
+
+@keyframes loadingdraw2 {
+  from {
+    stroke-dashoffset: 1300;
+  }
+  
+  50% {
+    stroke-dashoffset: 0;
+  }
+  
+  to {
+    stroke-dashoffset: 1300;
+  }
+}
