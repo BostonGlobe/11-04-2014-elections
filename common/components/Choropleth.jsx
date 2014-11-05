@@ -90,7 +90,6 @@ var Choropleth = React.createClass({
 			var features = [];
 
 			// bind results to shapefile
-			var before = Date.now();
 			if (results && results.reporting_units) {
 
 				results.reporting_units.forEach(function(reporting_unit) {
@@ -107,9 +106,6 @@ var Choropleth = React.createClass({
 				});
 
 			}
-
-			var after = Date.now();
-			console.log('binding results to shapefile took ' + (after - before) + 'ms');
 
 			var g = node;
 

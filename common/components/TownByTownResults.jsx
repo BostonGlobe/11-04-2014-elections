@@ -86,8 +86,6 @@ var TownByTownResults = React.createClass({
 
 		if (results) {
 
-			var before = Date.now();
-
 			var candidates = results.candidates;
 
 			var summaryReportingUnit = _.find(results.reporting_units, {'fips_code': 0});
@@ -139,9 +137,6 @@ var TownByTownResults = React.createClass({
 					/>;
 				})
 				.value();
-
-			var after = Date.now();
-			console.log('rendering town-by-town-results took ' + (after - before) + ' ms');
 
 			component = (
 				<div className='town-by-town-results'>
